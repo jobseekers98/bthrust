@@ -1,0 +1,310 @@
+<div class="col-md-12 col-sm-12 col-xs-12 service-founds-detail-form" id="print-section">
+  <div class="tab-content job-for-tab-content">
+    <div class="tab-pane active" id="kt_tabs_3_1" role="tabpanel">
+      <div class="row service-supports-heading">
+        <div class="col-md-6 col-sm-6 colxs-12 heading-logo">
+          <div class="">
+            <a href="javascript:void(0)">
+              <img alt="Logo" src="{{gpservice.formData.Logo}}" class="img-responsive">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 colxs-12">
+          <div class="kt-wizard-v1__review-item">
+            <div class="kt-wizard-v1__review-title">
+              Thanks for your support!
+            </div>
+            <div class="kt-wizard-v1__review-content">
+              {{gpservice.formData.AddressStreet1}} {{gpservice.formData.AddressCity}}
+              {{gpservice.formData.AddressCountry}} {{gpservice.formData.AddressZipCode}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-sm-6 colxs-12" style="padding: 0;">
+          <table class="table table-bordered">
+            <tbody class="tktbg">
+              <tr>
+                <td width="150px">Company Name:</td>
+                <td colspan="3">
+                  {{ticketService.formData.Customers.CompanyName}}
+                </td>
+              </tr>
+              <tr>
+                <td>Customer Name:</td>
+                <td colspan="3">
+                  {{ticketService.formData.CustomerName }}
+                </td>
+              </tr>
+              <tr>
+                <td>Contact Info:</td>
+                <td colspan="3">
+                  Contact No : {{ticketService.formData.CustomerContactNo }}, Email :
+                  {{ticketService.formData.CustomerEmail }}
+                </td>
+              </tr>
+              <tr>
+                <td>Address:</td>
+                <td colspan="3">
+                  {{ticketService.formData.CustomerAddress }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6 col-sm-6 colxs-12" style="padding: 0;">
+          <table class="table table-bordered">
+            <tbody class="tktbg">
+              <tr>
+                <td width="150px">{{this.currentUser.Ticket}} No:</td>
+                <td colspan="3">
+                  {{ticketService.formData.TicketId}}
+                </td>
+              </tr>
+              <tr>
+                <td>{{this.currentUser.Ticket}} Date:</td>
+                <td colspan="3">
+                  {{ticketService.formData.AppointmentStart | date:'EEEE, MMMM d, y':'+0000'}}
+                </td>
+              </tr>
+              <tr>
+                <td>Time Schedule:</td>
+                <td colspan="3">
+                  From {{ticketService.formData.AppointmentStart | date:'hh:mm a':'+0000'}} To
+                  {{ticketService.formData.AppointmentStart | date:'hh:mm a':'+0000'}}
+                </td>
+              </tr>
+              <tr>
+                <td>{{this.currentUser.Engineer}}'s:</td>
+                <td colspan="3">
+                  <ul *ngFor="let t of ticketService.formData.TicketTeams"
+                    style="list-style: none !important;padding: 0 !important;">
+                    <li>{{t.EngineerName}}</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row service-supports-heading padd-top-15">
+        <div class="col-md-6 col-sm-6 colxs-12">
+          <div class="support-service-incident-form">
+            <h2>Service Support And Incident Form</h2>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 colxs-12">
+          <div class="support-service-serial-number">
+            <h2>S/No. <div class="btn btn-label-primary ticket-cirle-red">
+                {{service.TicketWiseServiceFormData.ServicePrefix}}
+                {{service.TicketWiseServiceFormData.TicketServiceID}}</div></h2>
+          </div>
+        </div>
+        <div class="col-md-12 col-sm-12 colxs-12">
+          <div class="kt-portlet__body">
+            <div class="kt-section">
+              <div class="kt-section__content">
+                <div class="ageement-form">
+                  <div class="row">
+                    <div class="col">
+                      <div class="checklist-data">
+                        <table class="table table-borderless">
+                          <thead>
+                            <tr>
+                              <th colspan="5"><h5>Select one of following</h5></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="width-1">
+                                <label class="kt-checkbox kt-checkbox--bold kt-checkbox--success" style="margin-right: 10px;">
+                                  Service Call 
+                                  <input name="service.FSMServiceFormData.SelectOne" 
+                                  #service.FSMServiceFormData.SelectOne="ngModel" value="Service Call"
+                                  [(ngModel)]="service.FSMServiceFormData.SelectOne" type="radio">
+                                  <span style="border-radius: 9px;"></span>
+                                </label>
+                              </td>
+                              <td class="width-1">
+                                <label class="kt-checkbox kt-checkbox--bold kt-checkbox--success" style="margin-right: 10px;">
+                                  Inspection 
+                                  <input name="service.FSMServiceFormData.SelectOne" 
+                                  #service.FSMServiceFormData.SelectOne="ngModel" value="Inspection"
+                                  [(ngModel)]="service.FSMServiceFormData.SelectOne" type="radio">
+                                  <span style="border-radius: 9px;"></span>
+                                </label>  
+                              </td>
+                              <td class="width-1">
+                                <label class="kt-checkbox kt-checkbox--bold kt-checkbox--success" style="margin-right: 10px;">
+                                  Installation 
+                                  <input name="service.FSMServiceFormData.SelectOne" 
+                                  #service.FSMServiceFormData.SelectOne="ngModel" value="Installation"
+                                  [(ngModel)]="service.FSMServiceFormData.SelectOne" type="radio">
+                                  <span style="border-radius: 9px;"></span>
+                                </label>  
+                              </td>
+                              <td class="width-1">
+                                <label class="kt-checkbox kt-checkbox--bold kt-checkbox--success" style="margin-right: 10px;">
+                                  Follow-up 
+                                  <input name="service.FSMServiceFormData.SelectOne" 
+                                  #service.FSMServiceFormData.SelectOne="ngModel" value="Follow-up"
+                                  [(ngModel)]="service.FSMServiceFormData.SelectOne" type="radio">
+                                  <span style="border-radius: 9px;"></span>
+                                </label>  
+                              </td>
+                              <td class="width-1">
+                                <label class="kt-checkbox kt-checkbox--bold kt-checkbox--success" style="margin-right: 10px;">
+                                  Delivery 
+                                  <input name="service.FSMServiceFormData.SelectOne" 
+                                  #service.FSMServiceFormData.SelectOne="ngModel" value="Delivery"
+                                  [(ngModel)]="service.FSMServiceFormData.SelectOne" type="radio">
+                                  <span style="border-radius: 9px;"></span>
+                                </label>  
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="checklist-data">
+                        <table class="table table-borderless">
+                          <thead>
+                            <tr>
+                              <th colspan="5"><h5>Maintenance Contract</h5></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="width-1">
+                                <label class="kt-checkbox kt-checkbox--bold kt-checkbox--success" style="margin-right: 10px;">
+                                  Yes 
+                                  <input name="service.FSMServiceFormData.MaintenanceContract" 
+                                  #service.FSMServiceFormData.MaintenanceContract="ngModel" value="Yes"
+                                  [(ngModel)]="service.FSMServiceFormData.MaintenanceContract" type="radio">
+                                  <span style="border-radius: 9px;"></span>
+                                </label>
+                              </td>
+                              <td class="width-1">
+                                <label class="kt-checkbox kt-checkbox--bold kt-checkbox--success" style="margin-right: 10px;">
+                                  No 
+                                  <input name="service.FSMServiceFormData.MaintenanceContract" 
+                                  #service.FSMServiceFormData.MaintenanceContract="ngModel" value="No"
+                                  [(ngModel)]="service.FSMServiceFormData.MaintenanceContract" type="radio">
+                                  <span style="border-radius: 9px;"></span>
+                                </label>  
+                              </td>
+                              <td class="width-1">&nbsp; </td>
+                              <td class="width-1">&nbsp; </td>
+                              <td class="width-1">&nbsp; </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="checklist-data">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="">Request/Fault Reported :</label>
+                              <textarea rows="2" placeholder="Request/Fault Reported" name="service.FSMServiceFormData.Request" maxlength="1024"
+                              #service.FSMServiceFormData.Request="ngModel" [(ngModel)]="service.FSMServiceFormData.Request"class="form-control">
+                            </textarea>
+                            </div>
+                          </div>                    
+                        </div>
+                      </div>
+                      <div class="checklist-data">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="">Diagnose/Fault Found :</label>
+                              <textarea rows="2" placeholder="Diagnose/Fault Found" name="service.FSMServiceFormData.Diagnose" maxlength="1024"
+                              #service.FSMServiceFormData.Diagnose="ngModel" [(ngModel)]="service.FSMServiceFormData.Diagnose"class="form-control">
+                            </textarea>
+                            </div>
+                          </div>                    
+                        </div>
+                      </div>
+                      <div class="checklist-data">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="">Job Done/Rectified :</label>
+                              <textarea rows="2" placeholder="Job Done/Rectified" name="service.FSMServiceFormData.JobDone" maxlength="1024"
+                              #service.FSMServiceFormData.JobDone="ngModel" [(ngModel)]="service.FSMServiceFormData.JobDone"class="form-control">
+                            </textarea>
+                            </div>
+                          </div>                    
+                        </div>
+                      </div>
+                      <div class="checklist-data">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="">Remark/request :</label>
+                              <textarea rows="2" placeholder="Remark/request" name="service.FSMServiceFormData.Remark" maxlength="1024"
+                              #service.FSMServiceFormData.Remark="ngModel" [(ngModel)]="service.FSMServiceFormData.Remark"class="form-control">
+                            </textarea>
+                            </div>
+                          </div>                    
+                        </div>
+                      </div>
+                      <div class="checklist-data">
+                        <table class="table table-borderless">
+                          <thead>
+                            <tr>
+                              <th colspan="5"><h5>Service {{this.currentUser.Ticket}} status</h5></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="width-1">
+                                <label class="kt-checkbox kt-checkbox--bold kt-checkbox--success" style="margin-right: 10px;">
+                                  Completed 
+                                  <input name="service.FSMServiceFormData.ServiceTicketStatus" 
+                                  #service.FSMServiceFormData.ServiceTicketStatus="ngModel" value="Completed"
+                                  [(ngModel)]="service.FSMServiceFormData.ServiceTicketStatus" type="radio">
+                                  <span style="border-radius: 9px;"></span>
+                                </label>
+                              </td>
+                              <td class="width-1">
+                                <label class="kt-checkbox kt-checkbox--bold kt-checkbox--success" style="margin-right: 10px;">
+                                  Pending 
+                                  <input name="service.FSMServiceFormData.ServiceTicketStatus" 
+                                  #service.FSMServiceFormData.ServiceTicketStatus="ngModel" value="Pending"
+                                  [(ngModel)]="service.FSMServiceFormData.ServiceTicketStatus" type="radio">
+                                  <span style="border-radius: 9px;"></span>
+                                </label>  
+                              </td>
+                              <td class="width-1">&nbsp; </td>
+                              <td class="width-1">&nbsp; </td>
+                              <td class="width-1">&nbsp; </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="btnSaveService" style="float: right; margin-top: 8px;">
+            <button class="btn btn-warning" mat-dialog-close>Close</button> &nbsp;
+            <button *ngIf="!loading" class="btn btn-primary" (click)="OnSubmit(true)">Save as Preview</button> &nbsp;&nbsp;
+            <button *ngIf="!loading" class="btn btn-primary" (click)="OnSubmit(false)">Save & Submit</button>
+            <button *ngIf="loading" class="btn btn-secondary">Please wait...</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          &nbsp;
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

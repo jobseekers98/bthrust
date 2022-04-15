@@ -1,0 +1,418 @@
+<style>
+  .imgCloserAttchmetList {
+    width: 100%;
+    max-width: 80px;
+  }
+
+  .closerDetailsSection-top table tr th {
+    width: 20% !important;
+  }
+</style>
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+  <div class="kt-subheader kt-grid__item" id="kt_subheader">
+    <div class="kt-container kt-container--fluid ">
+      <div class="kt-subheader__main">
+        <h3 class="kt-subheader__title">
+          <a href="javascript:;" routerLink="/dashboard" *ngIf="currentUser.Type === 'Admin'">
+            Dashboard
+          </a>
+          <a href="javascript:;" routerLink="/engineer/engineer-dashboard" *ngIf="currentUser.Type === 'Engineer'">
+            Dashboard
+          </a>
+        </h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          <span class="kt-subheader__breadcrumbs-separator"></span>
+          <a href="javascript:;" routerLink="/properties" class="kt-subheader__breadcrumbs-link"
+            *ngIf="currentUser.Type === 'Admin'"> properties
+          </a>
+          <a href="javascript:;" onclick="window.history.back()" class="kt-subheader__breadcrumbs-link"
+            *ngIf="currentUser.Type === 'Engineer'">
+            {{this.webParms.WebsiteParam.UrlPath}}
+          </a>
+        </div>
+        <span class="kt-subheader__separator kt-hidden" *ngIf="currentUser.Type === 'Admin'"></span>
+        <div class="kt-subheader__breadcrumbs" *ngIf="currentUser.Type === 'Admin'">
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          <span class="kt-subheader__breadcrumbs-separator"></span>
+          <a href="javascript:;" routerLink="/properties/ticket-history-property-wise"
+            class="kt-subheader__breadcrumbs-link"> Client History
+          </a>
+        </div>
+        <span class="kt-subheader__breadcrumbs-separator"></span>
+        <div class="kt-subheader__breadcrumbs">
+          <a href="javascript:;" class="kt-subheader__breadcrumbs-home"><i aria-hidden="true"
+              class="fa fa-angle-double-right"></i></a>
+          <span class="kt-subheader__breadcrumbs-separator"></span> <a href="javascript:;"
+            class="kt-subheader__breadcrumbs-link"> Closer detail's Info </a>
+        </div>
+      </div>
+      <div class="kt-subheader__toolbar">
+        <div class="kt-subheader__wrapper">
+          <a class="btn btn-primary" onclick="window.history.back()"
+            style="margin-right: 3px;color: white;padding: 6px 10px 7px 10px;cursor: pointer;"> Back </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="customer-listing-detail-section">
+    <div class="col-md-12">
+      <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+        <div class="col-xl-12 col-lg-12">
+          <h3></h3>
+          <div class="closerDetailsSection-top">
+            <table class="table table-bordered table-stripped">
+              <thead>
+                <tr>
+                  <th colspan="2">Customer Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{this.currentUser.Ticket}} #</td>
+                  <td><span
+                      class="btn btn-label-primary ticket-cirle-red">{{ResposeResult.CustomerDetails.TicketId}}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Company Name</td>
+                  <td>{{ResposeResult.CustomerDetails.CustomerCompanyName}}</td>
+                </tr>
+                <tr>
+                  <td>Contact Person Name</td>
+                  <td>{{ResposeResult.CustomerDetails.CustomerName}}</td>
+                </tr>
+                <tr>
+                  <td>Contact Details</td>
+                  <td> Contact No : {{ResposeResult.CustomerDetails.CustomerContactNo}} Email :
+                    {{ResposeResult.CustomerDetails.CustomerEmail}}</td>
+                </tr>
+                <tr>
+                  <td>Service Location</td>
+                  <td>{{ResposeResult.CustomerDetails.CustomerAddress}}</td>
+                </tr>
+                <tr>
+                  <td>Issue Type</td>
+                  <td>
+                    <ng-container>
+                      <ul class="scTicketissueType">
+                        <li *ngFor="let i of ResposeResult.IssueType">
+                          <span>{{i.IssueTypeName}}</span>
+                        </li>
+                      </ul>
+                    </ng-container>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2"></td>
+                </tr>
+                <tr>
+                  <td>Job Title</td>
+                  <td>{{ResposeResult.CustomerDetails.Title}}</td>
+                </tr>
+                <tr>
+                  <td>Description</td>
+                  <td>{{ResposeResult.CustomerDetails.Description}}</td>
+                </tr>
+                <tr>
+                  <td>Appointment Start</td>
+                  <td>{{ResposeResult.CustomerDetails.AppointmentStart | date:'MMM d, y HH:mm':'+0000' }}</td>
+                </tr>
+                <tr>
+                  <td>Appointment End</td>
+                  <td>{{ResposeResult.CustomerDetails.AppointmentEnd | date:'MMM d, y HH:mm':'+0000'}}</td>
+                </tr>
+                <tr class="engineer_sec">
+                  <td>{{this.currentUser.Engineer}}</td>
+                  <td>
+                    <div class="team-inner-1">
+                      <ul>
+                        <li *ngFor="let item of ResposeResult.TicketTeam" title="{{item.EngineerName}}">
+                          <img *ngIf="item.EngineerLogo.length === 0" width="20px" height="20px"
+                            src="{{localPrependUrl}}/assets/svg/noimage.svg" />
+                          <img *ngIf="item.EngineerLogo.length > 0" width="20px" height="20px"
+                            src="{{item.EngineerLogo}}">
+                          {{item.EngineerName}}
+                          <span class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                            *ngIf="item.Type === 1">Supervisor</span>
+                          <span class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill"
+                            *ngIf="item.Type === 2">Foreman</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+        <div class="col-xl-12 col-lg-12">
+          <h4>{{this.currentUser.Product}} &amp; Service</h4>
+          <div class="closerDetailsSection">
+            <table class="table table-striped properies-table-info ng-star-inserted">
+              <thead>
+                <th>#</th>
+                <th>{{this.currentUser.Product}} Name</th>
+                <th>Discription</th>
+                <th>Quantity</th>
+                <th *ngIf="!currentUser.Permissions.IsProductOnly">Unit Cost</th>
+                <th *ngIf="!currentUser.Permissions.IsProductOnly">Total Cost</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let p of ResposeResult.TicketItem; let i=index; async">
+                  <td>{{i+1}}</td>
+                  <td>
+                    <div *ngIf="p.ItemAddredBy===true">
+                      {{p.ItemName}}
+                      <sup>*</sup>
+                    </div>
+                    <div *ngIf="p.ItemAddredBy===false">
+                      {{p.ItemName}}
+                    </div>
+                    <div *ngIf="currentUser.Permissions.ProductWarranty">
+                      <div *ngIf="p.InWarranty">
+                        <small>{{p.WarrantyDays}} Days warranty</small>
+
+                        <small *ngIf="p.UniqId.length > 0">({{p.UniqId}})</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{p.ItemDescription}}</td>
+                  <td>
+                    <div *ngIf="p.Type === 'Product'">{{p.ItemQuantity}}</div>
+                  </td>
+                  <td *ngIf="!currentUser.Permissions.IsProductOnly">{{p.ItemUnitCost}}</td>
+                  <td *ngIf="!currentUser.Permissions.IsProductOnly">{{p.ItemTotalCost}}</td>
+                </tr>
+                <tr *ngIf="!currentUser.Permissions.IsProductOnly">
+                  <td><label><strong>Total</strong></label></td>
+                  <td colspan="4"></td>
+                  <td>{{ResposeResult.CustomerDetails.NetAmount}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <p><label>Note: </label>(*)Added by an {{this.currentUser.Engineer}}.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+        <div class="col-xl-12 col-lg-12">
+          <div class="closerDetailsSection">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="support-service-incident-form cmtImage">
+                  <h4>Comments & Images</h4>
+                </div>
+                <p>
+                  {{ResposeResult.CustomerDetails.InternalNoteDescription}}
+                </p>
+              </div>
+              <div class="col-md-12">
+                <div class="ticketImgBox">
+                  <div class="row">
+                    <div class="col-md-1" *ngFor="let x of ResposeResult.TicketAttachment">
+                      <generic-ticket-icon-attachment [(Name)]="x.AttachmentName" [(Path)]="x.AttachmentPath"
+                        [Status]="1"></generic-ticket-icon-attachment>
+
+                      <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                          <a href="{{x.AttachmentPath}}" target="_blank"><i class="fa fa-download text-success"></i></a>
+                        </div>
+                        <div class="col-md-4"></div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="ResposeResult.TicketAttachment.length === 0">
+                    <div class="col-md-12">
+                      <div class="singleBox">
+                        <p>No Attachment Available</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+        <div class="col-xl-12 col-lg-12">
+          <h4>Service Form / Work Order & Closer Details</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12" *ngFor="let rc of ResposeResult.CloserDetails;">
+      <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+        <div class="col-xl-12 col-lg-12">
+          <div class="closerDetailsSection">
+            <h5> Closer details ({{rc.CloserPrefix}}) </h5>
+            <table class="table table-bordered table-stripped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th style="width: 18%;">Attachment's</th>
+                  <th>Audio Message</th>
+                  <th>Remark's</th>
+                  <th>Download</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let d of rc.CloserAttachmentList; let ii=index">
+                  <td>{{ii+1}}</td>
+                  <td>
+                    <generic-ticket-icon-attachment [(Name)]="d.AttachmentExtenstion" [(Path)]="d.AttachmentFile"
+                      [Status]="1"></generic-ticket-icon-attachment>
+                  </td>
+                  <td style="text-align: center;">
+                    <div *ngIf="d.CloserAttachmentAudioList.length>0">
+                      <audio controls *ngFor="let b of d.CloserAttachmentAudioList">
+                        <source src="{{b.AudioAttachment}}" type="audio/webm">
+                      </audio>
+                    </div>
+                    <span *ngIf="d.CloserAttachmentAudioList.length<=0">No audio available</span>
+                  </td>
+                  <td style="width: 65%;">
+                    {{d.Remarks}}
+                  </td>
+                  <td>
+                    <a class="btn btn-primary" href="{{d.AttachmentFile}}" target="_blank">Download
+                      File</a>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="5">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-6">
+                        <div class="row">
+                          <div class="col-md-4 col-lg-4">
+                            <p>{{this.currentUser.Engineer}} Name</p>
+                          </div>
+                          <div class="col-md-8 col-lg-8">
+                            <p>: {{rc.EngineerName}}</p>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4 col-lg-4">
+                            <p>Start Date</p>
+                          </div>
+                          <div class="col-md-8 col-lg-8">
+                            <p>: {{rc.StartDate | date:'MMM dd, yyyy HH:mm'}}</p>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4 col-lg-4">
+                            <p>End Date</p>
+                          </div>
+                          <div class="col-md-8 col-lg-8">
+                            <p>: {{rc.EndDate | date:'MMM dd, yyyy HH:mm'}}</p>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4 col-lg-4">
+                            <p>Total Duration</p>
+                          </div>
+                          <div class="col-md-8 col-lg-8">
+                            <p>: {{rc.TotalDuration}}</p>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4 col-lg-4">
+                            <p>Remarks</p>
+                          </div>
+                          <div class="col-md-8 col-lg-8">
+                            <p>: {{rc.Remarks}}</p>
+                          </div>
+                        </div>
+                        <div class="row" *ngIf="rc.CloserTotalAmount.PaymentCollected">
+                          <div class="col-md-4 col-lg-4">
+                            <p>Amount</p>
+                          </div>
+                          <div class="col-md-8 col-lg-8">
+                            <p>: {{rc.CloserAmount}}</p>
+                          </div>
+                        </div>
+                        <div class="row" *ngIf="rc.CloserTotalAmount.PaymentCollected">
+                          <div class="col-md-4 col-lg-4">
+                            <p>Tax</p>
+                          </div>
+                          <div class="col-md-8 col-lg-8">
+                            <p>: {{rc.CloserGSTAmount}}</p>
+                          </div>
+                        </div>
+                        <div class="row" *ngIf="rc.CloserTotalAmount.PaymentCollected">
+                          <div class="col-md-4 col-lg-4">
+                            <p>Total</p>
+                          </div>
+                          <div class="col-md-8 col-lg-8">
+                            <p>: {{rc.CloserTotalAmount}}</p>
+                          </div>
+                        </div>
+                        <div class="row" *ngIf="rc.CloserTotalAmount.PaymentCollected">
+                          <div class="col-md-4 col-lg-4">
+                            <p>Payment Mode</p>
+                          </div>
+                          <div class="col-md-8 col-lg-8">
+                            <p>: {{rc.PaymentMode}}</p>
+                          </div>
+                        </div>
+                        <div class="row" *ngIf="rc.CloserTotalAmount.PaymentCollected">
+                          <div class="col-md-4 col-lg-4">
+                            <p>Amount Paid</p>
+                          </div>
+                          <div class="col-md-8 col-lg-8">
+                            <p>: {{rc.AmountPaid}}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-lg-6">
+                        <div class="row" *ngIf="rc.ServiceForm !== null">
+                          <div class="col-md-12 col-lg-12">
+                            <a href="javascript:void(0)" class="btn btn-outline-primary btn-block"
+                              (click)="serviceFormDownload(rc.CloserID)">
+                              <i class="fa fa-download" aria-hidden="true"></i> Download Service Form
+                              ({{rc.ServiceForm}})</a>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-md-6 col-lg-6">
+                            <div class="row">
+                              <label>{{this.currentUser.Engineer}} Signature</label>
+                            </div>
+                            <div class="row">
+                              <img width="300px" src="{{ rc.EngineerSignature }}" />
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-lg-6">
+                            <div class="row">
+                              <label>Customer Signature</label>
+                            </div>
+                            <div class="row">
+                              <img width="300px" src="{{ rc.CustomerSignature }}" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,110 @@
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+  <div class="kt-subheader kt-grid__item" id="kt_subheader">
+    <div class="kt-container kt-container--fluid ">
+      <div class="kt-subheader__main">
+        <h3 class="kt-subheader__title">
+          <a href="javascript:;" routerLink="/dashboard">
+            Dashboard
+          </a>
+        </h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          <span class="kt-subheader__breadcrumbs-separator"></span> Reminders
+        </div>
+      </div>
+      <div class="kt-subheader__toolbar">
+        <div class="kt-subheader__wrapper">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="customer-list-main-section">
+    <div class="kt-widget17">
+      <div class="kt-widget17__visual kt-widget17__visual--chart kt-portlet-fit--top kt-portlet-fit--sides"
+        style="background-color: #fd397a">
+      </div>
+      <div class="kt-widget17__stats">
+        <div class="kt-widget17__items">
+        </div>
+        <div class="kt-section kt-drop-section">
+          <div class="kt-portlet__body customer-listing-datatable">
+            <div class="panel panel-primary list-panel" id="list-panel">
+              <div class="panel-heading list-panel-heading">
+                <h1 class="panel-title list-panel-title"><i class="fa fa-list"></i> Reminder List</h1>
+                <ul class="scFilter">
+                  <li>
+                      <div class="btn-group btn-group-sm">
+                          <a href="javascript:;" class="btn btn-primary dropdown-toggle"
+                              data-toggle="dropdown">{{ dropdownbtnavgrev }} <span
+                                  class="caret"></span></a>
+                          <ul class="dropdown-menu" style="text-align: left;padding: 0;">
+                              <li *ngIf="currentUser.Permissions.TicketView" style="width: 100%;"><a (click)="loadData('ticket')" href="javascript:;">{{this.currentUser.Ticket}} Reminders</a></li>
+                              <li *ngIf="currentUser.Permissions.QuoteView" style="width: 100%;"><a (click)="loadData('quote')" href="javascript:;">Quotation Reminders</a></li>
+                              <li *ngIf="currentUser.Permissions.InvoiceView" style="width: 100%;"><a (click)="loadData('invoice')" href="javascript:;">Invoice Reminders</a></li>
+                          </ul>
+                      </div>
+                  </li>
+                  <li>
+                    <div class="btn-group btn-group-sm">
+                        <a href="javascript:;" class="btn btn-primary dropdown-toggle"
+                            data-toggle="dropdown">{{ dropdowntype }} <span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu" style="text-align: left;padding: 0;">
+                          <li style="width: 100%;"><a (click)="changetype(2)" href="javascript:;">All Reminders</a></li>
+                          <li style="width: 100%;"><a (click)="changetype(1)" href="javascript:;">Active Reminders</a></li>
+                          <li style="width: 100%;"><a (click)="changetype(0)" href="javascript:;">InActive Reminders</a></li>
+                        </ul>
+                    </div>
+                </li>
+              </ul>
+              </div>
+              <div class="panel-body">
+                <div *ngIf="!data" class=" col-md-12 alert alert-info">Loading... </div>
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                  class="table table-striped properies-table-info ng-star-inserted">
+                  <thead>
+                    <tr role="row">
+                      <th width="5%">SNo</th>
+                      <th width="10%">
+                        <span *ngIf="this.trname === 'quote'">QuoteId</span>
+                        <span *ngIf="this.trname === 'invoice'">InvoiceId</span>
+                        <span *ngIf="this.trname === 'ticket'">{{this.currentUser.Ticket}}Id</span>
+                      </th>
+                      <th width="15%">Subject</th>
+                      <th width="35%">Body</th>
+                      <th width="10%">Mail To</th>
+                      <th width="20%">Reminder Date</th>
+                      <th width="5%">IsActive</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let x of data; let i=index; async">
+                      <td>{{data.length - i}}</td>
+                      <td>{{x.RNo}}</td>
+                      <td>{{x.Subject}}</td>
+                      <td>{{x.Body}}</td>
+                      <td>{{x.MailTo}}</td>
+                      <td>{{x.ReminderDate | date:'EEEE, MMMM d, y':'+0000'}}</td>
+                      <td>
+                        <div *ngIf="x.IsActive" class="custom-switch custom-switch-label-yesno pl-0">
+                          <input class="custom-switch-input ng-valid ng-dirty ng-touched"
+                            (change)="onWorkerStatusChange($event, x.Id, i)" id="example_{{i}}" name="x.IsActive"
+                            #x.IsActive="ngModel" [(ngModel)]="x.IsActive" type="checkbox">
+                          <label class="custom-switch-btn" for="example_{{i}}"></label>
+                        </div>
+                        <span *ngIf="!x.IsActive"
+                        class="ticketstatus statusoverdue">No</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

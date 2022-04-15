@@ -1,0 +1,1822 @@
+<div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Set Reminder
+            </h3> &nbsp; &nbsp;
+            <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand" style="margin-top: -12px;">
+                <input type="checkbox" id="addremindercheckbox" (change)="SelectReminder()">
+                <span></span>
+            </label>
+        </div>
+    </div>
+    <div class="row" *ngIf="IsVisibleContract">
+        <div class="kt-portlet__body">
+            <div class="col">
+                <table class="table" *ngIf="data.length > 0">
+                    <tr>
+                        <th *ngIf="this.ReminderModule === 'ticket'">{{this.currentUser.Ticket}}Id</th>
+                        <th *ngIf="this.ReminderModule === 'quote'">QuoteId</th>
+                        <th *ngIf="this.ReminderModule === 'invoice'">InvoiceId</th>
+                        <th>Subject</th>
+                        <th>Body</th>
+                        <th>Mail To</th>
+                        <th>Reminder Date</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr *ngFor="let x of data; let i=index; async">
+                        <td>{{x.RNo}}</td>
+                        <td>{{x.Subject}}</td>
+                        <td>{{x.Body}}</td>
+                        <td>{{x.MailTo}}</td>
+                        <td>{{x.ReminderDate | date:'EEEE, MMMM d, y':'+0000'}}</td>
+                        <td><a href="javascript:;" (click)="removeReminder(x.Id, x.RId, this.ReminderModule)"><i
+                                    class="far fa-trash-alt text-danger"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="IsVisibleContract">
+        <div class="kt-portlet__body">
+            <div class="col-md-3">
+                <label>Reminder Type<span class="text-danger">*</span></label>
+                <div class="kt-widget19__wrapper">
+                    <select name="country" class="form-control" name="Duration" #Duration="ngModel"
+                        [(ngModel)]="reminderservice.QuoteReminder.Duration" (change)="ChangeReminderDuration()"
+                        aria-describedby="country-error" aria-invalid="false">
+                        <option value="{{0}}">One Time Reminder</option>
+                        <option value="{{1}}">Daily Reminder</option>
+                        <option value="{{7}}">Weekly Reminder</option>
+                        <option value="{{30}}">Monthly Reminder</option>
+                        <option value="{{33}}">Alternet Monthly Reminder</option>
+                        <option value="{{90}}">Quarterly Reminder</option>
+                        <option value="{{180}}">Half Yearly Reminder</option>
+                        <option value="{{31}}">Custom Monthly Reminder</option>
+                        <option value="{{32}}">Custom Alternet Monthly Reminder</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2" *ngIf="reminderservice.QuoteReminder.Duration === 0">
+                <label>Reminder Date<span class="text-danger">*</span></label>
+                <div class="input-group">
+                    <input type="text" class="form-control" ngbDatepicker (click)="dateReminderDate.toggle()"
+                        style="height: 37px !important;" [minDate]="minDate" dateFormat="yyyy-MMM-dd"
+                        #dateReminderDate="ngbDatepicker" name="reminderservice.QuoteReminder.ReminderDate"
+                        #reminderservice.QuoteReminder.ReminderDate="ngModel"
+                        [(ngModel)]="reminderservice.QuoteReminder.ReminderDate" placeholder="dd-MM-yyyy"
+                        [class.is-invalid]="!isReminderDateValid" />
+                </div>
+            </div>
+            <div class="col-md-2" *ngIf="reminderservice.QuoteReminder.Duration > 0">
+                <label>Start Date<span class="text-danger">*</span></label>
+                <div class="input-group">
+                    <input type="text" class="form-control" ngbDatepicker (click)="dateRecurringStartDate.toggle()"
+                        style="height: 37px !important;" [minDate]="minDate" dateFormat="yyyy-MMM-dd"
+                        #dateRecurringStartDate="ngbDatepicker" name="quoteService.QuoteReminder.RecurringStartDate"
+                        #reminderservice.QuoteReminder.RecurringStartDate="ngModel"
+                        [(ngModel)]="reminderservice.QuoteReminder.RecurringStartDate" placeholder="dd-MM-yyyy" />
+
+                </div>
+            </div>
+            <div class="col-md-1" *ngIf="reminderservice.QuoteReminder.Duration > 0">
+                <label>Frequency<span class="text-danger">*</span></label>
+                <div class="input-group">
+                    <input type="text" class="form-control" style="height: 37px !important;" name="VisitFrequency"
+                        #VisitFrequency="ngModel" [(ngModel)]="reminderservice.QuoteReminder.VisitFrequency"
+                        (change)="RecurringTimeCalculator()" />
+                </div>
+            </div>
+            <div class="col-md-2">
+                <label>&nbsp;</label>
+                <div class="input-group">
+                    <a href="javascript:;" *ngIf="service.formData.RecurringDuration == 7" data-toggle="modal"
+                        id="ticketshowWeekModal" data-target="#ticketdetailModalWeek">select week days</a>
+                    <a href="javascript:;" *ngIf="service.formData.RecurringDuration == 30" data-toggle="modal"
+                        id="ticketshowMonthModal" data-target="#ticketdetailModalMonth">select month days</a>
+                    <a href="javascript:;" *ngIf="service.formData.RecurringDuration == 31" data-toggle="modal"
+                        id="ticketshowCustomMonthModal" data-target="#ticketdetailCustomModalMonth">select custom month
+                        days</a>
+                    <a href="javascript:;" *ngIf="service.formData.RecurringDuration == 32" data-toggle="modal"
+                        id="ticketshowCustomMonthModal2" data-target="#ticketdetailCustomModalMonth2">select custom
+                        alternet month days</a>
+                    <a href="javascript:;" *ngIf="service.formData.RecurringDuration == 33" data-toggle="modal"
+                        id="ticketshowMonthModal" data-target="#ticketdetailModalMonth">select month days</a>
+                </div>
+            </div>
+            <div class="col-md-2" *ngIf="reminderservice.QuoteReminder.Duration > 0">
+                <label>End Date</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" ngbDatepicker (click)="dateRecurringEndDate.toggle()"
+                        style="height: 37px !important;" [minDate]="minDate" dateFormat="yyyy-MMM-dd" [disabled]="true"
+                        #dateRecurringEndDate="ngbDatepicker" name="reminderservice.QuoteReminder.RecurringEndDate"
+                        #reminderservice.QuoteReminder.RecurringEndDate="ngModel"
+                        [(ngModel)]="reminderservice.QuoteReminder.RecurringEndDate" placeholder="dd-MM-yyyy" />
+                </div>
+            </div>
+            <div class="col-md-2" *ngIf="reminderservice.QuoteReminder.Duration > 0">
+                <label>Total Reminder</label>
+                <div class="input-group">
+                    <label class="form-control" style="background-color: #f7f8fa;">{{visit_total}} Reminder</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="IsVisibleContract">
+        <div class="kt-portlet__body">
+            <div class="col-md-3">
+                <label>Mail To<span class="text-danger">*</span></label>&nbsp;
+                <div class="btooltip1"> <i class="fa fa-question-circle text-info" style="cursor: help;"></i>
+                    <span class="btooltip1text">Can send up to 5 emails, separated by comma</span>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="form-control" style="height: 37px !important;"
+                        name="reminderservice.QuoteReminder.MailTo" #reminderservice.QuoteReminder.MailTo="ngModel"
+                        [(ngModel)]="reminderservice.QuoteReminder.MailTo" placeholder="someone@domain.com"
+                        [class.is-invalid]="!isMailValid" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label>Subject<span class="text-danger">*</span></label>
+                <div class="input-group">
+                    <input type="text" class="form-control" style="height: 37px !important;"
+                        name="reminderservice.QuoteReminder.Subject" #reminderservice.QuoteReminder.Subject="ngModel"
+                        [(ngModel)]="reminderservice.QuoteReminder.Subject" placeholder="Subject"
+                        [class.is-invalid]="!isSubjectValid" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label>Body<span class="text-danger">*</span></label>
+                <div class="input-group">
+                    <textarea class="form-control" name="reminderservice.QuoteReminder.Body"
+                        #reminderservice.QuoteReminder.Body="ngModel" [(ngModel)]="reminderservice.QuoteReminder.Body"
+                        rows="1" placeholder="Body" [class.is-invalid]="!isBodyValid"></textarea>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <label>&nbsp;</label>
+                <div class="form-group">
+                    <a href="javascript:;" *ngIf="!this.loading" (click)="onSubmit()" class="btn btn-brand btn-sm">
+                        Add Reminder
+                    </a>
+                    <a href="javascript:;" *ngIf="this.loading" class="btn btn-brand btn-sm">
+                        <i class="fa fa-spinner fa-spin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ticketdetailModalWeek">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">{{service.formData.TicketId}}</h4>
+                    <button type="button" class="close" id="ticketdetailModalWeekbutton" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="detail-inner">
+                        <div class="details-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#dtab1">WEEK</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="dtab1" class="tab-pane active">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="ticket-month">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Sun</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="SundayIsActive" #SundayIsActive="ngModel"
+                                                                        (click)="recurringchangesapply(1)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.SundayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Mon</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="MondayIsActive" #MondayIsActive="ngModel"
+                                                                        (click)="recurringchangesapply(1)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.MondayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Tue</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="TuesdayIsActive"
+                                                                        #TuesdayIsActive="ngModel"
+                                                                        (click)="recurringchangesapply(1)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.TuesdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Wed</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="WednesdayIsActive"
+                                                                        #WednesdayIsActive="ngModel"
+                                                                        (click)="recurringchangesapply(1)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.WednesdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Thu</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="ThursdayIsActive"
+                                                                        #ThursdayIsActive="ngModel"
+                                                                        (click)="recurringchangesapply(1)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.ThursdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Fri</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="FridayIsActive" #FridayIsActive="ngModel"
+                                                                        (click)="recurringchangesapply(1)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.FridayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Sat</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="SaturdayIsActive"
+                                                                        #SaturdayIsActive="ngModel"
+                                                                        (click)="recurringchangesapply(1)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.SaturdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <button type="button" (click)="OnTicketRecurringHelper(1)" class="btn primary"
+                                            [disabled]="this.recurringchangesbtn === 1 ? false : true">Changes
+                                            Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ticketdetailCustomModalMonth">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">{{service.formData.TicketId}}</h4>
+                    <button type="button" class="close" id="ticketdetailCustomModalMonthbutton"
+                        data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="detail-inner">
+                        <div class="details-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#dtab1">Custom Month</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="dtab1" class="tab-pane active">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="ticket-month">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>1st</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date1" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date1">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>2nd</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date2" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date2">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>3rd</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date3" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date3">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>4th</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date4" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date4">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Sun</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        name="SundayIsActive" #SundayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.SundayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Mon</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        name="MondayIsActive" #MondayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.MondayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Tue</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="TuesdayIsActive"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        #TuesdayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.TuesdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Wed</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="WednesdayIsActive"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        #WednesdayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.WednesdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Thu</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="ThursdayIsActive"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        #ThursdayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.ThursdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Fri</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        name="FridayIsActive" #FridayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.FridayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Sat</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="SaturdayIsActive"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        #SaturdayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.SaturdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <button type="button" (click)="OnTicketRecurringHelper(5)"
+                                            class="btn btn-primary"
+                                            [disabled]="this.recurringchangesbtn === 2 ? false : true">Changes
+                                            Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ticketdetailCustomModalMonth2">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">{{service.formData.TicketId}}</h4>
+                    <button type="button" class="close" id="ticketdetailCustomModalMonth2button"
+                        data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="detail-inner">
+                        <div class="details-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#dtab1">Custom Alternet Month</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="dtab1" class="tab-pane active">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="ticket-month">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>1st</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date1" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date1">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>2nd</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date2" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date2">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>3rd</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date3" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date3">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>4th</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date4" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date4">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Sun</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        name="SundayIsActive" #SundayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.SundayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Mon</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        name="MondayIsActive" #MondayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.MondayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Tue</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="TuesdayIsActive"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        #TuesdayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.TuesdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Wed</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="WednesdayIsActive"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        #WednesdayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.WednesdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Thu</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="ThursdayIsActive"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        #ThursdayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.ThursdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Fri</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        name="FridayIsActive" #FridayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.FridayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Sat</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="SaturdayIsActive"
+                                                                        (click)="recurringchangesapply(2)"
+                                                                        #SaturdayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.SaturdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <button type="button" (click)="OnTicketRecurringHelper(6)"
+                                            class="btn btn-primary"
+                                            [disabled]="this.recurringchangesbtn === 2 ? false : true">Changes
+                                            Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ticketdetailModalMonth">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">{{service.formData.TicketId}}</h4>
+                    <button type="button" class="close" id="ticketdetailModalMonthbutton" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="detail-inner">
+                        <div class="details-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#dtab2">MONTH</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="dtab2" class="tab-pane active">
+                                    <div class="row tickt-month-parent">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="ticket-month">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>1</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date1" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date1">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>2</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date2" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date2">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>3</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date3" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date3">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>4</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date4" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date4">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>5</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date5" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date5">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>6</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date6" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date6">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>7</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date7" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date7">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>8</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date8" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date8">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>9</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date9" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date9">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>10</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date10" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date10">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>11</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date11" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date11">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>12</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date12" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date12">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>13</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date13" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date13">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>14</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date14" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date14">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>15</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date15" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date15">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>16</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date16" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date16">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>17</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date17" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date17">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>18</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date18" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date18">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>19</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date19" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date19">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>20</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date20" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date20">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>21</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date21" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date21">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>22</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date22" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date22">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>23</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date13" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date23">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>24</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date24" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date24">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>25</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date25" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date25">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>26</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date26" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date26">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>27</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date27" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date27">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>28</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date28" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date28">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>29</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date29" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date29">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>30</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date30" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date30">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>31</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date31" #Date1="ngModel"
+                                                                        (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date31">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <button type="button" (click)="OnTicketRecurringHelper(2)"
+                                            class="btn btn-primary"
+                                            [disabled]="this.recurringchangesbtn === 3 ? false : true">Changes
+                                            Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="recurringticketdetailModalWeek">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">{{service.formData.TicketId}}</h4>
+                    <button type="button" class="close" id="recurringticketdetailModalWeekbutton" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="detail-inner">
+                        <div class="details-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#dtab1">WEEK</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="dtab1" class="tab-pane active">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="ticket-month">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Sun</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="SundayIsActive" #SundayIsActive="ngModel" (click)="recurringchangesapply(1)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.SundayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Mon</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="MondayIsActive" #MondayIsActive="ngModel" (click)="recurringchangesapply(1)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.MondayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Tue</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="TuesdayIsActive"
+                                                                        #TuesdayIsActive="ngModel" (click)="recurringchangesapply(1)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.TuesdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Wed</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="WednesdayIsActive"
+                                                                        #WednesdayIsActive="ngModel" (click)="recurringchangesapply(1)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.WednesdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Thu</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="ThursdayIsActive"
+                                                                        #ThursdayIsActive="ngModel" (click)="recurringchangesapply(1)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.ThursdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Fri</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="FridayIsActive" #FridayIsActive="ngModel" (click)="recurringchangesapply(1)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.FridayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Sat</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="SaturdayIsActive"
+                                                                        #SaturdayIsActive="ngModel" (click)="recurringchangesapply(1)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.SaturdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <button type="button" (click)="OnTicketRecurringHelper(1)"
+                                           class="btn primary"  [disabled]="this.recurringchangesbtn === 1 ? false : true" >Changes Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="recurringticketdetailCustomModalMonth">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">{{service.formData.TicketId}}</h4>
+                    <button type="button" class="close" id="recurringticketdetailCustomModalMonthbutton" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="detail-inner">
+                        <div class="details-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#dtab1">Custom Month</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="dtab1" class="tab-pane active">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="ticket-month">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>1st</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date1" #Date1="ngModel" (click)="recurringchangesapply(2)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date1">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>2nd</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date2" #Date1="ngModel" (click)="recurringchangesapply(2)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date2">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>3rd</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date3" #Date1="ngModel" (click)="recurringchangesapply(2)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date3">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>4th</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date4" #Date1="ngModel" (click)="recurringchangesapply(2)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date4">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Sun</p>
+                                                                    <input type="checkbox" checked="checked" (click)="recurringchangesapply(2)"
+                                                                        name="SundayIsActive" #SundayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.SundayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Mon</p>
+                                                                    <input type="checkbox" checked="checked" (click)="recurringchangesapply(2)"
+                                                                        name="MondayIsActive" #MondayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.MondayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Tue</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="TuesdayIsActive" (click)="recurringchangesapply(2)"
+                                                                        #TuesdayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.TuesdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Wed</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="WednesdayIsActive" (click)="recurringchangesapply(2)"
+                                                                        #WednesdayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.WednesdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Thu</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="ThursdayIsActive" (click)="recurringchangesapply(2)"
+                                                                        #ThursdayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.ThursdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Fri</p>
+                                                                    <input type="checkbox" checked="checked" (click)="recurringchangesapply(2)"
+                                                                        name="FridayIsActive" #FridayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.FridayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Sat</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="SaturdayIsActive" (click)="recurringchangesapply(2)"
+                                                                        #SaturdayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.SaturdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <button type="button" (click)="OnTicketRecurringHelper(5)"
+                                            class="btn btn-primary" [disabled]="this.recurringchangesbtn === 2 ? false : true">Changes Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="recurringticketdetailCustomModalMonth2">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">{{service.formData.TicketId}}</h4>
+                    <button type="button" class="close" id="recurringticketdetailCustomModalMonth2button" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="detail-inner">
+                        <div class="details-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#dtab1">Custom Alternet Month</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="dtab1" class="tab-pane active">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="ticket-month">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>1st</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date1" #Date1="ngModel" (click)="recurringchangesapply(2)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date1">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>2nd</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date2" #Date1="ngModel" (click)="recurringchangesapply(2)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date2">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>3rd</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date3" #Date1="ngModel" (click)="recurringchangesapply(2)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date3">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>4th</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date4" #Date1="ngModel" (click)="recurringchangesapply(2)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date4">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Sun</p>
+                                                                    <input type="checkbox" checked="checked" (click)="recurringchangesapply(2)"
+                                                                        name="SundayIsActive" #SundayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.SundayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Mon</p>
+                                                                    <input type="checkbox" checked="checked" (click)="recurringchangesapply(2)"
+                                                                        name="MondayIsActive" #MondayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.MondayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Tue</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="TuesdayIsActive" (click)="recurringchangesapply(2)"
+                                                                        #TuesdayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.TuesdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Wed</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="WednesdayIsActive" (click)="recurringchangesapply(2)"
+                                                                        #WednesdayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.WednesdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Thu</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="ThursdayIsActive" (click)="recurringchangesapply(2)"
+                                                                        #ThursdayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.ThursdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Fri</p>
+                                                                    <input type="checkbox" checked="checked" (click)="recurringchangesapply(2)"
+                                                                        name="FridayIsActive" #FridayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.FridayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>Sat</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="SaturdayIsActive" (click)="recurringchangesapply(2)"
+                                                                        #SaturdayIsActive="ngModel"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.SaturdayIsActive">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <button type="button" (click)="OnTicketRecurringHelper(6)"
+                                            class="btn btn-primary" [disabled]="this.recurringchangesbtn === 2 ? false : true">Changes Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="recurringticketdetailModalMonth">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">{{service.formData.TicketId}}</h4>
+                    <button type="button" class="close" id="recurringticketdetailModalMonthbutton" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="detail-inner">
+                        <div class="details-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#dtab2">MONTH</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="dtab2" class="tab-pane active">
+                                    <div class="row tickt-month-parent">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="ticket-month">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>1</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date1" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date1">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>2</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date2" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date2">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>3</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date3" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date3">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>4</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date4" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date4">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>5</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date5" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date5">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>6</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date6" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date6">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>7</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date7" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date7">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>8</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date8" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date8">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>9</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date9" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date9">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>10</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date10" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date10">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>11</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date11" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date11">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>12</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date12" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date12">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>13</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date13" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date13">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>14</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date14" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date14">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>15</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date15" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date15">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>16</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date16" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date16">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>17</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date17" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date17">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>18</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date18" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date18">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>19</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date19" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date19">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>20</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date20" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date20">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>21</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date21" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date21">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>22</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date22" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date22">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>23</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date13" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date23">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>24</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date24" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date24">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>25</p>
+                                                                    <input type="checkbox" checked="checked" 
+                                                                        name="Date25" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date25">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>26</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date26" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date26">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>27</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date27" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date27">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>28</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date28" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date28">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>29</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date29" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date29">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>30</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date30" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date30">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <label class="container-check">
+                                                                    <p>31</p>
+                                                                    <input type="checkbox" checked="checked"
+                                                                        name="Date31" #Date1="ngModel" (click)="recurringchangesapply(3)"
+                                                                        [(ngModel)]="service.TicketRecurringHelper.Date31">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </td>
+
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <button type="button" (click)="OnTicketRecurringHelper(2)"
+                                            class="btn btn-primary" [disabled]="this.recurringchangesbtn === 3 ? false : true">Changes Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+.ageement-form{background: white;
+    padding: 15px;
+    margin: 0 auto;}
+.ageement-form h4{font-size:16px;
+    font-weight:600;margin-bottom: 10px;}
+.ageement-form .form-group{margin-bottom:15px !important}
+.ageement-form .form-group label{
+    color: #000;font-size:14px;margin-bottom:8px;}
+.agreement-table table .form-group{margin-bottom:0px !important;}
+.checklist-head{background: #f1f1f1;
+    padding: 10px 15px;}
+.checklist-head h4{margin-bottom:0px;padding:0px;}
+.checklist-body{border:1px solid #f1f1f1;padding:15px 7px 7px;margin-bottom:25px}
+.checklist-body .form-group label{margin-bottom:0px;padding-left:10px;font-weight:normal !important}
+.checklist-body .form-group{margin-bottom:10px !important}
+.checklist-body .form-group .form-check-input{position:static;}
+.quotation-details table tr td{border-top:0px !important}
+.quotation-details label{margin-bottom:0px;}
+.quotation-details .form-check-input{margin-left:15px;}
+.quotation-details .form-inline label{margin-right:10px;}
+.add-more-btn span{width: 79px;
+    display: block;
+    background: #FF8533;
+    color: white;
+    height: 38px;
+    text-align: center;
+    line-height: 38px;cursor: pointer;}
+    .quotation-details .form-group{position:relative;}
+.quotation-details .form-check-input{right:-5px;}
+.support-service-incident-form h2, .support-service-serial-number h2{ font-size: 17px !important; color: #000 !important; }
+.form-check-label{ font-size: 14px; color: #000; }
+.Height-10PX{ height: 10px; }
+.required-field {color: red;font-weight: bold; padding-left: 5px;font-size: 11px;}
+.checklist-data { border: 1px solid #b6b9bf;;margin-bottom: 15px; padding: 10px; }
+.checklist-data table th,.checklist-data table td { width: 20%; padding: 4px 10px;}
+.border-3-null { border-width: 0px 0px 1px 0px !important; }
+sup {color: red;}

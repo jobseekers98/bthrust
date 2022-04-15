@@ -1,0 +1,282 @@
+<style>
+    .kt-notification__custom-1 {
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        border-top: 1px solid #f7f8fa;
+        padding: 0.1rem 1.5rem;
+    }
+
+    .kt-quick-search-custom {
+        margin: 1.5rem;
+    }
+    .font-30 i{
+        font-size: 20px;
+        color: orange;
+    }
+    .text-blue a {
+        color: blue !important;
+    }
+</style>
+<div id="kt_header" class="kt-header kt-grid__item kt-header--fixed ">
+    <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper" style="opacity: 1;">
+        <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout-default ">
+        </div>
+    </div>
+    <div class="kt-header__topbar">
+        <div class="kt-header__topbar-item kt-header__topbar-item--search dropdown" id="kt_quick_search_toggle">
+            <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
+                <span class="kt-header__topbar-icon"><i class="flaticon2-search-1"></i></span>
+            </div>
+            <div
+                class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-top-unround dropdown-menu-anim dropdown-menu-lg">
+                <div class="kt-quick-search kt-quick-search--inline" id="kt_quick_search_inline">
+                    <div class="kt-quick-search__form">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="flaticon2-search-1"></i></span>
+                            </div>
+                            <input type="text" class="form-control" (keydown)="onkeypress($event.target.value)"
+                                (keyup)="onkeypress($event.target.value)" placeholder="Search...">
+                            <div class="input-group-append">
+                                <span *ngIf="!IsSearch" class="input-group-text"><i class="la la-close"></i></span>
+                                <span *ngIf="IsSearch" class="input-group-text"><i
+                                        class="la la-spinner la-spin"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kt-quick-search-custom kt-scroll" data-scroll="true" data-height="300" style="max-height: 400px;overflow-y: auto;"
+                        data-mobile-height="200">                        
+                        <div *ngIf="SearchList.Item1.length > 0" class="scroll ps ps--active-y" style="position: relative;">
+                            <div class="quick-search-result">
+                                <div class="font-size-sm text-primary font-weight-bolder mb-2" style="font-weight: bold !important;">
+                                    {{SearchList.Item1.length}} Result Found in {{this.currentUser.Ticket}} </div>
+                                    <div *ngFor="let x of SearchList.Item1" class="d-flex align-items-center flex-grow-1 mb-2" style="border-bottom: 1px solid #f0f0f6;">
+                                        <div class="symbol symbol-45 bg-transparent flex-shrink-0 font-30">
+                                             <i class="fa fa-tasks"></i> </div>
+                                        <div class="d-flex flex-column ml-3 mt-2 mb-2"><a (click)="OnTicketClick(x.Id)"
+                                                class="font-weight-bold text-dark text-hover-primary" href="javascript:;"> {{x.v1}}
+                                            </a><span class="font-size-sm font-weight-bold text-muted"> {{x.v2}} </span></div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div *ngIf="SearchList.Item2.length > 0" class="scroll ps ps--active-y" style="position: relative;">
+                            <div class="quick-search-result">
+                                <div class="font-size-sm text-primary font-weight-bolder mb-2" style="font-weight: bold !important;">
+                                    {{SearchList.Item2.length}} Result Found in Quatation </div>
+                                    <div *ngFor="let x of SearchList.Item2" class="d-flex align-items-center flex-grow-1 mb-2" style="border-bottom: 1px solid #f0f0f6;">
+                                        <div class="symbol symbol-45 bg-transparent flex-shrink-0 font-30">
+                                            <i class="fa fa-quote-left"></i></div>
+                                        <div class="d-flex flex-column ml-3 mt-2 mb-2"><a (click)="OnQuotationClick(x.Id)"
+                                                class="font-weight-bold text-dark text-hover-primary" href="javascript:;"> {{x.v1}}
+                                            </a><span class="font-size-sm font-weight-bold text-muted"> {{x.v2}} </span></div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div *ngIf="SearchList.Item3.length > 0" class="scroll ps ps--active-y" style="position: relative;">
+                            <div class="quick-search-result">
+                                <div class="font-size-sm text-primary font-weight-bolder mb-2" style="font-weight: bold !important;">
+                                    {{SearchList.Item3.length}} Result Found in Customer </div>
+                                    <div *ngFor="let x of SearchList.Item3" class="d-flex align-items-center flex-grow-1 mb-2" style="border-bottom: 1px solid #f0f0f6;">
+                                        <div class="symbol symbol-45 bg-transparent flex-shrink-0">
+                                            <img style="width: 30px;" src="{{ x.v3 }}"> </div>
+                                        <div class="d-flex flex-column ml-3 mt-2 mb-2"><a (click)="OnCustomerClick(x.Id)"
+                                                class="font-weight-bold text-dark text-hover-primary" href="javascript:;"> {{x.v1}}
+                                            </a><span class="font-size-sm font-weight-bold text-muted"> {{x.v2}} </span></div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div *ngIf="SearchList.Item4.length > 0" class="scroll ps ps--active-y" style="position: relative;">
+                            <div class="quick-search-result">
+                                <div class="font-size-sm text-primary font-weight-bolder mb-2" style="font-weight: bold !important;">
+                                    {{SearchList.Item4.length}} Result Found in Engineer </div>
+                                    <div *ngFor="let x of SearchList.Item4" class="d-flex align-items-center flex-grow-1 mb-2" style="border-bottom: 1px solid #f0f0f6;">
+                                        <div class="symbol symbol-45 bg-transparent flex-shrink-0">
+                                            <img style="width: 30px;" src="{{ x.v3 }}"> </div>
+                                        <div class="d-flex flex-column ml-3 mt-2 mb-2"><a (click)="OnEngineerClick(x.Id)"
+                                                class="font-weight-bold text-dark text-hover-primary" href="javascript:;"> {{x.v1}}
+                                            </a><span class="font-size-sm font-weight-bold text-muted"> {{x.v2}} </span></div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kt-header__topbar-item kt-header__topbar-item--quick-panel">
+            <span class="kt-header__topbar-icon" id="kt_quick_panel_toggler_btn">
+                <i (click)="slidertoggel()" class="flaticon2-bell-alarm-symbol"></i></span>
+            <div id="kt_quick_panel" [ngClass]="IsOpen === true ? 'kt-quick-panel':'kt-quick-panel'" *ngIf="IsOpen">
+                <a href="javascript:;" (click)="slidertoggel()" class="kt-quick-panel__close"
+                    id="kt_quick_panel_close_btn"><i class="flaticon2-delete"></i></a>
+                <div class="kt-quick-panel__nav">
+                    <ul class="nav nav-tabs nav-tabs-line nav-tabs-bold nav-tabs-line-3x nav-tabs-line-brand kt-notification-item-padding-x"
+                        role="tablist">
+                        <li class="nav-item active"> <a class="nav-link active" data-toggle="tab"
+                                href="#kt_quick_panel_tab_notifications" role="tab">Recent Activities</a> </li>
+                        <!-- <li class="nav-item"> <a class="nav-link" data-toggle="tab"
+                            href="#kt_quick_panel_tab_logs" role="tab">Audit Logs</a> </li>
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab"
+                            href="#kt_quick_panel_tab_settings" role="tab">Settings</a> </li> -->
+                    </ul>
+                </div>
+                <div class="kt-quick-panel__content">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show kt-scroll active" id="kt_quick_panel_tab_notifications"
+                            role="tabpanel">
+                            <div class="kt-notification" *ngFor="let l of localRecentActivities">
+                                <a href="javascript:;" class="kt-notification__item">
+                                    <div class="kt-notification__item-icon">
+                                        <i class="flaticon2-information kt-font-danger"></i>
+                                    </div>
+                                    <div class="kt-notification__item-details">
+                                        <div class="kt-notification__item-title"
+                                            *ngIf="l.RecentDescription.length < 60;else descriptioncontent">
+                                            {{l.RecentDescription}} </div>
+                                        <ng-template #descriptioncontent>{{ l.RecentDescription.substring(0,60) }}
+                                        </ng-template>
+                                        <!-- <div class="kt-notification__item-time"> {{l.ActivityTimeSpan}} hrs ago </div> -->
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kt-header__topbar-item dropdown" *ngIf="currentUser.Type === 'Admin'">
+            <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px" aria-expanded="true">
+                <span class="kt-header__topbar-icon"><i class="flaticon2-gear"></i></span>
+            </div>
+            <div
+                class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
+                <form>
+                    <div class="kt-head kt-head--skin-light">
+                        <h3 class="kt-head__title">
+                            User Quick Actions
+                        </h3>
+                    </div>
+                    <div class="kt-grid-nav kt-grid-nav--skin-light">
+                        <div class="kt-grid-nav__row">
+                            <ng-container *ngIf="currentUser.Permissions.SettingView">
+                                <a routerLink="/settings" class="kt-grid-nav__item">
+                                    <span class="kt-grid-nav__icon">
+                                        <svg width="40px" height="40px" viewBox="0 0 24 24" version="1.1"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <title>Settings</title>
+                                            <defs></defs>
+                                            <g id="Stockholm-icons-/-Tools-/-Tools" stroke="none" stroke-width="1"
+                                                fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                                <path
+                                                    d="M15.9497475,3.80761184 L13.0246125,6.73274681 C12.2435639,7.51379539 12.2435639,8.78012535 13.0246125,9.56117394 L14.4388261,10.9753875 C15.2198746,11.7564361 16.4862046,11.7564361 17.2672532,10.9753875 L20.1923882,8.05025253 C20.7341101,10.0447871 20.2295941,12.2556873 18.674559,13.8107223 C16.8453326,15.6399488 14.1085592,16.0155296 11.8839934,14.9444337 L6.75735931,20.0710678 C5.97631073,20.8521164 4.70998077,20.8521164 3.92893219,20.0710678 C3.1478836,19.2900192 3.1478836,18.0236893 3.92893219,17.2426407 L9.05556629,12.1160066 C7.98447038,9.89144078 8.36005124,7.15466739 10.1892777,5.32544095 C11.7443127,3.77040588 13.9552129,3.26588995 15.9497475,3.80761184 Z"
+                                                    id="Combined-Shape" fill="#ff8533"></path>
+                                                <path
+                                                    d="M16.6568542,5.92893219 L18.0710678,7.34314575 C18.4615921,7.73367004 18.4615921,8.36683502 18.0710678,8.75735931 L16.6913928,10.1370344 C16.3008685,10.5275587 15.6677035,10.5275587 15.2771792,10.1370344 L13.8629656,8.7228208 C13.4724413,8.33229651 13.4724413,7.69913153 13.8629656,7.30860724 L15.2426407,5.92893219 C15.633165,5.5384079 16.26633,5.5384079 16.6568542,5.92893219 Z"
+                                                    id="Rectangle-2" fill="#ff8533" opacity="0.3"></path>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="kt-grid-nav__title">Settings</span> <span
+                                        class="kt-grid-nav__desc">Manage setting</span>
+                                </a>
+                            </ng-container>
+                            <ng-container *ngIf="currentUser.Permissions.LogView">
+                                <a routerLink="/settings/user-log" class="kt-grid-nav__item">
+                                    <span class="kt-grid-nav__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                            viewBox="0 0 24 24" version="1.1"
+                                            class="kt-svg-icon kt-svg-icon--success kt-svg-icon--lg">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <polygon id="Shape" points="0 0 24 0 24 24 0 24" />
+                                                <path
+                                                    d="M18,14 C16.3431458,14 15,12.6568542 15,11 C15,9.34314575 16.3431458,8 18,8 C19.6568542,8 21,9.34314575 21,11 C21,12.6568542 19.6568542,14 18,14 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z"
+                                                    id="Combined-Shape" fill="#000000" fill-rule="nonzero"
+                                                    opacity="0.3" />
+                                                <path
+                                                    d="M17.6011961,15.0006174 C21.0077043,15.0378534 23.7891749,16.7601418 23.9984937,20.4 C24.0069246,20.5466056 23.9984937,21 23.4559499,21 L19.6,21 C19.6,18.7490654 18.8562935,16.6718327 17.6011961,15.0006174 Z M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z"
+                                                    id="Combined-Shape" fill="#000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="kt-grid-nav__title">Log's</span> <span class="kt-grid-nav__desc">User
+                                        log's</span>
+                                </a>
+                            </ng-container>
+                        </div>
+
+                        <div class="kt-grid-nav__row">
+                            <ng-container *ngIf="currentUser.Permissions.ReportTicket">
+                                <a routerLink="/reports/report-ticket" class="kt-grid-nav__item">
+                                    <span class="kt-grid-nav__icon">
+                                        <svg width="40px" height="40px" viewBox="0 0 24 24" version="1.1"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <title>Report's</title>
+                                            <defs></defs>
+                                            <g id="Stockholm-icons-/-Files-/-Selected-file" stroke="none"
+                                                stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+                                                <path
+                                                    d="M4.85714286,1 L11.7364114,1 C12.0910962,1 12.4343066,1.12568431 12.7051108,1.35473959 L17.4686994,5.3839416 C17.8056532,5.66894833 18,6.08787823 18,6.52920201 L18,19.0833333 C18,20.8738751 17.9795521,21 16.1428571,21 L4.85714286,21 C3.02044787,21 3,20.8738751 3,19.0833333 L3,2.91666667 C3,1.12612489 3.02044787,1 4.85714286,1 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z"
+                                                    id="Combined-Shape-Copy" fill="#ff8533" fill-rule="nonzero"
+                                                    opacity="0.3"></path>
+                                                <path
+                                                    d="M6.85714286,3 L14.7364114,3 C15.0910962,3 15.4343066,3.12568431 15.7051108,3.35473959 L20.4686994,7.3839416 C20.8056532,7.66894833 21,8.08787823 21,8.52920201 L21,21.0833333 C21,22.8738751 20.9795521,23 19.1428571,23 L6.85714286,23 C5.02044787,23 5,22.8738751 5,21.0833333 L5,4.91666667 C5,3.12612489 5.02044787,3 6.85714286,3 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z"
+                                                    id="Combined-Shape" fill="#ff8533" fill-rule="nonzero"></path>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="kt-grid-nav__title">Report's</span> <span class="kt-grid-nav__desc">All
+                                        report's</span>
+                                </a>
+                            </ng-container>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="kt-header__topbar-item kt-header__topbar-item--user">
+            <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
+                <div class="kt-header__topbar-user">
+                    <span class="kt-hidden kt-header__topbar-welcome kt-hidden-mobile">Hi,</span> <span
+                        class="kt-hidden kt-header__topbar-username kt-hidden-mobile">{{ currentUser.UserName }}</span>
+                    <img alt="Pic" class="kt-radius-100" src="{{ currentUser.Logo }}" />
+                    <span
+                        class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold kt-hidden">S</span>
+                </div>
+            </div>
+            <div
+                class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
+                <div class="kt-user-card kt-user-card--skin-light kt-notification-item-padding-x">
+                    <div class="kt-user-card__avatar">
+                        <img class="kt-hidden-" alt="Pic" src="{{ currentUser.Logo }}" />
+                        <span
+                            class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold kt-hidden">S</span>
+                    </div>
+                    <div class="kt-user-card__name"> {{ currentUser.FullName }} <br> {{ currentUser.UserName }} </div>
+                </div>
+                <div style="border: 1px solid #736666"></div>
+                <div class="kt-notification">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="kt-notification__custom"><a
+                                    class="btn btn-outline-brand btn-upper btn-sm btn-bold" href="javascript:;"
+                                    (click)="logout()">Sign Out</a></div>
+                        </div>
+                        <div *ngIf="currentUser.Type === 'Admin' || currentUser.Type === 'SubAdmin' || currentUser.Type === 'Customer'" class="col-md-7">
+                            <div class="kt-notification__custom"><a
+                                    class="btn btn-outline-brand btn-upper btn-sm btn-bold" href="javascript:;"
+                                    routerLink='/password-change'>Password Change</a></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

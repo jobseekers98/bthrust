@@ -1,0 +1,809 @@
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+    <div class="kt-subheader kt-grid__item" id="kt_subheader">
+        <div class="kt-container kt-container--fluid ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                    Dashboard
+                </h3>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <a class="kt-subheader__breadcrumbs-home"></a>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+        <div class="home-dashboard-metr-info mrg-left-5 mrg-right-5">
+            <div class="col-md-12 row mrg-bottom-10">
+                <div *ngIf="currentUser.Permissions.CustomerView" class="col col-xs-12">
+                    <button type="button" (click)="addcustomer()"
+                        class="btn btn-outline-brand btn-elevate btn-pill top-add-btn-home">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                            height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon home-add-svn-icon">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+                                <path
+                                    d="M18,8 L16,8 C15.4477153,8 15,7.55228475 15,7 C15,6.44771525 15.4477153,6 16,6 L18,6 L18,4 C18,3.44771525 18.4477153,3 19,3 C19.5522847,3 20,3.44771525 20,4 L20,6 L22,6 C22.5522847,6 23,6.44771525 23,7 C23,7.55228475 22.5522847,8 22,8 L20,8 L20,10 C20,10.5522847 19.5522847,11 19,11 C18.4477153,11 18,10.5522847 18,10 L18,8 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z"
+                                    id="Combined-Shape" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                                <path
+                                    d="M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z"
+                                    id="Mask-Copy" fill="#000000" fill-rule="nonzero"></path>
+                            </g>
+                        </svg>
+                        Add Customer</button>
+                </div>
+                <div *ngIf="currentUser.Permissions.SettingView" class="col col-xs-12">
+                    <button type="button" routerLink="/settings"
+                        class="btn btn-outline-brand btn-elevate btn-pill top-add-btn-home">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                            height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon home-add-svn-icon">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                <path
+                                    d="M8,3 L8,3.5 C8,4.32842712 8.67157288,5 9.5,5 L14.5,5 C15.3284271,5 16,4.32842712 16,3.5 L16,3 L18,3 C19.1045695,3 20,3.8954305 20,5 L20,21 C20,22.1045695 19.1045695,23 18,23 L6,23 C4.8954305,23 4,22.1045695 4,21 L4,5 C4,3.8954305 4.8954305,3 6,3 L8,3 Z"
+                                    id="Combined-Shape" fill="#000000" opacity="0.3"></path>
+                                <path
+                                    d="M10.875,15.75 C10.6354167,15.75 10.3958333,15.6541667 10.2041667,15.4625 L8.2875,13.5458333 C7.90416667,13.1625 7.90416667,12.5875 8.2875,12.2041667 C8.67083333,11.8208333 9.29375,11.8208333 9.62916667,12.2041667 L10.875,13.45 L14.0375,10.2875 C14.4208333,9.90416667 14.9958333,9.90416667 15.3791667,10.2875 C15.7625,10.6708333 15.7625,11.2458333 15.3791667,11.6291667 L11.5458333,15.4625 C11.3541667,15.6541667 11.1145833,15.75 10.875,15.75 Z"
+                                    id="check-path" fill="#000000"></path>
+                                <path
+                                    d="M11,2 C11,1.44771525 11.4477153,1 12,1 C12.5522847,1 13,1.44771525 13,2 L14.5,2 C14.7761424,2 15,2.22385763 15,2.5 L15,3.5 C15,3.77614237 14.7761424,4 14.5,4 L9.5,4 C9.22385763,4 9,3.77614237 9,3.5 L9,2.5 C9,2.22385763 9.22385763,2 9.5,2 L11,2 Z"
+                                    id="Combined-Shape" fill="#000000"></path>
+                            </g>
+                        </svg>
+                         Settings</button>
+                </div>
+                <div *ngIf="currentUser.Permissions.TicketView" class="col col-xs-12">
+                    <button type="button" routerLink="/tickets/ticket-create"
+                        class="btn btn-outline-brand btn-elevate btn-pill top-add-btn-home">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45px"
+                            height="45px" viewBox="0 0 24 24" version="1.1"
+                            class="kt-svg-icon home-add-svn-icon tickets">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect id="bound" x="0" y="0" width="45" height="45"></rect>
+                                <path
+                                    d="M3,10.0500091 L3,8 C3,7.44771525 3.44771525,7 4,7 L9,7 L9,9 C9,9.55228475 9.44771525,10 10,10 C10.5522847,10 11,9.55228475 11,9 L11,7 L21,7 C21.5522847,7 22,7.44771525 22,8 L22,10.0500091 C20.8588798,10.2816442 20,11.290521 20,12.5 C20,13.709479 20.8588798,14.7183558 22,14.9499909 L22,17 C22,17.5522847 21.5522847,18 21,18 L11,18 L11,16 C11,15.4477153 10.5522847,15 10,15 C9.44771525,15 9,15.4477153 9,16 L9,18 L4,18 C3.44771525,18 3,17.5522847 3,17 L3,14.9499909 C4.14112016,14.7183558 5,13.709479 5,12.5 C5,11.290521 4.14112016,10.2816442 3,10.0500091 Z M10,11 C9.44771525,11 9,11.4477153 9,12 L9,13 C9,13.5522847 9.44771525,14 10,14 C10.5522847,14 11,13.5522847 11,13 L11,12 C11,11.4477153 10.5522847,11 10,11 Z"
+                                    id="Combined-Shape-Copy" fill="#000000" opacity="0.3"
+                                    transform="translate(12.500000, 12.500000) rotate(-45.000000) translate(-12.500000, -12.500000) ">
+                                </path>
+                            </g>
+                        </svg>
+                        Add {{this.currentUser.Ticket}}s</button>
+                </div>
+                <div *ngIf="currentUser.Permissions.QuoteView" class="col col-xs-12">
+                    <button type="button" routerLink="/quotes"
+                        class="btn btn-outline-brand btn-elevate btn-pill top-add-btn-home">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                            height="24px" viewBox="0 0 24 24" version="1.1"
+                            class="kt-svg-icon home-add-svn-icon quotes">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                <polygon id="“" fill="#000000" points="11 7 9 13 11 13 11 18 6 18 6 13 8 7"></polygon>
+                                <polygon id="Path" fill="#000000" opacity="0.3"
+                                    points="19 7 17 13 19 13 19 18 14 18 14 13 16 7"></polygon>
+                            </g>
+                        </svg>
+                        Add Quotes</button>
+                </div>
+                <div *ngIf="currentUser.Permissions.InvoiceView" class="col col-xs-12">
+                    <button type="button" class="btn btn-outline-brand btn-elevate btn-pill top-add-btn-home" routerLink="/invoices" >
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                            height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon home-add-svn-icon">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+                                <path
+                                    d="M4.85714286,1 L11.7364114,1 C12.0910962,1 12.4343066,1.12568431 12.7051108,1.35473959 L17.4686994,5.3839416 C17.8056532,5.66894833 18,6.08787823 18,6.52920201 L18,19.0833333 C18,20.8738751 17.9795521,21 16.1428571,21 L4.85714286,21 C3.02044787,21 3,20.8738751 3,19.0833333 L3,2.91666667 C3,1.12612489 3.02044787,1 4.85714286,1 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z"
+                                    id="Combined-Shape-Copy" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                                <path
+                                    d="M6.85714286,3 L14.7364114,3 C15.0910962,3 15.4343066,3.12568431 15.7051108,3.35473959 L20.4686994,7.3839416 C20.8056532,7.66894833 21,8.08787823 21,8.52920201 L21,21.0833333 C21,22.8738751 20.9795521,23 19.1428571,23 L6.85714286,23 C5.02044787,23 5,22.8738751 5,21.0833333 L5,4.91666667 C5,3.12612489 5.02044787,3 6.85714286,3 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z"
+                                    id="Combined-Shape" fill="#000000" fill-rule="nonzero"></path>
+                            </g>
+                        </svg>
+                        Add Invoices</button>
+                </div>
+                <div class="col col-xs-12">
+                    <button type="button" routerLink="/engineers/engineer-add"
+                        class="btn btn-outline-brand btn-elevate btn-pill top-add-btn-home">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                            height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon home-add-svn-icon">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+                                <path
+                                    d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
+                                    id="Mask" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                                <path
+                                    d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
+                                    id="Mask-Copy" fill="#000000" fill-rule="nonzero"></path>
+                            </g>
+                        </svg>
+                        Add {{this.currentUser.Engineer}}</button>
+                </div >
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="border-home-divide-info"></div>
+        </div>
+        <div class="home-dashboard-metr-info mrg-left-5 mrg-right-5">
+            <div class="col-lg-12">
+                <div class="row home-dashboard-metr-info job-for-tab-content">
+                    <div class="col">
+                        <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                            <div class="kt-portlet__head">
+                                <div class="kt-portlet__head-label">
+                                    <h3 class="kt-portlet__head-title">
+                                        NEW CUSTOMERS
+                                    </h3>
+                                </div>
+                                <div class="kt-portlet__head-toolbar right-customer-select-box">
+                                    <div class="btn-group btn-group-sm">
+                                        <a href="javascript:void(0);" style="line-height: 19px; background-color: #1dc9b7; border: #1dc9b7;" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">{{ dropdownbtncustomer }} <span class="caret"></span></a>
+                                        <ul class="dropdown-menu" style="text-align: center;">
+                                            <li><a (click)="CalculateCustomer('WEEK')" href="javascript:void(0);">THIS WEEK</a></li>
+                                          <li><a (click)="CalculateCustomer('MONTH')" href="javascript:void(0);">THIS MONTH</a></li>                                          
+                                          <li><a (click)="CalculateCustomer('YEAR')" href="javascript:void(0);">THIS YEAR</a></li>                                          
+                                        </ul>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="kt-portlet__body new-home-customer-job">
+                                <div class="col-lg-12">
+                                    <div class="kt-widget19__wrapper">
+                                        <div class="kt-widget19__content">
+
+                                            <div class="kt-widget3">
+                                                <div class="kt-widget3__item">
+                                                    <div class="kt-widget3__header">
+                                                        <div class="kt-widget3__user-img">
+                                                            <h2>{{ service.DashBoardCustomer.CustomerCount }}</h2>
+                                                        </div>
+                                                        <div class="kt-widget3__info">
+                                                            <p class="kt-widget3__username">
+                                                                <span *ngIf="service.DashBoardCustomer.CustomerStatus === 'success'">
+                                                                    {{ service.DashBoardCustomer.CustomerPer.toFixed(2) }}%
+                                                                </span>
+                                                                <label *ngIf="service.DashBoardCustomer.CustomerStatus === 'success'"> more than last {{CustomerDurationType}}</label>
+                                                                <span *ngIf="service.DashBoardCustomer.CustomerStatus === 'warning'" style="color:#ff8533 !important;">
+                                                                    {{ service.DashBoardCustomer.CustomerPer.toFixed(2) }}%
+                                                                </span>
+                                                                <label *ngIf="service.DashBoardCustomer.CustomerStatus === 'warning'"> less than last {{CustomerDurationType}}</label>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <p>You have<a href="javascript:;">
+                                                        {{ service.DashBoardCustomer.CustomerCount }} new customers</a>
+                                                    this {{CustomerDurationType}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="kt-widget29">
+                                        <div class="kt-widget29__content">
+
+                                            <div class="kt-widget29__item">
+                                                <div class="kt-widget29__info">
+                                                    <span class="kt-widget29__subtitle">ALL CUSTOMER</span>
+                                                    <span
+                                                        class="kt-widget29__stats kt-font-success">{{ service.DashBoardCustomer.CustomerAll }}</span>
+                                                </div>
+                                                <div class="kt-widget29__info">
+                                                    <span class="kt-widget29__subtitle">ACTIVE CUSTOMER</span>
+                                                    <span class="kt-widget29__stats kt-font-brand">
+                                                        {{ service.DashBoardCustomer.CustomerActive }} </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                            <div class="kt-portlet__head">
+                                <div class="kt-portlet__head-label">
+                                    <h3 class="kt-portlet__head-title">
+                                        {{this.currentUser.Ticket.toUpperCase()}}S
+                                    </h3>
+                                </div>
+                                <div class="kt-portlet__head-toolbar right-customer-select-box">
+                                    <div class="btn-group btn-group-sm">
+                                        <a href="javascript:void(0);" style="line-height: 19px; background-color: #1dc9b7; border: #1dc9b7;" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">{{ dropdownbtnticket }} <span class="caret"></span></a>
+                                        <ul class="dropdown-menu" style="text-align: center;">
+                                            <li><a (click)="CalculateTicket('WEEK')" href="javascript:void(0);">THIS WEEK</a></li>
+                                          <li><a (click)="CalculateTicket('MONTH')" href="javascript:void(0);">THIS MONTH</a></li>                                          
+                                          <li><a (click)="CalculateTicket('YEAR')" href="javascript:void(0);">THIS YEAR</a></li>                                          
+                                        </ul>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="kt-portlet__body new-home-customer-job">
+                                <div class="col-lg-12">
+                                    <div class="kt-widget19__wrapper">
+                                        <div class="kt-widget19__content">
+                                            <div class="kt-widget3">
+                                                <div class="kt-widget3__item">
+                                                    <div class="kt-widget3__header">
+                                                        <div class="kt-widget3__user-img">
+                                                            <h2>{{ service.DashBoardTicket.TicketCount }}</h2>
+                                                        </div>
+                                                        <div class="kt-widget3__info">
+                                                            <p class="kt-widget3__username">
+                                                                <span *ngIf="service.DashBoardTicket.TicketStatus === 'success'">
+                                                                    {{ service.DashBoardTicket.TicketPer.toFixed(2) }}%
+                                                                </span>
+                                                                <label *ngIf="service.DashBoardTicket.TicketStatus === 'success'">  more than last {{TicketDurationType}}</label>
+
+                                                                <span *ngIf="service.DashBoardTicket.TicketStatus === 'warning'" style="color:#ff8533 !important;">
+                                                                    {{ service.DashBoardTicket.TicketPer.toFixed(2) }}% 
+                                                                </span>
+                                                                <label *ngIf="service.DashBoardTicket.TicketStatus === 'warning'"> less than last {{TicketDurationType}}</label>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <p>You have<a href="javascript:;">
+                                                        {{ service.DashBoardTicket.TicketCount }} new {{this.currentUser.Ticket}}s scheduled</a>
+                                                    this {{TicketDurationType}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="kt-widget29">
+                                        <div class="kt-widget29__content">
+                                            <div class="kt-widget29__item">
+                                                <div class="kt-widget29__info">
+                                                    <span class="kt-widget29__subtitle">ALL {{this.currentUser.Ticket.toUpperCase()}}</span>
+                                                    <span
+                                                        class="kt-widget29__stats kt-font-success">{{ service.DashBoardTicket.TicketCount }}</span>
+                                                </div>
+                                                <div class="kt-widget29__info">
+                                                    <span class="kt-widget29__subtitle">RECURRING {{this.currentUser.Ticket.toUpperCase()}}</span>
+                                                    <span
+                                                        class="kt-widget29__stats kt-font-brand">{{ service.DashBoardTicket.TicketRecurring }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" >
+                        <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                            <div class="kt-portlet__head">
+                                <div class="kt-portlet__head-label">
+                                    <h3 class="kt-portlet__head-title">
+                                        AVERAGE QUOTATION VALUE
+                                    </h3>
+                                </div>
+                                <div class="kt-portlet__head-toolbar right-customer-select-box">
+                                    <div class="btn-group btn-group-sm">
+                                        <a href="javascript:void(0);" style="line-height: 19px; background-color: #1dc9b7; border: #1dc9b7;" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">{{ dropdownbtnavgrev }} <span class="caret"></span></a>
+                                        <ul class="dropdown-menu" style="text-align: center;">
+                                            <li><a (click)="CalculateAverage('WEEK')" href="javascript:void(0);">THIS WEEK</a></li>
+                                          <li><a (click)="CalculateAverage('MONTH')" href="javascript:void(0);">THIS MONTH</a></li>                                          
+                                          <li><a (click)="CalculateAverage('YEAR')" href="javascript:void(0);">THIS YEAR</a></li>                                          
+                                        </ul>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="kt-portlet__body new-home-customer-job">
+                                <div class="col-lg-12">
+                                    <div class="kt-widget19__wrapper">
+                                        <div class="kt-widget19__content">
+                                            <div class="kt-widget3">
+                                                <div class="kt-widget3__item">
+                                                    <div class="kt-widget3__header">
+                                                        <!-- <div class="kt-widget3__user-img">
+                                                            <h2>${{service.DashboardAverage.AvegareCount.toFixed(2)}}</h2>
+                                                        </div> -->
+                                                        <div class="kt-widget3__info">
+                                                            <p *ngIf="service.DashboardAverage.AverageStatus === 'success'" class="kt-widget3__username">
+                                                                <span>{{service.DashboardAverage.AvegarePer.toFixed(2)}}%</span> more than last {{AverageRevenueType}}
+                                                            </p>
+                                                            <p *ngIf="service.DashboardAverage.AverageStatus === 'warning'" class="kt-widget3__username">
+                                                                <span style="color:#ff8533 !important;">{{(service.DashboardAverage.AvegarePer.toFixed(2)).substring(1,10)}}%</span> less than last {{AverageRevenueType}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <p>Your average revenue per {{this.currentUser.Ticket}}s is<a href="javascript:;"> 
+                                                    <span *ngIf="service.DashboardAverage.AverageStatus === 'success'"> up by {{service.DashboardAverage.AvegarePerTicket.toFixed(2)}}</span>
+                                                    <span *ngIf="service.DashboardAverage.AverageStatus === 'warning'"> down by {{(service.DashboardAverage.AvegarePer.toFixed(2)).substring(1,10)}}</span>
+                                                     %</a> this
+                                                    {{AverageRevenueType}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="kt-widget29">
+                                        <div class="kt-widget29__content">
+                                            <div class="kt-widget29__item">
+                                                <div class="kt-widget29__info">
+                                                    <span class="kt-widget29__subtitle">AVERAGE REVENUE</span>
+                                                    <span class="kt-widget29__stats kt-font-success">${{service.DashboardAverage.AvegareCount.toFixed(2)}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="border-home-divide-info"></div>
+        </div>
+        <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+            <div class="row">
+                <div class="col-lg-8 padd-left-0">
+                    <div class="row home-dashboard-metr-info">
+                        <div class="col-lg-6">
+                            <div class="kt-portlet kt-iconbox kt-iconbox--animate-fast">
+                                <div class="kt-portlet__body">
+                                    <div class="kt-iconbox__body">
+                                        <div class="kt-iconbox__icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                                viewBox="0 0 24 24" version="1.1" class="kt-svg-icon home-ticket-icon1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                                    <path
+                                                        d="M3,10.0500091 L3,8 C3,7.44771525 3.44771525,7 4,7 L9,7 L9,9 C9,9.55228475 9.44771525,10 10,10 C10.5522847,10 11,9.55228475 11,9 L11,7 L21,7 C21.5522847,7 22,7.44771525 22,8 L22,10.0500091 C20.8588798,10.2816442 20,11.290521 20,12.5 C20,13.709479 20.8588798,14.7183558 22,14.9499909 L22,17 C22,17.5522847 21.5522847,18 21,18 L11,18 L11,16 C11,15.4477153 10.5522847,15 10,15 C9.44771525,15 9,15.4477153 9,16 L9,18 L4,18 C3.44771525,18 3,17.5522847 3,17 L3,14.9499909 C4.14112016,14.7183558 5,13.709479 5,12.5 C5,11.290521 4.14112016,10.2816442 3,10.0500091 Z M10,11 C9.44771525,11 9,11.4477153 9,12 L9,13 C9,13.5522847 9.44771525,14 10,14 C10.5522847,14 11,13.5522847 11,13 L11,12 C11,11.4477153 10.5522847,11 10,11 Z"
+                                                        id="Combined-Shape-Copy" fill="#000000" opacity="0.3"
+                                                        transform="translate(12.500000, 12.500000) rotate(-45.000000) translate(-12.500000, -12.500000) ">
+                                                    </path>
+                                                </g>
+                                            </svg> </div>
+                                        <div class="kt-iconbox__desc">
+                                            <h3 class="kt-iconbox__title">
+                                                <a class="kt-link" href="javascript:;" (click)="onHyperlinkClick(1);">Total {{this.currentUser.Ticket}}s</a>
+                                            </h3>
+                                            <div class="kt-iconbox__content">
+                                                {{ service.DashBoardTicket.TicketAll }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="kt-portlet kt-iconbox kt-iconbox--animate-fast">
+                                <div class="kt-portlet__body">
+                                    <div class="kt-iconbox__body">
+                                        <div class="kt-iconbox__icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                                viewBox="0 0 24 24" version="1.1" class="kt-svg-icon home-ticket-icon2">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                                    <path
+                                                        d="M3,10.0500091 L3,8 C3,7.44771525 3.44771525,7 4,7 L9,7 L9,9 C9,9.55228475 9.44771525,10 10,10 C10.5522847,10 11,9.55228475 11,9 L11,7 L21,7 C21.5522847,7 22,7.44771525 22,8 L22,10.0500091 C20.8588798,10.2816442 20,11.290521 20,12.5 C20,13.709479 20.8588798,14.7183558 22,14.9499909 L22,17 C22,17.5522847 21.5522847,18 21,18 L11,18 L11,16 C11,15.4477153 10.5522847,15 10,15 C9.44771525,15 9,15.4477153 9,16 L9,18 L4,18 C3.44771525,18 3,17.5522847 3,17 L3,14.9499909 C4.14112016,14.7183558 5,13.709479 5,12.5 C5,11.290521 4.14112016,10.2816442 3,10.0500091 Z M10,11 C9.44771525,11 9,11.4477153 9,12 L9,13 C9,13.5522847 9.44771525,14 10,14 C10.5522847,14 11,13.5522847 11,13 L11,12 C11,11.4477153 10.5522847,11 10,11 Z"
+                                                        id="Combined-Shape-Copy" fill="#000000" opacity="0.3"
+                                                        transform="translate(12.500000, 12.500000) rotate(-45.000000) translate(-12.500000, -12.500000) ">
+                                                    </path>
+                                                </g>
+                                            </svg> </div>
+                                        <div class="kt-iconbox__desc">
+                                            <h3 class="kt-iconbox__title">
+                                                <a class="kt-link" href="javascript:;" (click)="onHyperlinkClick(2);" >Total Open {{this.currentUser.Ticket}}s</a>
+                                            </h3>
+                                            <div class="kt-iconbox__content">
+                                                {{ service.DashboardTotal.TotalTicketOpen }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="kt-portlet kt-iconbox kt-iconbox--animate-fast">
+                                <div class="kt-portlet__body">
+                                    <div class="kt-iconbox__body">
+                                        <div class="kt-iconbox__icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                                viewBox="0 0 24 24" version="1.1" class="kt-svg-icon home-ticket-icon3">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                                    <path
+                                                        d="M3,10.0500091 L3,8 C3,7.44771525 3.44771525,7 4,7 L9,7 L9,9 C9,9.55228475 9.44771525,10 10,10 C10.5522847,10 11,9.55228475 11,9 L11,7 L21,7 C21.5522847,7 22,7.44771525 22,8 L22,10.0500091 C20.8588798,10.2816442 20,11.290521 20,12.5 C20,13.709479 20.8588798,14.7183558 22,14.9499909 L22,17 C22,17.5522847 21.5522847,18 21,18 L11,18 L11,16 C11,15.4477153 10.5522847,15 10,15 C9.44771525,15 9,15.4477153 9,16 L9,18 L4,18 C3.44771525,18 3,17.5522847 3,17 L3,14.9499909 C4.14112016,14.7183558 5,13.709479 5,12.5 C5,11.290521 4.14112016,10.2816442 3,10.0500091 Z M10,11 C9.44771525,11 9,11.4477153 9,12 L9,13 C9,13.5522847 9.44771525,14 10,14 C10.5522847,14 11,13.5522847 11,13 L11,12 C11,11.4477153 10.5522847,11 10,11 Z"
+                                                        id="Combined-Shape-Copy" fill="#000000" opacity="0.3"
+                                                        transform="translate(12.500000, 12.500000) rotate(-45.000000) translate(-12.500000, -12.500000) ">
+                                                    </path>
+                                                </g>
+                                            </svg> </div>
+                                        <div class="kt-iconbox__desc">
+                                            <h3 class="kt-iconbox__title">
+                                                <a class="kt-link" href="javascript:;" (click)="onHyperlinkClick(4);">Today New {{this.currentUser.Ticket}}s</a>
+                                            </h3>
+                                            <div class="kt-iconbox__content">
+                                                {{ service.DashboardTotal.TotalTicketTodayNew }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="kt-portlet kt-iconbox kt-iconbox--animate-fast">
+                                <div class="kt-portlet__body">
+                                    <div class="kt-iconbox__body">
+                                        <div class="kt-iconbox__icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                                viewBox="0 0 24 24" version="1.1" class="kt-svg-icon home-ticket-icon4">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                                    <path
+                                                        d="M3,10.0500091 L3,8 C3,7.44771525 3.44771525,7 4,7 L9,7 L9,9 C9,9.55228475 9.44771525,10 10,10 C10.5522847,10 11,9.55228475 11,9 L11,7 L21,7 C21.5522847,7 22,7.44771525 22,8 L22,10.0500091 C20.8588798,10.2816442 20,11.290521 20,12.5 C20,13.709479 20.8588798,14.7183558 22,14.9499909 L22,17 C22,17.5522847 21.5522847,18 21,18 L11,18 L11,16 C11,15.4477153 10.5522847,15 10,15 C9.44771525,15 9,15.4477153 9,16 L9,18 L4,18 C3.44771525,18 3,17.5522847 3,17 L3,14.9499909 C4.14112016,14.7183558 5,13.709479 5,12.5 C5,11.290521 4.14112016,10.2816442 3,10.0500091 Z M10,11 C9.44771525,11 9,11.4477153 9,12 L9,13 C9,13.5522847 9.44771525,14 10,14 C10.5522847,14 11,13.5522847 11,13 L11,12 C11,11.4477153 10.5522847,11 10,11 Z"
+                                                        id="Combined-Shape-Copy" fill="#000000" opacity="0.3"
+                                                        transform="translate(12.500000, 12.500000) rotate(-45.000000) translate(-12.500000, -12.500000) ">
+                                                    </path>
+                                                </g>
+                                            </svg> </div>
+                                        <div class="kt-iconbox__desc">
+                                            <h3 class="kt-iconbox__title">
+                                                <a class="kt-link" href="javascript:;" (click)="onHyperlinkClick(8);">Total Closed Today</a>
+                                            </h3>
+                                            <div class="kt-iconbox__content">
+                                                {{ service.DashboardTotal.TotalTicketClosedToday }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="kt-portlet kt-iconbox kt-iconbox--animate-fast">
+                                <div class="kt-portlet__body">
+                                    <div class="kt-iconbox__body">
+                                        <div class="kt-iconbox__icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                                viewBox="0 0 24 24" version="1.1" class="kt-svg-icon home-ticket-icon5">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                                    <path
+                                                        d="M3,10.0500091 L3,8 C3,7.44771525 3.44771525,7 4,7 L9,7 L9,9 C9,9.55228475 9.44771525,10 10,10 C10.5522847,10 11,9.55228475 11,9 L11,7 L21,7 C21.5522847,7 22,7.44771525 22,8 L22,10.0500091 C20.8588798,10.2816442 20,11.290521 20,12.5 C20,13.709479 20.8588798,14.7183558 22,14.9499909 L22,17 C22,17.5522847 21.5522847,18 21,18 L11,18 L11,16 C11,15.4477153 10.5522847,15 10,15 C9.44771525,15 9,15.4477153 9,16 L9,18 L4,18 C3.44771525,18 3,17.5522847 3,17 L3,14.9499909 C4.14112016,14.7183558 5,13.709479 5,12.5 C5,11.290521 4.14112016,10.2816442 3,10.0500091 Z M10,11 C9.44771525,11 9,11.4477153 9,12 L9,13 C9,13.5522847 9.44771525,14 10,14 C10.5522847,14 11,13.5522847 11,13 L11,12 C11,11.4477153 10.5522847,11 10,11 Z"
+                                                        id="Combined-Shape-Copy" fill="#000000" opacity="0.3"
+                                                        transform="translate(12.500000, 12.500000) rotate(-45.000000) translate(-12.500000, -12.500000) ">
+                                                    </path>
+                                                </g>
+                                            </svg> </div>
+                                        <div class="kt-iconbox__desc">
+                                            <h3 class="kt-iconbox__title">
+                                                <a class="kt-link" href="javascript:;" (click)="onHyperlinkClick(10);">Total Overdue {{this.currentUser.Ticket}}s</a>
+                                            </h3>
+                                            <div class="kt-iconbox__content">
+                                                {{ service.DashboardTotal.TotalTicketOverDue }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="kt-portlet kt-iconbox kt-iconbox--animate-fast">
+                                <div class="kt-portlet__body">
+                                    <div class="kt-iconbox__body">
+                                        <div class="kt-iconbox__icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                                viewBox="0 0 24 24" version="1.1" class="kt-svg-icon home-ticket-icon6">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                                    <path
+                                                        d="M3,10.0500091 L3,8 C3,7.44771525 3.44771525,7 4,7 L9,7 L9,9 C9,9.55228475 9.44771525,10 10,10 C10.5522847,10 11,9.55228475 11,9 L11,7 L21,7 C21.5522847,7 22,7.44771525 22,8 L22,10.0500091 C20.8588798,10.2816442 20,11.290521 20,12.5 C20,13.709479 20.8588798,14.7183558 22,14.9499909 L22,17 C22,17.5522847 21.5522847,18 21,18 L11,18 L11,16 C11,15.4477153 10.5522847,15 10,15 C9.44771525,15 9,15.4477153 9,16 L9,18 L4,18 C3.44771525,18 3,17.5522847 3,17 L3,14.9499909 C4.14112016,14.7183558 5,13.709479 5,12.5 C5,11.290521 4.14112016,10.2816442 3,10.0500091 Z M10,11 C9.44771525,11 9,11.4477153 9,12 L9,13 C9,13.5522847 9.44771525,14 10,14 C10.5522847,14 11,13.5522847 11,13 L11,12 C11,11.4477153 10.5522847,11 10,11 Z"
+                                                        id="Combined-Shape-Copy" fill="#000000" opacity="0.3"
+                                                        transform="translate(12.500000, 12.500000) rotate(-45.000000) translate(-12.500000, -12.500000) ">
+                                                    </path>
+                                                </g>
+                                            </svg> </div>
+                                        <div class="kt-iconbox__desc">
+                                            <h3 class="kt-iconbox__title">
+                                                <a class="kt-link" href="javascript:;" routerLink="/engineers">Total {{this.currentUser.Engineer}}s</a>
+                                            </h3>
+                                            <div class="kt-iconbox__content">
+                                                {{ service.DashboardTotal.TotalEngneer }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="border-home-divide-info"></div>
+                    
+                </div>
+
+              
+                    <div class="col-lg-4 home-dashboard-metr-info job-for-tab-content">
+                       
+                            <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                                <div class="kt-portlet__head">
+                                    <div class="kt-portlet__head-label">
+                                        <h3 class="kt-portlet__head-title">
+                                            {{this.currentUser.Ticket.toUpperCase()}} DUE TIMES
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="kt-portlet__body">
+                                    <div class="kt-widget4">
+                                        <div class="col-lg-12">
+                                            <div class="kt-widget4__item">
+                                                <div class="kt-widget4__info">
+                                                    <a href="javascript:;" class="kt-widget4__username">
+                                                        Overdue
+                                                    </a>
+                                                </div>
+                                                <div class="kt-user-card-v2">
+                                                    <div class="kt-user-card-v2__pic">
+                                                        <div class="kt-badge kt-badge--xl kt-badge--warning today"> {{ service.DashboardTotal.TotalTicketOverDue }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 padd-top-5">
+                                            <div class="kt-widget4__item">
+                                                <div class="kt-widget4__info">
+                                                    <a href="javascript:;" class="kt-widget4__username">
+                                                        Today
+                                                    </a>
+                                                </div>
+                                                <div class="kt-user-card-v2">
+                                                    <div class="kt-user-card-v2__pic">
+                                                        <div class="kt-badge kt-badge--xl kt-badge--warning today"> {{ service.DashboardTicketDue.TicketDueTimeToday }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 padd-top-5">
+                                            <div class="kt-widget4__item">
+                                                <div class="kt-widget4__info">
+                                                    <a href="javascript:;" class="kt-widget4__username">
+                                                        Tomorrow
+                                                    </a>
+                                                </div>
+                                                <div class="kt-user-card-v2">
+                                                    <div class="kt-user-card-v2__pic">
+                                                        <div class="kt-badge kt-badge--xl kt-badge--warning today"> {{ service.DashboardTicketDue.TicketDueTimeTomarrow }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 padd-top-5">
+                                            <div class="kt-widget4__item">
+                                                <div class="kt-widget4__info">
+                                                    <a href="javascript:;" class="kt-widget4__username">
+                                                        This Week
+                                                    </a>
+                                                </div>
+                                                <div class="kt-user-card-v2">
+                                                    <div class="kt-user-card-v2__pic">
+                                                        <div class="kt-badge kt-badge--xl kt-badge--warning today"> {{ service.DashboardTicketDue.TicketDueTimeThisWeek }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 padd-top-5">
+                                            <div class="kt-widget4__item">
+                                                <div class="kt-widget4__info">
+                                                    <a href="javascript:;" class="kt-widget4__username">
+                                                        Next Week
+                                                    </a>
+                                                </div>
+                                                <div class="kt-user-card-v2">
+                                                    <div class="kt-user-card-v2__pic">
+                                                        <div class="kt-badge kt-badge--xl kt-badge--warning today"> {{ service.DashboardTicketDue.TicketDueTimeNextWeek }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 padd-top-5">
+                                            <div class="kt-widget4__item">
+                                                <div class="kt-widget4__info">
+                                                    <a href="javascript:;" class="kt-widget4__username">
+                                                        Next Month
+                                                    </a>
+                                                </div>
+                                                <div class="kt-user-card-v2">
+                                                    <div class="kt-user-card-v2__pic">
+                                                        <div class="kt-badge kt-badge--xl kt-badge--warning today"> {{ service.DashboardTicketDue.TicketDueTimeNextMonth }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>   
+                    </div>
+            </div>
+            <div class="row home-dashboard-metr-info job-for-tab-content">
+                <div class="col-lg-6 col-md-6">
+                    <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    PRIORITY-WISE {{this.currentUser.Ticket.toUpperCase()}}S
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="kt-portlet__body">
+                                <div [chart]="columnchart" ></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    ISSUE-WISE {{this.currentUser.Ticket.toUpperCase()}}S
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="kt-portlet__body">
+                                <div [chart]="piechart" ></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="home-dashboard-metr-info table-dashboard" style="width: 100%;">
+                    <div class="col-md-12">
+                        <div class="kt-portlet__body customer-listing-datatable">
+                            <div class="panel panel-primary list-panel" id="list-panel">
+                                <div class="panel-heading list-panel-heading">
+                                    <h1 class="panel-title list-panel-title"><i class="fa fa-list"></i> {{this.currentUser.Ticket}} List</h1>
+                                </div>
+                                <div class="panel-body">
+                                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                        class="table table-striped- table-bordered table-hover table-checkable"
+                                        >
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 5%;">{{this.currentUser.Ticket}}&nbsp;No</th>
+                                                <th style="width: 25%;">{{this.currentUser.Ticket}} Date</th>
+                                                <th style="width: 25%;">Customer Info</th>
+                                                <th style="width: 26%;">Address</th>
+                                                <th style="width: 2%;">Status</th>
+                                                <th style="width: 15%">{{this.currentUser.Engineer}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let x of ticketservice.Ticketlist; let i=index; async"
+                                                class="quote-list-view-info odd" role="row">
+                                                <td>
+                                                    <span class="btn btn-label-primary">
+                                                        <a href="javascript:;" (click)="ViewTicketDetails(x)"> {{ x.TicketId }}</a><br>
+                                                    </span>                                                                        
+                                                    <span *ngIf="x.QuoteId!"  class="btn btn-label-success btn-pill reallocated-one">
+                                                      <a href="javascript:void(0)" (click)="viewQuoteDetails(x)">  {{x.QuoteId}}</a><br>
+                                                    </span>
+                                                    <span *ngIf="x.InvoiceNo?.length > 0"
+                                                        class="btn btn-label-danger" title="Defect Job">
+                                                        <a href="javascript:void(0)" (click)="ViewInvoiceDetails(x.InvoiceId)">
+                                                            {{x.InvoiceNo}}</a><br>
+                                                    </span>
+                                                    <span class="recurring-ticket" *ngIf="x.TicketType === 'Recurring Ticket'">Recurring</span>
+                                                    <generic-ticket-feedback [(ratingcount)]="x.Rating" [Editable]="2" [(Status)]="x.Status"></generic-ticket-feedback>
+                                                </td>
+                                                <td>
+                                                    <generic-ticket-date-time-format [(A)]="x.AppointmentStart" [(B)]="x.AppointmentEnd" [(C)]="x.CreatedUtcDate" [T]="1"></generic-ticket-date-time-format>
+
+                                                  <span *ngIf="x.OneOffAppointmentDate === null" class="ticketstatus statusunallocated">UNALLOCATED</span>
+                                                  <span *ngIf="x.Rescheduled" class="ticketstatus statusrescheduled">RESECHEDULED</span>
+                                                </td>
+                                                <td>
+                                                    <strong>Name: </strong>  {{ x.CustomerName }} <br>
+                                                    <strong>Company: </strong>{{ x.CustomerCompanyName }}
+                                                </td>
+                                                <td>{{ x.CustomerAddress }}</td>
+                                                <td class="text-center">
+                                                    <generic-ticket-status [(Status)]="x.Status" [(OverDueDays)]="x.OverDueDays" ></generic-ticket-status>
+                                                </td>
+                                                <td>
+                                                    <generic-ticket-team-list [(TicketTeams)]="x.TicketTeams" [(localPrependUrl)]="localPrependUrl"
+                                                    [(Reallocate)]="x.Reallocate" [(Id)]="x.Id" [(TicketId)]="x.TicketId"></generic-ticket-team-list>
+                                                </td>
+                                                
+                                            </tr>
+                                        </tbody>
+                                        
+                                    </table>
+    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="kt-portlet__body customer-listing-datatable" style="width: 100%;">
+                            <div *ngIf="!tempEngineerList" class=" col-md-12 alert alert-info">
+                                Loading... </div>
+                                <div class="panel panel-primary list-panel" id="list-panel">
+                                    <div class="panel-heading list-panel-heading">
+                                        <h1 class="panel-title list-panel-title"><i class="fa fa-list"></i> {{this.currentUser.Engineer}} List</h1>
+                                    </div>
+                                    <div class="panel-body">
+        
+                                        <table datatable [dtOptions]="dtOptions2" [dtTrigger]="dtTrigger2"
+                                            class="table table-striped- table-bordered table-hover table-checkable"
+                                            *ngIf="tempEngineerList">
+                                            <thead>
+                                                <tr>
+                                                    <th width="10%">Image</th>
+                                                    <th width="10%">{{this.currentUser.Engineer}}&nbsp;Id</th>
+                                                    <th width="20%">{{this.currentUser.Engineer}} Info</th>
+                                                    <th width="20%">{{this.currentUser.Ticket}}'s</th>
+                                                    <th width="5%">Working</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let x of tempEngineerList;let i=index"
+                                                    class="customer-list-view-info">
+                                                    <td>
+                                                        <img *ngIf="x.EngineerLogo.length === 0" width="60px" class="img-thumbnail"
+                                                            title="{{x.EngineerName}}" alt="pic"
+                                                            src="{{localPrependUrl}}/assets/svg/noimage.svg" />
+                                                        <img *ngIf="x.EngineerLogo.length > 0" width="60px" class="img-thumbnail"
+                                                            title="{{x.EngineerName}}" alt="pic"
+                                                            src="{{ x.EngineerLogo }}">
+                                                    </td>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <span class="btn btn-label-primary" style="width: 110px !important;">
+                                                              <a href="javascript:;" (click)="detailsengineer(x.Id)">{{x.EngineerId}}</a>
+                                                          </span> 
+                                                            <span [ngClass]="x.IsActive ? 'dot red':'dot yellow'"
+                                                                title="{{x.IsActive === true ? 'online':'offline'}}"></span>
+                                                        </div>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <strong>Name:</strong> {{ x.EngineerName }}<br>
+                                                        <strong>Phone:</strong> {{ x.EngineerPhone }}<br>
+                                                        <strong>Email:</strong> {{ x.EngineerEmail }}
+                                                    </td>
+                                                    
+                                                    <td>
+                                                        <strong>Open {{this.currentUser.Ticket}} :</strong>{{x.OpenTicket}}<br>
+                                                        <strong>Closed {{this.currentUser.Ticket}} :</strong> {{x.ClosedTicket}}<br>
+                                                        <strong>Over Due {{this.currentUser.Ticket}} :</strong> {{x.OverDueTicket}}
+                                                    </td>
+                                                    <td>
+                                                        <span *ngIf="x.Working ===true"
+                                                        class="ticketstatus statusclosed">Yes</span>
+                                                        <span *ngIf="x.Working ===false"
+                                                        class="ticketstatus statusoverdue">No</span>
+                                                       
+                                                    </td>
+                                                </tr>
+        
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-12">
+                
+            </div>
+        </div>
+    </div>
+</div>

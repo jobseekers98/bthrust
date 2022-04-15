@@ -1,0 +1,116 @@
+:host >>> .popover { color: #000; max-width: 100%;}
+.col-md-12.section-client-requst-form{border-top:6px solid #e43c32;background-color:white;}
+.kt-section__title a{color:#e43c32;}
+.col-md-12.section-client-requst-form{padding-right:20px;}
+.ticket-customer-number .kt-widget4{background-color:white;padding:0px 20px 20px;}
+.ticket-top-sec{padding-bottom:30px;}
+.ticket-customer-number .kt-widget4__items{width:100%;}
+.ticket-customer-name .form-control{margin-bottom:15px;}
+.qtAddressSection{background-color:white;padding:10px;margin-bottom:15px;}
+.qtAddressSection label, .ticket-customer-name label{font-weight:600 !important;font-size:14px;color:black;}
+.customer-ticket-head{font-size:22px;padding-bottom:15px;font-weight:600;color:black;}
+.ticket-customer-number .kt-widget4__item{padding-left:12px;}
+.col-md-12.new-request-service-details-form{border:none;}
+.job-client-tabbing a.nav-link{background-color:#0084c926 !important}
+.ticket_number{font-size:18px;font-weight:600;color:black;}
+.nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav.nav-tabs .nav-link.active{border-top: 1px solid #ff8533;background: #ffffff !important;}
+.job-client-tabbing .flaticon-calendar-1:before{color:#ff8533;}
+.nav-tabs.nav-tabs-line.nav-tabs-line-brand a.nav-link:hover{color:#ff8533;}
+.kt-portlet__head{padding:0px 25px !important;}
+.job-for-tab-content .kt-widget19__wrapper.jobs-for-client-widget-content{width:100%;}
+.job-for-tab-content .kt-widget19__wrapper.jobs-for-client-widget-content label{font-weight:600;color:black;}
+.btn.btn-link:hover, .btn.btn-link.active{background-color: #ff8533 !important;}
+.btn.btn-link{color: #ff8533 !important;float:right;}
+.add-icon a{width:30px;height:30px;line-height:28px;border:2px solid #ff8533;color:#ff8533;text-align:center;border-radius:50%;display:inline-block;position: relative;right:0px;top:0px;}
+.team_label{width:100% !important;}
+.team_label h3{display:block !important;width:100% !important;}
+.team-popup{display:block;position: absolute;right: 58px;background: white;width: 235px;z-index: 999;top: 11px;border: 1px solid #eaeaea;box-shadow: -1px 2px 10px #d8d8d8;}
+.team-head{padding: 10px 15px;background:#fb6b2f;}
+.team-head h2{font-size: 18px;font-weight: 600;color: black;margin-bottom: 0;color:white;}
+.team-body{padding:10px 15px;height:160px;}
+.team-search{position:relative;}
+.team-search .form-group{margin-bottom:0px;}
+.team-search .form-control{width:88%;float:left;height:33px !important;}
+.team-search .addon{float:right;width:12%;} 
+.team-search .addon .btn{background: #0080c7;color: white;padding: 0.45rem 0.5rem;}
+.team-inner{margin-top:15px;height: 100px;overflow-x:hidden;overflow-y:auto;}
+.team-inner-1 {margin-top:15px;padding:0px 15px;}
+.team-inner-1 ul{padding-left:0;list-style-type:none;margin-bottom:0px;;}
+.team-inner-1 ul li{color:black;display: inline-block;padding: 8px 8px;background-color: #eaeaea;margin: 0px 3px 5px;border-radius: 5px;}
+.team-inner-1 ul li .close{font-size: 10px;
+    padding-left: 8px;
+    padding-top: 6px;}
+
+    .job-for-tab-content .kt-portlet.kt-portlet--height-fluid.kt-widget19{border:none;}
+    .job-for-tab-content .kt-portlet .kt-portlet__head{background: #eaeaea !important;
+        margin-bottom: 10px;}
+    .job-for-tab-content .kt-portlet .kt-portlet__body{box-shadow: 10px 10px 10px #ececec;}
+    .tab-content.job-for-tab-content{padding:15px;}
+    .kt-portlet__body{border:1px solid #eaeaea;margin-bottom:15px;}
+    .kt-section__body{border: 1px solid #eaeaea;height: 255px;overflow-y: auto;overflow-x: hidden;box-shadow: 10px 10px 10px #ececec;}
+   
+    .kt-widget4__item{margin-bottom:15px;}
+    .select_type label{ font-weight: 600 !important;font-size: 14px;color: black;}
+    .priority_type label{font-weight: 600 !important;font-size: 14px;color: black;}
+    .nav-item-custom{text-align:center;}
+    .nav-item-custom i{margin-top:10px !important;font-size:28px !important;font-weight:600 !important;padding-bottom:15px !important;color:#0080C7 !important;}
+    .nav-link-custom{padding-top:20px;}
+    .nav-tabs-line-brand tabbing-jobs-client{margin-bottom:0px;}
+    .nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav.nav-tabs .nav-link{background-color:#f3f3f3 !important;color:black;border-top-right-radius: 20px;border-top-left-radius: 20px;}
+    .nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav.nav-tabs .nav-link h5{font-size: 24px;padding:5px 0px 0px;}
+    .nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav.nav-tabs .nav-link p{margin-bottom:0px !important;}
+    .nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav.nav-tabs .nav-link.active{border-top: none !important;background: #0080c7 !important;border-top-right-radius: 20px;border-top-left-radius: 20px;color: white !important;}
+    .nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav.nav-tabs .nav-link.active i{color:white !important}
+    .new-request-service-details-form .kt-portlet__body{border:none !important;}
+    .tab-content.job-for-tab-content{border:1px solid #f3f3f3}
+    .kt-portlet.kt-portlet--height-fluid.kt-widget19.internal-notes-attachment{border:none !important;}
+    .on-site-client-required .kt-portlet__body{box-shadow: 2px 4px 10px #ececec}
+    .ticket_number .form-control{height:30px !important;border-color:#f2f3f8 !important;font-weight:600 !important;}
+    .radio-service label{font-size:18px;color:black}
+    .radio-service label input{margin-right:10px;}
+    .qty-unit-total .input-group a{display:inline-block;padding:0.5rem 0.4rem;}
+    .qty-unit-total .input-group a i{color: #2c77f4;}
+    .col-md-2.right-side-doller-form-info{}
+    .col-right-side-doller-form-info{top:0px !important;}
+    .radio-service select{height:50px !important;}
+    .margin-top-50 {margin-top: -108px;}
+
+    .ticket-attachment-container { position: relative; width: 100%; }
+    .ticket-attachment-image {display: block; width: 100%; height: auto; }
+    .ticket-attachment-overlay {position: absolute;bottom: 0;left: 100%;right: 0;background-color: rgb(162, 176, 180);overflow: hidden; width: 0;height: 100%;transition: .5s ease;text-align: center;}
+    .ticket-attachment-container:hover .ticket-attachment-overlay {width: 100%;left: 0;}
+    .ticket-attachment-text {white-space: nowrap; color: white; font-size: 20px; position: absolute; overflow: hidden;top: 50%; left: 50%; transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);}
+    .ticket-attachment-remove-text {white-space: nowrap;color: white;font-size: 20px;position: absolute;overflow: hidden;bottom: 10%;left: 50%; transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);}
+    .file-upload {position: relative;display: inline-block;}
+    .file-upload__label {display: block; padding: 0px 27px;color: #fff;background: #31a5f7; border-radius: .4em; font-size: 17px; height: 23px; transition: background .3s;margin: 13px 0px 15px 12px;}
+    .file-upload__label:hover {cursor: pointer;background: rgb(204, 198, 198); }  
+    .file-upload__input {position: absolute;left: 0;top: 0;right: 0;bottom: 0;font-size: 1; width:0;height: 100%;opacity: 0;}
+    #ticketdetailModalMonth .modal-header{padding: 0.65rem;}
+    #ticketdetailModalMonth .modal-content{background-clip: content-box;border:none;}
+    #ticketdetailModalMonth .modal-content .nav-tabs .nav-item .nav-link{background: #0191d2;color:white;}
+    .tickt-month-parent{padding:10px;}
+    .container-check {display: block;position: relative;padding-left:20px;margin-bottom: 12px;cursor: pointer;font-size: 22px;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
+    .container-check input {position: absolute;opacity: 0;cursor: pointer;height: 0;width: 0;}
+    .checkmark {position: absolute;top: 0;left: 0;height:100%;width:100%;background-color: #0082c830;}
+    .container-check:hover input ~ .checkmark {background-color: #ccc;}
+    .container-check input:checked ~ .checkmark {background-color: #2196F3;border-bottom: 5px solid #1C5B8C;}
+    .checkmark:after {content: "";position: absolute;display: none; padding-right: 3px;}
+    .container-check input:checked ~ .checkmark:after {display: block;}
+    .container-check p{ margin: 0;position: relative;display: inline-block;z-index: 1000;font-size:24px;color:black;}
+    #ticketdetailModalMonth .btn{background-color:#2C77F4;color:white}
+    #ticketdetailModalWeek .btn{background-color:#2C77F4;color:white}
+    #ticketdetailModalWeek .modal-header{padding: 0.65rem;}
+    #ticketdetailModalWeek .modal-content{background-clip: content-box;border:none;}
+    #ticketdetailModalWeek .modal-content .nav-tabs .nav-item .nav-link{background: #0191d2;color:white;}
+    ngx-select-dropdown.myselectClass.ng-valid.ng-touched.ng-dirty .ngx-dropdown-list-container.ng-star-inserted {height: 240px;width: 294px !important;}
+    .dropdown-menu.show {margin-left: -105px;}
+    .InStockSection label.InStock{color: #007600; font-size: 15px; border: 1px solid #00760014; background-color: #0076000d; padding: 1px 2px;}
+    .InStockSection label.OutOfStock{color: #bf5f31; font-size: 15px;border: 1px solid #bf5f3138; background-color: #bf5f311a; padding: 1px 2px;}
+    .custom-day { text-align: center; padding: 0.185rem 0.25rem; border-radius: 0.25rem; display: inline-block; width: 2rem; }
+    .custom-day:hover, .custom-day.focused { background-color: #e6e6e6; color: #fff; }
+    .isHoliday { background-color: #eae6e6 !important;color: red !important; cursor: alias; }
+    .hidden { display: none; }
+    .isDisabledDate {color: #eae7e7;}
+    .switcher-customer { top:-18px;position: relative; }
+    .table th .table td {padding: 10px !important;}
+    .text-note { color: red; }

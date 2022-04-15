@@ -1,0 +1,304 @@
+<style>
+    li.custoTab {
+        width: 14% !important;
+    }
+
+    .form-group label {
+        color: #000000;
+        padding: 6px 0;
+    }
+
+    li.custoTab a span h4 {
+        font-size: 11px !important;
+        font-weight: 600 !important;
+    }
+
+    .tkthead h2 {
+        color: #000000;
+        margin-left: 11px !important;
+        margin-bottom: 11px;
+    }
+
+    .row.job-client-tabbing {
+        margin: 0px 3px 20px !important;
+        padding: 0px 0px 20px !important;
+        border-bottom: 1px solid #dadada !important;
+    }
+
+    ul.nav.nav-tabs.nav-tabs-line.nav-tabs-bold.nav-tabs-line-3x.nav-tabs-line-brand.tabbing-jobs-client {
+        margin: 0 0 0 !important;
+    }
+
+    .service-form-table-border tr td {
+        font-size: 15px;
+    }
+
+    .service-nav-item a {
+        background: #dedede !important;
+        border: none !important;
+        text-align: center !important;
+        border-bottom: 3px solid transparent !important;
+    }
+
+    .new-requst-filter_form span.kt-switch.kt-switch--lg {
+        display: block !important;
+    }
+
+    .new-requst-filter_form span.kt-switch.kt-switch--lg h4 {
+        font-size: 16px;
+    }
+
+    .service-found-form-info li.nav-item.service-nav-item {
+        border-right: 1px solid #bfbfbf;
+    }
+
+    .service-found-form-info li.nav-item.service-nav-item:last-child {
+        border-right: 0px !important;
+    }
+
+    .service-nav-item a.active,
+    .service-nav-item a:hover {
+        background-color: #21366B !important;
+        border: none !important;
+        color: white !important;
+        text-align: center;
+        border-bottom: none !important;
+    }
+
+    tbody tr td {
+        text-align: center;
+    }
+
+    tbody tr td:first-child {
+        text-align: left;
+        width: 20%;
+        vertical-align: top;
+    }
+
+    @media (max-width:1360px) {
+        .mytimesheet h2 {
+            font-size: 14px !important;
+        }
+
+        .mytimesheet .input-group {
+            margin-top: 0px !important;
+        }
+    }
+</style>
+
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+    <div class="kt-subheader kt-grid__item" id="kt_subheader">
+        <div class="kt-container kt-container--fluid breadcud-kt-container ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                    <a href="javascript:;" routerLink="/dashboard">
+                        Dashboard
+                    </a>
+                </h3>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <a href="javascript:;" routerLink="/settings" class="kt-subheader__breadcrumbs-link"> Settings </a>
+                </div>
+
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <a href="javascript:;" routerLink="/settings/notifications" class="kt-subheader__breadcrumbs-link">
+                        Notification </a>
+                </div>
+
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <a href="javascript:;" routerLink="/settings/notifications/templates"
+                        class="kt-subheader__breadcrumbs-link"> Templates </a>
+                </div>
+
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    Manage Template's
+                </div>
+            </div>
+            <div class="kt-subheader__toolbar">
+
+            </div>
+        </div>
+    </div>
+    <div class="new-quote-main-section">
+        <div class="kt-container kt-container--fluid">
+            <div class="new-requst-filter_form create-new-client-popup">
+                <div class="accordion accordion-solid">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 service-found-form-info job-for-tab-content">
+                            <div class="kt-portlet__body">
+                                <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                                    <div class="kt-portlet__head">
+                                        <div class="kt-portlet__head-label">
+                                            <h3 class="kt-portlet__head-title" style="text-transform: uppercase;">
+                                                Email Templates
+                                            </h3>
+                                        </div>
+                                        <div class="backSection"> <a href="javascript:void(0)" (click)="back()"
+                                                class="btn btn-primary">Back to Templates </a> </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="kt-widget19__wrapper">
+                                            <div class="kt-widget19__content">
+                                                <div class="kt-widget19__userpic">
+                                                </div>
+                                                <div class="col-md-12 new-request-service-details-form">
+
+                                                    <div class="kt-portlet__body padd-top-0">
+                                                        <div class="col-md-12 myNotificationTable">
+
+
+
+
+                                                            <div class="kt-section__content">
+                                                                <table class="client-server-table ttl" width="100%">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>Template Name*:</td>
+                                                                            <td *ngIf="!Editable">
+                                                                                <input name="ProductId"
+                                                                                    class="undertd_text"
+                                                                                    name="TemplateName"
+                                                                                    placeholder="Module Name.."
+                                                                                    
+                                                                                    [(ngModel)]="notifyService.NotificationTemplateData.TemplateName"
+                                                                                    maxlength="64">
+                                                                            </td>
+                                                                            <td *ngIf="Editable">
+                                                                                <input name="ProductId"
+                                                                                    class="undertd_text"
+                                                                                    name="TemplateName"
+                                                                                    placeholder="Module Name.."
+                                                                                    disabled
+                                                                                    [(ngModel)]="notifyService.NotificationTemplateData.TemplateName"
+                                                                                    maxlength="64">
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Select Module*:</td>
+                                                                            <td>
+                                                                                <select class="form-control undertd_text undertd_text-select"
+                                                                                    [(ngModel)]="notifyService.NotificationTemplateData.ModuleName">
+                                                                                    <option value="Quotation">Quotation
+                                                                                    </option>
+                                                                                    <option value="Quotation Edit">Quotation Edit
+                                                                                    </option>
+                                                                                    <option value="Work Order">Work Order
+                                                                                    </option>
+                                                                                    <option value="Create {{this.currentUser.Ticket}}">Create
+                                                                                        {{this.currentUser.Ticket}}</option>
+                                                                                    <option value="Ticket Allocation">
+                                                                                        Allocation {{this.currentUser.Ticket}}</option>
+                                                                                    <option
+                                                                                        value="{{this.currentUser.Ticket}} Re-Allocation">
+                                                                                        Re-Allocation {{this.currentUser.Ticket}} </option>
+                                                                                    <option value="Reschedule Ticket">
+                                                                                        Reschedule {{this.currentUser.Ticket}}</option>
+                                                                                    <option
+                                                                                        value="Completion of {{this.currentUser.Ticket}}">
+                                                                                        Completion of {{this.currentUser.Ticket}}</option>
+                                                                                        <option
+                                                                                        value="Hold {{this.currentUser.Ticket}}">
+                                                                                        Hold {{this.currentUser.Ticket}}</option>
+                                                                                    <option value="Start / End Ticket">
+                                                                                        Start / End {{this.currentUser.Ticket}}</option>
+                                                                                    <option
+                                                                                        value="Daily Number of Today's {{this.currentUser.Ticket}} & Total Overdue {{this.currentUser.Ticket}}s">
+                                                                                        Daily Number of Today's {{this.currentUser.Ticket}} &
+                                                                                        Total Overdue {{this.currentUser.Ticket}}s</option>
+                                                                                    <option value="Cancelled {{this.currentUser.Ticket}}">
+                                                                                        Cancelled {{this.currentUser.Ticket}}</option>
+                                                                                    <option value="On Service Day">On
+                                                                                        Service Day</option>
+                                                                                    <option value="On The Way">On The
+                                                                                        Way</option>
+                                                                                    <option value="Work Order">Work
+                                                                                        Order</option>
+                                                                                    <option value="Feedback">Feedback</option>
+                                                                                </select>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Customer email body*:</td>
+                                                                            <td>
+                                                                                <angular-editor
+                                                                                    [placeholder]="'Customer mail body here...'"
+                                                                                    [(ngModel)]="notifyService.NotificationTemplateData.CustomerMailBody"
+                                                                                    [config]="config"></angular-editor>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>{{this.currentUser.Engineer}} email body*:</td>
+                                                                            <td>
+                                                                                <angular-editor
+                                                                                    [placeholder]="'Engineer mail body here...'"
+                                                                                    [(ngModel)]="notifyService.NotificationTemplateData.EngineerMailBody"
+                                                                                    [config]="config"></angular-editor>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Mobile Notification temp*:</td>
+                                                                            <td>
+                                                                                <input name="ProductId"
+                                                                                    class="undertd_text"
+                                                                                    name="MobileNotification"
+                                                                                    placeholder="Mobile Notification template.."
+                                                                                    [(ngModel)]="notifyService.NotificationTemplateData.MobileNotification"
+                                                                                    maxlength="255">
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Admin email body*:</td>
+                                                                            <td colspan="3">
+                                                                                <angular-editor
+                                                                                    [placeholder]="'Admin mail body here...'"
+                                                                                    [(ngModel)]="notifyService.NotificationTemplateData.AdminMailBody"
+                                                                                    [config]="config"></angular-editor>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td colspan="2" style="text-align: right;">
+                                                                                <a href="javascript:void(0)"
+                                                                                    (click)="back()"
+                                                                                    class="btn btn-primary">Back to
+                                                                                    Templates </a>
+                                                                                <a href="javascript:void(0)"
+                                                                                    class="btn btn-primary"
+                                                                                    (click)="onEmailTemplateSave()">Save</a>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

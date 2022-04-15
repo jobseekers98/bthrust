@@ -1,0 +1,239 @@
+<div class="kt-portlet kt-portlet--mobile">
+    <div class="kt-portlet__head kt-portlet__head--lg contact_detail_table_info">
+        <div class="row col-md-12">
+            <div class="col-md-6">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        SMTP Setting
+                    </h3>
+                </div>
+            </div>
+            <div class="col-md-6 top-add-sec">
+                <a (click)="pupulatesmtp()" *ngIf="currentUser.Permissions.SMTPSettingCreate"
+                    class="btn btn-label-success btn-pill collapsed" role="tab" aria-expanded="  false">
+                    <span class="kt-nav__link-text"> <i class="fa fa-plus"></i> Add New</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="kt-portlet__body properties_filter_body">
+        <div class="kt-section">
+            <div class="col-md-12">
+                <table class="table table-striped properies-table-info ng-star-inserted">
+                    <thead>
+                        <tr>
+                            <th>Sno</th>
+                            <th>Name</th>
+                            <th>Sender</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let x of genericservice.SmtpsettingList;let i=index; async">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{x.SMTPName}}</td>
+                            <td>{{x.SMTPEmail}}</td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="javascript:;" style="border: #1dc9b7;"
+                                        class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Action<span
+                                            class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li *ngIf="currentUser.Permissions.SMTPSettingEdit"><a (click)="pupulatesmtp(x)"
+                                                href="javascript:;">Edit</a>
+                                        </li>
+                                        <li *ngIf="currentUser.Permissions.SMTPSettingRemove"><a (click)="removesmtp(x)"
+                                                href="javascript:;">Remove</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #modalContent let-close="close">
+    <div class="kt-portlet kt-portlet--mobile">
+        <div class="kt-portlet__head kt-portlet__head--lg contact_detail_table_info">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                    &nbsp;&nbsp; SMTP Settings
+                </h3>
+            </div>
+        </div>
+        <div class="kt-portlet__body properties_filter_body">
+            <div class="kt-section">
+                <div class="col-md-12">
+                    <div class="kt-section__content">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Email Protocol<span style="color: red;">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-cog"></i>
+                                            </div>
+                                        </div>
+                                        <select class="form-control" name="EmailProtocol" #EmailProtocol="ngModel"
+                                            [(ngModel)]="genericservice.SmtpsettingData.EmailProtocol"
+                                            data-style="btn-success">
+                                            <option value="SMTP">SMTP
+                                            </option>
+                                            <option value="Sendmail">Sendmail
+                                            </option>
+                                            <option value="Mail">Mail
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>SMTP Name<span style="color: red;">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-cog"></i>
+                                            </div>
+                                        </div>
+                                        <input name="SMTPName" #SMTPName="ngModel"
+                                            [(ngModel)]="genericservice.SmtpsettingData.SMTPName" class="form-control"
+                                            [class.is-invalid]="!isValidSMTPName" maxlength="64">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email Encryption<span style="color: red;">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-cog"></i>
+                                            </div>
+                                        </div>
+                                        <select class="form-control" name="EmailEncryption" #EmailEncryption="ngModel"
+                                            [(ngModel)]="genericservice.SmtpsettingData.EmailEncryption"
+                                            data-style="btn-success">
+                                            <option value="SSL">SSL
+                                            </option>
+                                            <option value="No SSL">No SSL
+                                            </option>
+                                            <option value="TLS">TLS
+                                            </option>
+                                            <option value="STARTTLS">STARTTLS
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>SMTP Host<span style="color: red;">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-cog"></i>
+                                            </div>
+                                        </div>
+                                        <input name="SMTPHost" #SMTPHost="ngModel"
+                                            [(ngModel)]="genericservice.SmtpsettingData.SMTPHost" class="form-control"
+                                            [class.is-invalid]="!isValidSMTPHost" maxlength="32">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>SMTP Port<span style="color: red;">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-cog"></i>
+                                            </div>
+                                        </div>
+                                        <input name="SMTPPort" #SMTPPort="ngModel" type="number"
+                                            [(ngModel)]="genericservice.SmtpsettingData.SMTPPort" class="form-control"
+                                            [class.is-invalid]="!isValidSMTPPort" maxlength="4">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>SMTP Email<span style="color: red;">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-cog"></i>
+                                            </div>
+                                        </div>
+                                        <input name="SMTPEmail" #SMTPEmail="ngModel"
+                                            [(ngModel)]="genericservice.SmtpsettingData.SMTPEmail" class="form-control"
+                                            [class.is-invalid]="!isValidSMTPEmail" maxlength="64">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>SMTP Username<span style="color: red;">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-cog"></i>
+                                            </div>
+                                        </div>
+                                        <input name="SMTPUsername" #SMTPUsername="ngModel"
+                                            [(ngModel)]="genericservice.SmtpsettingData.SMTPUsername" class="form-control"
+                                            [class.is-invalid]="!isValidSMTPUsername" maxlength="64">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>SMTP Password<span style="color: red;">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-cog"></i>
+                                            </div>
+                                        </div>
+                                        <input name="SMTPPassword" #SMTPPassword="ngModel"
+                                            [(ngModel)]="genericservice.SmtpsettingData.SMTPPassword" class="form-control"
+                                            type="password" [class.is-invalid]="!isValidSMTPPassword" maxlength="64">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email Charset<span style="color: red;">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-cog"></i>
+                                            </div>
+                                        </div>
+                                        <input name="EmailCharset" #EmailCharset="ngModel"
+                                            [(ngModel)]="genericservice.SmtpsettingData.EmailCharset" class="form-control"
+                                            [class.is-invalid]="!isValidEmailCharset" maxlength="8">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email Signature<span style="color: red;">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-cog"></i>
+                                            </div>
+                                        </div>
+                                        <input name="EmailSignature" #EmailSignature="ngModel"
+                                            [(ngModel)]="genericservice.SmtpsettingData.EmailSignature"
+                                            class="form-control" [class.is-invalid]="!isValidEmailSignature"
+                                            maxlength="256">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group" style="text-align: right;">
+                                    <div class="btn-group">
+                                        <a href="javascript:;" (click)="OnSMTPSettingSubmit()" class="btn btn-brand">
+                                            Save Changes
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

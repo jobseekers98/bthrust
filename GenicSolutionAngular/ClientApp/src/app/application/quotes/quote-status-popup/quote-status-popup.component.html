@@ -1,0 +1,84 @@
+<style>
+    .Container {overflow-y: auto !important;overflow-x: hidden;min-height: 22px;max-height: 100vh;}
+    .myStatus {width: 100%;background-color: cyan;padding: 6px 6px;margin: 0 0 1px 0;border: 1px solid #ad5a2242;}
+    .myStatus a {margin: 0px 0 0 11px;color: black;font-size: initial;}
+    .AcceptStatus {margin: 0 5px 0 0;color: green;}
+    .OtherStatus {margin: 0 5px 0 0;color: #847a74;}
+    .btnRemoveSection {background-color: #fcb822;color: black;padding: 2px 15px;float: right;cursor: pointer;margin: 1px 1px 0 0;}
+</style>
+<div class="Container">
+    <h4 class="dispaly-4">Change Status</h4>
+    <hr>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <div class="kt-radio-list">
+                <div class="row">
+                    <div class="myStatus" *ngIf="quoteService.QuoteData.Status === 1">
+                        <a href="javascript:void(0)" (click)="SetStatus(2)">
+                            <ng-container *ngIf="temptQuoteStatus===2">
+                                <i class="fa fa-check-circle AcceptStatus" aria-hidden="true"></i>
+                            </ng-container>
+                            <ng-container *ngIf="temptQuoteStatus!==2">
+                                <i class="far fa-circle OtherStatus" aria-hidden="true"></i>
+                            </ng-container>
+                            Pending
+                        </a>
+                    </div>
+                    <div class="myStatus" *ngIf="currentUser.Type === 'Admin'">
+                        <a href="javascript:void(0)" (click)="SetStatus(3)">
+                            <ng-container *ngIf="temptQuoteStatus===3">
+                                <i class="fa fa-check-circle AcceptStatus" aria-hidden="true"></i>
+                            </ng-container>
+                            <ng-container *ngIf="temptQuoteStatus!==3">
+                                <i class="far fa-circle OtherStatus" aria-hidden="true"></i>
+                            </ng-container>
+                            Approve
+                        </a>
+                    </div>
+                    <div class="signature" *ngIf="temptQuoteStatus===3">
+                        <div class="col">
+                            <label>&nbsp;&nbsp;Sales Person Signature</label>
+                            <div id="CloseSignarePad"
+                              class="m-signature-pad CloseSignarePad">
+                              <div class="m-signature-pad-body">
+                                <signature-pad #SignaturePad1
+                                  [options]="SalesPersonSignaturePadOption"></signature-pad>
+                              </div>
+                            </div>
+                            <a style="float:right" class="btnRemoveSection"
+                              (click)="cleareSalesPersonSignature()"> Clear signature</a>
+                          </div>
+                    </div>
+                    <div class="myStatus">
+                        <a href="javascript:void(0)" (click)="SetStatus(5)">
+                            <ng-container *ngIf="temptQuoteStatus===5">
+                                <i class="fa fa-check-circle AcceptStatus" aria-hidden="true"></i>
+                            </ng-container>
+                            <ng-container *ngIf="temptQuoteStatus!==5">
+                                <i class="far fa-circle OtherStatus" aria-hidden="true"></i>
+                            </ng-container>
+                            Reject
+                        </a>
+                    </div>
+                    <div class="myStatus">
+                        <a href="javascript:void(0)" (click)="SetStatus(6)">
+                            <ng-container *ngIf="temptQuoteStatus===6">
+                                <i class="fa fa-check-circle AcceptStatus" aria-hidden="true"></i>
+                            </ng-container>
+                            <ng-container *ngIf="temptQuoteStatus!==6">
+                                <i class="far fa-circle OtherStatus" aria-hidden="true"></i>
+                            </ng-container>
+                            Cancel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" (click)="UpdateQuoteStatus(temptQuoteStatus)"> Change
+            Status</button>
+        <button type="button" class="btn btn-outline-dark ml-1" (click)="close()"><i class="fa fa-close"></i>
+            Close</button>
+    </div>
+</div>

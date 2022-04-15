@@ -1,0 +1,26 @@
+.creat-properties-form-main-section .create_properties-filter_form{background-color:WHITE !important;padding:0px !important;}
+.creat-properties-form-main-section .alert.alert-secondary{border:none !important;background-color:#eaeaea !important;color:white;padding:15px !important;}
+.creat-properties-form-main-section .alert.alert-secondary .alert-icon i{color:black !important;font-size:35px !important;}
+.new-properties-popupcreate-text{color:black;width:100%;}
+.create_properties-filter_form .form-group{margin-bottom:15px;}
+.custom-file-label::after{background-color:#112860;color:white;padding:0.65rem 4rem;}
+.creat-properties-form-main-section .create_properties-filter_form{margin:0 0 ;}
+.creat-properties-form-main-section label{font-size:14px !important;font-weight:600;color:black !important;}
+.input-group-prepend{background-color:#ff8533 !important;color:white !important;height:36px !important;line-height:36px !important;}
+.btn-sm.btn-label-info.btn-bold{margin-top: 26px;padding: 10px 36px;background:#2c77f4;color: white;width:100%;}
+.modal-footer.create-proprty-model-footer{border:none;}
+.propert-field{padding:0px 20px;}
+.input-group > .custom-file{margin-bottom:50px;}
+.propert-field p{color:16px;color:black;}
+.table-custom{padding:0px 15px;}
+.table-custom table tr th{background: #eaeaea !important;font-size:14px !important;color:black !important;font-weight:600}
+.modal-footer.create-proprty-model-footer{position:sticky;bottom:0px;}
+.modal-footer.create-proprty-model-footer{padding-right:100px;}
+.undertd_text-textarea{border-bottom: 1px solid #012939 !important; border: 2px solid #ebe6e2 !important; padding: 6px 10px !important; background: #f0f1f7 !important;}
+.undertd_text-select{border-bottom: 1px solid #012939 !important;border: 2px solid #ebe6e2 !important; padding: 6px 10px !important; background: #f0f1f7 !important;}
+.my-batch{margin-top: 16px !important;border-bottom: 1px solid #ddd; margin-bottom: 13px !important;}
+.my-batch label{margin: 0 0px 7px 3px;}
+.pdn-top{border-bottom: 1px solid #ddd;}
+.my-spacing{border: 1px solid #dddddd; padding: 15px 17px !important;}
+table.ttl tbody tr td{padding: 2px 8px !important;}
+.switcher-customer { top:-15px;position: relative; }

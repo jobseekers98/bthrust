@@ -1,0 +1,491 @@
+
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+  <div class="kt-subheader kt-grid__item" id="kt_subheader">
+    <div class="kt-container kt-container--fluid breadcud-kt-container ">
+      <div class="kt-subheader__main">
+        <h3 class="kt-subheader__title">
+          <a href="javascript:;" routerLink="/dashboard">
+            Dashboard
+          </a>
+        </h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          <span class="kt-subheader__breadcrumbs-separator"></span>
+          <a class="kt-subheader__breadcrumbs-link"> Calendar </a>
+        </div>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          <span class="kt-subheader__breadcrumbs-separator"></span>  Map
+        </div>
+      </div>
+      <div class="kt-subheader__toolbar">
+        <div class="kt-subheader__wrapper">
+          <a href="javascript:;" class="btn kt-subheader__btn-daterange" id="kt_dashboard_daterangepicker"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+             title="Select dashboard daterange" data-placement="left">
+
+            <span class="kt-subheader__btn-daterange-title"
+                  id="kt_dashboard_daterangepicker_title">Today:</span>&nbsp; <span class="kt-subheader__btn-daterange-date"
+                                                                                    id="kt_dashboard_daterangepicker_date">
+              <a href="javascript:;" (click)="showcalendar()">
+                {{ propertyservice.InternalObject.TodayDate | date }}
+              </a>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                 height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--sm">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                <path d="M4.875,20.75 C4.63541667,20.75 4.39583333,20.6541667 4.20416667,20.4625 L2.2875,18.5458333 C1.90416667,18.1625 1.90416667,17.5875 2.2875,17.2041667 C2.67083333,16.8208333 3.29375,16.8208333 3.62916667,17.2041667 L4.875,18.45 L8.0375,15.2875 C8.42083333,14.9041667 8.99583333,14.9041667 9.37916667,15.2875 C9.7625,15.6708333 9.7625,16.2458333 9.37916667,16.6291667 L5.54583333,20.4625 C5.35416667,20.6541667 5.11458333,20.75 4.875,20.75 Z"
+                      id="check" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                <path d="M2,11.8650466 L2,6 C2,4.34314575 3.34314575,3 5,3 L19,3 C20.6568542,3 22,4.34314575 22,6 L22,15 C22,15.0032706 21.9999948,15.0065399 21.9999843,15.009808 L22.0249378,15 L22.0249378,19.5857864 C22.0249378,20.1380712 21.5772226,20.5857864 21.0249378,20.5857864 C20.7597213,20.5857864 20.5053674,20.4804296 20.317831,20.2928932 L18.0249378,18 L12.9835977,18 C12.7263047,14.0909841 9.47412135,11 5.5,11 C4.23590829,11 3.04485894,11.3127315 2,11.8650466 Z M6,7 C5.44771525,7 5,7.44771525 5,8 C5,8.55228475 5.44771525,9 6,9 L15,9 C15.5522847,9 16,8.55228475 16,8 C16,7.44771525 15.5522847,7 15,7 L6,7 Z"
+                      id="Combined-Shape" fill="#000000"></path>
+              </g>
+            </svg>
+          </a>
+          <div *ngIf="Iscalendarshow" style="position: absolute; z-index: 99999; background-color: white;">
+            <ul class="kt-nav">
+              <li class="kt-nav__head"> Calendar <a href="javascript:void(0);" (click)="hidecalendar()">x</a> </li>
+              <li class="kt-nav__separator"></li>
+              <li class="kt-nav__item">
+                <ngb-datepicker name="TodayDate" #TodayDate="ngModel"
+                                [(ngModel)]="propertyservice.InternalObject.TodayDate"
+                                (select)="onDateSelect()"
+                                (navigate)="date=$event.next"></ngb-datepicker>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+
+    .box-item {
+      width: 100%;
+      z-index: 1000
+    }
+  </style>
+  <div class="new-quote-main-section">
+    <div class="kt-container kt-container--fluid">
+      <div class="new-requst-filter_form create-new-client-popup">
+        <div class="accordion accordion-solid">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 no-spacing">
+
+              <div class="">
+                <div class="row">
+                  <div class="col-lg-12 left-enlarge">
+                    <div class="map-inner">
+                      <div [ngClass]="IsLeftSectionLive === true ? 'left-section-live' : 'left-section-live closeClass-left'">
+                        <span class="left_slide" title="Live Location" (click)="IsLeftLiveSectionMethod()">
+                          <i class="fas fa-angle-right"></i>
+                        </span>
+
+                        <div class="inner-section" *ngIf="currentUser.Permissions.LiveTracking">
+                          <div class="inner-header clearfix">
+                            <span class="title">Live Location</span>
+                            <span class="calendar"></span>
+                          </div>
+                          <div class="inner-body">                            
+                            <div class="inner-tabcontent">
+                              <div class="tab-content style-1">
+                                <div class="inner-body">
+                                  <div class="inner-tabcontent">
+                                    <div class="tab-content style-1">
+                                      <div class="tab-pane active" id="atab1">
+                                        <div class="agent-row clearfix" *ngFor="let x of service.EngineerLocation; let index=index async">
+                                          <div class="agent-name">
+                                            <img class="engineer-icon" *ngIf="x.EngineerLogo.length === 0" width="30px" title="{{x.EngineerName}}" alt=" "
+                                                 src="{{localPrependUrl}}/assets/svg/noimage.svg" />
+                                            <img class="engineer-icon" *ngIf="x.EngineerLogo.length > 0" width="30px" title="{{x.EngineerName}}" alt=" "
+                                                 src="{{ x.EngineerLogo }}">
+      
+                                            <p class="nagent"><a (click)="showinnerlistlive(index)" href="javascript:;">{{ x.EngineerName }}</a></p>
+                                            <div class="LocationDate"><span>{{x.LocationDate}}</span></div>
+                                          </div>
+                                       
+                                          <div class="agent-row-inner-live" id="agent-row-inner-live-{{index}}">
+                                            <div class="agent-header clearfix">
+                                              <div class="agent-image">
+                                                <i *ngIf="x.EngineerLogo.length === 0" class="fas fa-user"></i>
+                                                <i *ngIf="x.EngineerLogo.length > 0">
+                                                  <img class="fas fa-user" *ngIf="x.EngineerLogo.length > 0" width="60px" title="{{x.EngineerName}}" alt=" "
+                                                       src="{{localPrependUrl}}/{{ x.EngineerLogo }}">
+                                                </i>
+      
+                                              </div>
+                                              <div class="agent-image-info ">
+                                                <h2>{{ x.EngineerName }}</h2>
+                                                <p>{{x.LocationDate}}</p>
+                                                <div class="close-btn"><a (click)="showinnerlistlive()" href="javascript:;">X</a></div>
+                                              </div>
+                                            </div>
+                                            <div class="agent-task style-1">
+                                              <div class="agent-task-row strip-2">     
+                                                <div class="agent-task-bottom">
+                                                  <p *ngFor="let subCategory of x.LocationAddress?.split(',')">
+                                                    {{ subCategory }}<br>
+                                                  </p>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div [ngClass]="IsLeftSection === true ? 'left-section' : 'left-section closeClass-left'">
+                        <span class="left_slide" title="tasks" (click)="IsLeftSectionMethod()">
+                          <i class="fas fa-angle-right"></i>
+                        </span>
+
+                        <div class="inner-section">
+                          <div class="inner-header clearfix">
+                            <span class="title">{{this.currentUser.Ticket}}s</span>
+                            <span class="calendar"></span>
+                          </div>
+                          <div class="inner-body">
+                            <div class="inner-tabs">
+                              <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                  <a class="nav-link active" data-toggle="tab"
+                                     href="#tab1">
+                                    <span>{{CalendarTicketList.length}}</span>
+                                    <p>All</p>
+                                  </a>
+                                </li>
+
+                                <li class="nav-item">
+                                  <a class="nav-link" data-toggle="tab" href="#tab2">
+                                    <span>{{ TotalClosed }}</span>
+                                    <p>Closed</p>
+                                  </a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" data-toggle="tab" href="#tab3">
+                                    <span>{{TotalInprogress}}</span>
+                                    <p>Inprogress</p>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+
+                            <div class="inner-tabcontent">
+                              <div class="tab-content style-1">
+                                <div class="tab-pane active" id="tab1">
+                                  <div class="ticket-detail-row strip-1" *ngFor="let x of CalendarTicketList; let index=index async">
+                                    <div class="ticket-number clearfix">
+                                      <p>
+                                        <span class="t-icon">c</span> {{x.TicketId}}
+                                      </p>
+                                      <a href="javascript:;" (click)="pupulateticket(x.Id)">
+                                        <span class="t-staus">Details</span>
+                                      </a>
+                                    </div>
+                                    <div class="ticket-info clearfix">
+                                      <P class="cust-name">
+                                        <i class="fas fa-user"></i> {{x.CustomerName}}
+                                        <span class="t-staus {{x.Status}}">{{x.Status}}</span>
+                                      </P>
+                                      <p class="cust-address">
+                                        <a href="javascript:;" (mouseover)="OnMouseUp(x)">
+                                        <i class="fas fa-map-marker"></i>
+                                        <span *ngFor="let subCategory of x.CustomerAddress?.split(',')">
+                                          {{ subCategory }}<br>
+                                        </span>
+                                        </a>
+                                      </p>
+                                      <p class="time">
+                                        <i class="fas fa-clock"></i>
+                                        {{x.OneOffStartTime.split(':')[0] + ':' + x.OneOffStartTime.split(':')[1]}} - {{x.OneOffEndTime.split(':')[0] +':'+ x.OneOffEndTime.split(':')[1]}}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="tab-pane fade" id="tab2">
+                                  <div class="ticket-detail-row strip-1" *ngFor="let x of TotalClosedList ; let index=index async">
+                                    <div class="ticket-number clearfix">
+                                      <p>
+                                        <span class="t-icon">c</span> {{x.TicketId}}
+                                      </p>
+                                      <a href="javascript:;" (click)="pupulateticket(x.Id)">
+                                        <span class="t-staus">Details</span>
+                                      </a>
+                                    </div>
+                                    <div class="ticket-info clearfix">
+                                      <P class="cust-name">
+                                        <i class="fas fa-user"></i> {{x.CustomerName}}
+                                        <span class="t-staus {{x.Status}}">{{x.Status}}</span>
+                                      </P>
+                                      <p class="cust-address">
+                                        <i class="fas fa-map-marker"></i>
+                                        <span *ngFor="let subCategory of x.CustomerAddress?.split(',')">
+                                          {{ subCategory }}<br>
+                                        </span>
+                                        <a href="javascript:;"
+                                           class="detail-btn btn"><span class="fas fa-map-marker"></span> </a>
+                                      </p>
+                                      <p class="time">
+                                        <i class="fas fa-clock"></i>
+                                        {{x.OneOffStartTime.split(':')[0] + ':' + x.OneOffStartTime.split(':')[1]}} - {{x.OneOffEndTime.split(':')[0] +':'+ x.OneOffEndTime.split(':')[1]}}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="tab-pane fade" id="tab3">
+                                  <div class="ticket-detail-row strip-1" *ngFor="let x of TotalInprogressList ; let index=index async">
+                                    <div class="ticket-number clearfix">
+                                      <p>
+                                        <span class="t-icon">c</span> {{x.TicketId}}
+                                      </p>
+                                      <a href="javascript:;" (click)="pupulateticket(x.Id)">
+                                        <span class="t-staus">Details</span>
+                                      </a>
+                                    </div>
+                                    <div class="ticket-info clearfix">
+                                      <P class="cust-name">
+                                        <i class="fas fa-user"></i> {{x.CustomerName}}
+                                        <span class="t-staus {{x.Status}}">{{x.Status}}</span>
+                                      </P>
+                                      <p class="cust-address">
+                                        <i class="fas fa-map-marker"></i>
+                                        <span *ngFor="let subCategory of x.CustomerAddress?.split(',')">
+                                          {{ subCategory }}<br>
+                                        </span>
+                                        <a href="javascript:;"
+                                           class="detail-btn btn"><span class="fas fa-map-marker"></span> </a>
+                                      </p>
+                                      <p class="time">
+                                        <i class="fas fa-clock"></i>
+                                        {{x.OneOffStartTime.split(':')[0] + ':' + x.OneOffStartTime.split(':')[1]}} - {{x.OneOffEndTime.split(':')[0] +':'+ x.OneOffEndTime.split(':')[1]}}
+                                      </p>
+                                    </div>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="map-section">
+
+                        <agm-map style="width: 100%;height: 600px;"
+                                 [latitude]="lat"
+                                 [longitude]="lng"
+                                 [zoom]="zoom"
+                                 [minZoom]="10"
+                                 [disableDefaultUI]="false">
+                          <agm-marker *ngFor="let m of markers; let i = index"
+                                      [latitude]="m.lat"
+                                      [longitude]="m.lng">
+                            <agm-info-window>
+                              <strong>{{m.name}}</strong><br>
+                              <p> {{m.address}} </p>
+                            </agm-info-window>
+                          </agm-marker>
+                        </agm-map>
+                      </div>
+                      <div [ngClass]="IsRightSection === true ? 'right-section' : 'right-section closeClass-right'">
+                        <span class="right_slide" title="tasks" (click)="IsRightSectionMethod()">
+                          <i class="fas fa-angle-right"></i>
+                        </span>
+                        <div class="inner-section">
+                          <div class="inner-header clearfix">
+                            <span class="title">{{this.currentUser.Engineer}}s</span>
+                          </div>
+                          <div class="inner-body">
+                            <div class="inner-tabcontent">
+                              <div class="tab-content style-1">
+                                <div class="tab-pane active" id="atab1">
+                                  <div class="agent-row clearfix" *ngFor="let x of CalenderList; let index=index async">
+                                    <div class="agent-name">
+                                      <img class="engineer-icon" *ngIf="x.EngineerLogo.length === 0" width="30px" title="{{x.EngineerName}}" alt=" "
+                                           src="{{localPrependUrl}}/assets/svg/noimage.svg" />
+                                      <img class="engineer-icon" *ngIf="x.EngineerLogo.length > 0" width="30px" title="{{x.EngineerName}}" alt=" "
+                                           src="{{ x.EngineerLogo }}">
+
+                                      <p class="nagent"><a (click)="showinnerlist(index, x.EngineerId)" href="javascript:;">{{ x.EngineerName }}</a></p>
+                                    </div>
+                                    <div class="task">
+                                      <p>{{x.Count}} Task </p>
+                                    </div>
+                                    <div class="agent-row-inner" id="agent-row-inner-{{index}}">
+                                      <div class="agent-header clearfix">
+                                        <div class="agent-image">
+                                          <i *ngIf="x.EngineerLogo.length === 0" class="fas fa-user"></i>
+                                          <i *ngIf="x.EngineerLogo.length > 0">
+                                            <img *ngIf="x.EngineerLogo.length > 0" width="60px" height="61px" title="{{x.EngineerName}}" alt=" "
+                                                 src="{{ x.EngineerLogo }}">
+                                          </i>
+
+                                        </div>
+                                        <div class="agent-image-info ">
+                                          <h2>{{ x.EngineerName }}</h2>
+                                          <p>{{ x.RemaningTask }} Task Left</p>
+                                          <div class="close-btn"><a (click)="showinnerlist(x.EngineerId)" href="javascript:;">X</a></div>
+                                        </div>
+                                      </div>
+                                      <div class="agent-info">
+                                        <div class="agent-id">
+                                          <p>Mob.: {{x.EngineerMobile}}</p>
+                                        </div>
+                                      </div>
+                                      <div class="agent-task style-1">
+                                        <div class="agent-task-row strip-2" *ngFor="let item of locallist;let lst=index async">
+                                          <div class="agent-task-top {{item.Status}}">
+                                            <h2>{{item.TicketId}}</h2>
+                                            <P>{{item.Status}}</P>
+                                          </div>
+                                          <div class="agent-task-mid">
+                                            <P>{{item.OneOffAppointmentDate | date}}</P>
+                                            <a href="javascript:;" class="at-detail" data-toggle="modal" data-target="#detailModal" (click)="openmodelpopupticketdetails(item.Id)">Details</a>
+
+                                          </div>
+                                          <div class="agent-task-bottom">
+                                            <p *ngFor="let subCategory of item.CustomerAddress?.split(',')">
+                                              {{ subCategory }}<br>
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="detailModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{CalendarTicketDetailsData.TicketId}}</h4>
+        <button type="button" class="close" data-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-inner">
+          <div class="details-tabs">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#dtab1">TASK DETAILS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#dtab2">ACTIVITY TIMELINE</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div id="dtab1" class=" tab-pane active">
+                <div class="task-detail-4-box">
+                  <h2>{{CalendarTicketDetailsData.Title}}</h2>
+                  <p>
+                    {{CalendarTicketDetailsData.Description}}
+                  </p>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 col-sm-12">
+                    <div class="task-detail-1-box">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <td colspan="2">
+                              <h5>{{this.currentUser.Ticket}}</h5>
+                            </td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><i class="fas fa-list"></i> Status:</td>
+                            <td>{{CalendarTicketDetailsData.Status}}</td>
+                          </tr>
+                          <tr>
+                            <td><i class="fas fa-clock"></i> Ticket Start Time :</td>
+                            <td>{{CalendarTicketDetailsData.OneOffStartTime}}</td>
+                          </tr>
+                          <tr>
+                            <td><i class="fas fa-clock"></i> Ticket End Time:</td>
+                            <td>{{CalendarTicketDetailsData.OneOffEndTime}}</td>
+                          </tr>
+                          <tr>
+                            <td><i class="fas fa-clock"></i> Ticket Generate Date:</td>
+                            <td>{{CalendarTicketDetailsData.GenerateDate | date: 'MMM dd yyyy'}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <div class="task-detail-2-box">
+                      <h2>Customer</h2>
+                      <ul>
+                        <li><i class="fas fa-user"></i> {{CalendarTicketDetailsData.CustomerName}}</li>
+                        <li><i class="fas fa-phone"></i> {{CalendarTicketDetailsData.CustomerContactNo}}</li>
+                        <li><i class="fas fa-envelope"></i> {{CalendarTicketDetailsData.CustomerEmail}}</li>
+                        <li><i class="fas fa-map-marker"></i> {{CalendarTicketDetailsData.CustomerAddress}}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="task-detail-3-box">
+                  <h2>Team</h2>
+                  <ul *ngFor="let item of CalendarTicketDetailsData.List;let lst=index async">
+                    <li>
+                      <img *ngIf="item.EngineerLogo.length === 0" width="20" height="20px" class="img-thumbnail" title="{{item.EngineerName}}"
+                      alt=""
+                      src="{{localPrependUrl}}/assets/svg/noimage.svg" />
+                    <img *ngIf="item.EngineerLogo.length > 0" width="20" height="20px" class="img-thumbnail" title="{{item.EngineerName}}"
+                      alt="" src="{{ item.EngineerLogo }}">
+
+                      {{item.EngineerName}}
+                      <span class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                      *ngIf="item.Type === 1">Supervisor</span>
+                      <span class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill"
+                      *ngIf="item.Type === 2">Foreman</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div id="dtab2" class=" tab-pane fade">
+                <div class="activity-timeline" *ngFor="let item of CalendarTicketDetailsData?.Logs;let lst=index async">
+                  <div class="activity-timeline-row clearfix">
+                    <div class="delivery-status">
+                      <span><i class="fa fa-clock"></i> {{item.LogDate | date:'yyyy MMM dd HH:mm:ss'}} </span>
+                    </div>
+                    <div class="delivery-name">
+                      <p>{{item.RecentDescription}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

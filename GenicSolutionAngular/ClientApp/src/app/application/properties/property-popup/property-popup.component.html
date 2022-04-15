@@ -1,0 +1,54 @@
+<div class="modal-header select-new-properties">
+    <h5 class="modal-title" id="exampleModalLabel">Select or create a Client</h5>
+    <button class="btn btn-default pull-right" mat-dialog-close>x</button>
+</div>
+<div class="modal-body property-modal-body">
+    <div>
+        <p>Which client would you like to create this property for?</p>
+        <div class="row forn-group">
+            <div class="col-md-7">
+                <input type="text" (keydown)="onkeypress($event.target.value)" (keyup)="onkeypress($event.target.value)" class="form-control" placeholder="Search Clients...">
+            </div>
+            <div class="col-md-1 text-center">
+                or
+            </div>
+            <div class="col-md-4 text-right">
+                <a on class="btn btn-brand text-white " (click)="onClick()" >
+                    <i class="la la-plus"></i> Create new client </a>
+            </div>
+        </div>
+        <div class="kt-portlet__body new_clients_properties_body">
+            <div class="kt-widget4 kt-scroll ps" data-scroll="true" data-height="220"
+                style="height: 220px; overflow: hidden;" id="style-3">
+
+                <div *ngFor = "let x of LocalList" class="kt-widget4__item create-quote-client-item" (click)="onClick(x.Id,x.NameTitle + ' ' + x.FirstName + ' ' + x.LastName, x.CompanyName)">
+                    <div class="kt-widget4__pic kt-widget4__pic--logo">
+                        <img *ngIf="x.CustomerLogo===null"
+                                            width="30px"
+                                            src="{{localPrependUrl}}/assets/svg/noimage.svg" alt="{{ x.CompanyName }}" title="{{ x.CompanyName }}" />
+                                        <img *ngIf="x.CustomerLogo!==null"
+                                            width="30px"
+                                            src="{{ x.CustomerLogo }}" alt="pic" title="{{ x.CompanyName }}">
+                    </div>
+                    <div class="kt-widget4__info" *ngIf="!x.UseCompanyNameAsPrimaryName">
+                        <a class="kt-widget4__title" href="javascript:;">
+                           {{ x.NameTitle }} {{ x.FirstName }} {{ x.LastName }}
+                        </a>
+                        <i class="">
+                            {{ x.CompanyName }}
+                        </i>
+                    </div>
+                    <div class="kt-widget4__info" *ngIf="x.UseCompanyNameAsPrimaryName">
+                        <a class="kt-widget4__title" href="javascript:;">
+                                {{ x.CompanyName }}
+                        </a>
+                        <i class="">
+                                {{ x.NameTitle }} {{ x.FirstName }} {{ x.LastName }}
+                        </i>
+                     </div>
+                    <span class="kt-widget4__number kt-font-brand"> {{ x.Properties.length }} Properties</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

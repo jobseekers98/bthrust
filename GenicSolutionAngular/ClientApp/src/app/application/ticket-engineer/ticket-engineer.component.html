@@ -1,0 +1,57 @@
+<style>
+.model-header{background: #c3e7fa;padding: 5px;}
+.model-header .btn{padding: 0.25rem 0.25rem;}
+.tableBodyScroll tbody {
+ 
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.tableBodyScroll thead,
+tbody tr {
+  width: 100%;
+  table-layout: fixed;
+}
+</style>
+<div>
+    <h2>
+      {{this.currentUser.Ticket}} Team &nbsp;&nbsp;<span style="color:#ff0909;">|</span> &nbsp;&nbsp;  {{this.currentUser.Ticket}}: # {{ticketservice.formData.TicketId}}
+          <button class="btn text-danger pull-right" [mat-dialog-close]><b>X</b></button>
+        </h2>
+
+</div>
+<hr>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+        <table class="table"
+        *ngIf="service.Engineerlist.length > 0" >
+        <thead>
+            <tr>
+                <th style="width: 5%">SNo</th>
+                <th style="width: 10%">Image</th>
+                <th style="width: 40%">Name</th>
+                <th style="width: 20%">Phone</th>
+                <th style="width: 25%">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let x of service.Engineerlist; let i=index; async">
+            <td>{{i + 1}}</td>
+                <td class="engineer-list-class"> 
+                    <img *ngIf="x.EngineerLogo.length === 0" width="30px"
+                    src="{{localPrependUrl}}/assets/svg/noimage.svg" />
+                <img *ngIf="x.EngineerLogo.length > 0" width="30px"
+                    src="{{x.EngineerLogo}}">
+                </td>
+                <td>{{x.EngineerName}}<br>
+                </td>
+                <td>{{x.EngineerPhone}}</td>
+                <td>{{x.EngineerEmail}}</td>
+            </tr>
+        </tbody>
+    </table><hr>
+    <div class="row">
+        <i *ngIf="!service.Engineerlist" class="fa fa-spinner fa-spin" ></i>
+    </div>
+    </div>
+  </div>

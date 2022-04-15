@@ -1,0 +1,29 @@
+<div class="modal-header select-new-properties">
+    <h5 class="modal-title" id="exampleModalLabel">Select Service Form</h5>
+    <button class="btn btn-default pull-right" mat-dialog-close>x</button>
+  </div>
+  <div class="modal-body property-modal-body">
+    <div>
+        <p>Which service form is going to assign for these service ?</p>
+        <div class="row forn-group">
+           
+        </div>
+        <div class="kt-portlet__body new_clients_properties_body">
+            <div class="kt-widget4 kt-scroll ps" data-scroll="true" data-height="220"
+                style="height: 220px; overflow: hidden;">
+                <div class="kt-widget4__item create-quote-client-item">
+                    <div class="kt-widget4__pic kt-widget4__pic--logo">
+                            <label class="kt-checkbox kt-checkbox--solid kt-checkbox--single lblserviceHead">
+                                    <input type="radio" name="radioserviceform1" value="Draft" (change)="addMasterFormToArray($event, 1, 'Service Form', 1, true)">
+                                    <span ></span>
+                                      SERVICE FORM 1
+                                </label> 
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="serviceFoter">
+            <a href="javascript:void(0)" (click)="assignServiceForm()" class="btn btn-info">Assign</a>
+      </div>
+  </div>

@@ -1,0 +1,231 @@
+<style>
+.collapse-status{
+    margin: 0 0 0 59px;
+  }
+</style>
+<div class="modal-header select-new-properties">
+        <h5 class="modal-title" id="exampleModalLabel">Change Invoice Status</h5>
+        <button class="btn btn-default pull-right" mat-dialog-close>x</button>
+      </div>
+      <div class="modal-body">
+        <div>
+                <div class="kt-portlet__body">
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="kt_widget2_tab1_content">
+                            <div class="kt-widget2">
+                          <form autocomplete="off">
+                                <div class="kt-widget2__item kt-widget2__item--primary">
+                                  <div class="kt-widget2__checkbox">
+                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--single">
+                                      <input type="checkbox" value="Draft" [checked]="invoiceService.InvoiceData.Status == 'Draft'" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'Draft')">
+                                      <span></span>
+                                    </label>
+                                  </div>
+                                  <div class="kt-widget2__info status-Info">
+                                    <a href="javascript:void(0)" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'Draft')" class="kt-widget2__title">
+                                      Mark as Draft
+                                    </a>
+                                  </div>
+                                </div>
+          
+                                <div class="kt-widget2__item kt-widget2__item--primary">
+                                    <div class="kt-widget2__checkbox">
+                                      <label class="kt-checkbox kt-checkbox--solid kt-checkbox--single">
+                                        <input type="checkbox" (click)="CollapseInvStatus()" readonly  
+                                        [checked]="invoiceService.InvoiceData.Status == 'SendOutPaid' 
+                                        || invoiceService.InvoiceData.Status == 'PartiallyPaid'
+                                        || invoiceService.InvoiceData.Status == 'SendOutUnPaid'
+                                        || invoiceService.InvoiceData.Status == 'SendOutOverDue'">
+                                        <span></span>
+                                      </label>
+                                    </div>
+                                    <div class="kt-widget2__info status-Info">
+                                      <a href="javascript:void(0)" (click)="CollapseInvStatus()" class="kt-widget2__title">
+                                        Mark as Send out
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="collapse-status" *ngIf="IsShowInvStatus==='true'">
+          
+                                    <div class="kt-widget2__item kt-widget2__item--primary">
+                                      <div class="kt-widget2__checkbox">
+                                        <label class="kt-checkbox kt-checkbox--solid kt-checkbox--single">
+                                          <input type="checkbox" value="SendOutUnPaid" [checked]="invoiceService.InvoiceData.Status == 'SendOutPaid'" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'SendOutPaid')">
+                                          <span></span>
+                                        </label>
+                                      </div>
+                                      <div class="kt-widget2__info status-Info">
+                                        <a href="javascript:void(0)" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'SendOutPaid')" class="kt-widget2__title">
+                                          Mark as Paid
+                                        </a>
+                                      </div>
+                                    </div>
+                                    <div class="kt-widget2__item kt-widget2__item--primary">
+                                      <div class="kt-widget2__checkbox">
+                                        <label class="kt-checkbox kt-checkbox--solid kt-checkbox--single">
+                                          <input type="checkbox" value="PartiallyPaid" [checked]="invoiceService.InvoiceData.Status == 'PartiallyPaid'" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'PartiallyPaid')">
+                                          <span></span>
+                                        </label>
+                                      </div>
+                                      <div class="kt-widget2__info status-Info">
+                                        <a href="javascript:void(0)" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'PartiallyPaid')" class="kt-widget2__title">
+                                          Mark as Partially Paid
+                                        </a>
+                                      </div>
+                                    </div>
+                                    <div class="kt-widget2__item kt-widget2__item--primary">
+                                      <div class="kt-widget2__checkbox">
+                                        <label class="kt-checkbox kt-checkbox--solid kt-checkbox--single">
+                                          <input type="checkbox" value="SendOutUnPaid" [checked]="invoiceService.InvoiceData.Status == 'SendOutUnPaid'" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'SendOutUnPaid')">
+                                          <span></span>
+                                        </label>
+                                      </div>
+                                      <div class="kt-widget2__info status-Info">
+                                        <a href="javascript:void(0)" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'SendOutUnPaid')" class="kt-widget2__title">
+                                          Mark as Un paid
+                                        </a>
+                                      </div>
+                                    </div>
+                                    <div class="kt-widget2__item kt-widget2__item--primary">
+                                      <div class="kt-widget2__checkbox">
+                                        <label class="kt-checkbox kt-checkbox--solid kt-checkbox--single">
+                                          <input type="checkbox" value="SendOutOverDue" [checked]="invoiceService.InvoiceData.Status == 'SendOutOverDue'" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'SendOutOverDue')">
+                                          <span></span>
+                                        </label>
+                                      </div>
+                                      <div class="kt-widget2__info status-Info">
+                                        <a href="javascript:void(0)" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'SendOutOverDue')" class="kt-widget2__title">
+                                          Mark as Over due
+                                        </a>
+                                      </div>
+                                    </div>
+          
+                                  </div>
+                                  <div class="kt-widget2__item kt-widget2__item--primary">
+                                      <div class="kt-widget2__checkbox">
+                                        <label class="kt-checkbox kt-checkbox--solid kt-checkbox--single">
+                                          <input type="checkbox" value="cancelled" [checked]="invoiceService.InvoiceData.Status == 'cancelled'" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'cancelled')">
+                                          <span></span>
+                                        </label>
+                                      </div>
+                                      <div class="kt-widget2__info status-Info">
+                                        <a href="javascript:void(0)" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'cancelled')" class="kt-widget2__title">
+                                          Mark as Cancelled
+                                        </a>
+                                      </div>
+                                    </div>
+                            </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+        </div>
+      </div>
+      
+
+
+
+<!-- <div class="col-md-12">
+          <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
+            <div class="kt-portlet__head">
+              <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                  Change Invoice Status
+                </h3>
+              </div>
+            </div>
+            <div class="kt-portlet__body">
+              <div class="tab-content">
+                <div class="tab-pane active" id="kt_widget2_tab1_content">
+                  <div class="kt-widget2">
+                <form autocomplete="off">
+                      <div class="kt-widget2__item kt-widget2__item--primary">
+                        <div class="kt-widget2__checkbox">
+                          <label class="kt-checkbox kt-checkbox--solid kt-checkbox--single">
+                            <input type="checkbox" value="Draft" [checked]="invoiceService.InvoiceData.Status == 'Draft'" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'Draft')">
+                            <span></span>
+                          </label>
+                        </div>
+                        <div class="kt-widget2__info status-Info">
+                          <a href="javascript:void(0)" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'Draft')" class="kt-widget2__title">
+                            Make as Draft
+                          </a>
+                        </div>
+                      </div>
+
+                      <div class="kt-widget2__item kt-widget2__item--primary">
+                          <div class="kt-widget2__checkbox">
+                            <label class="kt-checkbox kt-checkbox--solid kt-checkbox--single">
+                              <input type="checkbox" readonly  value="SendOut" [checked]="invoiceService.InvoiceData.Status == 'SendOut'">
+                              <span></span>
+                            </label>
+                          </div>
+                          <div class="kt-widget2__info status-Info">
+                            <a href="javascript:void(0)" (click)="CollapseInvStatus()" class="kt-widget2__title">
+                              Make as Send out
+                            </a>
+                          </div>
+                        </div>
+                        <div class="collapse-status" *ngIf="IsShowInvStatus==='true'">
+
+                          <div class="kt-widget2__item kt-widget2__item--primary">
+                            <div class="kt-widget2__checkbox">
+                              <label class="kt-checkbox kt-checkbox--solid kt-checkbox--single">
+                                <input type="checkbox" value="PAID" [checked]="invoiceService.InvoiceData.SendOutStatus == 'PAID'" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'PAID')">
+                                <span></span>
+                              </label>
+                            </div>
+                            <div class="kt-widget2__info status-Info">
+                              <a href="javascript:void(0)" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'PAID')" class="kt-widget2__title">
+                                Make as Paid
+                              </a>
+                            </div>
+                          </div>
+                          <div class="kt-widget2__item kt-widget2__item--primary">
+                            <div class="kt-widget2__checkbox">
+                              <label class="kt-checkbox kt-checkbox--solid kt-checkbox--single">
+                                <input type="checkbox" value="UNPAID" [checked]="invoiceService.InvoiceData.SendOutStatus == 'UNPAID'" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'UNPAID')">
+                                <span></span>
+                              </label>
+                            </div>
+                            <div class="kt-widget2__info status-Info">
+                              <a href="javascript:void(0)" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'UNPAID')" class="kt-widget2__title">
+                                Make as Un paid
+                              </a>
+                            </div>
+                          </div>
+                          <div class="kt-widget2__item kt-widget2__item--primary">
+                            <div class="kt-widget2__checkbox">
+                              <label class="kt-checkbox kt-checkbox--solid kt-checkbox--single">
+                                <input type="checkbox" value="OVERDUE" [checked]="invoiceService.InvoiceData.SendOutStatus == 'OVERDUE'" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'OVERDUE')">
+                                <span></span>
+                              </label>
+                            </div>
+                            <div class="kt-widget2__info status-Info">
+                              <a href="javascript:void(0)" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'OVERDUE')" class="kt-widget2__title">
+                                Make as Over due
+                              </a>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="kt-widget2__item kt-widget2__item--primary">
+                            <div class="kt-widget2__checkbox">
+                              <label class="kt-checkbox kt-checkbox--solid kt-checkbox--single">
+                                <input type="checkbox" value="cancelled" [checked]="invoiceService.InvoiceData.Status == 'cancelled'" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'cancelled')">
+                                <span></span>
+                              </label>
+                            </div>
+                            <div class="kt-widget2__info status-Info">
+                              <a href="javascript:void(0)" (click)="byInvoiceStatusChange(invoiceService.InvoiceData.Id, 'cancelled')" class="kt-widget2__title">
+                                Make as Cancelled
+                              </a>
+                            </div>
+                          </div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+</div> -->

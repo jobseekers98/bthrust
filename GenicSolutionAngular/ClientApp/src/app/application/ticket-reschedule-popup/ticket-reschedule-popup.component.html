@@ -1,0 +1,240 @@
+<style>
+  .tableBodyScroll tbody {
+    display: block;
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+  
+  .tableBodyScroll thead,
+  tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+  </style>
+<h5 class="dispaly-4">Reschedule & Reallocate
+<button class="btn btn-outline-danger pull-right" mat-dialog-close (click)="close()">X</button>
+</h5>
+<h5 class="dispaly-4">
+  {{this.currentUser.Ticket}} # {{service.formData.TicketId}}
+  <span *ngIf="service.formData.TicketType === 'One-Off Ticket'"> (One-Off {{this.currentUser.Ticket}})</span>
+  <span *ngIf="service.formData.TicketType === 'Recurring Ticket'"> (Recurring {{this.currentUser.Ticket}})</span>
+</h5>
+<h5 class="dispaly-4">{{ LastAppointmentDateStart | date: 'EEEE, MMMM d, y':'+0000' }}
+{{ LastAppointmentDateStart | date: 'HH:mm' + ' to ':'+0000' }}
+{{ LastAppointmentDateEnd | date: 'HH:mm':'+0000' }}
+
+</h5>
+<h5>
+  {{service.formData.CustomerCompanyName}}
+</h5>
+<h6>
+  {{service.formData.CustomerAddress}}
+</h6>
+<hr>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit()">
+<div class="form-row">
+  <div class="form-group col-md-12">
+    <div class="col-md-12" *ngIf="this.IsEditable">
+      <div class="form-group row">
+        <div class="col-md-4">
+          <label>Appointment Date<span
+              class="text-danger">*</span></label>
+              <div class="btooltip"> <i class="fa fa-question-circle text-info" style="cursor: help;" ></i>
+                <span class="btooltiptext">Red Highlighted date is National Holiday, to make it Working Day please go to Settings - Business Hours - Holiday - Enable Working</span>
+              </div>
+              <div class="input-group">
+                <ng-template #customDay let-date let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled" let-focused="focused">
+                  <span class="custom-day" [class.focused]="focused"
+                        [class.bg-primary]="selected" 
+                        [class.hidden]="date.month !== currentMonth" 
+                        [class.isDisabledDate]="disabled"
+                        [class.isHoliday]="isDisabledCss(date)">
+                    {{ date.day }}
+                  </span>
+                </ng-template>
+                  <ngb-datepicker
+                      [minDate]="minDate"
+                      [maxDate]="maxDate"
+                      name="AppointmentStart"
+                      [markDisabled]="isDisabled"
+                      [dayTemplate]="customDay"
+                      #AppointmentStart="ngModel"
+                      (select)="onAppointmentDateTimeSelect()"
+                      [(ngModel)]="service.formData.AppointmentStart"
+                      (navigate)="date=$event.next">
+                  </ngb-datepicker>
+              </div>
+        </div>
+        <div class="col-md-8">
+          <div class="form-group row">             
+            <div class="col-md-6 padd-right-0">
+                <label>Start Time</label>
+                <div class="input-group">
+                    <div class="input-group">
+                        <ngb-timepicker (click)="onAppointmentTimeSelect()" [meridian]="meridian"
+                            name="AppointmentStart" [readonlyInputs]="true" 
+                            [(ngModel)]="service.formData.AppointmentStart">
+                        </ngb-timepicker>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 padd-left-0">
+                <label>End Time</label>
+                <div class="input-group">
+                    <ngb-timepicker (click)="onAppointmentTimeSelect()" [meridian]="meridian"
+                        name="AppointmentEnd" [readonlyInputs]="true" 
+                        [(ngModel)]="service.formData.AppointmentEnd">
+                    </ngb-timepicker>
+                </div>
+            </div>
+
+            <div class="col-md-12 text-center">
+              <br>
+              <strong>
+                  {{ service.formData.AppointmentStart | date: 'EEEE, MMMM d, y':'+0000' }}</strong>
+              <br>
+              <strong>
+                  {{ service.formData.AppointmentStart | date: 'HH:mm' + ' to ':'+0000' }}</strong>
+              <strong>
+                  {{ service.formData.AppointmentEnd | date: 'HH:mm':'+0000' }}</strong>
+              <br>
+          </div>
+            <div *ngIf="!loader" class="col-md-12">
+              <a  href="javascript:;" class="btn btn-primary btn-block" (click)="OnGetAvailableEngineers()" >
+                Get available {{this.currentUser.Engineer}}s
+              </a>
+          </div>
+          <div *ngIf="loader" class="col-md-12">
+            <div class="progress" style="height: 40px;">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="row" style="display: none;">
+        <div class="col-md-6">
+          <div class="padd-top-10">
+            <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand">
+              <input type="checkbox"  name="Rescheduled"
+              #Rescheduled="ngModel"
+              [(ngModel)]="service.formData.Rescheduled" >
+              Mark as Rescheduled
+              <span></span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="padd-top-10">
+          <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand">
+            <input type="checkbox"  name="Reallocate"
+            #Reallocate="ngModel"
+            [(ngModel)]="service.formData.Reallocate" >
+            Mark as Reallocated
+            <span></span>
+          </label>
+        </div>
+        </div>
+      </div>
+      <div class="row">
+          <div *ngIf="ShowEngineerList" class="col-md-12">
+              <table class="table table-striped properies-table-info ng-star-inserted table-bordered table-hover table-checkable tableBodyScroll ng-star-inserted"
+                  *ngIf="engineerservice.Engineerlist.length > 0" >
+                  <thead>
+                    <tr>
+                      <th colspan="2">
+                        Available {{this.currentUser.Engineer}}s List
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let x of  engineerservice.Engineerlist; let i=index; async" class="engineer-list-class" id="{{x.Id}}">
+                          <td width="10%"> 
+                                <a
+                                (click)="AddEngineersToTicket(i, true, x.Id, x.EngineerName)" href="javascript:;"><i class="fa fa-plus text-success"></i> </a>
+                          </td>
+                          <td width="90%">{{x.EngineerName}}
+                            <span class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                            *ngIf="x.Type === 1">Supervisor</span>
+                            <span class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill"
+                            *ngIf="x.Type === 2">Foreman</span>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+              <div *ngIf="engineerservice.Engineerlist.length === 0" class="alert alert-warning">
+                {{this.currentUser.Engineer}} not available at this time. </div>
+          </div>
+          <div class="col-md-12">
+                  <table
+                      class="table table-striped properies-table-info ng-star-inserted table-bordered table-hover table-checkable tableBodyScroll ng-star-inserted"
+                       >
+                      <thead>
+                        <tr>
+                          <th>
+                            Assigned {{this.currentUser.Engineer}}s List
+                          </th>
+                          <th style="text-align: right;">
+                            <a href="javascript:;" class="btn btn-secondary calendar" title="Assigned {{this.currentUser.Engineer}}s List" (click)="showcalendar()">
+                              <i class="fa fa-users"></i> 
+                              <div *ngIf="Iscalendarshow" style="position: absolute; z-index: 99999; background-color: white;right: 0px;">
+                                  <table class="table table-striped properies-table-info" style="width: 210px;">
+                                    <tbody>
+                                      <tr *ngFor="let x of oldTicketTeam; let i=index; async">
+                                        <td>{{x.EngineerName}} 
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                              </div>
+                          </a>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let x of service.formData?.TicketTeams; let i=index; async">
+                              <td width="10%"><a (click)="AddEngineersToTicket(i, false, x.EngineerId, x.EngineerName)" href="javascript:;"><i class="fa fa-minus text-danger"></i> </a></td>
+                              <td width="90%">{{x.EngineerName}} 
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                  <div *ngIf="service.formData?.TicketTeams.length === 0" class="alert alert-warning">
+                    {{this.currentUser.Engineer}}s not assigned yet!</div>
+              </div>
+              <div *ngIf="service.formData.TicketType === 'Recurring Ticket'" class="col-md-12">
+                  <div class="row" *ngIf="currentUser.Type !== 'Engineer'">
+                    <div class="container">
+                      <div class="kt-radio-list text-color-red">
+                        <label
+                            class="kt-radio kt-radio--bold kt-radio--brand">
+                            <input type="radio" class="custom-control-input" value="O" [(ngModel)]="radioData" name="radioData">
+                                update only {{service.formData.TicketId}} {{this.currentUser.Ticket}} 
+                            <span></span>
+                        </label>
+                         <label
+                            class="kt-radio kt-radio--bold kt-radio--brand">
+                            <input type="radio" class="custom-control-input" value="R" [(ngModel)]="radioData" name="radioData">
+                                update all upcoming {{this.currentUser.Ticket}} link to  {{service.formData.TicketId}} {{this.currentUser.Ticket}} 
+                            <span></span>
+                        </label>  
+                    </div>
+                </div>
+                  </div>
+              </div>
+            </div>
+            <div class="row">
+                  <div class="col-md-12  text-right">
+                    <button type="submit" class="btn btn-primary">Save changes <i *ngIf="spinnerShow" class="la la-spinner fa-spin" ></i> </button>
+                </div>
+            </div>
+    </div>
+    <div class="col-md-12" *ngIf="!this.IsEditable">
+      <div class="alert alert-warning">
+        {{this.currentUser.Ticket}} Can't reschedule when {{this.currentUser.Ticket}} Status is {{this.service.formData.Status}} 
+      </div>
+    </div>
+  </div>
+</div>
+</form>

@@ -1,0 +1,395 @@
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+    <div class="kt-subheader kt-grid__item" id="kt_subheader">
+        <div class="kt-container kt-container--fluid ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                    <a href="javascript:;" routerLink="/dashboard">
+                        Dashboard
+                    </a>
+                </h3>
+                <div class="kt-subheader__breadcrumbs">
+                    <a href="javascript:void(0);" class="kt-subheader__breadcrumbs-home"><i
+                            class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                            {{this.currentUser.Ticket}}s
+                </div>
+            </div>
+            <div class="kt-subheader__toolbar">
+                <div class="kt-subheader__wrapper" *ngIf="currentUser.Type === 'Admin' && currentUser.Permissions.TicketCreate">
+                    <a class="btn btn-brand text-white " (click)="createnewticket()">
+                        <i class="la la-plus"></i> New {{this.currentUser.Ticket}} </a>
+                </div>
+                <div class="kt-subheader__wrapper" *ngIf="currentUser.Type === 'Engineer' && currentUser.Permissions.CanEngineerCreateTicket">
+                    <a class="btn btn-brand text-white " (click)="createnewticket()">
+                        <i class="la la-plus"></i> New {{this.currentUser.Ticket}} </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="customer-list-main-section">
+        <div class="kt-widget17">
+            <div class="kt-widget17__visual kt-widget17__visual--chart kt-portlet-fit--top kt-portlet-fit--sides"
+                style="background-color: #fd397a">
+            </div>
+            <div class="kt-widget17__stats">
+                <div class="kt-widget17__items">
+                </div>
+                <div class="row mrg-top-10">
+                    <div class="col-lg-3">
+                        <div class="kt-portlet kt-iconbox kt-iconbox--brand kt-iconbox--animate-slower">
+                            <div class="kt-portlet__body">
+                                <div class="kt-iconbox__body">
+                                    <div class="kt-iconbox__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                            viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                <path
+                                                    d="M3,10.0500091 L3,8 C3,7.44771525 3.44771525,7 4,7 L9,7 L9,9 C9,9.55228475 9.44771525,10 10,10 C10.5522847,10 11,9.55228475 11,9 L11,7 L21,7 C21.5522847,7 22,7.44771525 22,8 L22,10.0500091 C20.8588798,10.2816442 20,11.290521 20,12.5 C20,13.709479 20.8588798,14.7183558 22,14.9499909 L22,17 C22,17.5522847 21.5522847,18 21,18 L11,18 L11,16 C11,15.4477153 10.5522847,15 10,15 C9.44771525,15 9,15.4477153 9,16 L9,18 L4,18 C3.44771525,18 3,17.5522847 3,17 L3,14.9499909 C4.14112016,14.7183558 5,13.709479 5,12.5 C5,11.290521 4.14112016,10.2816442 3,10.0500091 Z M10,11 C9.44771525,11 9,11.4477153 9,12 L9,13 C9,13.5522847 9.44771525,14 10,14 C10.5522847,14 11,13.5522847 11,13 L11,12 C11,11.4477153 10.5522847,11 10,11 Z"
+                                                    id="Combined-Shape-Copy" fill="#000000" opacity="0.3"
+                                                    transform="translate(12.500000, 12.500000) rotate(-45.000000) translate(-12.500000, -12.500000) " />
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="kt-iconbox__desc">
+                                        <h3 class="kt-iconbox__title">
+                                            <a class="kt-link" (click)="FilterTicketList(2)">Open {{this.currentUser.Ticket}}s</a>
+                                        </h3>
+                                        <div class="kt-iconbox__content">
+                                            {{TotalOpenCount}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="kt-portlet kt-iconbox kt-iconbox--success kt-iconbox--animate-slow">
+                            <div class="kt-portlet__body">
+                                <div class="kt-iconbox__body">
+                                    <div class="kt-iconbox__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                            viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                <path
+                                                    d="M3,10.0500091 L3,8 C3,7.44771525 3.44771525,7 4,7 L9,7 L9,9 C9,9.55228475 9.44771525,10 10,10 C10.5522847,10 11,9.55228475 11,9 L11,7 L21,7 C21.5522847,7 22,7.44771525 22,8 L22,10.0500091 C20.8588798,10.2816442 20,11.290521 20,12.5 C20,13.709479 20.8588798,14.7183558 22,14.9499909 L22,17 C22,17.5522847 21.5522847,18 21,18 L11,18 L11,16 C11,15.4477153 10.5522847,15 10,15 C9.44771525,15 9,15.4477153 9,16 L9,18 L4,18 C3.44771525,18 3,17.5522847 3,17 L3,14.9499909 C4.14112016,14.7183558 5,13.709479 5,12.5 C5,11.290521 4.14112016,10.2816442 3,10.0500091 Z M10,11 C9.44771525,11 9,11.4477153 9,12 L9,13 C9,13.5522847 9.44771525,14 10,14 C10.5522847,14 11,13.5522847 11,13 L11,12 C11,11.4477153 10.5522847,11 10,11 Z"
+                                                    id="Combined-Shape-Copy" fill="#000000" opacity="0.3"
+                                                    transform="translate(12.500000, 12.500000) rotate(-45.000000) translate(-12.500000, -12.500000) " />
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="kt-iconbox__desc">
+                                        <h3 class="kt-iconbox__title">
+                                            <a class="kt-link" (click)="FilterTicketList(7)">Closed {{this.currentUser.Ticket}}s</a>
+                                        </h3>
+                                        <div class="kt-iconbox__content">
+                                            {{TotalClosedCount}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="kt-portlet kt-iconbox kt-iconbox--warning kt-iconbox--animate-fast">
+                            <div class="kt-portlet__body">
+                                <div class="kt-iconbox__body">
+                                    <div class="kt-iconbox__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                            viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                <path
+                                                    d="M3,10.0500091 L3,8 C3,7.44771525 3.44771525,7 4,7 L9,7 L9,9 C9,9.55228475 9.44771525,10 10,10 C10.5522847,10 11,9.55228475 11,9 L11,7 L21,7 C21.5522847,7 22,7.44771525 22,8 L22,10.0500091 C20.8588798,10.2816442 20,11.290521 20,12.5 C20,13.709479 20.8588798,14.7183558 22,14.9499909 L22,17 C22,17.5522847 21.5522847,18 21,18 L11,18 L11,16 C11,15.4477153 10.5522847,15 10,15 C9.44771525,15 9,15.4477153 9,16 L9,18 L4,18 C3.44771525,18 3,17.5522847 3,17 L3,14.9499909 C4.14112016,14.7183558 5,13.709479 5,12.5 C5,11.290521 4.14112016,10.2816442 3,10.0500091 Z M10,11 C9.44771525,11 9,11.4477153 9,12 L9,13 C9,13.5522847 9.44771525,14 10,14 C10.5522847,14 11,13.5522847 11,13 L11,12 C11,11.4477153 10.5522847,11 10,11 Z"
+                                                    id="Combined-Shape-Copy" fill="#000000" opacity="0.3"
+                                                    transform="translate(12.500000, 12.500000) rotate(-45.000000) translate(-12.500000, -12.500000) " />
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="kt-iconbox__desc">
+                                        <h3 class="kt-iconbox__title">
+                                            <a class="kt-link" (click)="FilterTicketList(10)">Overdue {{this.currentUser.Ticket}}s</a>
+                                        </h3>
+                                        <div class="kt-iconbox__content">
+                                            {{TotalOverdueCount}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="kt-portlet kt-iconbox kt-iconbox--danger kt-iconbox--animate-faster">
+                            <div class="kt-portlet__body">
+                                <div class="kt-iconbox__body">
+                                    <div class="kt-iconbox__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                            viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                <path
+                                                    d="M3,10.0500091 L3,8 C3,7.44771525 3.44771525,7 4,7 L9,7 L9,9 C9,9.55228475 9.44771525,10 10,10 C10.5522847,10 11,9.55228475 11,9 L11,7 L21,7 C21.5522847,7 22,7.44771525 22,8 L22,10.0500091 C20.8588798,10.2816442 20,11.290521 20,12.5 C20,13.709479 20.8588798,14.7183558 22,14.9499909 L22,17 C22,17.5522847 21.5522847,18 21,18 L11,18 L11,16 C11,15.4477153 10.5522847,15 10,15 C9.44771525,15 9,15.4477153 9,16 L9,18 L4,18 C3.44771525,18 3,17.5522847 3,17 L3,14.9499909 C4.14112016,14.7183558 5,13.709479 5,12.5 C5,11.290521 4.14112016,10.2816442 3,10.0500091 Z M10,11 C9.44771525,11 9,11.4477153 9,12 L9,13 C9,13.5522847 9.44771525,14 10,14 C10.5522847,14 11,13.5522847 11,13 L11,12 C11,11.4477153 10.5522847,11 10,11 Z"
+                                                    id="Combined-Shape-Copy" fill="#000000" opacity="0.3"
+                                                    transform="translate(12.500000, 12.500000) rotate(-45.000000) translate(-12.500000, -12.500000) " />
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="kt-iconbox__desc">
+                                        <h3 class="kt-iconbox__title">
+                                            <a class="kt-link" (click)="FilterTicketList(11)">Due in 15 days</a>
+                                        </h3>
+                                        <div class="kt-iconbox__content">
+                                            {{TotalDuein15DaysCount}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-section kt-drop-section">
+                    <div class="kt-portlet__body customer-listing-datatable">
+                        <div class="panel panel-primary list-panel" id="list-panel">
+                            <div class="panel-heading list-panel-heading">
+                                <h1 class="panel-title list-panel-title"><i class="fa fa-list"></i> {{this.currentUser.Ticket}} List</h1>
+                                <ul class="scFilter">
+                                    <li>
+                                        <div class="btn-group btn-group-sm"
+                                            *ngIf="!genicprofileservice.TicketFilter.IsReady">
+                                            <a href="javascript:;" class="btn btn-primary dropdown-toggle"
+                                                data-toggle="dropdown">{{ dropdownbtnavgrev }} <span
+                                                    class="caret"></span></a>
+                                            <ul class="dropdown-menu width100" style="text-align: left;padding: 0;">
+                                                <li><a (click)="FilterTicketList(1)" href="javascript:;">ALL
+                                                    {{this.currentUser.Ticket.toUpperCase()}}S</a></li>
+                                                <li><a (click)="FilterTicketList(2)"
+                                                        href="javascript:;">OPEN
+                                                        {{this.currentUser.Ticket.toUpperCase()}}S</a></li>
+                                                <li><a (click)="FilterTicketList(3)"
+                                                        href="javascript:;">HOLD
+                                                        {{this.currentUser.Ticket.toUpperCase()}}S</a></li>
+                                                <li><a (click)="FilterTicketList(4)"
+                                                        href="javascript:;">TODAY NEW
+                                                        {{this.currentUser.Ticket.toUpperCase()}}S</a></li>
+                                                <li><a (click)="FilterTicketList(5)"
+                                                        href="javascript:;">UPCOMING
+                                                        {{this.currentUser.Ticket.toUpperCase()}}S</a></li>
+                                               
+                                                <li><a (click)="FilterTicketList(6)"
+                                                        href="javascript:;">CANCELLED
+                                                        {{this.currentUser.Ticket.toUpperCase()}}S</a></li>
+                                                <li><a (click)="FilterTicketList(7)"
+                                                        href="javascript:;">CLOSED
+                                                        {{this.currentUser.Ticket.toUpperCase()}}S</a></li>
+                                                <li><a (click)="FilterTicketList(8)"
+                                                        href="javascript:;">TODAY
+                                                        CLOSED {{this.currentUser.Ticket.toUpperCase()}}S</a></li>
+                                                <li><a (click)="FilterTicketList(9)"
+                                                        href="javascript:;">INPROGRESS {{this.currentUser.Ticket.toUpperCase()}}S</a></li>
+                                                <li><a (click)="FilterTicketList(10)"
+                                                        href="javascript:;">OVERDUE
+                                                        {{this.currentUser.Ticket.toUpperCase()}}S</a></li>
+                                                <li><a (click)="FilterTicketList(11)"
+                                                        href="javascript:;">DUE IN 15
+                                                        DAYS</a></li>
+                                                <li><a (click)="FilterTicketList(12)"
+                                                        href="javascript:;">REALLOCATED {{this.currentUser.Ticket.toUpperCase()}}S</a></li>
+                                                <li><a (click)="FilterTicketList(13)"
+                                                        href="javascript:;">RESECHEDULED {{this.currentUser.Ticket.toUpperCase()}}S</a></li>
+                                                <li><a (click)="FilterTicketList(14)"
+                                                        href="javascript:;">UNSCHEDULED {{this.currentUser.Ticket.toUpperCase()}}S</a></li>
+                                                <li><a (click)="FilterTicketList(15)"
+                                                        href="javascript:;">UNALLOCATED {{this.currentUser.Ticket.toUpperCase()}}S</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;" *ngIf="!genicprofileservice.TicketFilter.IsReady"
+                                            class="btnprimary" (click)="morefilters()">Advance Filter</a>
+                                        <a href="javascript:;" *ngIf="genicprofileservice.TicketFilter.IsReady"
+                                            class="btnexportToExcel" (click)="morefilters()">Clear Filter</a>
+                                    </li>
+                                    <li>
+                                        <div class="btnexport1">
+                                            <a href="javascript:void(0)" (click)="exportAsXLSX()"
+                                                class="btnexportToExcel">Export to Excel</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="row filterstrong" *ngIf="genicprofileservice.TicketFilter.IsReady">
+                                <div class="col">
+                                    <strong>From : </strong>
+                                    <input placeholder="From: (dd-mm-yyyy)" ngbDatepicker
+                                        name="genicprofileservice.TicketFilter.DateFrom"
+                                        #genicprofileservice.TicketFilter.DateFrom="ngModel"
+                                        [(ngModel)]="genicprofileservice.TicketFilter.DateFrom"
+                                        (click)="datePickerTicketStartDate.toggle()" class="form-control"
+                                        #datePickerTicketStartDate="ngbDatepicker" dateFormat="dd-MMM-yyyy" type="text">
+                                </div>
+                                <div class="col">
+                                    <strong>To : </strong>
+                                    <input type="text" ngbDatepicker name="genicprofileservice.TicketFilter.DateTo"
+                                        #genicprofileservice.TicketFilter.DateTo="ngModel" class="form-control"
+                                        [(ngModel)]="genicprofileservice.TicketFilter.DateTo"
+                                        (click)="datePickerTicketEndDate.toggle()"
+                                        #datePickerTicketEndDate="ngbDatepicker" dateFormat="dd-MMM-yyyy"
+                                        placeholder="To: (dd-mm-yyyy)">
+                                </div>
+                                <div class="col">
+                                    <strong>Customers : </strong>
+                                    <ngx-select-dropdown class="myselectClass" (change)="onCustomerItemSelect($event)"
+                                        [multiple]="true" name="CustomerselectedItems"
+                                        [(ngModel)]="CustomerselectedItems" [config]="CustomerdropdownSettings"
+                                        [options]="CustomerdropdownList">
+                                    </ngx-select-dropdown>
+                                </div>
+                                <div class="col">
+                                    <strong>{{this.currentUser.Engineer}}s : </strong>
+                                    <ngx-select-dropdown class="myselectClass" (change)="onEngineerItemSelect($event)"
+                                        [multiple]="true" name="EngineerselectedItems"
+                                        [(ngModel)]="EngineerselectedItems" [config]="EngineerdropdownSettings"
+                                        [options]="EngineerdropdownList">
+                                    </ngx-select-dropdown>
+                                </div>
+                                <div class="col">
+                                    <strong>Status : </strong>
+                                    <ngx-select-dropdown class="myselectClass" (change)="onStatusItemSelect($event)"
+                                        [multiple]="true" name="StatusselectedItems" [(ngModel)]="StatusselectedItems"
+                                        [config]="StatusdropdownSettings" [options]="StatusdropdownList">
+                                    </ngx-select-dropdown>
+                                </div>
+                                <div class="col-md-1">
+                                    <strong>. </strong>
+                                    <div class="cusbtn">
+                                        <a href="javascript:;" class="btn btn-sm btn-primary" (click)="onDateChange()">
+                                            <i *ngIf="!OnDateSearchLoading">Search</i>
+                                            <i *ngIf="OnDateSearchLoading" class="fa fa-spinner fa-pulse"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                    class="table table-striped- table-bordered table-hover table-checkable">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%;">Ticket&nbsp;No</th>
+                                            <th style="width: 23%;">Ticket Date</th>
+                                            <th style="width: 22%;">Customer Info</th>
+                                            <th style="width: 27%;">Address</th>
+                                            <th style="width: 3%;">Status</th>
+                                            <th style="width: 17%">{{this.currentUser.Engineer}}</th>
+                                            <th style="width: 3%;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let x of tempTicketList; let i=index; async"
+                                            class="quote-list-view-info odd" role="row">
+                                            <td>
+                                                <span class="btn btn-label-primary">
+                                                    <a href="javascript:;" (click)="ViewTicketDetails(x)">
+                                                        {{ x.TicketId }}</a><br>
+                                                </span>
+                                                <span *ngIf="x.QuoteId!"
+                                                    class="btn btn-label-success btn-pill reallocated-one">
+                                                    <a href="javascript:void(0)" (click)="viewQuoteDetails(x)">
+                                                        {{x.QuoteId}}</a><br>
+                                                </span>
+                                                <span *ngIf="x.InvoiceNo?.length > 0"
+                                                    class="btn btn-label-danger" title="Defect Job">
+                                                    <a href="javascript:void(0)" (click)="ViewInvoiceDetails(x.InvoiceId)">
+                                                        {{x.InvoiceNo}}</a><br>
+                                                </span>
+                                                <span class="recurring-ticket"
+                                                    *ngIf="x.TicketType === 'Recurring Ticket'">Recurring</span>
+                                                    <generic-ticket-feedback [(ratingcount)]="x.Rating" [Editable]="2" [(Status)]="x.Status"></generic-ticket-feedback>
+                                            </td>
+                                            <td>
+                                                <generic-ticket-date-time-format [(A)]="x.AppointmentStart"
+                                                    [(B)]="x.AppointmentEnd" [(C)]="x.CreatedUtcDate" [T]="1">
+                                                </generic-ticket-date-time-format>
+                                                <span *ngIf="x.OneOffAppointmentDate === null"
+                                                    class="ticketstatus statusunallocated">UNALLOCATED</span>
+                                                <span *ngIf="x.Rescheduled"
+                                                    class="ticketstatus statusrescheduled">RESECHEDULED</span>
+                                            </td>
+                                            <td>
+                                                <strong>Name: </strong> {{ x.CustomerName }} <br>
+                                                <strong>Company: </strong>{{ x.CustomerCompanyName }}<br>
+                                                <strong>Department: </strong>{{x.DepartmentName}}
+                                            </td>
+                                            <td>{{ x.CustomerAddress }}</td>
+                                            <td class="text-center">
+                                                <generic-ticket-status [(Status)]="x.Status"
+                                                    [(OverDueDays)]="x.OverDueDays"></generic-ticket-status>
+                                            </td>
+                                            <td>
+                                                <generic-ticket-team-list [(TicketTeams)]="x.TicketTeams"
+                                                    [(localPrependUrl)]="localPrependUrl" [(Reallocate)]="x.Reallocate"
+                                                    [(Id)]="x.Id" [(TicketId)]="x.TicketId"></generic-ticket-team-list>
+                                            </td>
+                                            <td>
+                                                <div *ngIf="x.Status === 'OVERDUE' || x.Status === 'UPCOMING' || x.Status === 'HOLD' ||
+                                        x.Status === 'UNSCHEDULED' || x.Status === 'NEW JOB REQUEST' || x.Status === 'DEFECT JOB'" 
+                                                    class="btn-group btn-group-sm">
+                                                    <a href="javascript:;" class="btn btn-primary dropdown-toggle"
+                                                        data-toggle="dropdown">Action<span class="caret"></span></a>
+                                                    <ul *ngIf="x.OneOffScheduled" class="dropdown-menu">
+                                                        <li *ngIf="currentUser.Permissions.TicketEdit"><a
+                                                                (click)="pupulateticket(x)"
+                                                                href="javascript:;">Schedule</a>
+                                                        </li>
+                                                        <li *ngIf="x.Status === 'NEW JOB REQUEST' || x.Status === 'DEFECT JOB'"><a
+                                                                (click)="ViewTicketDetails(x)" href="javascript:;">View
+                                                                Details</a></li>
+                                                    </ul>
+                                                    <ul *ngIf="!x.OneOffScheduled" class="dropdown-menu">
+                                                        <li *ngIf="currentUser.Permissions.TicketEdit"><a
+                                                                (click)="pupulateticket(x)" href="javascript:;">Edit
+                                                                Ticket</a></li>
+                                                        <li><a (click)="ViewTicketDetails(x)" href="javascript:;">View
+                                                                Details</a></li>
+                                                        <li *ngIf="currentUser.Permissions.TicketEdit"><a
+                                                                (click)="OpenUpdateStatusDialog(x)"
+                                                                href="javascript:;">Update Status</a></li>
+                                                        <li *ngIf="currentUser.Permissions.TicketEdit"><a
+                                                                (click)="OpenRescheduledDialog(x)"
+                                                                href="javascript:;">Reschedule/Reallocate</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div *ngIf="x.Status === 'CLOSED' || x.Status === 'INPROGRESS' || x.Status === 'CANCELLED'"
+                                                    class="btn-group btn-group-sm">
+                                                    <a href="javascript:;" class="btn btn-primary dropdown-toggle"
+                                                        data-toggle="dropdown">Action<span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a (click)="ViewTicketDetails(x)" href="javascript:;">View
+                                                                Details</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td *ngIf="tempTicketList === null" colspan="10"
+                                                style="text-align: center;">
+                                                <i *ngIf="tempTicketList">No Record!</i>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <i *ngIf="!tempTicketList" class="fa fa-spinner fa-spin"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

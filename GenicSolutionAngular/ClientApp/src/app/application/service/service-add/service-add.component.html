@@ -1,0 +1,118 @@
+<div class="main-head">
+  <h4 class="dispaly-4">Service</h4>
+</div>
+<form autocomplete="off">
+    <input type="hidden"  name="Id" #Id="ngModel" [(ngModel)]="productservice.serviceformData.Id">
+    <input type="hidden"  name="ServiceId" #ServiceId="ngModel" [(ngModel)]="productservice.serviceformData.ServiceId">
+  <div class="form-row">
+    <div class="form-group col-md-12 popup-heading">
+      <label>Service Name<span class="text-danger">*</span></label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fa fa-list"></i></div>
+        </div>
+        <input name="ServiceName" #ServiceName="ngModel" [(ngModel)]="productservice.serviceformData.ServiceName" class="form-control" [class.is-invalid]="!isValid" maxlength="">
+      </div>
+    </div>
+    <div class="form-group col-md-12">
+      <label>Service Description<span class="text-danger"></span></label>
+      <textarea rows="4" name="ServiceDescription" #ServiceDescription="ngModel" [(ngModel)]="productservice.serviceformData.ServiceDescription" class="form-control"
+      [class.is-invalid]="!isValid"></textarea>
+    </div>
+    <div class="form-group col-md-12" *ngIf="currentUser.Permissions.ProductWarranty">
+      <table>
+        <tr>
+            <td colspan="4">
+              <div class="col-md-12 padd-top-10 padd-left-0 padd-right-0">
+                <span class="kt-switch kt-switch--icon"><label><input
+                      name="productservice.serviceformData.InWarranty" #InWarranty="ngModel"
+                      [(ngModel)]="productservice.serviceformData.InWarranty" type="checkbox"><span></span></label></span>
+                <span class="swither-bootstrap-learn switcher-customer">
+                  Service warranty
+                </span>
+              </div>
+            </td>
+        </tr>
+        <tr *ngIf="productservice.serviceformData.InWarranty">
+            <td>Warrant terms:</td>
+            <td>{{productservice.serviceformData.WarrantyDays}} Days</td>
+            <td colspan="2">    
+                <a class="text-warning btnStockUpdate" href="javascript:void(0)" (click)="enablewarrantchange()">
+                    <span *ngIf="!customwarrantyShowEdit"><i class="fa fa-plus" aria-hidden="true"></i> Edit terms</span>
+                    <span *ngIf="customwarrantyShowEdit"><i class="fa fa-minus" aria-hidden="true"></i> Hide terms</span>
+                </a>
+            </td>
+        </tr>
+        <tr *ngIf="customwarrantyShowEdit">
+            <td></td>
+            <td>
+                <div class="kt-radio-list">
+                    <label
+                    class="kt-radio kt-radio--bold kt-radio--brand">
+                    <input type="radio" class="custom-control-input" value="90" name="WarrantyDays"
+                        #WarrantyDays="ngModel" (change)="customwarrantyShowMethor()"
+                         [(ngModel)]="productservice.serviceformData.WarrantyDays">
+                         90 Days
+                    <span></span>
+                    </label>
+                    <label
+                    class="kt-radio kt-radio--bold kt-radio--brand">
+                    <input type="radio" class="custom-control-input" value="180" name="WarrantyDays"
+                        #WarrantyDays="ngModel" (change)="customwarrantyShowMethor()"
+                         [(ngModel)]="productservice.serviceformData.WarrantyDays">
+                         180 Days
+                    <span></span>
+                    </label>
+                    <label
+                    class="kt-radio kt-radio--bold kt-radio--brand">
+                    <input type="radio" class="custom-control-input" value="270" name="WarrantyDays"
+                        #WarrantyDays="ngModel" (change)="customwarrantyShowMethor()"
+                         [(ngModel)]="productservice.serviceformData.WarrantyDays">
+                         270 Days
+                    <span></span>
+                    </label>
+                    <label
+                    class="kt-radio kt-radio--bold kt-radio--brand">
+                    <input type="radio" class="custom-control-input" value="365" name="WarrantyDays"
+                        #WarrantyDays="ngModel" (change)="customwarrantyShowMethor()"
+                         [(ngModel)]="productservice.serviceformData.WarrantyDays">
+                         365 Days
+                    <span></span>
+                    </label>
+                    <label class="kt-radio kt-radio--bold kt-radio--brand" *ngIf="customwarrantyShow">
+                        <input type="radio" class="custom-control-input" name="WarrantyDays"
+                             #WarrantyDays="ngModel" (change)="customwarrantyShowMethor()"
+                              [(ngModel)]="productservice.serviceformData.WarrantyDays">
+                             Custom
+                        <span></span>
+                        </label>
+                    <label class="kt-radio kt-radio--bold kt-radio--brand" *ngIf="!customwarrantyShow">
+                        <input type="radio" class="custom-control-input" name="WarrantyDays"
+                                 checked (change)="customwarrantyShowMethor()">
+                                Custom
+                        <span></span>
+                        </label>
+                </div>
+            </td>
+            <td style="vertical-align: bottom;" colspan="2">
+                <div class="row">
+                    <div class="col-md-4" *ngIf="!customwarrantyShow">
+                        <input type="text"  name="WarrantyDays" #WarrantyDays="ngModel" (keyup)="customwarrantyShowMethor()" (keydown)="customwarrantyShowMethor()"
+                        [(ngModel)]="productservice.serviceformData.WarrantyDays" (keypress)="numberOnly($event)"
+                        class="undertd_text" placeholder="Custom"
+                        maxlength="3">
+                    </div>
+                    <div class="col-md-8 padd-top-10" *ngIf="!customwarrantyShow">
+                        (in number of days)
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" [disabled]="productservice.serviceformData.ServiceName.length === 0" (click)="onSubmit()" >{{createbuttontext}}</button>
+    <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close] ><i class="fa fa-close"></i> Close</button>
+  </div>
+</form>

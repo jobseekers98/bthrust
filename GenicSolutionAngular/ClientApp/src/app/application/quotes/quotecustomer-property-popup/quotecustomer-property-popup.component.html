@@ -1,0 +1,159 @@
+<div class="modal-header select-new-properties">
+    <h5 class="modal-title" id="exampleModalLabel">Select or create a Property</h5>
+    <button class="btn btn-default pull-right" mat-dialog-close>x</button>
+</div>
+<div class="modal-body property-modal-body" *ngIf="IsPropertyCreate">
+        <p>Which property would you like to select for quotation ?</p>
+        <div class="row forn-group">
+            <div class="col-md-7">
+                <input type="text" (keydown)="onkeypress($event.target.value)" (keyup)="onkeypress($event.target.value)" class="form-control" placeholder="Search Clients...">
+            </div>
+            <div class="col-md-1 text-center" *ngIf="currentUser.Permissions.PropertyCreate">
+                or
+            </div>
+            <div class="col-md-4" *ngIf="currentUser.Permissions.PropertyCreate">
+                <a on class="btn btn-brand text-white " (click)="redirect()" >
+                    <i class="la la-plus"></i> Create new Property </a>
+            </div>
+        </div>
+        <div class="kt-portlet__body new_clients_properties_body">
+            <div class="kt-widget4 kt-scroll ps" data-scroll="true" data-height="220"
+                style="height: 220px; overflow: hidden;">
+                <div *ngFor = "let x of service.locallist" class="kt-widget4__item create-quote-client-item" (click)="onClick(x)">
+                    <div class="kt-widget4__pic kt-widget4__pic--logo">
+                        <img src="{{localPrependUrl}}/assets/media/client-logos/logo1.png" alt="">
+                    </div>
+                    <div class="kt-widget4__info">
+                            <p class="kt-widget4__text">
+                            {{ x.AddressStreet1 }} {{ x.AddressStreet2 }} {{ x.AddressUnitNo }} 
+                            {{ x.AddressCountry }} {{ x.AddressZipCode }}
+                                </p>
+                        <a class="kt-widget4__title">
+                            
+                            {{ x.CustomerName }}
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-body property-modal-body" *ngIf="!IsPropertyCreate">
+        <div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+            <input type="hidden" name="Id" #Id="ngModel" [(ngModel)]="service.formData.Id">
+            <input type="hidden" name="CustomerId" #CustomerId="ngModel" [(ngModel)]="service.formData.CustomerId">
+            <input type="hidden" name="CustomerName" #CustomerName="ngModel" [(ngModel)]="service.formData.CustomerName">
+            <input type="hidden" name="Latitude" #Latitude="ngModel" [(ngModel)]="service.formData.Latitude">
+            <input type="hidden" name="Longitude" #Longitude="ngModel" [(ngModel)]="service.formData.Longitude">
+            <div class="creat-properties-form-main-section">
+                <div class="kt-container kt-container--fluid">
+                    <div class="create_properties-filter_form create_properties-filter_form-1">
+                        <div class="form-group form-group-last">
+                            <div class="alert alert-secondary" role="alert">
+                                <div class="alert-icon"><i class="fa fa-building"></i></div>
+                                <div class="new-properties-popupcreate-text">
+                                    New Property for {{ service.formData.CustomerName }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row property-applications">
+                            <div class="col-md-12">
+                                <div class="create_properties-filter_form">
+    
+                                    <div class="form-group row creat-properties-form-group">
+                                        <div class="col-lg-12">                                        
+                                            <div class="form-group">
+                                                <label for="" class="label">Address Street 1</label>
+                                                <input name="AddressStreet1" #AddressStreet1="ngModel"
+                                                    ngx-google-places-autocomplete [options]="options"
+                                                    (onAddressChange)="handleAddressChange($event)"
+                                                    [(ngModel)]="service.formData.AddressStreet1" class="form-control"
+                                                    placeholder="Address Street 1" maxlength="128">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row creat-properties-form-group">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="" class="label">Address Street 2</label>
+                                                <input name="AddressStreet2" #AddressStreet2="ngModel"
+                                                    [(ngModel)]="service.formData.AddressStreet2" class="form-control"
+                                                    placeholder="Address Street 2" maxlength="128">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row creat-properties-form-group">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="" class="label">Address Unit No</label>
+                                                <input name="AddressUnitNo" #AddressUnitNo="ngModel"
+                                                    [(ngModel)]="service.formData.AddressUnitNo" class="form-control"
+                                                    placeholder="Address Unit No" maxlength="16">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row creat-properties-form-group" style="display:none;">
+                                        <!-- <div class="col-lg-6 padding-right-mo-10" style="padding-right:0px;">
+                                            <div class="form-group">
+                                                <label for="" class="label">City</label>
+                                                <input name="AddressCity" #AddressCity="ngModel"
+                                                    [(ngModel)]="service.formData.AddressCity" class="form-control"
+                                                    placeholder="City" maxlength="64">
+                                            </div>
+                                        </div> -->
+                                         <!-- <div class="col-lg-6 padding-left-mo-10" style="padding-left:0px;">
+                                            <div class="form-group">
+                                                <label for="" class="label">State</label>
+                                                <input name="AddressState" #AddressState="ngModel"
+                                                    [(ngModel)]="service.formData.AddressState" class="form-control"
+                                                    placeholder="State" maxlength="64">
+                                            </div>
+                                        </div>  -->
+                                    </div>
+                                    <div class="form-group row creat-properties-form-group">
+                                        <div class="col-lg-6 padding-right-mo-10" style="padding-right:0px;">
+                                            <label for="" class="label">Postal Code</label>     
+                                            <div class="input-group">    
+                                                                                 
+                                              <input name="AddressZipCode" #AddressZipCode="ngModel" min="5" maxlength="6"
+                                              [(ngModel)]="service.formData.AddressZipCode" class="form-control" placeholder="Postal Code" >
+                                              <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <a href="javascript:;" *ngIf="service.formData.AddressZipCode.toString().length === 6"
+                                                      >
+                                                    <i *ngIf="!IsPostalSearch" class="la la-refresh"></i>
+                                                    <i *ngIf="IsPostalSearch" class="la la-spinner fa-spin"></i>
+                                                </a></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        <div class="col-lg-6 padding-left-mo-10" style="padding-left:0px;">
+                                            <div class="form-group">
+                                                <label for="" class="label">Country</label>
+                                                <select name="AddressCountry" #AddressCountry="ngModel"
+                                                    [(ngModel)]="service.formData.AddressCountry" class="form-control">
+                                                    <option value="">select</option>
+                                                    <option *ngFor="let x of countrylist" value="{{x.CountryName}}">
+                                                        {{x.CountryName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <button type="button" (click)="onBack()" class="btn btn-secondary"><i class="fas fa-angle-double-left"></i>Back</button>&nbsp;&nbsp;&nbsp;
+                            <button type="submit" (click)="onSubmit()" class="btn btn-brand">
+                                Create
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

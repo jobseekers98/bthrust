@@ -1,0 +1,234 @@
+<h4 class="dispaly-4">Overwrite Closer Details
+  <button class="btn btn-outline-danger pull-right" mat-dialog-close (click)="close()">X</button>
+</h4>
+<h4 class="dispaly-4">
+  Ticket #{{this.closerService.CloserDetailsData.TicketNo}} & Closer
+  #{{this.closerService.CloserDetailsData.CloserPrefix}}
+</h4>
+<hr>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit()">
+  <div class="kt-portlet__body closeformbody">
+    <div class="kt-section ktrSection">
+      <div class="kt-section__content">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-12 AttToBeAppend">
+                  <div class="image-header" style=" margin: -14px -8px;">
+                    <div class="alert alert-success" style="
+                color: #2c77f4;
+                background-color: #2c77f457;
+                border-color: #2c77f457;"> Images</div>
+                  </div>
+                  <div class="col-md-12 attachmentlistSection" *ngIf="closerService.CloserAttachmentList">
+                    <table
+                      class="tblTicketServiceform table table-bordered service-form-table-border service-form-table-border htBorder">
+                      <thead>
+                        <tr>
+                          <th width="20%">Attachment</th>
+                          <th width="45%">Comment</th>
+                          <th width="30%">Audio</th>
+                          <th width="5%">Action</th>
+                        </tr>
+                      </thead>
+                      <tr *ngFor="let a of closerService.CloserAttachmentList;let i=index; async">
+                        <td>
+                          <div class="col-md-3 customer-logo-container">
+                            <div>
+                              <generic-ticket-icon-attachment [(Name)]="a.AttachmentExtenstion"
+                                [(Path)]="a.AttachmentFile" [Status]="2">
+                              </generic-ticket-icon-attachment>
+                            </div>
+                            <div class="customer-logo-container-overlay">
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <a href="javascript:;">
+                                    <i class="fa fa-upload" (click)="onclickcloser('before', i)"></i></a>
+                                  <input (change)="picked($event, 'closerattachment', a)" class="custom-file-input-0"
+                                    id="id_{{i}}" type="file">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <textarea type="text" class="form-control" [value]="a.Remarks"
+                            (blur)="UpdateCloserAttachmentRemark($event, a)" placeholder="Comment" rows="4"></textarea>
+                        </td>
+                        <td>
+                          <div class="row">
+                            <div class="col">
+                              <div *ngIf="a.CloserAttachmentAduioList.length>0" class="Closer-audio-section">
+                                <div class="audio-list" *ngFor="let au of a.CloserAttachmentAduioList;let ii =index">
+                                  <audio controls>
+                                    <source src="{{au.AudioAttachment}}" title="{{au.AttachmentAudioName}}"
+                                      type="audio/webm">
+                                  </audio>
+                                  <div class="audio-remove">
+                                    <a (click)="ClearTempCloaseAudio(au.AttachmentAudioId)" href="javascript:void(0)"><i
+                                        class="fa fa-times"></i></a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-7"></div>
+                            <div class="col-lg-4">
+                              <div *ngIf="isRecording && this.recoudngId === a.CAID" class="audio-timmer">
+                                <ul>
+                                  <li><i class="fa fa-circle" aria-hidden="true"></i>
+                                  </li>
+                                  <li><span>{{recordedTime}}</span></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="col-lg-1">
+                              <a class="audio-button" *ngIf="!isRecording" title="Start recording"
+                                (click)="startRecording(a)" href="javascript:void(0)">
+                                <i class="fa fa-microphone" aria-hidden="true"></i>
+                              </a>
+                              <a class="audio-button" *ngIf="isRecording && this.recoudngId === a.CAID" title="Stop"
+                                (click)="stopRecording(a)" href="javascript:void(0)">
+                                <i style="color: red;" class="fa fa-stop-circle" aria-hidden="true"></i>
+                              </a>
+                            </div>
+                          </div>
+                        </td>
+                        <td style="text-align: center;">
+                          <a href="javascript:void(0);" (click)="removeAttachment(a)">
+                            <i class="fa fa-trash text-danger"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colSpan="3"></td>
+                        <td style="text-align: center;">
+                          <a *ngIf="!CloserAttachmentSpinner" href="javascript:void(0);" style="font-size: 24px;"
+                            (click)="addCloserAttachment()"><i class="flaticon2-add text-success"></i></a>
+                          <div *ngIf="CloserAttachmentSpinner" class="spinnerSection" style="width: 100px;">
+                            <img alt="loader" src="{{localPrependUrl}}/assets/svg/spinner.svg">
+                          </div>
+                          <div *ngIf="loader" class="spinnerSection" style="width: 100px;">
+                            <img alt="loader" src="{{localPrependUrl}}/assets/svg/spinner.svg" />
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 serviceby-section">
+                  <div class="closer-header-t">
+                    <div class="alert alert-success">
+                      Closer Details
+                    </div>
+                  </div>
+                  <div class="closerbody-sec">
+                    <div class="row">
+                      <div class="col-sm-0 col-md-1 col-lg-1 col-xl-1">
+                      </div>
+                      <div class="col-sm-6 col-md-5 col-lg-5 col-xl-5" style="border: 1px solid #2827331c;">
+                        <img title="{{closerService.CloserDetailsData.NameOfSignatory}}" style="width:200px;" src="{{closerService.CloserDetailsData.CustomerSignature}}">
+                      </div>
+                      <div class="col-sm-6 col-md-5 col-lg-5 col-xl-5" style="border: 1px solid #2827331c;">
+                        <img title="{{closerService.CloserDetailsData.EnginnerName}}" style="width:200px;" src="{{closerService.CloserDetailsData.EngineerSignature}}">
+                      </div>
+                      <div class="col-sm-0 col-md-1 col-lg-1 col-xl-1">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="closerbody-sec">
+                    <div class="row">
+                      <div class="col-sm-0 col-md-1 col-lg-1 col-xl-1">
+                      </div>
+                      <div class="col-sm-6 col-md-5 col-lg-5 col-xl-5">
+                        <div class="row forn-group" style="display: none;">
+                          <div class="col">
+                            <label>Customer Name</label>
+                            <input type="text" name="tempNameOfSignatory" #NameOfSignatory="ngModel"
+                              [(ngModel)]="closerService.CloserDetailsData.NameOfSignatory" class="form-control"
+                              placeholder="Customer Name" />
+                          </div>
+                        </div>
+                        <div class="row forn-group">
+                          <div class="col">
+                            <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand">
+                              <input type="checkbox" id="cust_sign" (change)="oncheckedSignature('c')"
+                                class="dynamic-value-reader">
+                              <span></span>
+                              Overwrite Customer Signature </label>
+                          </div>
+                        </div>
+                        <div class="row forn-group" *ngIf="customersignatureshow">
+                          <div class="col">
+                            <label>Customer Signature</label>
+                            <div id="CloseSignarePad" class="m-signature-pad CloseSignarePad">
+                              <div class="m-signature-pad-body">
+                                <signature-pad #SignaturePad2 [options]="configPad"></signature-pad>
+                              </div>
+                            </div>
+                            <a style="float:right" class="btnRemoveSection" (click)="cleareCustomerCloserSignature()">
+                              Clear
+                              signature</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                        <div class="row forn-group">
+                          <div class="col">
+                            <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand">
+                              <input type="checkbox" id="eng_sign" (change)="oncheckedSignature('e')"
+                                class="dynamic-value-reader">
+                              <span></span>
+                              Overwrite {{this.currentUser.Engineer}} Signature </label>
+                          </div>
+                        </div>
+                        <div class="row forn-group" *ngIf="engineersignatureshow">
+                          <div class="">
+                            <label>{{this.currentUser.Engineer}} Signature</label>
+                            <div id="CloseSignarePad" class="m-signature-pad CloseSignarePad">
+                              <div class="m-signature-pad-body">
+                                <signature-pad #SignaturePad1 [options]="configPad"></signature-pad>
+                              </div>
+                            </div>
+                            <a style="float:right" class="btnRemoveSection" (click)="cleareEngineerSignature()"> Clear
+                              signature</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row forn-group">
+                      <div class="col">
+                        <label>Remarks<sup>*</sup></label>
+                        <input type="hidden" />
+                        <textarea class="form-control requst-for-jobs" name="RamarksOnClose" #RamarksOnClose="ngModel"
+                          [(ngModel)]="closerService.CloserDetailsData.Remarks" placeholder="Remarks" rows="3"
+                          required></textarea>
+                        <input type="hidden" name="Status" #Status="ngModel"
+                          [(ngModel)]="closerService.CloserDetailsData.TicketFlag" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col bottom-btn">
+                        <hr>
+                        <button class="btn btn-warning btnCloseCloserForm" mat-dialog-close>Close</button>&nbsp;
+                        <button *ngIf="!loader" type="submit" class="btn btn-primary">Save changes</button>
+                        <button *ngIf="loader" disabled class="btn btn-primary">
+                          <div *ngIf="loader" class="spinner-border text-warning" role="status"></div>
+                          Loading...
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

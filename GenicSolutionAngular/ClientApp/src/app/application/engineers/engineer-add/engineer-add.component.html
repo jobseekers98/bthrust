@@ -1,0 +1,524 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit()">
+  <input type="hidden" name="Id" [value]="service.formData.Id">
+  <input type="hidden" name="Latitude" [value]="service.formData.Latitude">
+  <input type="hidden" name="Longitude" [value]="service.formData.Longitude">
+  <input type="hidden" name="Working" [value]="service.formData.Working">
+  <input type="hidden" name="IsActive" [value]="service.formData.IsActive">
+
+  <div class="kt-subheader kt-grid__item" id="kt_subheader" style="margin: 20px 0;">
+    <div class="kt-container kt-container--fluid ">
+      <div class="kt-subheader__main">
+        <h3 class="kt-subheader__title">
+          <a href="javascript:;" routerLink="/dashboard"> Dashboard </a>
+        </h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+          <i aria-hidden="true" class="fa fa-angle-double-right"></i>
+          <span class="kt-subheader__breadcrumbs-separator"></span>
+          <a class="kt-subheader__breadcrumbs-link" href="javascript:;" routerLink="/engineers">  {{this.currentUser.Engineer}}'s </a>
+        </div>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+          <i aria-hidden="true" class="fa fa-angle-double-right"></i>
+          <span class="kt-subheader__breadcrumbs-separator"></span> {{btnText}}  {{this.currentUser.Engineer}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="this.isLimitOuver" class="alert alert-solid-danger alert-bold fade show" role="alert">
+    <div class="alert-icon"><i class="fa fa-exclamation-triangle"></i></div>
+    <div class="alert-text"> {{msgh1}}  <br> {{msgh2}}</div>
+    <div class="alert-close">
+       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true"><i class="la la-close"></i></span>
+       </button>
+    </div>
+ </div>
+  <div class="new-quote-main-section">
+    <div class="kt-container kt-container--fluid">
+      <div class="engineer-add-sec">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#home"><i class="fa fa-user"></i>{{this.currentUser.Engineer}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu1"><i class="fa fa-map"></i>{{this.currentUser.Engineer}} Address</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu4"><i class="fa fa-paint-brush"></i>Color</a>
+          </li>
+          <li class="nav-item" *ngIf="createbuttontext === 'Update'">
+            <a class="nav-link" data-toggle="tab" href="#menu5"><i class="fa fa-paint-brush"></i>Permissions</a>
+          </li>
+        </ul>
+      </div>
+      <div class="tab-content">
+        <div id="home" class="tab-pane active">
+          <div class="card col-md-9">
+            <div class="col-md-12--">
+              <div class="card-header" id="headingOne8">
+                <div class="card-title padd-left-0 padd-right-0" data-toggle="collapse" data-target="#collapseOne8"
+                  aria-expanded="true" aria-controls="collapseOne8">
+                  Details <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+                      <path
+                        d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z"
+                        id="Path-94" fill="#000000" fill-rule="nonzero"></path>
+                      <path
+                        d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z"
+                        id="Path-94" fill="#000000" fill-rule="nonzero" opacity="0.3"
+                        transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) ">
+                      </path>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div id="collapseOne8" class="collapse show" aria-labelledby="headingOne8"
+                data-parent="#accordionExample8">
+                <div class="card-body padd-left-0 padd-right-0">
+                  <div class="kt-portlet__body create-new-client-portlet-body">
+                    <div class="kt-section kt-section--first">
+                      <div class="kt-section__body">
+                        <div class="row no-spacing">
+                          <div class="col-xl-12 no-spacing">
+                            <div class="row">
+                              <div class="col-xl-3" *ngIf="this.createbuttontext === 'Create'">
+                                <div class="form-group row">
+                                  <div class="col-lg-12">
+                                    <img *ngIf="service.formData.EngineerLogo.length === 0" style="width: 100%;"
+                                      src="{{localPrependUrl}}/assets/svg/noimage.svg" />
+                                    <div class="upload-image" *ngIf="service.formData.EngineerLogo.length > 0">
+                                      <img style="width: 100%;" *ngIf="isImageBinary"
+                                        src="{{localPrependUrl}}/{{service.formData.EngineerLogo}}">
+                                      <img style="width: 100%;" *ngIf="!isImageBinary"
+                                        src="data:image/png;base64,{{service.formData.EngineerLogo}}">
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-12">
+                                    <div class="input-group">
+                                      <div class="custom-file">
+                                        <input (change)="pickedOnAdd($event, 'engineer')" class="custom-file-input" #File id="inputGroupFile01"
+                                          type="file">
+                                        <label class="custom-file-label" for="inputGroupFile01">
+                                          <p>Choose file</p>
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-xl-3" *ngIf="this.createbuttontext === 'Update'">
+                                <div class="form-group">
+                                  <label for="" class="label">Profile Logo</label>
+                                  <div class="customer-logo-container" *ngIf="!loader" >
+                                    <img style="width: 100%;" *ngIf="service.formData.EngineerLogo?.length === 0"
+                                      class="customer-logo-container-image" alt="Avatar"
+                                      src="{{localPrependUrl}}/assets/svg/noimage.svg" />
+                                    <img style="width: 100%;" *ngIf="service.formData.EngineerLogo?.length > 0" class="customer-logo-container-image" alt="Avatar"
+                                      src="{{service.formData.EngineerLogo}}">
+                                    <div class="customer-logo-container-overlay"  >
+                                      <div class="row">
+                                        <div class="col-md-6">
+                                          <a href="javascript:;"><i class="fa fa-camera"
+                                              onclick="document.getElementById('customerprofilelogo').click()"></i></a>
+                                          <input (change)="picked($event, 'engineer')" class="custom-file-input-0" #File
+                                            id="customerprofilelogo" type="file">
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                          <a href="javascript:;"><i class="fa fa-trash text-danger"
+                                              (click)="RemoveProfileImage('engineer')"></i></a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="customer-logo-container" *ngIf="loader" >
+                                    <img style="width: 100%;" class="customer-logo-container-image" alt="Avatar"
+                                    src="{{localPrependUrl}}/assets/svg/spinner.svg" />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-xl-9">
+                               <div class="row">
+                                <div class="col-xl-12">
+                                  <div class="form-group">
+                                    <label for="">Enter Name<span class="text-danger">*</span></label>
+                                    <input name="EngineerName" #EngineerName="ngModel"
+                                      [(ngModel)]="service.formData.EngineerName" class="form-control"
+                                      [class.is-invalid]="!isNameValid" placeholder="Name">
+                                  </div>
+                                </div>
+                                <div class="col-xl-12">
+                                  <div class="form-group">
+                                    <label for="">Enter Mobile Number<span class="text-danger">*</span></label>
+                                    <input name="EngineerPhone" #EngineerPhone="ngModel"
+                                      [(ngModel)]="service.formData.EngineerPhone" class="form-control"
+                                      [class.is-invalid]="!isMobileValid" placeholder="Mobile"
+                                      (keypress)="numberOnly($event)">
+                                  </div>
+                                </div>
+                                <div class="col-xl-12">
+                                  <div class="form-group">
+                                    <label for="">Enter Email<span class="text-danger">*</span></label>
+                                    <input name="EngineerEmail" #EngineerEmail="ngModel"
+                                      [(ngModel)]="service.formData.EngineerEmail" class="form-control"
+                                      [class.is-invalid]="!isEmailValid" placeholder="Email">
+                                  </div>
+                                </div>
+                               </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-xl-12" *ngIf="currentUser.Permissions.EngineerType">
+                            <div class="form-group">
+                              <label for="">Select Designation<span class="text-danger">*</span></label>
+                              <select class="form-control kt-select2 add-other-border-right" name="Type"
+                                #Type="ngModel" [(ngModel)]="service.formData.Type"
+                                [class.is-invalid]="!isType" placeholder="Designation">
+                                <option value="0">Select</option>
+                                <option value="1">Supervisor</option>
+                                <option value="2">Foreman</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-sm-12 col-md-6 col-xl-6 custom-bordered" *ngIf="currentUser.Permissions.CanEngineerCreateTicket">
+                            <div class="form-group padd-15">
+                              <label for="">Please select any one option<span class="text-danger">*</span></label>
+                              <div class="kt-radio-list">
+                                <label
+                                    class="kt-radio kt-radio--bold kt-radio--brand">
+                                    <input type="radio"
+                                        class="custom-control-input"
+                                        value="Partial"
+                                        name="CreateCustomer"
+                                        #CreateCustomer="ngModel"
+                                        [(ngModel)]="service.formData.CreateCustomer">
+                                        <small> Can create {{this.currentUser.Ticket.toLowerCase()}} only for allotted customers</small>
+                                    <span></span>
+                                </label>
+                                <label
+                                    class="kt-radio kt-radio--bold kt-radio--brand">
+                                    <input type="radio"
+                                        class="custom-control-input"
+                                        value="All"
+                                        name="CreateCustomer"
+                                        #CreateCustomer="ngModel"
+                                        [(ngModel)]="service.formData.CreateCustomer">
+                                        <small> Can create {{this.currentUser.Ticket.toLowerCase()}} for any customer</small>
+                                    <span></span>
+                                </label>
+                            </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-12 col-md-6 col-xl-6 custom-bordered" *ngIf="currentUser.Permissions.CanEngineerCreateTicket">
+                            <div class="form-group padd-15">
+                              <label for="">Please select any one option<span class="text-danger">*</span></label>
+                              <div class="kt-radio-list">
+                                <label
+                                    class="kt-radio kt-radio--bold kt-radio--brand">
+                                    <input type="radio"
+                                        class="custom-control-input"
+                                        value="SameDate"
+                                        name="CreateForAllDate"
+                                        #CreateForAllDate="ngModel"
+                                        [(ngModel)]="service.formData.CreateForAllDate">
+                                        <small>  Can create {{this.currentUser.Ticket.toLowerCase()}} for same day</small>
+                                    <span></span>
+                                </label>
+                                <label
+                                    class="kt-radio kt-radio--bold kt-radio--brand">
+                                    <input type="radio"
+                                        class="custom-control-input"
+                                        value="AllDate"
+                                        name="CreateForAllDate"
+                                        #CreateForAllDate="ngModel"
+                                        [(ngModel)]="service.formData.CreateForAllDate">
+                                        <small> Can create {{this.currentUser.Ticket.toLowerCase()}} for any date</small>
+                                    <span></span>
+                                </label>
+                            </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-12 col-md-12 col-xl-12" *ngIf="currentUser.Permissions.CanEngineerCreateTicket">
+                            <br>
+                            <div class="form-group">
+                            <span class="kt-switch kt-switch--icon"><label><input name="service.formData.AssignToOtherUser"
+                              #AssignToOtherUser="ngModel" [(ngModel)]="service.formData.AssignToOtherUser"
+                              type="checkbox"><span></span></label></span>
+                              <span class="swither-bootstrap-learn switcher-customer">
+                                Assign {{this.currentUser.Ticket.toLowerCase()}} to another user
+                              </span>
+                              </div>
+                            </div>
+                          <div class="col-sm-12 col-md-12 col-xl-12">
+                            <div class="form-group">
+                        <span class="kt-switch kt-switch--icon"><label><input name="service.formData.LoginAccess"
+                          #LoginAccess="ngModel" [(ngModel)]="service.formData.LoginAccess"
+                          type="checkbox"><span></span></label></span>
+                          <span class="swither-bootstrap-learn switcher-customer">
+                            Login Access
+                          </span>
+                          </div>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="headingTwo8">
+                  <div class="card-title collapsed padd-left-0 padd-right-0 " data-toggle="collapse"
+                    data-target="#collapseTwo8" aria-expanded="false" aria-controls="collapseTwo8">
+                    Emergency Contact
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                      height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+                        <path
+                          d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z"
+                          id="Path-94" fill="#000000" fill-rule="nonzero"></path>
+                        <path
+                          d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z"
+                          id="Path-94" fill="#000000" fill-rule="nonzero" opacity="0.3"
+                          transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) ">
+                        </path>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+                <div id="collapseTwo8" class="collapse" aria-labelledby="headingTwo8" data-parent="#accordionExample8">
+                  <div class="card-body padd-left-0 padd-right-0">
+                    <div class="kt-portlet__body create-new-client-portlet-body">
+                      <div class="kt-section kt-section--first">
+
+                        <div class="kt-section__body">
+                          <div class="row no-spacing">
+                            <div class="col-xl-12 no-spacing">
+                              <div class="form-group">
+                                <label for="">Enter Name</label>
+                                <input name="EmergencyName" #EmergencyName="ngModel"
+                                  [(ngModel)]="service.formData.EmergencyName" class="form-control" placeholder="Name">
+                              </div>
+                            </div>
+                            <div class="col-xl-12 no-spacing">
+                              <div class="form-group">
+                                <label for="">Enter Number</label>
+                                <input name="EmergencyNumber" #EmergencyNumber="ngModel"
+                                  [(ngModel)]="service.formData.EmergencyNumber" class="form-control"
+                                  [class.is-invalid]="!isEmergencyContactNo" placeholder="Number">
+                              </div>
+                            </div>
+                            <div class="col-xl-12 no-spacing">
+                              <div class="form-group">
+                                <label for="">Enter Relation</label>
+                                <input name="EmergencyRelation" #EmergencyRelation="ngModel"
+                                  [(ngModel)]="service.formData.EmergencyRelation" class="form-control"
+                                  placeholder="Relation">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="menu1" class="tab-pane fade"><br>
+          <div class="col-md-9 no-padding">
+            <div class="kt-section__body">
+              <div class="form-group row">
+                <div class="col-lg-12">
+                  <label for="">Address Street 1</label>
+                  <input name="AddressStreet1" ngx-google-places-autocomplete [options]="options"
+                    (onAddressChange)="handleAddressChange($event)" #AddressStreet1="ngModel"
+                    [(ngModel)]="service.formData.AddressStreet1" class="form-control" placeholder="Address Street 1">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-lg-12">
+                  <label for="">Address Street 2</label>
+                  <input name="AddressStreet2" #AddressStreet2="ngModel" [(ngModel)]="service.formData.AddressStreet2"
+                    class="form-control" placeholder="Address Street 2">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-lg-12">
+                  <label for="">Address Unit No</label>
+                  <input name="AddressUnitNo" #AddressUnitNo="ngModel" [(ngModel)]="service.formData.AddressUnitNo"
+                    class="form-control" placeholder="Address Unit No">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-lg-12">
+                  <label for="">Postal Code</label>
+                  <div class="input-group">
+                    <input name="AddressZipCode" #AddressZipCode="ngModel" [(ngModel)]="service.formData.AddressZipCode"
+                      class="form-control" placeholder="Postal Code">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <a href="javascript:;" *ngIf="service.formData.AddressZipCode.toString().length === 6"
+                          (click)="findAddressByPostalCode(service.formData.AddressZipCode)">
+                          <i *ngIf="!IsPostalSearch" class="la la-refresh"></i>
+                          <i *ngIf="IsPostalSearch" class="la la-spinner fa-spin"></i>
+                        </a></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-lg-12">
+                  <label for="">Select Country</label>
+                  <select name="AddressCountry" #AddressCountry="ngModel" [(ngModel)]="service.formData.AddressCountry"
+                    class="form-control">
+                    <option value="">Select Country</option>
+                    <option *ngFor="let x of countrylist" value="{{x.CountryName}}">
+                      {{x.CountryName}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="menu4" class="tab-pane fade"><br>
+          <div class="col-md-9 no-padding">
+            <div class="kt-section__body">
+              <div class="form-group row">
+                <div class="col-lg-9">
+                  <label for="">{{this.currentUser.Engineer}} Color</label>
+                <div style="height:280px;" [style.background-color]="service.formData.Color"></div>
+                   
+                </div>
+                <div class="col-lg-3">
+                  <color-sketch color="service.formData.Color" (onChangeComplete)="changeColorFolder($event)">
+                  </color-sketch>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="menu5" class="tab-pane fade"><br>
+          <div class="col-md-9 no-padding">
+            <div class="kt-section__body">
+              <div class="form-group row">
+                <div class="col-md-12 col-sm-12 colxs-12">
+                  <div class="support-service-incident-form">
+                      <h2>{{this.currentUser.Engineer}} Permission</h2>
+                  </div>
+              </div>
+              <div class="kt-portlet__body padd-top-0">
+                  <div class="col-md-12">
+                    <input type="hidden" name="PermissionData.Id" [value]="loginservice.PermissionData.Id" [(ngModel)]="loginservice.PermissionData.Id">
+                      <table
+                      class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline">
+                      <thead>
+                          <tr>
+                              <th>Module</th>
+                              <th>Capabilities(View)</th>
+                              <th>Capabilities(Create)</th>
+                              <th>Capabilities(Edit)</th>
+                              <th>Capabilities(Remove)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>Dashboard</td>
+                              <td>
+                                  <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="DashboardEngineer" [(ngModel)]="loginservice.PermissionData.DashboardEngineer" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label> 
+                              </td>
+                              <td>-</td>
+                              <td>-</td>
+                              <td>-</td>
+                          </tr>
+                          <tr>
+                            <td>{{this.currentUser.Ticket}}</td>
+                            <td>
+                                <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="EngineerTicketView" [(ngModel)]="loginservice.PermissionData.EngineerTicketView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label> 
+                            </td>
+                            <td>
+                              <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="CanEngineerCreateTicket" [(ngModel)]="loginservice.PermissionData.CanEngineerCreateTicket" type="checkbox" class="ng-valid ng-dirty ng-touched"> Create <span></span></label> 
+                            </td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                          <td>Profile</td>
+                          <td>
+                              <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="EngineerProfileView" [(ngModel)]="loginservice.PermissionData.EngineerProfileView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label> 
+                          </td>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>-</td>
+                      </tr>
+                      <tr>
+                        <td>Timesheet</td>
+                        <td>
+                            <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="EngineerTimesheetView" [(ngModel)]="loginservice.PermissionData.EngineerTimesheetView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label> 
+                        </td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    
+                          <tr *ngIf="currentUser.Permissions.DriveView">
+                              <td>Drive</td>
+                              <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="DriveView" [(ngModel)]="loginservice.PermissionData.DriveView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label></td>
+                              <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="DriveCreate" type="checkbox" [(ngModel)]="loginservice.PermissionData.DriveCreate" class="ng-valid ng-dirty ng-touched"> Create <span></span></label></td>
+                              <td> <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="DriveEdit" type="checkbox"[(ngModel)]="loginservice.PermissionData.DriveEdit" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label></td>
+                              <td> <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="DriveRemove" type="checkbox"[(ngModel)]="loginservice.PermissionData.DriveRemove" class="ng-valid ng-dirty ng-touched"> Delete <span></span></label></td>
+                          </tr>
+                          <tr *ngIf="currentUser.Permissions.LiveTracking">
+                              <td>Live Tracking</td>
+                              <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="LiveTracking" [(ngModel)]="loginservice.PermissionData.LiveTracking" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label></td>
+                              <td>-</td>
+                              <td>-</td>
+                              <td>-</td>
+                          </tr>
+                          <tr>
+                            <td>Closer</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>
+                              <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="CloserEdit" [(ngModel)]="loginservice.PermissionData.CloserEdit" type="checkbox" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label>
+                            </td>
+                            <td>-</td>
+                        </tr>
+                          <tr>
+                              <td colspan="5" style="text-align: right;">
+                                  <a href="javascript:void(0)" class="btn btn-primary" (click)="savePermissions()">update Permissions</a>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                  </div>
+                  
+              </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="new-requst-filter_form create-new-client-popup">
+      <div class="container-fluid">
+        <div class="creat-new-quote-footer col-md-9--">
+          <div class="clearfix">
+            <div class="new-request-footer-bottom pull-right">
+              <button type="button" routerLink="/engineers" class="btn btn-secondary">CANCEL</button>
+              &nbsp;&nbsp;
+              <div class="btn-group">
+                <button class="btn btn-brand" type="submit" [disabled]="form.invalid">{{ createbuttontext }}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

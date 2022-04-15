@@ -1,0 +1,228 @@
+<style>
+  .imgCloserAttchmetList {
+    width: 100%;
+    max-width: 80px;
+  }
+
+  .closerDetailsSection-top table tr th {
+    width: 20% !important;
+  }
+</style>
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+  <div class="kt-subheader kt-grid__item" id="kt_subheader">
+    <div class="kt-container kt-container--fluid ">
+      <div class="kt-subheader__main">
+        <h3 class="kt-subheader__title">
+          <a href="javascript:;" routerLink="/engineer/engineer-dashboard">
+            Dashboard
+          </a>
+        </h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          <span class="kt-subheader__breadcrumbs-separator"></span>
+          <a href="javascript:;" routerLink="/engineer/engineer-tickets" 
+          class="kt-subheader__breadcrumbs-link"> {{this.currentUser.Ticket}}s
+          </a>
+        </div>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs" >
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          <span class="kt-subheader__breadcrumbs-separator"></span>
+          <a href="javascript:;" onclick="window.history.back()" 
+          class="kt-subheader__breadcrumbs-link">  {{this.currentUser.Ticket}} Details
+          </a>
+         
+        </div>
+        <span class="kt-subheader__breadcrumbs-separator"></span>
+        <div class="kt-subheader__breadcrumbs">
+          <a href="javascript:;" class="kt-subheader__breadcrumbs-home"><i aria-hidden="true" class="fa fa-angle-double-right"></i></a>
+          <span class="kt-subheader__breadcrumbs-separator"></span> <a href="javascript:;"
+            class="kt-subheader__breadcrumbs-link"> Closure detail's Info </a>
+        </div>
+      </div>
+
+      <div class="kt-subheader__toolbar">
+        <div class="kt-subheader__wrapper">
+          <a class="btn btn-primary" onclick="window.history.back()" style="margin-right: 3px;color: white;padding: 6px 10px 7px 10px;cursor: pointer;"> Back </a>
+        </div>
+    </div>
+
+    </div>
+  </div>
+  <div class="customer-listing-detail-section">
+    <div class="col-md-12">
+      <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+        <div class="col-xl-12 col-lg-12">
+          <div class="closerDetailsSection-top">
+            <table class="table table-bordered table-stripped">
+              <tr>
+                <th>Closure No</th>
+                <td>
+                  <span
+                    class="btn btn-label-primary ticket-cirle-red">{{closerService.CloserDetailsData.CloserPrefix}}</span>
+                </td>
+              </tr>
+              <tr>
+                <th>{{this.currentUser.Ticket}} No</th>
+                <td>
+                  <span class="btn btn-label-primary ticket-cirle-red">
+                    {{closerService.CloserDetailsData.TicketNo}}</span>
+                </td>
+              </tr>
+              <tr>
+                <th>Enginner Name</th>
+                <td>
+                  {{closerService.CloserDetailsData.EnginnerName}}
+                </td>
+              </tr>
+              <tr>
+                <th>Start Date</th>
+                <td>
+                  {{closerService.CloserDetailsData.StartDate | date:'MMM d, y':'+0000' }}
+                </td>
+              </tr>
+              <tr>
+                <th>End Date</th>
+                <td>
+                  {{closerService.CloserDetailsData.EndDate | date:'MMM d, y':'+0000' }}
+                </td>
+              </tr>
+              <tr>
+                <th>Start Time</th>
+                <td>
+                  {{closerService.CloserDetailsData.StartDate | date:'h:mm a':'+0000'}}
+                </td>
+              </tr>
+              <tr>
+                <th>End Time</th>
+                <td>
+                  {{closerService.CloserDetailsData.EndDate | date:'h:mm a':'+0000'}}
+                </td>
+              </tr>
+              <tr>
+                <th>Total Duration</th>
+                <td>
+                  {{closerService.CloserDetailsData.TotalDuration}}
+                </td>
+              </tr>
+              <tr *ngIf="closerService.CloserDetailsData.PaymentCollected">
+                <th>Amount</th>
+                <td>
+                  {{closerService.CloserDetailsData.CloserAmount}}
+                </td>
+              </tr>
+              <tr *ngIf="closerService.CloserDetailsData.PaymentCollected">
+                <th>Tax(%)</th>
+                <td>
+                  {{closerService.CloserDetailsData.CloserGSTAmount}}
+                </td>
+              </tr>
+              <tr *ngIf="closerService.CloserDetailsData.PaymentCollected">
+                <th>Total</th>
+                <td>
+                  {{closerService.CloserDetailsData.CloserTotalAmount}}
+                </td>
+              </tr>
+              <tr *ngIf="closerService.CloserDetailsData.PaymentCollected">
+                <th>Payment Mode</th>
+                <td>
+                  {{closerService.CloserDetailsData.PaymentMode}}
+                </td>
+              </tr>
+              <tr *ngIf="closerService.CloserDetailsData.PaymentCollected">
+                <th>Amount Paid</th>
+                <td>
+                  {{closerService.CloserDetailsData.AmountPaid}}
+                </td>
+              </tr>
+              <tr>
+                <th>Remarks</th>
+                <td>
+                  {{closerService.CloserDetailsData.Remarks}}
+                </td>
+              </tr>
+              <tr>
+                <th>Closure Status</th>
+                <td>
+                  <span class="btn btn-label-primary ticket-cirle-red">
+                    {{closerService.CloserDetailsData.TicketFlag}}</span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+        <div class="col-xl-12 col-lg-12">
+          <div class="closerDetailsSection">
+            <table class="table table-bordered table-stripped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th style="width: 10%;">Attachments</th>
+                  <th>Audio Files</th>
+                  <th>Remark's</th>
+                  <th>Download</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let d of closerService.CloserAttachmentList; let ii=index">
+                  <td>{{ii+1}}</td>
+                  <td>
+                    <generic-ticket-icon-attachment [(Name)]="d.AttachmentExtenstion" [(Path)]="d.AttachmentFile" [Status]="2" ></generic-ticket-icon-attachment>
+                  </td>
+                  <td style="text-align: center;">
+                    <div *ngIf="d.CloserAttachmentAduioList.length>0">
+                      <audio controls *ngFor="let b of d.CloserAttachmentAduioList">
+                            <source src="{{b.AudioAttachment}}" type="audio/webm">
+                      </audio>
+                    </div>  
+                    <span *ngIf="d.CloserAttachmentAduioList.length<=0">No audio available</span>
+                  </td>
+                  <td style="width: 65%;">
+                    {{d.Remarks}}
+                  </td>
+                  <td>
+                    <a class="btn btn-primary" href="{{d.AttachmentFile}}" target="_blank">Download
+                      File</a>
+                  </td>
+                </tr>
+                <tr *ngIf="!closerService.CloserAttachmentList">
+                  <td style="text-align: center;" colspan="2">Attachment's not available</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+        <div class="col-xl-12 col-lg-12">
+          <div class="closerDetailsSection">
+            <table class="table table-bordered table-stripped">
+              <tr rowspan="4">
+                <th style="width:200px;">{{this.currentUser.Engineer}} Signature</th>
+                <td>
+                  <img src="{{ closerService.CloserDetailsData.EngineerSignature }}" />
+                </td>
+              </tr>
+              
+              <tr rowspan="4">
+                <th style="width:200px;">Customer Signature</th>
+                <td>
+                 <strong> Name:  </strong> &nbsp;{{closerService.CloserDetailsData.NameOfSignatory}} <br>
+                 <strong>  I.C. :&nbsp; </strong>{{closerService.CloserDetailsData.ICNo}} <br>
+                 <strong> Terms & Conditions. :</strong> <br><br> <img src="{{rightImagePath}}" style="width: 3%;"> {{webParms.formData.TicketTermsConditions}} <br><br>
+                  <img src="{{ closerService.CloserDetailsData.CustomerSignature }}" />
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,93 @@
+<style>
+    .kt-radio-list .kt-radio {
+        display: inline-table !important;
+        text-align: left;
+    }
+    </style>
+    <h4 class="dispaly-4">Apply for Leave</h4>
+    <hr>
+    <form #form="ngForm" autocomplete="off" (submit)="onSubmit()">
+    <input type="hidden"  name="Id" #Id="ngModel" [(ngModel)]="service.GenicProfileCalendarData.Id">
+      <div class="form-row">
+       
+        <div class="form-group col-md-6">
+            <label>Select Leave Date<span style="color: red;">*</span></label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+              </div>
+              <input readonly
+              placeholder="yyyy-mm-dd"  ngbDatepicker
+              (click)="dpRecurringStartDate.toggle()"
+              [minDate]="minDate"
+              [maxDate]="maxDate"
+              #dpRecurringStartDate="ngbDatepicker" name="Date" #Date="ngModel" [(ngModel)]="service.GenicProfileCalendarData.Date" class="form-control" [class.is-invalid]="!isValid">
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Leave Type<span style="color: red;">*</span></label>
+            <div class="kt-radio-list">
+              <label
+                  class="kt-radio kt-radio--bold kt-radio--brand">
+                  <input type="radio"
+                      class="custom-control-input"
+                      value="Full Day"
+                      name="WorkType"
+                      #WorkType="ngModel"
+                      (click)="onHalfDayChossen(1)"
+                      [(ngModel)]="service.GenicProfileCalendarData.WorkType">
+                  Full day
+                  <span></span>
+              </label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <label
+                  class="kt-radio kt-radio--bold kt-radio--brand">
+                  <input type="radio"
+                      class="custom-control-input"
+                      value="Half day"
+                      name="WorkType"
+                      #WorkType="ngModel"
+                      (click)="onHalfDayChossen(2)"
+                      [(ngModel)]="service.GenicProfileCalendarData.WorkType">
+                  Half day
+                  <span></span>
+              </label>
+          </div>
+          </div>
+          <div *ngIf="service.GenicProfileCalendarData.WorkType === 'Half day'" class="form-group col-md-12">
+            <div class="form-group row">
+              <div class="col-md-6 padd-right-0">
+                  <label>Start Time</label>
+                  <div class="input-group">
+                      <div class="input-group">
+                          <ngb-timepicker
+                              name="StartTime"
+                              #StartTime="ngModel"
+                              [(ngModel)]="service.GenicProfileCalendarData.StartTime">
+                          </ngb-timepicker>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-6 padd-left-0">
+                  <label>End Time</label>
+                  <div class="input-group">
+                      <ngb-timepicker
+                          name="EndTime"
+                          #EndTime="ngModel"
+                          [(ngModel)]="service.GenicProfileCalendarData.EndTime">
+                      </ngb-timepicker>
+                  </div>
+              </div>
+          </div>
+          </div>
+          <div class="form-group col-md-12">
+            <label>Leave Description<span style="color: red;">*</span></label>
+            <div class="input-group">
+              <textarea name="Description" #Description="ngModel" [(ngModel)]="service.GenicProfileCalendarData.Description" class="form-control" [class.is-invalid]="!isValid" rows="3" placeholder="Description" min="1" maxlength="256"></textarea>
+            </div>
+          </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="service.GenicProfileCalendarData.Description === '' || service.GenicProfileCalendarData.Date === null" >{{createbuttontext}}</button>
+        <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close] ><i class="fa fa-close"></i> Close</button>
+      </div>
+    </form>

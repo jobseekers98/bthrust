@@ -1,0 +1,126 @@
+<style>
+    .model-header {
+        background: #c3e7fa;
+        padding: 15px;
+    }
+    .model-header .btn {
+        padding: 0.25rem 0.7rem;
+    }
+    .team_label {
+        width: 100% !important;
+    }
+    .team_label h3 {
+        display: block !important;
+        width: 100% !important;
+    }
+    .team-head {
+        padding: 10px 15px;
+        background: #fb6b2f;
+    }
+    .team-head h2 {
+        font-size: 18px;
+        font-weight: 600;
+        color: black;
+        margin-bottom: 0;
+        color: white;
+    }
+    .team-body {
+        padding: 10px 0px;
+        height: 160px;
+    }
+    .team-search {
+        position: relative;
+    }
+    .team-search .form-group {
+        margin-bottom: 0px;
+    }
+    .team-search .form-control {
+        width: 88%;
+        float: left;
+        height: 33px !important;
+    }
+    .team-search .addon {
+        float: right;
+        width: 12%;
+    }
+    .team-search .addon .btn {
+        background: #0080c7;
+        color: white;
+        padding: 0.45rem 0.5rem;
+    }
+    .team-inner {
+        margin-top: 10px;
+        height: 250px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .team-inner-1 {
+        margin-top: 15px;
+        padding: 0px 15px;
+    }
+    .team-inner-1 ul {
+        padding-left: 0;
+        list-style-type: none;
+        margin-bottom: 0px;
+    }
+    .team-inner-1 ul li {
+        color: black;
+        display: inline-block;
+        padding: 8px 8px;
+        background-color: #eaeaea;
+        margin: 0px 3px 5px;
+        border-radius: 5px;
+    }
+    .team-inner-1 ul li .close {
+        font-size: 10px;
+        padding-left: 8px;
+        padding-top: 6px;
+    }
+    .closed-btn {
+        color: white;
+        border: 1px solid #fff;
+        margin-top: 4px;
+        margin-right: 4px;
+        font-size: 8px;
+    }
+</style>
+<div class="team-popup">
+    <button class="btn btn-outline-danger pull-right closed-btn" mat-dialog-close>X</button>
+    <div class="team-head">
+        <h2>Select {{this.currentUser.Engineer}}s</h2>
+    </div>
+    <div class="team-body">
+        <div class="team-search clearfix">
+            <div class="form-group">
+                <input type="text" (keydown)="onkeypresssearchengineer($event.target.value)"
+                    (keyup)="onkeypresssearchengineer($event.target.value)" class="form-control" placeholder="Search">
+                <div class="addon">
+                    <button type="button" class="btn"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="team-inner">
+            <table *ngIf="service.EngineerLocalList.length > 0"
+                class="table table-striped- table-bordered table-hover table-checkable">
+                <tbody>
+                    <tr *ngFor="let x of service.EngineerLocalList">
+                        <td style="width:20px;" class="engineer-list-class" id="{{x.Id}}">
+                            <i style="cursor: pointer;" class="fa fa-square text-brand"
+                                (click)="AddEngineersToTicket(true, x.Id, x.EngineerName,x.EngineerLogo)"></i>
+                        </td>
+                        <td title="{{x.EngineerEmail}}">
+                            <img *ngIf="x.EngineerLogo.length === 0" width="20px"
+                                src="{{localPrependUrl}}/assets/svg/noimage.svg" />
+                            <img *ngIf="x.EngineerLogo.length > 0" width="20px"
+                                src="{{x.EngineerLogo}}">
+                            {{x.EngineerName}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p *ngIf="service.EngineerLocalList.length === 0">
+                No Record
+            </p>
+        </div>
+    </div>
+</div>

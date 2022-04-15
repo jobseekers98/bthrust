@@ -1,0 +1,126 @@
+<div class="modal-header select-new-properties">
+  <h5 class="modal-title" id="exampleModalLabel">Select or create a Client</h5>
+  <button class="btn btn-default pull-right" mat-dialog-close>x</button>
+</div>
+<div class="modal-body property-modal-body" *ngIf="IsCustomerCreate">
+  <div>
+      <p>Which client would you like to create this invoice for?</p>
+      <div class="row forn-group">
+          <div class="col-md-7">
+              <input type="text" (keydown)="onkeypress($event.target.value)" (keyup)="onkeypress($event.target.value)" class="form-control" placeholder="Search Clients...">
+          </div>
+          <div class="col-md-1 text-center" *ngIf="currentUser.Permissions.CustomerCreate">
+              or
+          </div>
+          <div class="col-md-4 text-right">
+              <a on class="btn btn-brand text-white " (click)="redirect()" *ngIf="currentUser.Permissions.CustomerCreate">
+                  <i class="la la-plus"></i> Create new client </a>
+          </div>
+      </div>
+      <div class="kt-portlet__body new_clients_properties_body">
+          <div class="kt-widget4 kt-scroll ps" data-scroll="true" data-height="220"
+              style="height: 220px; overflow: hidden;" id="style-3">
+
+              <div *ngFor = "let x of LocalList" class="kt-widget4__item create-quote-client-item" (click)="onClick(x)">
+                  <div class="kt-widget4__pic kt-widget4__pic--logo">
+                      <img *ngIf="x.CustomerLogo===null"
+                      width="30px"
+                      src="{{localPrependUrl}}/assets/svg/noimage.svg" alt="{{ x.CompanyName }}" title="{{ x.CompanyName }}" />
+                  <img *ngIf="x.CustomerLogo!==null"
+                      width="30px"
+                      src="{{ x.CustomerLogo }}" alt="{{ x.CompanyName }}" title="{{ x.CompanyName }}">
+                  </div>
+                  <div class="kt-widget4__info" *ngIf="!x.UseCompanyNameAsPrimaryName">
+                      <a class="kt-widget4__title" href="javascript:;">
+                         {{ x.NameTitle }} {{ x.FirstName }} {{ x.LastName }}
+                      </a>
+                      <i class="">
+                          {{ x.CompanyName }}
+                      </i>
+                  </div>
+                  <div class="kt-widget4__info" *ngIf="x.UseCompanyNameAsPrimaryName">
+                      <a class="kt-widget4__title" href="javascript:;">
+                              {{ x.CompanyName }}
+                      </a>
+                      <i class="">
+                              {{ x.NameTitle }} {{ x.FirstName }} {{ x.LastName }}
+                      </i>
+                   </div>
+                  <span class="kt-widget4__number kt-font-brand"> {{ x.Properties.length }} Properties</span>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="modal-body property-modal-body" *ngIf="!IsCustomerCreate">
+  <p>Create New Customer</p>
+  <div class="form-group row">
+      <div class="col-xl-2 no-spacing">
+          <div class="form-group">
+              <label for="" class="label whole-text-required">Title<span class="text-danger">*</span></label>
+              <select class="form-control" name="NameTitle" #NameTitle="ngModel" [class.is-invalid]="!isValidTitle"
+                  [(ngModel)]="customerservice.formData.NameTitle">
+                  <option value="">Title</option>
+                  <option value="Mrs.">Mrs.</option>
+                  <option value="Mr.">Mr.</option>
+                  <option value="Ms.">Ms.</option>
+                  <option value="Mss.">Mss.</option>
+                  <option value="Dr.">Dr.</option>
+              </select>
+
+          </div>
+      </div>
+      <div class="col-xl-5 no-spacing">
+          <div class="form-group">
+              <label for="" class="label whole-text-required">First Name<span class="text-danger">*</span></label>
+              <input name="FirstName" #FirstName="ngModel" [(ngModel)]="customerservice.formData.FirstName"
+                  class="form-control" placeholder="First Name" [class.is-invalid]="!isValidFirstname" min="0"
+                  maxlength="64">
+          </div>
+      </div>
+      <div class="col-xl-5 no-spacing">
+          <div class="form-group">
+              <label for="" class="label">Last Name <span class="text-danger">*</span></label>
+              <input name="LastName" #LastName="ngModel" [(ngModel)]="customerservice.formData.LastName" class="form-control"
+                  placeholder="Last Name" [class.is-invalid]="!isValidLastname" maxlength="64">
+          </div>
+      </div>
+      <div class="col-lg-12 no-spacing">
+          <label for="" class="label">Company Name <span class="text-danger">*</span></label>
+          <input name="CompanyName" #CompanyName="ngModel" [(ngModel)]="customerservice.formData.CompanyName"
+              class="form-control" placeholder="Company Name" maxlength="128"
+              [class.is-invalid]="!isValidCompanyname">
+      </div>
+      <div class="col-lg-12">
+          <span class="kt-switch kt-switch--sm kt-switch--brand"><label><input
+                      name="customerservice.formData.UseCompanyNameAsPrimaryName" #UseCompanyNameAsPrimaryName="ngModel"
+                      [(ngModel)]="customerservice.formData.UseCompanyNameAsPrimaryName" type="checkbox"><span></span>
+                  <strong>
+                      Use company name as the primary name
+                  </strong></label></span>
+      </div>
+  </div>
+  <div class="form-group row">
+      <div class="col-xl-6 no-spacing">
+          <div class="form-group">
+              <label for="" class="label">Email Address</label>
+              <input name="AddressStreet1" #AddressStreet1="ngModel" [(ngModel)]="customerservice.formData.AddressStreet1"
+                  class="form-control" placeholder="Email">
+          </div>
+      </div>
+      <div class="col-xl-6 no-spacing">
+          <div class="form-group">
+              <label for="" class="label">Phone Number </label>
+              <input name="AddressStreet2" #AddressStreet2="ngModel" [(ngModel)]="customerservice.formData.AddressStreet2"
+                  class="form-control" placeholder="Phone Number">
+          </div>
+      </div>
+  </div>
+
+  <div class="row">
+      <div class="modal-footer create-proprty-model-footer">
+          <button type="button" class="btn btn-secondary">Back</button>
+          <button type="submit" (click)="onSubmit()" class="btn btn-brand">Create</button>
+      </div>
+  </div>
+</div>

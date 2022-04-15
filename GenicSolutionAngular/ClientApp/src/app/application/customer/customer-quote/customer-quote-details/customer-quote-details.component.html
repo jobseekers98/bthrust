@@ -1,0 +1,495 @@
+
+<style>
+  .myshap {
+    width: 100%;
+  }
+
+  .job-for-tab-content .kt-portlet.kt-portlet--height-fluid.kt-widget19 {
+    border: 1px solid #eaeaea;
+    padding: 14px 9px 0 10px !important;
+  }
+
+  .dropdown-menu.show {
+    transform: translate3d(-61px, 38px, 0px) !important;
+  }
+
+  .dropdown-menu.show li {
+    border-bottom: 1px solid gainsboro;
+  }
+
+  .dropdown-menu.show li:last-child {
+    border-bottom: none;
+  }
+
+  .dropdown-menu.show li a {
+    padding: 6 0 6px 42px;
+  }
+
+  .dropdown-menu li:hover {
+    background-color: #ff8533 !important;
+  }
+
+  .dropdown-menu li a:hover {
+    color: #fff !important;
+  }
+</style>
+<div class="kt-subheader kt-grid__item" id="kt_subheader">
+  <div class="kt-container kt-container--fluid breadcud-kt-container ">
+    <div class="kt-subheader__main">
+      <h3 class="kt-subheader__title">
+        <a href="javascript:;" routerLink="/dashboard">
+          Dashboard
+        </a>
+      </h3>
+      <span class="kt-subheader__separator kt-hidden"></span>
+      <div class="kt-subheader__breadcrumbs">
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        <span class="kt-subheader__breadcrumbs-separator"></span>
+        <a href="javascript:;" routerLink="/quotes" class="kt-subheader__breadcrumbs-link"> Quotation's </a>
+      </div>
+      <span class="kt-subheader__separator kt-hidden"></span>
+      <div class="kt-subheader__breadcrumbs">
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        <span class="kt-subheader__breadcrumbs-separator"></span>
+        Quotation Details
+      </div>
+    </div>
+  </div>
+</div>
+<div class="new-request-main-section jobs-for-client-section">
+  <div class="kt-container kt-container--fluid">
+    <div class="new-requst-filter_form">
+      <div class="">
+        <div class="col-md-12 section-client-requst-form">
+          <div class="">
+            <div class="kt-section kt-customer-list-view-section uppercase">
+              <span class="flaticon-list pending-view-page-list"></span>
+              <span *ngIf="quoteService.QuoteData.Status === 1" class="view-pending">Draft</span>
+              <span *ngIf="quoteService.QuoteData.Status === 2" class="view-pending">Pending</span>
+              <span *ngIf="quoteService.QuoteData.Status === 3" class="view-pending">Approved</span>
+              <span *ngIf="quoteService.QuoteData.Status === 4" class="view-pending">Accepted</span>
+              <span *ngIf="quoteService.QuoteData.Status === 5" class="view-pending">Rejected</span>
+              <span *ngIf="quoteService.QuoteData.Status === 6" class="view-pending">Cancelled</span>
+            </div>
+          </div>
+          <div class="quote-view-top">
+            <div class="row">
+              <div class="col-md-7">
+                <div class="quote-1-top">
+                  <h2>{{quoteService.QuoteData.CompanyName}} ({{quoteService.QuoteData.CustomerName}})</h2>
+                  <div class="table-quote">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td><strong>Subject:</strong></td>
+                          <td>
+                            <p><span>
+                                {{quoteService.QuoteData.JobTitle}}
+                              </span></p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><strong>Billing Address:</strong></td>
+                          <td>
+                            <span class="kt-widget4__sub">
+                              <a href="https://maps.google.com/?q={{quoteService.QuoteData.CustomerAddress}}"
+                              target="_blank">
+                              <em *ngFor="let subCategory of quoteService.QuoteData.CustomerAddress?.split(',')">
+                              {{ subCategory }} <br>
+                              </em>  </a>
+                            </span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><strong>Contact Details:</strong></td>
+                          <td>
+                            <p><strong>Name: </strong><span>{{quoteService.QuoteData.CustomerName}}</span></p>
+                            <p><strong>Email: </strong><span>{{quoteService.QuoteData.CustomerEmail}}</span></p>
+                            <p><strong>Contact: </strong><span> {{quoteService.QuoteData.CustomerContactNo}}</span></p>
+
+                            <p><strong>Sales Rep: </strong><span> {{quoteService.QuoteData.SalesRepresentative}}</span>
+                            </p>
+                            <p><strong>Prepared By: </strong><span> {{quoteService.QuoteData.PreparedBy}}</span></p>
+                            <!-- <p><strong>CC Name: </strong><span> {{quoteService.QuoteData.CCName}}</span></p>
+                              <p><strong>CC Contact: </strong><span> {{quoteService.QuoteData.CCContact}}</span></p> -->
+                            <p><strong>Attention: </strong><span> {{quoteService.QuoteData.Attention}}</span></p>
+                            <!-- <p><strong>DID: </strong><span> {{quoteService.QuoteData.DID}}</span></p>
+                              <p><strong>FAX: </strong><span> {{quoteService.QuoteData.FAX}}</span></p> -->
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="quote-right-view text-right">
+                  <h2>Quote Details</h2>
+                  <div class="table-right-quote text-right">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td></td>
+                          <td>
+                            <a class="btn btn-primary"
+                              style="margin-right: 3px;color: white;padding: 6px 10px 7px 10px;cursor: pointer;"
+                              onclick="window.history.back()"> Back </a>
+                            <div class="btn-group btn-group-sm">
+                              <a href="javascript:void(0);" style="line-height: 19px;"
+                                class="btn btn-primary dropdown-toggle" data-toggle="dropdown">More Action's <span
+                                  class="caret"></span></a>
+                              <ul class="dropdown-menu" style="text-align: center;">
+                                <li><a (click)="downloadQuote(quoteService.QuoteData.Id)" #pdfDownlad
+                                    href="javascript:void(0);">Download PDF</a></li>
+                              </ul>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><strong>Quote Number:</strong></td>
+                          <td>
+                            <p> {{quoteService.QuoteData.QuoteId}}</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><strong>Date:</strong></td>
+                          <td>
+                            <p> {{quoteService.QuoteData.CreatedUtcDate | date}}</p>
+                          </td>
+                        </tr>
+                        <tr *ngIf="quoteService.QuoteData.InvoiceNo!">
+                          <td><strong>Invoice Number:</strong></td>
+                          <td>
+                            <p> {{quoteService.QuoteData.InvoiceNo}}</p>
+                          </td>
+                        </tr>
+                        <tr *ngIf="quoteService.QuoteData.TicketNo!">
+                          <td><strong>{{this.currentUser.Ticket}} Number:</strong></td>
+                          <td>
+                            <p> {{quoteService.QuoteData.TicketNo}}</p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 new-request-service-details-form">
+          <div class="row">
+            <div class="col-md-12 job-for-tab-content">
+              <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                <div class="row--">
+                  <div class="kt-portlet__body" style="padding:0px !important;">
+                    <div class="col-md-12-- kt-portlet-body-1" style="width:100%">
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="kt_widget11_tab1_content">
+                          <div class="kt-widget11">
+                            <div id="kt_repeater_1">
+                              <div id="kt_repeater_1">
+
+                                <div class="row quote-row" style="height: 50px;">
+
+                                  <div class="col-md-6">
+                                    <div class="product-service-colun-name">
+                                      PRODUCT / SERVICE
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="product-service-colun-name kt-align-right">
+                                      QTY.
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="product-service-colun-name kt-align-right">
+                                      UNIT COST
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="product-service-colun-name kt-align-right">
+                                      TOTAL
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="add-data-ticket-list-view"></div>
+                                <div class="row col-md-12" *ngFor="let p of quoteService.QuoteItemList">
+
+                                  <div class="col-md-6">
+                                    <div class="product-service-colun-name invoice-list-view-product-service">
+                                      <span>{{p.ItemName}}</span>
+                                      <p>{{p.ItemDescription}}</p>
+                                      <div *ngIf="p.InWarranty">
+                                        <small>{{p.WarrantyDays}} Days warranty</small>
+                                        <small *ngIf="p.UniqId.length > 0">({{p.UniqId}})</small>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="product-service-colun-name kt-align-right">
+                                      {{p.Qty}}
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="product-service-colun-name kt-align-right">
+                                      $ {{p.UnitCost.toFixed(2)}}
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="product-service-colun-name kt-align-right">
+                                      $ {{p.Total.toFixed(2)}}
+                                    </div>
+                                  </div>
+                                  <hr class="myshap" />
+                                </div>
+
+
+                                <div data-repeater-list="" class="col-lg-12">
+                                  <div class="add-invoicing-view-list-border"></div>
+                                  <div class="kt-widget4">
+                                    <div class="kt-widget4__item">
+                                      <div class="col-md-5 no-spacing">
+                                        <p>{{quoteService.QuoteData.ClientRemark}}</p>
+                                      </div>
+                                      <div class="col-md-7 invoicing-list-view-border-left">
+                                        <div class="kt-widget1">
+                                          <div class="kt-widget1__item">
+                                            <div class="kt-widget1__info">
+                                              <h3 class="kt-widget1__title">Subtotal</h3>
+
+                                            </div>
+                                            <span
+                                              class="kt-widget1__number kt-font-success">${{quoteService.QuoteData.SubTotal.toFixed(2)}}</span>
+                                          </div>
+                                          <div class="kt-widget1__item">
+                                            <div class="kt-widget1__info">
+                                              <h3 class="kt-widget1__title">Discount</h3>
+                                            </div>
+                                            <div class="discountSection">
+                                              <div class="discountShow">
+                                                <span
+                                                  class="kt-widget1__number kt-font-success">${{quoteService.QuoteData.DiscountAmount.toFixed(2)}}</span>
+                                              </div>
+                                            </div>
+
+                                          </div>
+                                          <div class="kt-widget1__item">
+                                            <div class="kt-widget1__info">
+                                              <h3 class="kt-widget1__title">Tax</h3>
+                                            </div>
+                                            <div class="tax-block">
+                                              <div class="TaxToHide">
+                                                <span
+                                                  class="kt-widget1__number kt-font-success">${{quoteService.QuoteData.TaxAmount.toFixed(2)}}</span>
+                                              </div>
+                                            </div>
+
+                                          </div>
+                                          <div class="kt-widget1__item quotes-list-view-total-info">
+                                            <div class="kt-widget1__info">
+                                              <h3 class="kt-widget1__title"><b>Total</b></h3>
+                                            </div>
+                                            <span
+                                              class="kt-widget1__number kt-font-primary"><b>${{quoteService.QuoteData.NetAmount.toFixed(2)}}</b></span>
+                                          </div>
+                                          <!-- <div class="kt-widget1__item">
+                                              <div class="kt-widget1__info">
+                                                <h3 class="kt-widget1__title title-deposite">Deposite balance</h3>
+
+                                              </div>
+                                              <span class="kt-widget1__number kt-font-danger price-deposite">${{quoteService.QuoteData.ReqDepositeAmount.toFixed(2)}}</span>
+                                            </div> -->
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+
+                                <div class="row--" style="display: none;">
+                                  <div class="clientViewSection">
+                                    <div class="form-group">
+                                      <span class="clView">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                        <label>Client View</label>
+                                      </span><br>
+                                      <label>
+                                        Adjust what your client will see on this quote. To change the default for ​all
+                                        future quotes, visit the
+                                        PDF Configuration.
+                                      </label>
+                                      <div class="kt-checkbox-inline">
+                                        <label class="kt-checkbox">
+                                          <i *ngIf="quoteService.QuoteData.ClientViewQty===true" class="fa fa-check"
+                                            aria-hidden="true"></i>
+                                          <i *ngIf="quoteService.QuoteData.ClientViewQty===false" class="fa fa-times"
+                                            aria-hidden="true"></i>
+                                          Quantities
+                                        </label>
+                                        <label class="kt-checkbox">
+                                          <i *ngIf="quoteService.QuoteData.ClientViewUnitCost===true"
+                                            class="fa fa-check" aria-hidden="true"></i>
+                                          <i *ngIf="quoteService.QuoteData.ClientViewUnitCost===false"
+                                            class="fa fa-times" aria-hidden="true"></i>
+                                          Unit Cost
+                                        </label>
+                                        <label class="kt-checkbox">
+                                          <i *ngIf="quoteService.QuoteData.ClientViewLineItemTotal===true"
+                                            class="fa fa-check" aria-hidden="true"></i>
+                                          <i *ngIf="quoteService.QuoteData.ClientViewLineItemTotal===false"
+                                            class="fa fa-times" aria-hidden="true"></i>
+                                          Line item totals
+                                        </label>
+                                        <label class="kt-checkbox">
+                                          <i *ngIf="quoteService.QuoteData.ClientViewTotal===true" class="fa fa-check"
+                                            aria-hidden="true"></i>
+                                          <i *ngIf="quoteService.QuoteData.ClientViewTotal===false" class="fa fa-times"
+                                            aria-hidden="true"></i>
+                                          Total
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                </div>
+
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="on-site-client-required">
+            <div class="kt-portlet kt-portlet--height-fluid kt-widget19 internal-notes-attachment">
+              <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                  <h3 class="kt-portlet__head-title">
+
+                    <strong>
+                     &nbsp;&nbsp;&nbsp;&nbsp; TERMS & CONDITIONS
+                    </strong>
+                  </h3>
+                </div>
+              </div>
+              <div class="kt-portlet__body">
+                <div class="kt-widget19__wrapper">
+                  <textarea name="QuoteTermsAndCondition" readonly
+                    [(ngModel)]="quoteService.QuoteData.QuoteTermsAndCondition" class="form-control"
+                    id="QuoteTermsAndCondition" rows="3" maxlength="1024" placeholder="QuoteTerms And Condition">
+                    </textarea>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="on-site-client-required">
+
+            <div class="kt-portlet kt-portlet--height-fluid kt-widget19 internal-notes-attachment">
+              <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                  <h3 class="kt-portlet__head-title">
+
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp;ADDITIONAL REMARKS <span class="tooltip-questionMark" data-container="body"
+                        data-toggle="kt-popover" data-placement="top"
+                        data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-original-title=""
+                        title="">?</span></strong>
+                  </h3>
+                </div>
+
+              </div>
+              <div class="kt-portlet__body">
+                <div class="kt-widget19__wrapper">
+                  <textarea readonly class="form-control" id="exampleTextarea" rows="3" placeholder="Note details"
+                    name="InternalNotes" [(ngModel)]="quoteService.QuoteData.InternalNotes"></textarea>
+
+                  <div class="row">
+                    <div class="col-md-1" *ngFor="let x of quoteService.QuoteAttachmentList">
+                      <div class="row">
+                        <generic-ticket-icon-attachment [(Name)]="x.AttachmentExtension" [(Path)]="x.Attachment"
+                          [Status]="1"></generic-ticket-icon-attachment>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                          <a href="{{x.Attachment}}" target="_blank"><i class="fa fa-download text-success"></i></a>
+                        </div>
+                        <div class="col-md-4"></div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="on-site-client-required" *ngIf="quoteService.QuoteData.SalesPersonSignature?.length > 0 || quoteService.QuoteData.CustomerSignature?.length > 0">
+            <div class="kt-portlet kt-portlet--height-fluid kt-widget19 internal-notes-attachment">
+              <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                  <h3 class="kt-portlet__head-title">
+                    <strong>
+                     &nbsp;&nbsp;&nbsp; Signature
+                    </strong>
+                  </h3>
+                </div>
+              </div>
+              <div class="kt-portlet__body">
+                <div class="kt-widget19__wrapper">
+                  <div class="row">
+                    <div class="col-lg-6" *ngIf="quoteService.QuoteData.SalesPersonSignature?.length > 0">
+                      <h6>Sale Person Signature</h6>
+                      <img src="{{ quoteService.QuoteData.SalesPersonSignature }}" />
+                    </div>
+                    <div class="col-lg-6" *ngIf="quoteService.QuoteData.CustomerSignature?.length > 0">
+                      <h6>Customer Signature</h6>
+                      <img src="{{ quoteService.QuoteData.CustomerSignature }}" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="emailConfirmPopup">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content myManFaContent">
+      <div class="modal-header" style="background-color: aqua;">
+        <p class="modal-title">EMAIL QUOTATION PDF!</p>
+        <button type="button" id="btnCLoseremail" class="close" data-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body my-Model-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p>Change mail here to send quotation pdf!</p>
+            <div class="editableEmailSection">
+              <input type="text" class="form-control" required placeholder="Email.." name="Email"
+                [(ngModel)]="emailIdToSendPDF" />
+            </div>
+            <div class="submitSEction">
+              <a href="javascript:void(0)" class="btn btn-success"
+                >Send</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

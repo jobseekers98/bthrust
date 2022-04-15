@@ -1,0 +1,184 @@
+<form autocomplete="off">
+  <div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+    <div class="kt-subheader kt-grid__item" id="kt_subheader">
+      <div class="kt-container kt-container--fluid ">
+        <div class="kt-subheader__main">
+          <h3 class="kt-subheader__title">
+            <a href="javascript:;" routerLink="/dashboard">
+              Dashboard
+            </a>
+          </h3>
+          <span class="kt-subheader__separator kt-hidden"></span>
+          <div class="kt-subheader__breadcrumbs">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i> Engineer Attendance
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="new-request-main-section jobs-for-client-section">
+      <div class="kt-container kt-container--fluid">
+        <div class="new-requst-filter_form">
+          <div class="row">
+            <div class="col-md-12 section-client-requst-form">
+              <div class="kt-section">
+                <div class="row p-3">
+                  <div class="col">
+                    <h5 class="text-center">
+                      Attendance is the concept of Engineer, appearing at a location for a previously scheduled event.
+                      Measuring attendance is a significant concern for many organizations, which can use such
+                      information to gauge the effectiveness of their efforts and to plan for future efforts<br>
+                    </h5>
+                  </div>
+                </div>
+                <div class="row p-3">
+                  <div class="col">
+                    <div class="panel panel-primary list-panel" id="list-panel">
+                      <a *ngIf="this.daystatus === 0" class="btn btn-success text-light" style="width:100%;" (click)="submit('start')" ><h1 style="cursor: pointer;">{{this.msg}} <i class="fa fa-play"></i></h1></a>
+                      <a *ngIf="this.daystatus === 1" class="btn btn-success text-light" style="width:100%;" (click)="submit('stop')" ><h1 class="bg-warning">{{this.Tmsg}}</h1><h1 style="cursor: pointer;">{{this.msg}} <i class="fa fa-pause"></i></h1></a>
+                      <a *ngIf="this.daystatus === 2" class="btn btn-success text-light" style="width:100%;" ><h1 class="bg-warning">{{this.Tmsg}}</h1><h1 style="cursor: no-drop;">{{this.msg}} </h1></a>
+                      <div class="progress" *ngIf="this.daystatus  === null" style="height: 3rem;">
+                        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated"
+                          role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                          style="width: 100%">Loading...</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <ng-container *ngIf="this.genicfrofile.formData.GeolocationAddress" >
+                <div *ngIf="this.daystatus === 0 || this.daystatus === 1" class="row p-3">
+                  <div class="col-md-6 shadow-sm p-3 bg-light">
+                    <div class="create_properties-filter_form">
+                      <div class="form-group row creat-properties-form-group">
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <span class="kt-switch kt-switch--icon"><label>
+                                <input type="checkbox" (change)="getUserLocation($event)"><span></span></label></span>
+                            <span class="swither-bootstrap-learn switcher-customer">
+                              <strong> Get your current location </strong>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row creat-properties-form-group">
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <label for="" class="label" *ngIf="service.formData.AddressStreet1.length > 0">Street
+                              1</label>
+                            <label for="" class="label text-danger"
+                              *ngIf="service.formData.AddressStreet1.length === 0">Street 1</label>
+                            <input name="AddressStreet1" #AddressStreet1="ngModel" ngx-google-places-autocomplete
+                              [options]="service.AutoCaptureParms.options"
+                              (onAddressChange)="handleAddressChange($event)"
+                              [(ngModel)]="service.formData.AddressStreet1" class="form-control" placeholder="Street 1"
+                              maxlength="128" autocomplete="false">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row creat-properties-form-group">
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <label for="" class="label" *ngIf="service.formData.AddressStreet2.length > 0">Street
+                              2</label>
+                            <label for="" class="label text-danger"
+                              *ngIf="service.formData.AddressStreet2.length === 0">Street 2</label>
+                            <input name="AddressStreet2" #AddressStreet2="ngModel"
+                              [(ngModel)]="service.formData.AddressStreet2" class="form-control" placeholder="Street 2"
+                              maxlength="128" autocomplete="false">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row creat-properties-form-group">
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <label for="" class="label">Unit No</label>
+                            <input name="AddressUnitNo" #AddressUnitNo="ngModel"
+                              [(ngModel)]="service.formData.AddressUnitNo" class="form-control" placeholder="Unit No"
+                              maxlength="16" autocomplete="false">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row creat-properties-form-group">
+                        <div class="col-lg-6 padding-right-mo-10" style="padding-right:0px;">
+                          <label for="" class="label" *ngIf="service.formData.AddressZipCode.length === 6">Postal
+                            Code</label>
+                          <label for="" class="label text-danger"
+                            *ngIf="service.formData.AddressZipCode.length < 6">Postal Code</label>
+                          <div class="form-group">
+                            <input name="AddressZipCode" #AddressZipCode="ngModel" min="5" maxlength="6"
+                              autocomplete="false" [(ngModel)]="service.formData.AddressZipCode" class="form-control"
+                              placeholder="Postal Code">
+                          </div>
+                        </div>
+                        <div class="col-lg-6 padding-left-mo-10" style="padding-left:0px;">
+                          <div class="form-group">
+                            <label for="" class="label"
+                              *ngIf="service.formData.AddressCountry.length > 0">Country</label>
+                            <label for="" class="label text-danger"
+                              *ngIf="service.formData.AddressCountry.length === 0">Country</label>
+                            <select name="AddressCountry" #AddressCountry="ngModel"
+                              [(ngModel)]="service.formData.AddressCountry" class="form-control height-50">
+                              <option value="">select</option>
+                              <option *ngFor="let x of countrylist" value="{{x.CountryName}}">
+                                {{x.CountryName}}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row creat-properties-form-group">
+                        <div class="col-lg-6 padding-right-mo-10" style="padding-right:0px;">
+                          <label for="" class="label">Latitude</label>
+                            <input name="Latitude" #Latitude="ngModel"
+                              [(ngModel)]="service.formData.Latitude" class="form-control" placeholder="Latitude"
+                              maxlength="32" autocomplete="false" disabled>
+                        </div>
+                        <div class="col-lg-6 padding-left-mo-10" style="padding-left:0px;">
+                          <div class="form-group">
+                            <label for="" class="label">Longitude</label>
+                            <input name="Longitude" #Longitude="ngModel"
+                              [(ngModel)]="service.formData.Longitude" class="form-control" placeholder="Longitude"
+                              maxlength="32" autocomplete="false" disabled>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <textarea name="Remarks" #Remarks="ngModel" [(ngModel)]="service.formData.Remarks" cols="30"
+                          rows="5" class="form-control" maxlength="500" placeholder="Remarks">
+                          </textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 map-property">
+                    <agm-map [latitude]="service.AutoCaptureParms.lat" [longitude]="service.AutoCaptureParms.lng" [zoom]="service.AutoCaptureParms.zoom" [scrollwheel]="false">
+                      <agm-marker [latitude]="service.AutoCaptureParms.lat" [longitude]="service.AutoCaptureParms.lng"></agm-marker>
+                    </agm-map>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="this.genicfrofile.formData.GeolocationImage" >
+                <div *ngIf="this.daystatus === 0 || this.daystatus === 1" class="row bg-light p-3">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                          <h6 *ngIf="genicfrofile.EngineerAttendance.EngineerAttendanceImage.length > 0">Location Images</h6>
+                          <h6 *ngIf="genicfrofile.EngineerAttendance.EngineerAttendanceImage.length === 0" class="text-danger">Location Images</h6>
+                  </div>
+                  <div class="col-sm-12 col-md-3 col-lg-2 mt-4 cust-border" *ngFor="let x of genicfrofile.EngineerAttendance.EngineerAttendanceImage; let k=index">
+                    <div class="img-overlay-container-container">
+                      <img src="data:image/{{x.Ext}};base64,{{x.Image}}" alt="Avatar" class="img-overlay-container-image img-thumbnail" style="width:100%">
+                      <div class="img-overlay-container-middle">
+                        <div class="img-overlay-container-text"><a (click)="removeAttachment(k)" href="javascript:"><i class="fa fa-trash text-danger"></i></a></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-1 col-md-1 col-lg-1 mt-4 cust-border-1">
+                    <a href="javascript:;"><i class="fa fa-plus" (click)="handleAttachment()"></i></a>
+                  </div>
+                </div>
+              </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

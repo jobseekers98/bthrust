@@ -1,0 +1,113 @@
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+  <div class="kt-subheader kt-grid__item" id="kt_subheader">
+    <div class="kt-container kt-container--fluid ">
+      <div class="kt-subheader__main">
+        <h3 class="kt-subheader__title">
+          <a href="javascript:;" routerLink="/engineer/engineer-dashboard">
+            Dashboard
+        </a>
+        </h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          <span class="kt-subheader__breadcrumbs-separator"></span> 
+          {{webParms.WebsiteParam.UrlPath}}
+        </div>
+      </div>
+      <div class="kt-subheader__toolbar">
+        <div class="kt-subheader__wrapper">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="customer-list-main-section">
+
+    <div class="kt-widget17">
+      <div class="kt-widget17__visual kt-widget17__visual--chart kt-portlet-fit--top kt-portlet-fit--sides" style="background-color: #fd397a">
+
+      </div>
+      <div class="kt-widget17__stats">
+        <div class="kt-widget17__items">
+        </div>
+        <generic-ticket-header-count [(Token)]="this.currentUser.Token"></generic-ticket-header-count>  
+        <div class="kt-section kt-drop-section">
+          <div class="kt-portlet__body customer-listing-datatable">
+            <div class="panel panel-primary list-panel" id="list-panel">
+              <div class="panel-heading list-panel-heading">
+                  <h1 class="panel-title list-panel-title"><i class="fa fa-list"></i> {{this.currentUser.Ticket}} List</h1>
+                
+              </div>
+              <div class="panel-body">          
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped- table-bordered table-hover table-checkable" *ngIf="ticketservice.Ticketlist">
+              <thead>
+                <tr>
+                  <th style="width: 5%;">{{this.currentUser.Ticket}}&nbsp;No</th>
+                  <th style="width: 25%;">{{this.currentUser.Ticket}} Date</th>
+                
+                  <th style="width: 25%;">Customer Info</th>
+                
+                  <th style="width: 26%;">Address</th>
+                  <th style="width: 2%;">Status</th>
+                  <th style="width: 15%">{{this.currentUser.Engineer}}</th>
+                  <th style="width: 2%;">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+            
+                  <tr *ngFor="let x of ticketservice.Ticketlist; let i=index; async"
+                  class="quote-list-view-info odd" role="row">
+                  <td>
+                    <span class="btn btn-label-primary">
+                        <a href="javascript:;" (click)="OpenEngineerTicketDetailDialog(x)"> {{ x.TicketId }}</a><br>
+                    </span>
+                    <span *ngIf="x.InvoiceNo?.length > 0"
+                      class="btn btn-label-danger" title="Defect Job">
+                      <a href="javascript:void(0)" (click)="ViewTicketRefDetails(x.TicketConvertedID)">
+                          {{x.InvoiceNo}}</a><br>
+                  </span>                                                                     
+                    <span class="recurring-ticket" *ngIf="x.TicketType === 'Recurring Ticket'">Recurring</span>
+                    <generic-ticket-feedback [(ratingcount)]="x.Rating" [Editable]="2" [(Status)]="x.Status"></generic-ticket-feedback>
+                </td>
+                <td>
+                  <generic-ticket-date-time-format [(A)]="x.AppointmentStart" [(B)]="x.AppointmentEnd" [(C)]="x.CreatedUtcDate" [T]="1"></generic-ticket-date-time-format>
+                  <span *ngIf="x.OneOffAppointmentDate === null" class="ticketstatus statusunallocated">UNALLOCATED</span>
+                  <span *ngIf="x.Rescheduled" class="ticketstatus statusrescheduled">RESECHEDULED</span>
+                </td>
+                <td>
+                    <strong>Name: </strong>  {{ x.CustomerName }} <br>
+                    <strong>Company: </strong>{{ x.CustomerCompanyName }}<br>
+                    <strong>Department: </strong>{{ x.DepartmentName }}
+                </td>
+                <td>{{ x.CustomerAddress }}</td>
+                <td class="text-center">
+                  <generic-ticket-status [(Status)]="x.Status" [(OverDueDays)]="x.OverDueDays" ></generic-ticket-status>
+                </td>
+                <td>
+                  <generic-ticket-team-list [(TicketTeams)]="x.TicketTeams" [(localPrependUrl)]="localPrependUrl"
+                  [(Reallocate)]="x.Reallocate" [(Id)]="x.Id" [(TicketId)]="x.TicketId"></generic-ticket-team-list>
+                </td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <a href="javascript:;" (click)="OpenEngineerTicketDetailDialog(x)"
+                                                style="line-height: 1px; background-color: #1dc9b7; border: #1dc9b7;"
+                                                class="btn btn-primary">View</a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot *ngIf="ticketservice.Ticketlist.length === 0" >
+                <tr style="text-align: center;">
+                  <td colspan="10" > No Result</td>
+                </tr>
+              </tfoot>
+            </table>
+              </div>
+            </div>        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

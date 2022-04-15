@@ -1,0 +1,48 @@
+.kt-portlet__head{padding:0px 15px !important;background-color:#eaeaea !important;}
+.customer-listing-detail-section label{font-size:14px !important;font-weight:600;color:black !important;}
+
+
+.service-nav-item a{background: #dedede  !important;border: none !important;text-align: center !important;border-bottom:3px solid transparent !important;}
+.new-requst-filter_form span.kt-switch.kt-switch--lg{display:block !important;}
+.new-requst-filter_form span.kt-switch.kt-switch--lg h4{font-size:16px;}
+.service-found-form-info li.nav-item.service-nav-item{border-right: 1px solid #bfbfbf;}
+.service-found-form-info li.nav-item.service-nav-item:last-child{border-right:0px !important;}
+.service-nav-item a.active, .service-nav-item a:hover{background-color:#21366B !important;border:none !important;color:white !important;text-align:center;border-bottom:none !important;} 
+ul#product-detail-tabs{width: 100% !important; border-bottom: none; padding: 0 1px;}
+ul#product-detail-tabs li {width: 25% !important;}
+ul#product-detail-tabs li a span h4{font-size: 13px;}
+.customer-listing-detail-section .kt-portlet .kt-portlet__head {
+    border-bottom: 1px solid #d9d7d7;
+    margin-bottom: 6px;
+}
+table.table.table-bordered.tblproduct-info tbody tr td:first-child{width: 28%; color: #000000; font-size: 13px; font-weight: 500;}
+div#list-panel {
+    width: 100%;
+}
+table.tbl-add-stock tbody tr{border: 1px solid #dedede;}
+table.tbl-add-stock tbody tr td:first-child{border-right: 1px solid #dedede;
+}
+.lbl-left{text-align: left;}
+.btupdateBach{ text-align: right; margin: 11px 18px;}
+.btupdateBach a{background-color: #0084ca;color: white; padding: 3px 27px;}
+.btupdateBach a:hover{cursor: pointer;}
+.undertd_text-Text{border-bottom: 1px solid #012939; border: 2px solid #ebe6e2; padding: 6px 10px; background: #f0f1f7;}
+.changeBachQty1{text-align: right !important; WIDTH: 50% !important;}
+.qtyErorrClass{border: 1px solid red !important; box-shadow: 4px 4px 0px red;}
+.myManFaContent{width: 50% !important;}
+.my-Model-body{margin: 0 auto !important;}
+td .sect-batch-date a:hover{border-bottom: 1px solid gray; color: #ffb822;}
+input.stockInput{
+    width: 13%;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid #ff8533;
+    border-left: 1px solid #ff8533;
+    border-right: 1px solid #ff8533;
+    margin-right: 5px;
+}
+.btnStockUpdate{
+    margin-left: 10px;
+    padding: 1px 5px;
+    color: #ff8533;
+}

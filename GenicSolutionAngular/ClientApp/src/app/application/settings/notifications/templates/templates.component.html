@@ -1,0 +1,192 @@
+<style>
+    li.custoTab {
+        width: 14% !important;
+    }
+.form-group label{
+  color: #000000;
+  padding: 6px 0;
+}
+    li.custoTab a span h4 {
+        font-size: 11px !important;
+        font-weight: 600 !important;
+    }
+
+    .tkthead h2 {
+        color: #000000;
+        margin-left: 11px !important;
+        margin-bottom: 11px;
+    }
+
+    .row.job-client-tabbing {
+        margin: 0px 3px 20px !important;
+        padding: 0px 0px 20px !important;
+        border-bottom: 1px solid #dadada !important;
+    }
+
+    ul.nav.nav-tabs.nav-tabs-line.nav-tabs-bold.nav-tabs-line-3x.nav-tabs-line-brand.tabbing-jobs-client {
+        margin: 0 0 0 !important;
+    }
+
+    .service-form-table-border tr td {
+        font-size: 15px;
+    }
+
+    .service-nav-item a {
+        background: #dedede !important;
+        border: none !important;
+        text-align: center !important;
+        border-bottom: 3px solid transparent !important;
+    }
+
+    .new-requst-filter_form span.kt-switch.kt-switch--lg {
+        display: block !important;
+    }
+
+    .new-requst-filter_form span.kt-switch.kt-switch--lg h4 {
+        font-size: 16px;
+    }
+
+    .service-found-form-info li.nav-item.service-nav-item {
+        border-right: 1px solid #bfbfbf;
+    }
+
+    .service-found-form-info li.nav-item.service-nav-item:last-child {
+        border-right: 0px !important;
+    }
+
+    .service-nav-item a.active,
+    .service-nav-item a:hover {
+        background-color: #21366B !important;
+        border: none !important;
+        color: white !important;
+        text-align: center;
+        border-bottom: none !important;
+    }
+    tbody tr td{text-align: center;}
+    tbody tr td:first-child{text-align: left;}
+    .kt-widget19__userpic{width: 100%;}
+    @media (max-width:1360px) {
+        .mytimesheet h2 {
+            font-size: 14px !important;
+        }
+
+        .mytimesheet .input-group {
+            margin-top: 0px !important;
+        }
+    }
+</style>
+
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+    <div class="kt-subheader kt-grid__item" id="kt_subheader">
+        <div class="kt-container kt-container--fluid breadcud-kt-container ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                    <a href="javascript:;" routerLink="/dashboard">
+                        Dashboard
+                    </a>
+                </h3>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <a href="javascript:;" routerLink="/settings" class="kt-subheader__breadcrumbs-link"> Settings </a>
+                </div>
+
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <a href="javascript:;" routerLink="/settings/notifications" class="kt-subheader__breadcrumbs-link"> Notification </a>
+                </div>
+
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    Manage Template's
+                </div>
+            </div>
+            <div class="kt-subheader__toolbar">
+
+            </div>
+        </div>
+    </div>
+    <div class="new-quote-main-section">
+        <div class="kt-container kt-container--fluid">
+            <div class="new-requst-filter_form create-new-client-popup">
+                <div class="accordion accordion-solid">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 service-found-form-info job-for-tab-content">
+                            <div class="kt-portlet__body">
+                                <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                                    <div class="kt-portlet__head">
+                                        <div class="kt-portlet__head-label">
+                                            <h3 class="kt-portlet__head-title" style="text-transform: uppercase;">
+                                                Email Templates
+                                            </h3>
+                                        </div>
+                                        <div class="backSection"> 
+                                            <a href="javascript:void(0)" (click)="addTemplate()" class="btn btn-primary">Add Template </a>
+                                            <a href="javascript:void(0)" (click)="back()" class="btn btn-primary">Back to Notifications </a> 
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="kt-widget19__wrapper">
+                                            <div class="kt-widget19__content">
+                                                <div class="kt-widget19__userpic">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                        
+                                        
+                                                          <table
+                                                            class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline">
+                                                            <thead>
+                                                              <tr>
+                                                                <th style="width: 5%;">#<br></th>
+                                                                <th style="width: 35%;">Module Name<br></th>
+                                                                <th style="width: 15%;">Status</th>
+                                                                <th style="width: 10%;">Actions</th>
+                                                              </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                              <tr *ngFor="let u of notifyService.NotificationTemplateList;let i=index">
+                                                                <td>{{i+1}}</td>
+                                                                <td>{{u.TemplateName}}</td>
+                                                                <td>
+                                                                  <div class="custom-switch custom-switch-label-yesno pl-0">
+                                                                    <input class="custom-switch-input ng-valid ng-dirty ng-touched"
+                                                                      (change)="onTemplateStatusChange(u.Id, i)" id="example_pm{{i}}" name="u.IsActive"
+                                                                      #u.IsActive="ngModel" [(ngModel)]="u.IsActive" type="checkbox">
+                                                                    <label class="custom-switch-btn" for="example_pm{{i}}"></label>
+                                                                  </div>
+                                                                </td>
+                                                                <td>
+                                                                  <span class="dropdown">
+                                                                    <a href="javascript:void(0)" (click)="openNotificationTemplate(u.Id)"
+                                                                      title="Edit Template" class="btn btn-sm btn-clean btn-icon btn-icon-md">
+                                                                      <i class="la la-edit"></i>
+                                                                    </a> &nbsp;
+                                                                    <!-- <a href="javascript:void(0)" title="Remove User" (click)="removeUser()"
+                                                                      class="btn btn-sm btn-clean btn-icon btn-icon-md">
+                                                                      <i class="la la-times"></i>
+                                                                    </a> -->
+                                                                  </span>
+                                                                </td>
+                                                              </tr>
+                                                            </tbody>
+                                                          </table>                        
+                                                        </div>
+                                                      </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

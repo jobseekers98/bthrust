@@ -1,0 +1,85 @@
+.ticket-attachment-container { position: relative; width: 100%; }
+.ticket-attachment-image {display: block; width: 100%; height: auto; }
+.ticket-attachment-overlay {position: absolute;bottom: 0;left: 100%;right: 0;background-color: rgb(162, 176, 180);overflow: hidden; width: 0;height: 100%;transition: .5s ease;text-align: center;}
+.ticket-attachment-container:hover .ticket-attachment-overlay {width: 100%;left: 0;}
+.ticket-attachment-text {white-space: nowrap; color: white; font-size: 20px; position: absolute; overflow: hidden;top: 50%; left: 50%; transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);}
+.ticket-attachment-remove-text {white-space: nowrap;color: white;font-size: 20px;position: absolute;overflow: hidden;bottom: 10%;left: 50%; transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);}
+.file-upload {position: relative;display: inline-block;}
+    .file-upload__label {display: block;padding: 0.2em 1.8em;color: #fff; background: #b1a4a4; border-radius: .4em;font-size: 22px; height: 40px;transition: background .3s;}
+    .file-upload__label:hover {cursor: pointer;background: rgb(204, 198, 198); }  
+    .file-upload__input {position: absolute;left: 0;top: 0;right: 0;bottom: 0;font-size: 1; width:0;height: 100%;opacity: 0;}
+    .myshap {
+        width: 100%;
+      }
+      .status-Info{
+        width: 80%;
+      }
+      .collapse-status{
+        margin: 0 0 0 59px;
+      }
+      .paywidth-section{
+        width: 90%;
+      }
+      .payButtonSection{
+        margin: 0 40px 0 0;
+        text-align: right;
+      }
+      .receiptsection{
+        padding: 4px 5px 4px 5px;
+      }
+      .paymnetprintsection{
+        text-align: right;
+      }
+    .paymentHeadingSection{
+      margin: 80px 0 31px 0;
+    }
+    .paymentHeadingSection h1{
+      font-size: 25px;
+    }
+    .totalAmountSection{
+      background: #84c529;
+        padding: 15px;
+        text-align: center;
+        color: #fff;
+        margin-top: 25px;
+        font-size: 16px;
+    }
+    .invoiceDtSection{
+      margin: 32px 0 0 -15px;
+    }
+    .invoiceDtSection h2{
+      font-size: 17px;
+        margin: 2px 0 12px 7px;
+    }
+    .paymnetprintsection a, .paymnetprintsection button{
+      background-color: black;
+        padding: 3px 8px;
+        margin: 0 4px 0 0;
+        color: white;
+        cursor: pointer;
+    }
+      .kt-section__title1{
+        margin-top: 0px;
+        top: 0;
+        color: #48465b;
+      }
+      .kt-section__title1 p{
+        font-size: 17px;
+        font-weight: 600;
+      }
+      .dropdown-menu{
+        min-width: 14rem !important;
+        left: -31px !important;
+      }
+      .dropdown-menu li{
+        border-bottom: 1px solid gainsboro;
+      }
+      .dropdown-menu li:last-child{
+        border-bottom: none;
+      }
+      .dropdown-menu li:hover{
+        background-color: #ff8533 !important;
+      }
+      .dropdown-menu li a:hover{
+        color: #fff !important;
+      }

@@ -1,0 +1,728 @@
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+  <div class="kt-subheader kt-grid__item" id="kt_subheader">
+    <div class="kt-container kt-container--fluid ">
+      <div class="kt-subheader__main">
+        <h3 class="kt-subheader__title">
+          <a href="javascript:;" routerLink="/dashboard">
+            Dashboard
+          </a>
+        </h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          <span class="kt-subheader__breadcrumbs-separator"></span>
+          <a routerLink="/customers" class="kt-subheader__breadcrumbs-link"> Customers </a>
+        </div>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          <span class="kt-subheader__breadcrumbs-separator"></span> {{btnText}} Customer
+        </div>
+      </div>
+    </div>
+  </div>
+  <form autocomplete="off" (submit)="onSubmit()">
+    <input type="hidden" name="Id" [value]="service.formData.Id" [(ngModel)]="service.formData.Id">
+    <div class="customer-form">
+      <ul class="nav nav-tabs">
+        <li><a data-toggle="tab" href="#home" class="active"><i class="fa fa-phone"></i>CONTACT DETAILS</a></li>
+        <li><a data-toggle="tab" href="#menu0" (click)="AddDefaultContactPerson()"><i class="fa fa-users"></i>CONTACT
+            PERSON</a></li>
+        <li><a data-toggle="tab" href="#menu1"><i class="fa fa-home"></i>PROPERTY ADDRESS</a></li>
+        <li><a data-toggle="tab" href="#menu2" [ngClass]="service.formData.IsAddressSame ? 'action-is-disabled' : ''"><i
+              class="fa fa-credit-card"></i>
+              <ng-content *ngIf="currentUser.Permissions.EngineerType; then hqaddress; else billingaddress"></ng-content>
+              <ng-template #billingaddress>BILLING ADDRESS</ng-template>
+              <ng-template #hqaddress>HQ ADDRESS</ng-template>
+              </a></li>
+        <li><a data-toggle="tab" href="#menu3"><i class="fa fa-bell"></i> NOTIFICATIONS & REMARKS</a></li>
+      </ul>
+    </div>
+
+    <div class="tab-content customer-tab-content">
+      <div id="home" class="tab-pane fade in active">
+        <div class="col-md-12 col-sm-12 col-xs-12 padd-left-0">
+          <div class="accordion accordion-solid accordion-toggle-svg" id="accordionExample8">
+            <div class="card">
+              <div class="col-md-9">
+                <div id="collapseOne8" class="collapse show" aria-labelledby="headingOne8"
+                  data-parent="#accordionExample8">
+                  <div class="card-body padd-left-0 padd-right-0">
+                    <div class="kt-portlet__body create-new-client-portlet-body">
+                      <div class="kt-section kt-section--first">
+                        <div class="kt-section__body">
+                          <div class="row">
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label for="" class="label">Profile Logo</label>
+                                <div class="customer-logo-container" *ngIf="!loader" >
+                                  <img *ngIf="service.formData.CustomerLogo?.length === 0"
+                                    class="customer-logo-container-image" alt="Avatar"
+                                    src="{{localPrependUrl}}/assets/svg/noimage.svg" />
+                                  <img *ngIf="service.formData.CustomerLogo?.length > 0" class="customer-logo-container-image" alt="Avatar"
+                                    src="{{service.formData.CustomerLogo}}">
+                                  <div class="customer-logo-container-overlay">
+                                    <div class="row">
+                                      <div class="col-md-6">
+                                        <a href="javascript:;"><i class="fa fa-camera"
+                                            onclick="document.getElementById('customerprofilelogo').click()"></i></a>
+                                        <input (change)="picked($event)" class="custom-file-input-0" #File
+                                          id="customerprofilelogo" type="file">
+                                      </div>
+                                      <div class="col-md-6">
+                                        <a href="javascript:;"><i class="fa fa-trash text-danger"
+                                            (click)="RemoveProfileImage()"></i></a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="customer-logo-container" *ngIf="loader" >
+                                  <img class="customer-logo-container-image" alt="Avatar"
+                                  src="{{localPrependUrl}}/assets/svg/spinner.svg" />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-lg-9">
+                              <div class="row no-spacing">
+                                <div class="col-xl-2 no-spacing">
+                                  <div class="form-group">
+                                    <label for="" class="label whole-text-required">Title<span
+                                        class="text-danger">*</span></label>
+                                    <select class="form-control" name="NameTitle" #NameTitle="ngModel"
+                                      [class.is-invalid]="!isValidTitle" [(ngModel)]="service.formData.NameTitle">
+                                      <option value="">Title</option>
+                                      <option value="Mrs.">Mrs.</option>
+                                      <option value="Mr.">Mr.</option>
+                                      <option value="Ms.">Ms.</option>
+                                      
+                                      <option value="Dr.">Dr.</option>
+                                    </select>
+
+                                  </div>
+                                </div>
+                                <div class="col-xl-5 no-spacing">
+                                  <div class="form-group">
+                                    <label for="" class="label whole-text-required">First Name<span
+                                        class="text-danger">*</span></label>
+                                    <input name="FirstName" #FirstName="ngModel"
+                                      [(ngModel)]="service.formData.FirstName" class="form-control"
+                                      placeholder="First Name" [class.is-invalid]="!isValidFirstname" min="0"
+                                      maxlength="64">
+                                  </div>
+                                </div>
+                                <div class="col-xl-5 no-spacing">
+                                  <div class="form-group">
+                                    <label for="" class="label">Last Name</label>
+                                    <input name="LastName" #LastName="ngModel" [(ngModel)]="service.formData.LastName"
+                                      class="form-control" placeholder="Last Name" [class.is-invalid]="!isValidLastname"
+                                      maxlength="64">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <div class="col-lg-12">
+                                  <label for="" class="label">Company Name <span class="text-danger">*</span></label>
+                                  <input name="CompanyName" #CompanyName="ngModel"
+                                    [(ngModel)]="service.formData.CompanyName" class="form-control"
+                                    placeholder="Company Name" maxlength="128" [class.is-invalid]="!isValidCompanyname">
+                                </div>
+                                <div class="col-lg-12">
+                                  <span class="kt-switch kt-switch--icon"><label><input
+                                        name="service.formData.UseCompanyNameAsPrimaryName"
+                                        #UseCompanyNameAsPrimaryName="ngModel"
+                                        [(ngModel)]="service.formData.UseCompanyNameAsPrimaryName"
+                                        type="checkbox"><span></span></label></span>
+                                  <span class="swither-bootstrap-learn switcher-customer">
+                                    <strong>
+                                      Use company name as the primary name
+                                    </strong>
+                                  </span>                                 
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <input type="hidden" name="EmailArray.Id" [value]="service.EmailArray.Id"
+                          [(ngModel)]="service.EmailArray.Id">
+                        <h3 class="kt-section__title padd-top-10 mrg-bottom-10">Contact Details</h3>
+                        <table class="table table-striped properies-table-info ng-star-inserted"
+                          *ngIf="service.EmailArrayList.length > 0">
+                          <thead>
+                            <tr role="row">
+                              <th width="15%">Title</th>
+                              <th width="70%">Email</th>
+                              <th width="15%">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let x of service.EmailArrayList">
+                              <td>{{x.Key}}</td>
+                              <td>{{x.Value}}</td>
+                              <td>
+                                <div class="btn-group btnOpp">
+                                  <a href="javascript:;" class="btn-Edit" (click)="populateEmailArrayofKey(x)"
+                                    title="edit">
+                                    <i class="la la-edit"></i>
+                                  </a>
+                                  <a href="javascript:;" class=" btn-remove" (click)="deleteArrayofKey(x.Id)"
+                                    title="remove">
+                                    <i class="la la-trash-o"></i>
+                                  </a>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="kt-section__body contact-bton">
+                          <div class="form-group form-group-last row">
+                            <div class="col-lg-12">
+                              <div class="form-group row align-items-center">
+                                <div class="row no-spacing col-md-12">
+                                  <div class="col-md-2">
+                                    <div class="form-group">
+                                      <label for="" class="label">Title<span class="text-danger">*</span></label>
+                                      <select class="form-control kt-select2" name="EmailArray.Key"
+                                        [class.is-invalid]="!isValidEmailTitle" #EmailArray.Key="ngModel"
+                                        [(ngModel)]="service.EmailArray.Key">
+                                        <option value="">Select</option>
+                                        <option value="Main">Main</option>
+                                        <option value="Work">Work</option>
+                                        <option value="Home">Home</option>
+
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-8 no-spacing">
+                                    <div class="form-group">
+                                      <label for="" class="label">Enter Email <span class="text-danger">*</span></label>
+                                      <input name="EmailArray.Value" #EmailArray.Value="ngModel"
+                                        [(ngModel)]="service.EmailArray.Value" class="form-control"
+                                        [class.is-invalid]="!isValidEmail" placeholder="Email" maxlength="64">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2 bt-cont">
+                                    <a href="javascript:;"
+                                      (click)="AddArrayList(service.EmailArray.Id,service.EmailArray.Key,service.EmailArray.Value, 'Email')"
+                                      class="btn-sm btn btn-label-info btn-bold">
+                                      {{arrayemailbutton}}
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr />
+                        <input type="hidden" name="MobileArray.Id" [value]="service.MobileArray.Id"
+                          [(ngModel)]="service.MobileArray.Id">
+                        <table class="table table-striped properies-table-info ng-star-inserted"
+                          *ngIf="service.MobileArrayList.length > 0">
+                          <thead>
+                            <tr role="row">
+                              <th width="15%">Title</th>
+                              <th width="70%">Phone Number</th>
+                              <th width="15%">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let x of service.MobileArrayList">
+                              <td>{{x.Key}}</td>
+                              <td>{{x.Value}}</td>
+                              <td>
+
+                                <div class="btn-group btnOpp">
+                                  <a href="javascript:;" class="btn-Edit" (click)="populatePhoneArrayofKey(x)"
+                                    title="edit">
+                                    <i class="la la-edit"></i>
+                                  </a>
+                                  <a href="javascript:;" class=" btn-remove" (click)="deleteArrayofKey(x.Id)"
+                                    title="remove">
+                                    <i class="la la-trash-o"></i>
+                                  </a>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="kt-section__body contact-bton">
+                          <div class="form-group form-group-last row">
+                            <div class="col-lg-12">
+                              <div class="form-group row align-items-center">
+                                <div class="row no-spacing col-md-12">
+                                  <div class="col-md-2">
+                                    <div class="form-group">
+                                      <label for="" class="label">Title <span class="text-danger">*</span></label>
+                                      <select class="form-control kt-select2" name="MobileArray.Key"
+                                        [class.is-invalid]="!isValidPhoneTitle" #MobileArray.Key="ngModel"
+                                        [(ngModel)]="service.MobileArray.Key">
+                                        <option value="">Select</option>
+                                        <option value="Main">Main</option>
+                                        <option value="Work">Work</option>
+                                        <option value="Mobile">Mobile</option>
+                                        <option value="Home">Home</option>
+                                        <option value="Fax">Fax</option>
+                                        <option value="Other">Other</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-8 no-spacing">
+                                    <div class="form-group">
+                                      <label for="" class="label">Phone Number <span
+                                          class="text-danger">*</span></label>
+                                      <input name="MobileArray.Value" #MobileArray.Value="ngModel"
+                                        [(ngModel)]="service.MobileArray.Value" class="form-control"
+                                        [class.is-invalid]="!isValidPhone" placeholder="Phone Number"
+                                        (keypress)="numberOnly($event)">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2 bt-cont">
+                                    <a href="javascript:;"
+                                      (click)="AddArrayList(service.MobileArray.Id,service.MobileArray.Key,service.MobileArray.Value,'Phone')"
+                                      class="btn-sm btn btn-label-info btn-bold">
+                                      {{arrayphonebutton}}
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+   <div id="menu0" class="tab-pane">
+      <div class="col-md-12 col-sm-12 col-xs-12 padd-left-0">
+        <div class="accordion accordion-solid accordion-toggle-svg" id="accordionExample81">
+          <div class="card">
+            <div class="col-md-12">
+              <div id="collapseOne81" class="collapse show" aria-labelledby="headingOne8"
+                   data-parent="#accordionExample81">
+                <div class="card-body padd-left-0 padd-right-0">
+                  <div class="kt-portlet__body create-new-client-portlet-body">
+                    <div class="kt-section kt-section--first">
+            
+                     
+                      <h3 class="kt-section__title padd-top-10 mrg-bottom-10">Contact Details</h3>
+                      <table class="table table-striped properies-table-info ng-star-inserted"
+                             *ngIf="service.CustomerContactPersonList.length > 0">
+                        <thead>
+                          <tr role="row">
+                            <th width="10%">Is Default</th>
+                            <th width="50%">Contact Person Name</th>
+                            <th width="15%">Email</th>
+                            <th width="15%">Phone</th>
+                            <th width="10%">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let x of service.CustomerContactPersonList; let w=index; async">
+                            <td>
+                              <span *ngIf="x.IsDefaultContact" class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill">
+                                Yes
+                              </span>
+                              <span *ngIf="!x.IsDefaultContact" class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill">
+                               <a href="javascript:;" (click)="SetDefaultCntactPerson(x.Id)">No</a>
+                              </span>
+                             
+                            </td>
+                            <td>{{x.NameTitle}} {{x.FirstName}} {{x.LastName}}</td>
+                            <td>{{x.Email}}</td>
+                            <td>{{x.Phone}}</td>
+                            <td>
+                              <div class="btn-group btnOpp">
+                                <a href="javascript:;"
+                                   class="btn-Edit"
+                                   (click)="PupulatcontactPerson(x)"
+                                   title="edit">
+                                  <i class="la la-edit"></i>
+                                </a>
+                                <a href="javascript:;"
+                                   class=" btn-remove"
+                                   (click)="RemovecontactPerson(x.Id)"
+                                   title="remove">
+                                  <i class="la la-trash-o"></i>
+                                </a>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="kt-section__body contact-bton">
+                        <input type="hidden" name="service.CustomerContactPersonData.Id" [value]="service.CustomerContactPersonData.Id"
+                               [(ngModel)]="service.CustomerContactPersonData.Id">
+                        <input type="hidden" name="service.CustomerContactPersonData.CustomerId" [value]="service.CustomerContactPersonData.CustomerId"
+                               [(ngModel)]="service.CustomerContactPersonData.CustomerId">
+                        <input type="hidden" name="service.CustomerContactPersonData.IsDefaultContact" [value]="service.CustomerContactPersonData.IsDefaultContact"
+                               [(ngModel)]="service.CustomerContactPersonData.IsDefaultContact">
+                        <div class="form-group form-group-last row">
+                          <div class="col-lg-12">
+                            <div class="form-group row align-items-center">
+                              <div class="row no-spacing col-md-12">
+
+                                <div class="col-xl-2 no-spacing">
+                                  <div class="form-group">
+                                    <label for="" class="label whole-text-required">
+                                      Title<span class="text-danger">*</span>
+                                    </label>
+                                    <select class="form-control" name="CustomerContactPersonData.NameTitle" #service.CustomerContactPersonData.NameTitle="ngModel"
+                                            [class.is-invalid]="!isContactersonTitle" [(ngModel)]="service.CustomerContactPersonData.NameTitle">
+                                      <option value="">Title</option>
+                                      <option value="Mrs.">Mrs.</option>
+                                      <option value="Mr.">Mr.</option>
+                                      <option value="Ms.">Ms.</option>
+                                     
+                                      <option value="Dr.">Dr.</option>
+                                    </select>
+
+                                  </div>
+                                </div>
+                                <div class="col-xl-2 no-spacing">
+                                  <div class="form-group">
+                                    <label for="" class="label whole-text-required">
+                                      First Name<span class="text-danger">*</span>
+                                    </label>
+                                    <input name="CustomerContactPersonData.FirstName" #service.CustomerContactPersonData.FirstName="ngModel" [(ngModel)]="service.CustomerContactPersonData.FirstName"
+                                           class="form-control" placeholder="First Name" [class.is-invalid]="!isContactersonFirstName"
+                                           min="0" maxlength="64">
+                                  </div>
+                                </div>
+                                <div class="col-xl-2 no-spacing">
+                                  <div class="form-group">
+                                    <label for="" class="label">Last Name <span class="text-danger">*</span></label>
+                                    <input name="CustomerContactPersonData.LastName" #service.CustomerContactPersonData.LastName="ngModel" [(ngModel)]="service.CustomerContactPersonData.LastName"
+                                           class="form-control" placeholder="Last Name" [class.is-invalid]="!isContactersonLastName" maxlength="64">
+                                  </div>
+                                </div>
+                                <div class="col-xl-2 no-spacing">
+                                  <div class="form-group">
+                                    <label for="" class="label whole-text-required">
+                                      Mobile No
+                                    </label>
+                                    <input name="CustomerContactPersonData.Phone" #service.CustomerContactPersonData.Phone="ngModel" [(ngModel)]="service.CustomerContactPersonData.Phone"
+                                           class="form-control" placeholder="Phone No"
+                                           min="0" maxlength="64" (keypress)="numberOnly($event)">
+                                  </div>
+                                </div>
+                                <div class="col-xl-2 no-spacing">
+                                  <div class="form-group">
+                                    <label for="" class="label">Email<span class="text-danger">*</span></label>
+                                    <input name="CustomerContactPersonData.Email" #service.CustomerContactPersonData.Email="ngModel" [(ngModel)]="service.CustomerContactPersonData.Email"
+                                           class="form-control" placeholder="Email" maxlength="64">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-2 bt-cont">
+                                  <a (click)="AddContactPersonData()"
+                                     *ngIf="service.CustomerContactPersonData.NameTitle !== ''  && service.CustomerContactPersonData.FirstName !== '' && service.CustomerContactPersonData.LastName !== '' && service.CustomerContactPersonData.Email !== ''"
+                                     class="btn-sm btn btn-label-info btn-bold">
+                                    {{arraycontactbutton}}
+                                  </a>
+                                  <a href="javascript:;" 
+                                    *ngIf="service.CustomerContactPersonData.NameTitle === ''  || service.CustomerContactPersonData.FirstName === '' || service.CustomerContactPersonData.LastName === '' || service.CustomerContactPersonData.Email === ''"
+                                    class="btn-sm btn btn-label-info btn-bold" style="background-color:  lightgray !important;">
+                                  {{arraycontactbutton}}
+                                </a>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+      <div id="menu1" class="tab-pane fade">
+        <input type="hidden" name="propertyservice.formData.Id" [value]="propertyservice.formData.Id"
+          [(ngModel)]="propertyservice.formData.Id">
+        <input type="hidden" name="propertyservice.formData.Latitude" [value]="propertyservice.formData.Latitude"
+          [(ngModel)]="propertyservice.formData.Latitude">
+        <input type="hidden" name="propertyservice.formData.Longitude" [value]="propertyservice.formData.Longitude"
+          [(ngModel)]="propertyservice.formData.Longitude">
+        <input type="hidden" name="propertyservice.formData.CustomerId" [value]="propertyservice.formData.CustomerId"
+          [(ngModel)]="propertyservice.formData.CustomerId">
+        <div class="kt-section__body">
+          <div class="col-md-10">
+            <div class="kt-widget4">
+              <div class="col-md-12">
+              </div>
+            </div>
+            <div *ngIf="propertyservice.Propertylist.length <= 1" class="kt-section__body">
+              <div class="form-group row">
+                <div class="col-lg-9">
+                  <label for="" class="label">Address line 1</label>
+                  <input name="propertyservice.formData.AddressStreet1"
+                    #propertyservice.formData.AddressStreet1="ngModel" ngx-google-places-autocomplete
+                    [options]="options" (onAddressChange)="handleAddressChange($event, 'mailing')"
+                    [(ngModel)]="propertyservice.formData.AddressStreet1" class="form-control"
+                    placeholder="Address line 1">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-lg-9">
+                  <label for="" class="label">Address line 2</label>
+                  <input name="propertyservice.formData.AddressStreet2"
+                    #propertyservice.formData.AddressStreet2="ngModel"
+                    [(ngModel)]="propertyservice.formData.AddressStreet2" class="form-control"
+                    placeholder="Address line 2">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-lg-9">
+                  <label for="" class="label">Address Unit No</label>
+                  <input name="propertyservice.formData.AddressUnitNo" #propertyservice.formData.AddressUnitNo="ngModel"
+                    [(ngModel)]="propertyservice.formData.AddressUnitNo" class="form-control"
+                    placeholder="Address Unit No">
+                </div>
+              </div>
+
+              <!-- <div class="form-group row">
+              <div class="col-lg-9">
+                <label for="" class="label">Add City</label>
+                <input name="propertyservice.formData.AddressCity" #propertyservice.formData.AddressCity="ngModel"
+                  [(ngModel)]="propertyservice.formData.AddressCity" class="form-control" placeholder="City">
+              </div>
+            </div> -->
+              <div class="form-group row" style="display: none;">
+                <div class="col-lg-9">
+                  <label for="" class="label">Add State</label>
+                  <input name="propertyservice.formData.AddressState" #propertyservice.formData.AddressState="ngModel"
+                    [(ngModel)]="propertyservice.formData.AddressState" class="form-control" placeholder="State">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-lg-9">
+                  <label for="" class="label">Postal Code</label>
+                  <div class="input-group">
+                    <input name="propertyservice.formData.AddressZipCode"
+                      #propertyservice.formData.AddressZipCode="ngModel"
+                      [(ngModel)]="propertyservice.formData.AddressZipCode" class="form-control"
+                      placeholder="Postal Code">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <a href="javascript:;" *ngIf="propertyservice.formData.AddressZipCode?.length === 6"
+                          (click)="findAddressByPostalCode(propertyservice.formData.AddressZipCode, 'mailing')">
+                          <i *ngIf="!IsPostalSearch" class="la la-refresh"></i>
+                          <i *ngIf="IsPostalSearch" class="la la-spinner fa-spin"></i>
+                        </a></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-lg-9">
+                  <label for="" class="label">Select Country</label>
+                  <select name="propertyservice.formData.AddressCountry"
+                    #propertyservice.formData.AddressCountry="ngModel"
+                    [(ngModel)]="propertyservice.formData.AddressCountry" class="form-control">
+                    <option value="">select</option>
+                    <option *ngFor="let x of countrylist" value="{{x.CountryName}}">
+                      {{x.CountryName}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+
+            <div *ngIf="propertyservice.Propertylist.length > 1">
+              <input type="hidden" name="propertyservice.formData.AddressStreet1"
+                [value]="propertyservice.formData.AddressStreet1" [(ngModel)]="propertyservice.formData.AddressStreet1">
+              <input type="hidden" name="propertyservice.formData.AddressStreet2"
+                [value]="propertyservice.formData.AddressStreet2" [(ngModel)]="propertyservice.formData.AddressStreet2">
+              <input type="hidden" name="propertyservice.formData.AddressUnitNo"
+                [value]="propertyservice.formData.AddressUnitNo" [(ngModel)]="propertyservice.formData.AddressUnitNo">
+              <input type="hidden" name="propertyservice.formData.AddressCity"
+                [value]="propertyservice.formData.AddressCity" [(ngModel)]="propertyservice.formData.AddressCity">
+              <input type="hidden" name="propertyservice.formData.AddressState"
+                [value]="propertyservice.formData.AddressState" [(ngModel)]="propertyservice.formData.AddressState">
+              <input type="hidden" name="propertyservice.formData.AddressZipCode"
+                [value]="propertyservice.formData.AddressZipCode" [(ngModel)]="propertyservice.formData.AddressZipCode">
+              <input type="hidden" name="propertyservice.formData.AddressCountry"
+                [value]="propertyservice.formData.AddressCountry" [(ngModel)]="propertyservice.formData.AddressCountry">
+              <h5>This client has multiple properties</h5>
+              <p>Multiple properties can only be edited individually. To edit a property, select it from the client's
+                list
+                of properties.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="menu2" class="tab-pane fade">
+        <div class="kt-section__body">
+          <div class="padd-top-10">
+            <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand">
+              <input type="checkbox" name="IsAddressSame" #IsAddressSame="ngModel"
+                [(ngModel)]="service.formData.IsAddressSame" (change)="billingaddresssame()">
+              address is the same as mailing address
+              <span></span>
+            </label>
+          </div>
+          <div class="form-group row">
+            <div class="col-lg-9">
+              <label for="" class="label">Add Address Line 1</label>
+              <input name="AddressStreet1" #AddressStreet1="ngModel" ngx-google-places-autocomplete [options]="options"
+                (onAddressChange)="handleAddressChange($event, 'billing')" [(ngModel)]="service.formData.AddressStreet1"
+                [ngClass]="service.formData.IsAddressSame ? 'form-control action-is-disabled' : 'form-control'"
+                [readonly]="service.formData.IsAddressSame" placeholder="Add Address Line 1">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-lg-9">
+              <label for="" class="label">Add Address Line 2</label>
+              <input name="AddressStreet2" #AddressStreet2="ngModel" [(ngModel)]="service.formData.AddressStreet2"
+                [ngClass]="service.formData.IsAddressSame ? 'form-control action-is-disabled' : 'form-control'"
+                [readonly]="service.formData.IsAddressSame" placeholder="Add Address Line 2">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-lg-9">
+              <label for="" class="label">Address Unit No</label>
+              <input name="AddressUnitNo" #AddressUnitNo="ngModel" [(ngModel)]="service.formData.AddressUnitNo"
+                [ngClass]="service.formData.IsAddressSame ? 'form-control action-is-disabled' : 'form-control'"
+                [readonly]="service.formData.IsAddressSame" placeholder="Address Unit No">
+            </div>
+          </div>
+          <!-- <div class="form-group row">
+          <div class="col-lg-9">
+            <label for="" class="label">Add City</label>
+            <input name="AddressCity" #AddressCity="ngModel" [(ngModel)]="service.formData.AddressCity"
+              [ngClass]="service.formData.IsAddressSame ? 'form-control action-is-disabled' : 'form-control'"
+              [readonly]="service.formData.IsAddressSame" placeholder="City">
+          </div>
+        </div> -->
+          <div class="form-group row" style="display: none;">
+            <div class="col-lg-9">
+              <label for="" class="label">Add State</label>
+              <input name="AddressState" #AddressState="ngModel" [(ngModel)]="service.formData.AddressState"
+                [ngClass]="service.formData.IsAddressSame ? 'form-control action-is-disabled' : 'form-control'"
+                [readonly]="service.formData.IsAddressSame" placeholder="State">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-lg-9">
+              <label for="" class="label">Postal Code</label>
+              <div class="input-group">
+                <input name="AddressZipCode" #AddressZipCode="ngModel" [(ngModel)]="service.formData.AddressZipCode"
+                  [ngClass]="service.formData.IsAddressSame ? 'form-control action-is-disabled' : 'form-control'"
+                  [readonly]="service.formData.IsAddressSame" class="form-control" placeholder="Postal Code">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <a href="javascript:;" *ngIf="service.formData.AddressZipCode?.length === 6"
+                      (click)="findAddressByPostalCode(service.formData.AddressZipCode, 'billing')">
+                      <i *ngIf="!IsPostalSearch" class="la la-refresh"></i>
+                      <i *ngIf="IsPostalSearch" class="la la-spinner fa-spin"></i>
+                    </a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-lg-9">
+              <label for="" class="label">Select Your Country</label>
+              <select name="AddressCountry" #AddressCountry="ngModel" [(ngModel)]="service.formData.AddressCountry"
+                [ngClass]="service.formData.IsAddressSame ? 'form-control action-is-disabled' : 'form-control'"
+                [disabled]="service.formData.IsAddressSame">
+                <option value="">select</option>
+                <option *ngFor="let x of countrylist" value="{{x.CountryName}}">
+                  {{x.CountryName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="menu3" class="tab-pane fade">
+        <div class="card-body padd-left-0">
+          <span class="kt-switch kt-switch--icon"><label><input name="service.formData.ClientReminders"
+                #ClientReminders="ngModel" [(ngModel)]="service.formData.ClientReminders"
+                type="checkbox"><span></span></label></span>
+          <span class="swither-bootstrap-learn switcher-customer">
+            <strong>
+              Client reminders
+            </strong> sent for upcoming visits.
+          </span>
+          <div class="col-md-12 padd-top-10 padd-left-0 padd-right-0">
+            <span class="kt-switch kt-switch--icon"><label><input
+                  name="service.formData.ClientFollowUpEmails" #ClientFollowUpEmails="ngModel"
+                  [(ngModel)]="service.formData.ClientFollowUpEmails" type="checkbox"><span></span></label></span>
+            <span class="swither-bootstrap-learn switcher-customer">
+              <strong>
+                Client
+                follow-up emails
+              </strong> when you close a job.
+            </span>
+          </div>
+          <div class="col-md-12 padd-top-10 padd-left-0 padd-right-0">
+            <span class="kt-switch kt-switch--icon"><label><input
+                  name="service.formData.PrintEmailOnWorkOuder" #PrintEmailOnWorkOuder="ngModel"
+                  [(ngModel)]="service.formData.PrintEmailOnWorkOuder" type="checkbox"><span></span></label></span>
+            <span class="swither-bootstrap-learn switcher-customer">
+              <strong>
+                Print email on document
+              </strong> when you download.
+            </span>
+          </div>
+          <div class="col-md-9" *ngIf="this.service.CustomerDepartmentTypeList.length > 1">
+            <div class="form-group" *ngIf="currentUser.Type === 'Admin'">
+              <label for="" class="label">Department<span class="text-danger">*</span></label>
+              <ngx-select-dropdown tabindex="0" class="myselectClass"
+                  (change)="changeValue($event)" [multiple]="true"
+                  name="CustomerDepartmentItems"
+                  [(ngModel)]="CustomerDepartmentItems"
+                  [config]="config" [options]="CustomerDepartmentList">
+              </ngx-select-dropdown>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <label for="RefferdBy" class="label">Additional Remarks</label>
+            <textarea class="form-control ng-pristine ng-valid ng-touched" name="RefferdBy" #RefferdBy="ngModel"
+              [(ngModel)]="service.formData.RefferdBy" rows="5" placeholder="Additional Remarks">
+            </textarea>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="creat-new-quote-footer clearfix">
+        <div class="col-md-9">
+          <div class="new-request-footer-bottom pull-right">
+            <button type="button" routerLink="/customers" class="btn btn-secondary">CANCEL</button>
+            &nbsp;&nbsp;
+            <div class="btn-group">
+              <button class="btn btn-brand" type="submit">
+                {{ createbuttontext }}
+
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>

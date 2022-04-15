@@ -1,0 +1,295 @@
+<style>
+  .addInvoiceSection {
+    text-align: right;
+    /*padding-top: 14px;*/
+  }
+
+  .invoice-summary {
+    margin: 66px 0 0 0;
+  }
+
+  .summary-head h3 {
+    border-bottom: 2px solid #ccc3c3;
+    width: 59%;
+    margin: 0 0px 18px 2px;
+    font-size: 17px;
+  }
+  .dropdown-menu{
+    min-width: 80px !important;
+  }
+  .dropdown-menu li{
+    border-bottom: 1px solid gainsboro;
+  }
+  .dropdown-menu li:last-child{
+    border-bottom: none;
+  }
+  .dropdown-menu li:hover{
+    background-color: #ff8533 !important;
+  }
+  .dropdown-menu li a:hover{  
+    color: #fff !important;
+  }
+ .btn.btn-primary{background-color:#FF8533;border-color:transparent;}
+</style>
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+  <div class="kt-subheader kt-grid__item" id="kt_subheader">
+    <div class="kt-container kt-container--fluid breadcud-kt-container ">
+      <div class="kt-subheader__main">
+        <h3 class="kt-subheader__title">
+          <a href="javascript:;" routerLink="/dashboard">
+            Dashboard
+        </a>
+        </h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          <span class="kt-subheader__breadcrumbs-separator"></span> 
+          Invoices
+        </div>
+      </div>
+      <div class="kt-subheader__toolbar">
+        <div class="kt-subheader__wrapper">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="customer-list-main-section">
+
+    <div class="kt-widget17">
+      <div class="kt-widget17__stats">
+        <div class="row mrg-top-10">
+          <div class="col-lg-3">
+            <div class="kt-portlet kt-iconbox kt-iconbox--brand kt-iconbox--animate-slower">
+              <div class="kt-portlet__body">
+                <div class="kt-iconbox__body">
+                  <div class="kt-iconbox__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                        <path d="M8,3 L8,3.5 C8,4.32842712 8.67157288,5 9.5,5 L14.5,5 C15.3284271,5 16,4.32842712 16,3.5 L16,3 L18,3 C19.1045695,3 20,3.8954305 20,5 L20,21 C20,22.1045695 19.1045695,23 18,23 L6,23 C4.8954305,23 4,22.1045695 4,21 L4,5 C4,3.8954305 4.8954305,3 6,3 L8,3 Z" id="Combined-Shape" fill="#000000" opacity="0.3"></path>
+                        <path d="M11,2 C11,1.44771525 11.4477153,1 12,1 C12.5522847,1 13,1.44771525 13,2 L14.5,2 C14.7761424,2 15,2.22385763 15,2.5 L15,3.5 C15,3.77614237 14.7761424,4 14.5,4 L9.5,4 C9.22385763,4 9,3.77614237 9,3.5 L9,2.5 C9,2.22385763 9.22385763,2 9.5,2 L11,2 Z" id="Combined-Shape" fill="#000000"></path>
+                        <rect id="Rectangle-152" fill="#000000" opacity="0.3" x="10" y="9" width="7" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy-2" fill="#000000" opacity="0.3" x="7" y="9" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy-3" fill="#000000" opacity="0.3" x="7" y="13" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy" fill="#000000" opacity="0.3" x="10" y="13" width="7" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy-5" fill="#000000" opacity="0.3" x="7" y="17" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy-4" fill="#000000" opacity="0.3" x="10" y="17" width="7" height="2" rx="1"></rect>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="kt-iconbox__desc">
+                    <h3 class="kt-iconbox__title">
+                      <a class="kt-link">Total Invoices</a>
+                    </h3>
+                    <div class="kt-iconbox__content">
+                      {{TotalInvoice}} Total Invoices
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="kt-portlet kt-iconbox kt-iconbox--success kt-iconbox--animate-slow">
+              <div class="kt-portlet__body">
+                <div class="kt-iconbox__body">
+                  <div class="kt-iconbox__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                        <path d="M8,3 L8,3.5 C8,4.32842712 8.67157288,5 9.5,5 L14.5,5 C15.3284271,5 16,4.32842712 16,3.5 L16,3 L18,3 C19.1045695,3 20,3.8954305 20,5 L20,21 C20,22.1045695 19.1045695,23 18,23 L6,23 C4.8954305,23 4,22.1045695 4,21 L4,5 C4,3.8954305 4.8954305,3 6,3 L8,3 Z" id="Combined-Shape" fill="#000000" opacity="0.3"></path>
+                        <path d="M11,2 C11,1.44771525 11.4477153,1 12,1 C12.5522847,1 13,1.44771525 13,2 L14.5,2 C14.7761424,2 15,2.22385763 15,2.5 L15,3.5 C15,3.77614237 14.7761424,4 14.5,4 L9.5,4 C9.22385763,4 9,3.77614237 9,3.5 L9,2.5 C9,2.22385763 9.22385763,2 9.5,2 L11,2 Z" id="Combined-Shape" fill="#000000"></path>
+                        <rect id="Rectangle-152" fill="#000000" opacity="0.3" x="10" y="9" width="7" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy-2" fill="#000000" opacity="0.3" x="7" y="9" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy-3" fill="#000000" opacity="0.3" x="7" y="13" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy" fill="#000000" opacity="0.3" x="10" y="13" width="7" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy-5" fill="#000000" opacity="0.3" x="7" y="17" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy-4" fill="#000000" opacity="0.3" x="10" y="17" width="7" height="2" rx="1"></rect>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="kt-iconbox__desc">
+                    <h3 class="kt-iconbox__title">
+                      <a class="kt-link">Draft Invoices</a>
+                    </h3>
+                    <div class="kt-iconbox__content">
+                        {{TotalDraftInvoice}} Draft Invoices
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="kt-portlet kt-iconbox kt-iconbox--warning kt-iconbox--animate-fast">
+              <div class="kt-portlet__body">
+                <div class="kt-iconbox__body">
+                  <div class="kt-iconbox__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                        <path d="M8,3 L8,3.5 C8,4.32842712 8.67157288,5 9.5,5 L14.5,5 C15.3284271,5 16,4.32842712 16,3.5 L16,3 L18,3 C19.1045695,3 20,3.8954305 20,5 L20,21 C20,22.1045695 19.1045695,23 18,23 L6,23 C4.8954305,23 4,22.1045695 4,21 L4,5 C4,3.8954305 4.8954305,3 6,3 L8,3 Z" id="Combined-Shape" fill="#000000" opacity="0.3"></path>
+                        <path d="M11,2 C11,1.44771525 11.4477153,1 12,1 C12.5522847,1 13,1.44771525 13,2 L14.5,2 C14.7761424,2 15,2.22385763 15,2.5 L15,3.5 C15,3.77614237 14.7761424,4 14.5,4 L9.5,4 C9.22385763,4 9,3.77614237 9,3.5 L9,2.5 C9,2.22385763 9.22385763,2 9.5,2 L11,2 Z" id="Combined-Shape" fill="#000000"></path>
+                        <rect id="Rectangle-152" fill="#000000" opacity="0.3" x="10" y="9" width="7" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy-2" fill="#000000" opacity="0.3" x="7" y="9" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy-3" fill="#000000" opacity="0.3" x="7" y="13" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy" fill="#000000" opacity="0.3" x="10" y="13" width="7" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy-5" fill="#000000" opacity="0.3" x="7" y="17" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy-4" fill="#000000" opacity="0.3" x="10" y="17" width="7" height="2" rx="1"></rect>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="kt-iconbox__desc">
+                    <h3 class="kt-iconbox__title">
+                      <a class="kt-link">Paid Invoices</a>
+                    </h3>
+                    <div class="kt-iconbox__content">
+                      {{TotalPaidInvoices}} Paid Invoices
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="kt-portlet kt-iconbox kt-iconbox--danger kt-iconbox--animate-faster">
+              <div class="kt-portlet__body">
+                <div class="kt-iconbox__body">
+                  <div class="kt-iconbox__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                        <path d="M8,3 L8,3.5 C8,4.32842712 8.67157288,5 9.5,5 L14.5,5 C15.3284271,5 16,4.32842712 16,3.5 L16,3 L18,3 C19.1045695,3 20,3.8954305 20,5 L20,21 C20,22.1045695 19.1045695,23 18,23 L6,23 C4.8954305,23 4,22.1045695 4,21 L4,5 C4,3.8954305 4.8954305,3 6,3 L8,3 Z" id="Combined-Shape" fill="#000000" opacity="0.3"></path>
+                        <path d="M11,2 C11,1.44771525 11.4477153,1 12,1 C12.5522847,1 13,1.44771525 13,2 L14.5,2 C14.7761424,2 15,2.22385763 15,2.5 L15,3.5 C15,3.77614237 14.7761424,4 14.5,4 L9.5,4 C9.22385763,4 9,3.77614237 9,3.5 L9,2.5 C9,2.22385763 9.22385763,2 9.5,2 L11,2 Z" id="Combined-Shape" fill="#000000"></path>
+                        <rect id="Rectangle-152" fill="#000000" opacity="0.3" x="10" y="9" width="7" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy-2" fill="#000000" opacity="0.3" x="7" y="9" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy-3" fill="#000000" opacity="0.3" x="7" y="13" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy" fill="#000000" opacity="0.3" x="10" y="13" width="7" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy-5" fill="#000000" opacity="0.3" x="7" y="17" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-152-Copy-4" fill="#000000" opacity="0.3" x="10" y="17" width="7" height="2" rx="1"></rect>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="kt-iconbox__desc">
+                    <h3 class="kt-iconbox__title">
+                      <a class="kt-link">Unpaid Invoices</a>
+                    </h3>
+                    <div class="kt-iconbox__content">
+                      {{TotalUnpaidInvoice}} Unpaid Invoices
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kt-section kt-drop-section">
+          <div class="kt-section__content">
+            <div class="row">
+              <div class="col-md-12 no-spacing">
+                <div class="">
+                  <div class="col" style="margin: 0;padding: 0;" *ngIf="currentUser.Permissions.InvoiceCreate">
+                    <div class="addInvoiceSection">
+                      <a href="javascript:void(0);" (click)="OpenAddCustomerToInvoiceDialog()" class="btn btn-primary">New Invoice</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="kt-portlet__body customer-listing-datatable">
+            <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="panel panel-primary list-panel" id="list-panel">
+                    <div class="panel-heading list-panel-heading">
+                        <h1 class="panel-title list-panel-title"><i class="fa fa-list"></i> Invoice List</h1>
+                        
+                    </div>
+                    <div class="panel-body">
+                      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline" style="width: 1064px;">
+                        <thead>
+                          <tr role="row">
+                            <th style="width: 5%;">Invoice&nbsp;No</th> 
+                            <th style="width: 15%;">Date</th>
+                            <th style="width: 10%;">Title</th>
+                            <th style="width: 30%;">Customer Info</th>
+                            <th style="width: 20%;">Amount</th>
+                            <th style="width: 10%;">Status</th>
+                            <th style="width: 10%;">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="invoice-list-view-info odd" role="row" *ngFor="let i of invoiceService.InvoiceList; let ii=index">
+                            <td tabindex="0" class="sorting_1">
+                              <span class="btn btn-label-danger btn-pill invoices-btn"><a href="javascript:;" (click)="getInvoiceDetails(i)">{{i.InvoiceId}}</a><br></span>
+                              <span *ngIf="i.TicketId!" class="btn btn-label-primary"><a href="javascript:;" (click)="OnTicketDetails(i.InvoiceConvertedID)">{{i.TicketId}}</a><br></span>
+                              <span *ngIf="i.QuoteId!" class="btn btn-label-success btn-pill reallocated-one"><a href="javascript:;" (click)="viewQuoteDetails(i.InvoiceConvertedID)">{{i.QuoteId}}</a></span>
+                            </td> 
+                             <td>
+                                <strong> Invoice Date: </strong> <br> {{i.InvoiceDate | date}} <br>
+                                <strong> Due Date: </strong> <br> {{i.InvoiceDueDate | date}}
+                              </td>
+                             <td>{{i.InvoiceTitle}}</td>
+                            <td>
+                           <strong>Name: </strong>   {{i.CustomerName}} <br>
+                           <strong>Company: </strong>   {{i.CompanyName}}
+                            </td>
+                          
+                            
+                            <td>
+                             <strong>Total: </strong> ${{i.SubTotal}} <br>
+                             <!-- <strong>Discount: </strong> ${{i.DiscountAmount}} <br> -->
+                             <strong>Tax: </strong> ${{i.TaxAmount}} <br>
+                             <strong>Net Amount: </strong> ${{i.SubTotal}} <br>
+                             <strong>Deposite: </strong> ${{i.ReqDepositeAmount}}
+                            </td>
+                            <td>
+                              <span *ngIf="i.Status==='Draft'">
+                                <span class="btn btn-label-info"> Draft </span>
+                              </span>
+                              <span *ngIf="i.Status==='SendOutPaid'">
+                                <span class="btn btn-label-primary"> Paid </span>
+                              </span>
+                              <span *ngIf="i.Status==='SendOutUnPaid'">
+                                <span class="btn btn-label-primary">Un Paid </span>
+                              </span> 
+                              <span *ngIf="i.Status==='SendOutOverDue'">
+                                <span class="btn btn-label-primary">Over Due </span>
+                              </span> 
+                              <span *ngIf="i.Status==='PartiallyPaid'">
+                                <span class="btn btn-label-primary">Partially Paid </span>
+                              </span> 
+                              <span *ngIf="i.Status==='cancelled'">
+                                <span class="btn btn-label-warning"> Cancelled </span>
+                              </span>
+                            </td>
+                            <td nowrap="">
+                                <span class="dropdown">
+                                  <div class="btn-group btn-group-sm">
+                                    <button class="btn dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                      <li *ngIf="currentUser.Permissions.InvoiceEdit"><a (click)="popolateInvoice(i)" href="javascript:void(0);">Edit</a></li>
+                                      <li *ngIf="currentUser.Permissions.InvoiceView"><a (click)="getInvoiceDetails(i)" href="javascript:void(0);">View</a></li>
+                                    </ul>
+                                  </div>
+                                </span>
+                              </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!--end: Datatable -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

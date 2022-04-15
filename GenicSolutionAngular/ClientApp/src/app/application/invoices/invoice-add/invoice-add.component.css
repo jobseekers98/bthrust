@@ -1,0 +1,163 @@
+.col-md-2.right-side-doller-form-info{
+    top: 0 !important;
+  }
+    .quoteBody {
+      padding: 0 24px;
+    }
+  
+    .quote-head {
+      padding: 0 !important;
+    }
+  
+    .bodyTitle {
+      padding: 20px 0 0 8px;
+    }
+  
+    .qtbdsecton {
+      padding-bottom: 39px !important;
+      margin-top: 0px !important;
+    }
+  
+    .qtAddressSection {
+      margin: 0 5px;
+    }
+  
+      .qtAddressSection label {
+        color: #48465b !important;
+        font-size: 15px !important;
+        margin-top: 10px;
+        font-weight: 600;
+      }
+  
+    .ttlQty {
+      margin: 40px 0 0 0;
+    }
+  
+    .btnremoveProduct {
+      margin: 5px 0 0 0;
+      float: right;
+    }
+  
+    .CLRemark {
+      width: 100%;
+    }
+  
+    i.fa.fa-eye {
+      margin: 13px 0 0 0;
+      color: green;
+      padding: 0 10px 0 0;
+      font-size: 20px;
+    }
+  
+    .clView label {
+      font-size: 17px;
+      color: #258000;
+    }
+  
+    .requestedSectionInput {
+      text-align: right;
+      width: 100%;
+    }
+  
+      .requestedSectionInput input {
+        width: 33%;
+        display: inline-block;
+      }
+  
+      .requestedSectionInput select {
+        width: 22%;
+        display: inline-block;
+        height: 50px;
+        margin: 0 12px 0 0;
+      }
+  
+      .requestedSectionInput a {
+        margin: 0 0 0 30px;
+        color: red;
+      }
+  
+    .discountSection {
+      width: 100%;
+    }
+  
+      .discountSection input {
+        width: 25%;
+        display: inline-block;
+        margin: 0 0 0 23px;
+      }
+  
+      .discountSection select {
+        width: 20%;
+        display: inline-block;
+        height: 50px;
+        margin: 0 20px 0 10px;
+      }
+  
+      .discountSection a {
+        margin: 0 0px 0 29px;
+        color: red;
+      }
+  
+    .discountInput {
+      text-align: right;
+    }
+  
+    .tax-block {
+      width: 100%;
+      text-align: right;
+    }
+  
+      .tax-block a {
+        margin-left: 3px;
+      }
+      .taxToshow select{
+        width: 44%;
+        display: inline-block;
+        margin: 0 0 0 11px;
+    }
+    .btbtb{
+      line-height: 24px;
+      margin: 0 0 0 4px;
+      font-size: 15px;
+      color: white;
+    }
+    
+  .radio-service label{
+      font-size: 18px;
+      color: #4e2d2d;
+      margin-right: 22px;
+      font-weight: 600;
+  }
+  .radio-service label input{margin-right:10px;}
+  .radio-service select{height:50px !important;}
+  .form-group.row.align-items-center.quote-for-client-alig-item-center {
+    border-bottom: 1px solid #80808029 !important;
+  }
+  .htBorder th {
+    border: 1px solid #22366b29;
+  }
+  .htBorder td{
+    border: 1px solid #dbdfe7 !important;
+  }
+  .htBorder span{
+    font-size: 18px;
+    color: #48465b;
+    text-transform: uppercase;
+  }
+  .htBorder input{
+    width: 50%;
+    height: 34px !important;
+  }
+
+
+  .ticket-attachment-container { position: relative; width: 100%; }
+    .ticket-attachment-image {display: block; width: 100%; height: auto; }
+    .ticket-attachment-overlay {position: absolute;bottom: 0;left: 100%;right: 0;background-color: rgb(162, 176, 180);overflow: hidden; width: 0;height: 100%;transition: .5s ease;text-align: center;}
+    .ticket-attachment-container:hover .ticket-attachment-overlay {width: 100%;left: 0;}
+    .ticket-attachment-text {white-space: nowrap; color: white; font-size: 20px; position: absolute; overflow: hidden;top: 50%; left: 50%; transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);}
+    .ticket-attachment-remove-text {white-space: nowrap;color: white;font-size: 20px;position: absolute;overflow: hidden;bottom: 10%;left: 50%; transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);}
+    .file-upload {position: relative;display: inline-block;}
+    .file-upload__label {display: block;padding: 0.2em 1.8em;color: #fff; background: #b1a4a4; border-radius: .4em;font-size: 22px; height: 40px;transition: background .3s;}
+    .file-upload__label:hover {cursor: pointer;background: rgb(204, 198, 198); }  
+    .file-upload__input {position: absolute;left: 0;top: 0;right: 0;bottom: 0;font-size: 1; width:0;height: 100%;opacity: 0;}
+    .switcher-customer { top:-15px;position: relative; }

@@ -1,0 +1,39 @@
+
+.nav-tabs .nav-item .nav-link{background-color:#E7E7E7;color:black;font-size:17px !important;text-transform:uppercase !important;padding:12px 40px;}
+.nav-tabs .nav-item .nav-link i{color:black;}
+.nav-tabs .nav-item .nav-link.active i, .nav-tabs .nav-item .nav-link:hover i{color:white !important}
+.nav-tabs .nav-item .nav-link.active, .nav-tabs .nav-item .nav-link:active, .nav-tabs .nav-item .nav-link:hover{background-color:#22366B;color:white}
+.tab-content .card{background-color:transparent !important;border:none;}
+.tab-content .card .card-header{background-color:#dedede;border-bottom:none;margin-bottom:0px;}
+.tab-content .card .card-header .card-title{margin-bottom:0px;font-size:18px;font-weight:600;color:black;}
+.kt-portlet__body.create-new-client-portlet-body .form-group{margin-bottom:15px;}
+.kt-portlet__body.create-new-client-portlet-body .form-group label{font-size:14px !important;font-weight:600;color:black !important;}
+#menu1 .form-control{font-size: 14px;height: 50px;}
+#menu1 .form-group{margin-bottom:15px !important;}
+#menu1 .form-group label{font-size:14px !important;color:black !important;font-weight:600 !important;}
+.creat-new-quote-footer{margin:20px 0px;}
+.new-quote-main-section .card{background-color:white !important;padding-top:15px;padding-bottom:15px !important;}
+.new-requst-filter_form.create-new-client-popup{position:sticky;bottom:0;}
+.creat-new-quote-footer{padding:10px 0px;background-color:white;}
+.new-quote-main-section .kt-section__body{padding:10px !important;background-color:white;}
+.no-padding{padding:0px;}
+.collapse:not(.show){display:block;}
+.form-group.creat-properties-form-group{width:100%;}
+span.Ac a {background-color: #2c77f4; padding: 5px 8px; border-radius: 0px; margin-right: 1px;}
+span.Ac a i{color: white;}
+.switcher-customer { top:-20px;position: relative; }
+span.Av a {background-color: #0b8a03; padding: 5px 8px; border-radius: 0px; margin-right: 1px;}
+span.Av a i{color: white;}
+
+span.At a {background-color: #8a033bbf; padding: 5px 8px; border-radius: 0px; margin-right: 1px;}
+span.At a i{color: white;}
+span.spnUnrigh i {color: #ff0000a6; font-size: 19px;}
+span.spnrigh i {color: #0b8a03; font-size: 19px;}
+.btlZonelist tr td {color: #000000; font-weight: 600;}
+.bt-newZone{background-color: #2c77f4;color: white !important;padding: 2px 14px;margin-left: 6px;cursor: pointer;}
+#EngiViewGeoMapId { height: 100%;}
+.cl-map-class{height: 450px;}
+.btnclose-ectc {text-align: right;}
+.btnclose-ectc button{background-color: #ec978a; color: red; border: none; padding: 6px 13px; margin-bottom: 4px;}
+.geoCustomMatClass{padding: 0 !important; margin: 0 !important;}
+.mat-dialog-container{padding: 0 !important;}

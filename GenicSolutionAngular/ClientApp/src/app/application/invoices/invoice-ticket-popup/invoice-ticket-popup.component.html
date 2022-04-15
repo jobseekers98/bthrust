@@ -1,0 +1,48 @@
+<style>
+.ticketDetailsInfo{
+  width: 100%;
+    border: 1px solid #2c77f41c;
+    padding: 5px 0 0 5px;
+}
+</style>
+<div class="modal-header select-new-properties">
+    <h5 class="modal-title" id="exampleModalLabel">Select Quote or {{this.currentUser.Ticket}} or create new Invoice</h5>
+    <button class="btn btn-default pull-right" mat-dialog-close>x</button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+        <div class="col-md-5 ">
+            <p>Which {{this.currentUser.Ticket}} would you like to select for invoice ?</p>
+            <div class="row col-md-12">
+                <input type="email" (keydown)="onTicketKeypress($event.target.value)" (keyup)="onTicketKeypress($event.target.value)" class="form-control" placeholder="Search ticket...">
+                <div class="kt-widget4__info ticketDetailsInfo" *ngFor="let x of LocalTicketList">
+                    <a (click)="onTicketClick(x)" class="kt-widget4__title">
+                      {{ x.CustomerName }} ({{ x.TicketId }}) | {{x.Status}}
+                    </a>
+                    <p (click)="onTicketClick(x)" style="cursor: pointer;" class="kt-widget4__text">
+                      {{ x.Title }}
+                    </p>
+                  </div>
+              </div>
+        </div>
+        <div class="col-md-5">
+            <p>Which quote would you like to select for invoice ?</p>
+                <input type="email" (keydown)="onQuoteKeypress($event.target.value)" (keyup)="onQuoteKeypress($event.target.value)" class="form-control" placeholder="Search Quote...">
+                <div class="kt-widget4__info ticketDetailsInfo invoice-select-text" *ngFor="let q of LocalQuoteList">
+                    <a (click)="onQuoteClick(q)" class="kt-widget4__title">
+                      {{ q.CustomerName }} ({{ q.QuoteId }})  | Accepted<br>
+                      <p class="kt-widget4__text">
+                        {{ q.JobTitle }} 
+                      </p>
+                    </a>
+                    
+                  </div>
+        </div>
+        <div class="col-md-2">
+            <a on class="btn btn-brand text-white" (click)="OpenAddClienPropertyForPlaneInvoiceDialog()">
+              <i class="la la-plus"></i> Create new Invoice
+            </a>
+        </div>
+    </div>
+</div>
+  

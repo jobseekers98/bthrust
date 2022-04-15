@@ -1,0 +1,548 @@
+<style>
+    li.custoTab {
+        width: 14% !important;
+    }
+.form-group label{
+  color: #000000;
+  padding: 6px 0;
+}
+    li.custoTab a span h4 {
+        font-size: 11px !important;
+        font-weight: 600 !important;
+    }
+
+    .tkthead h2 {
+        color: #000000;
+        margin-left: 11px !important;
+        margin-bottom: 11px;
+    }
+
+    .row.job-client-tabbing {
+        margin: 0px 3px 20px !important;
+        padding: 0px 0px 20px !important;
+        border-bottom: 1px solid #dadada !important;
+    }
+
+    ul.nav.nav-tabs.nav-tabs-line.nav-tabs-bold.nav-tabs-line-3x.nav-tabs-line-brand.tabbing-jobs-client {
+        margin: 0 0 0 !important;
+    }
+
+    .service-form-table-border tr td {
+        font-size: 15px;
+    }
+
+    .service-nav-item a {
+        background: #dedede !important;
+        border: none !important;
+        text-align: center !important;
+        border-bottom: 3px solid transparent !important;
+    }
+
+    .new-requst-filter_form span.kt-switch.kt-switch--lg {
+        display: block !important;
+    }
+
+    .new-requst-filter_form span.kt-switch.kt-switch--lg h4 {
+        font-size: 16px;
+    }
+
+    .service-found-form-info li.nav-item.service-nav-item {
+        border-right: 1px solid #bfbfbf;
+    }
+
+    .service-found-form-info li.nav-item.service-nav-item:last-child {
+        border-right: 0px !important;
+    }
+
+    .service-nav-item a.active,
+    .service-nav-item a:hover {
+        background-color: #21366B !important;
+        border: none !important;
+        color: white !important;
+        text-align: center;
+        border-bottom: none !important;
+    }
+    tbody tr td{text-align: center;}
+    tbody tr td:first-child{text-align: left;}
+    @media (max-width:1360px) {
+        .mytimesheet h2 {
+            font-size: 14px !important;
+        }
+
+        .mytimesheet .input-group {
+            margin-top: 0px !important;
+        }
+    }
+</style>
+
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+    <div class="kt-subheader kt-grid__item" id="kt_subheader">
+        <div class="kt-container kt-container--fluid breadcud-kt-container ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                    <a href="javascript:;" routerLink="/dashboard">
+                        Dashboard
+                    </a>
+                </h3>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <a href="javascript:;" routerLink="/settings" class="kt-subheader__breadcrumbs-link"> Settings </a>
+                </div>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <a href="javascript:;" routerLink="/settings/user-permissions"
+                        class="kt-subheader__breadcrumbs-link"> Permission's </a>
+                </div>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    Allow User Permisson
+                </div>
+            </div>
+            <div class="kt-subheader__toolbar">
+
+            </div>
+        </div>
+    </div>
+    <div class="new-quote-main-section">
+        <div class="kt-container kt-container--fluid">
+            <div class="new-requst-filter_form create-new-client-popup">
+                <div class="accordion accordion-solid">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 service-found-form-info job-for-tab-content">
+                            <div class="kt-portlet__body">
+                                <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                                    <div class="kt-portlet__head">
+                                        <div class="kt-portlet__head-label">
+                                            <h3 class="kt-portlet__head-title" style="text-transform: uppercase;">
+                                                USER PERMISSION DETAILS ({{AuthService.localLoginData.FullName}})
+                                            </h3>
+                                        </div>
+                                        <div class="backSection"> <a href="javascript:void(0)" (click)="backtoUserList()" class="btn btn-primary">Back </a> </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="kt-widget19__wrapper">
+                                            <div class="kt-widget19__content">
+                                                <div class="kt-widget19__userpic">
+                                                </div>
+                                                <div class="col-md-12 new-request-service-details-form">
+                                                    <div class="row job-client-tabbing">
+                                                        <ul class="custoTabUL nav nav-tabs nav-tabs-line nav-tabs-bold nav-tabs-line-3x nav-tabs-line-brand tabbing-jobs-client"
+                                                            role="tablist">
+
+                                                            <li class="custoTab nav-item service-nav-item">
+                                                                <a class="nav-link active" data-toggle="tab"
+                                                                    href="#kt_tabs_userProfile">
+                                                                    <span class="kt-switch kt-switch--lg">
+                                                                        <h4> Profile </h4>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="custoTab nav-item service-nav-item">
+                                                                <a class="nav-link" data-toggle="tab"
+                                                                    href="#kt_tabs_Permissions">
+                                                                    <span class="kt-switch kt-switch--lg">
+                                                                        <h4>Permissions </h4>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                    <input type="hidden" name="localLoginData.Id" [value]="AuthService.localLoginData.Id" [(ngModel)]="AuthService.localLoginData.Id">
+                                                    <div class="tab-content job-for-tab-content">
+                                                        <div class="tab-pane active" id="kt_tabs_userProfile"
+                                                            role="tabpanel">
+                                                            <div
+                                                                class="row service-supports-heading padd-top-15 custInfo">
+
+                                                                <div class="tab-content">
+                                                                    <div id="home" class="tab-pane active">
+                                                                      <div class="card col-md-9">
+                                                                        <div class="col-md-12--">
+                                                                          <div class="card-header" id="headingOne8">
+                                                                            <div class="card-title padd-left-0 padd-right-0" data-toggle="collapse" data-target="#collapseOne8"
+                                                                              aria-expanded="true" aria-controls="collapseOne8">
+                                                                             &nbsp;&nbsp; User Profile <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                                                               
+                                                                              </svg>
+                                                                            </div>
+                                                                          </div>
+                                                                          <div id="collapseOne8" class="collapse show" aria-labelledby="headingOne8"
+                                                                            data-parent="#accordionExample8">
+                                                                            <div class="card-body padd-left-0 padd-right-0">
+                                                                              <div class="kt-portlet__body create-new-client-portlet-body">
+                                                                                <div class="kt-section kt-section--first">
+                                                                                  <div class="kt-section__body">
+                                                                                    <div class="row no-spacing">
+                                                                                      <div class="col-md-7 no-spacing">
+                                                                                        <div class="form-group">
+                                                                                          <label for="">Profile Image<span class="text-danger"></span></label><br>
+                                                                                          <img src="{{tempLogoPath}}" *ngIf="!loader" width="150px" class="img-thumbnail">
+                                                                                          <img alt="loader" *ngIf="loader" src="{{localPrependUrl}}/assets/svg/spinner.svg">
+                                                                                          <div class="input-group">
+                                                                                            <div class="custom-file">
+                                                                                                <a href="javascript:;"><i class="fa fa-camera"
+                                                                                                    onclick="document.getElementById('customerprofilelogo').click()"></i></a>
+                                                                                                <input (change)="picked($event)" class="custom-file-input-0" #File
+                                                                                                  id="customerprofilelogo" type="file">
+                                                                                            </div>
+                                                                                          </div>
+                                                                                        </div>
+                                                                                      </div>
+                                                                                      <div class="col-md-7 no-spacing">
+                                                                                        <div class="form-group">
+                                                                                          <label for="">Full Name<span class="text-danger">*</span></label>
+                                                                                          <input name="FullName" #FullName="ngModel"
+                                                                                            [(ngModel)]="AuthService.localLoginData.FullName" class="form-control"
+                                                                                            [class.is-invalid]="!isNameValid" placeholder="Full Name">
+                                                                                        </div>
+                                                                                      </div>
+                                                                                      <div class="col-md-7 no-spacing">
+                                                                                        <div class="form-group">
+                                                                                          <label for="">Mobile Number<span class="text-danger">*</span></label>
+                                                                                          <input name="MobileNumber" #MobileNumber="ngModel"
+                                                                                            [(ngModel)]="AuthService.localLoginData.MobileNumber" class="form-control"
+                                                                                            [class.is-invalid]="!isMobileValid" placeholder="Mobile Number"
+                                                                                            (keypress)="numberOnly($event)">
+                                                                                        </div>
+                                                                                      </div>
+                                                                                      <div class="col-md-7 no-spacing">
+                                                                                        <div class="form-group">
+                                                                                          <label for="">Email<span class="text-danger">*</span></label>
+                                                                                          <input name="Email" #Email="ngModel"
+                                                                                            [(ngModel)]="AuthService.localLoginData.Email" class="form-control"
+                                                                                            [class.is-invalid]="!isEmailValid" placeholder="Email">
+                                                                                        </div>
+                                                                                      </div>
+                                                                                      <div class="col-md-7 no-spacing">
+                                                                                        <div class="form-group">
+                                                                                          <label for="" class="label">SMTP Department<span class="text-danger">*</span></label>
+                                                                                          <select class="form-control kt-select2" name="AuthService.localLoginData.SMTPId"
+                                                                                             #SMTPId="ngModel"
+                                                                                            [(ngModel)]="AuthService.localLoginData.SMTPId">
+                                                                                            <option value="0">Select Group</option>
+                                                                                            <option *ngFor="let x of smtpdata;" value="{{x.Id}}">{{x.SMTPName}}</option>
+                                                                                          </select>
+                                                                                        </div>
+                                                                                      </div>
+                                                                                      <br>
+                                                                                      <div class="col-md-7 padd-top-10 padd-left-0 padd-right-0">
+                                                                                        <a href="javascript:void(0)" (click)="updateUserProfile()" class="btn btn-primary">Save</a>
+                                                                                      </div>
+                                                                                    </div>
+                                                                                  </div>
+                                                                                </div>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                          
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>                                                                                                                                     
+                                                                  </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane" id="kt_tabs_Permissions" role="tabpanel">
+                                                            <input type="hidden" name="PermissionData.Id" [value]="AuthService.PermissionData.Id" [(ngModel)]="AuthService.PermissionData.Id">
+                                                            <input type="hidden" name="CustomerRemove" [value]="AuthService.PermissionData.CustomerRemove" [(ngModel)]="AuthService.PermissionData.CustomerRemove">
+                                                            <input type="hidden" name="GoogleCalendar" [value]="AuthService.PermissionData.GoogleCalendar" [(ngModel)]="AuthService.PermissionData.GoogleCalendar">
+                                                            <input type="hidden" name="PropertyRemove" [value]="AuthService.PermissionData.PropertyRemove" [(ngModel)]="AuthService.PermissionData.PropertyRemove">
+                                                            <input type="hidden" name="QuoteRemove" [value]="AuthService.PermissionData.QuoteRemove" [(ngModel)]="AuthService.PermissionData.QuoteRemove">
+                                                            <input type="hidden" name="InvoiceRemove" [value]="AuthService.PermissionData.InvoiceRemove" [(ngModel)]="AuthService.PermissionData.InvoiceRemove">
+                                                            <input type="hidden" name="TicketRemove" [value]="AuthService.PermissionData.TicketRemove" [(ngModel)]="AuthService.PermissionData.TicketRemove">
+                                                            <input type="hidden" name="EngineerRemove" [value]="AuthService.PermissionData.EngineerRemove" [(ngModel)]="AuthService.PermissionData.EngineerRemove">
+                                                            <input type="hidden" name="ProductRemove" [value]="AuthService.PermissionData.ProductRemove" [(ngModel)]="AuthService.PermissionData.ProductRemove">
+                                                            <input type="hidden" name="ServiceRemove" [value]="AuthService.PermissionData.ServiceRemove" [(ngModel)]="AuthService.PermissionData.ServiceRemove">
+                                                            <input type="hidden" name="BrandRemove" [value]="AuthService.PermissionData.BrandRemove" [(ngModel)]="AuthService.PermissionData.BrandRemove">
+                                                            <input type="hidden" name="CategoryRemove" [value]="AuthService.PermissionData.CategoryRemove" [(ngModel)]="AuthService.PermissionData.CategoryRemove">
+                                                            <input type="hidden" name="IssueTypeRemove" [value]="AuthService.PermissionData.IssueTypeRemove" [(ngModel)]="AuthService.PermissionData.IssueTypeRemove">
+                                                            <input type="hidden" name="PaymentRemove" [value]="AuthService.PermissionData.PaymentRemove" [(ngModel)]="AuthService.PermissionData.PaymentRemove">
+                                                            <input type="hidden" name="UserRemove" [value]="AuthService.PermissionData.UserRemove" [(ngModel)]="AuthService.PermissionData.UserRemove">
+                                                            <input type="hidden" name="DashboardEngineer" [value]="AuthService.PermissionData.DashboardEngineer" [(ngModel)]="AuthService.PermissionData.DashboardEngineer">
+                                                            <input type="hidden" name="EngineerProfileView" [value]="AuthService.PermissionData.EngineerProfileView" [(ngModel)]="AuthService.PermissionData.EngineerProfileView">
+                                                            <input type="hidden" name="EngineerTicketView" [value]="AuthService.PermissionData.EngineerTicketView" [(ngModel)]="AuthService.PermissionData.EngineerTicketView">
+                                                            <input type="hidden" name="EngineerTimesheetView" [value]="AuthService.PermissionData.EngineerTimesheetView" [(ngModel)]="AuthService.PermissionData.EngineerTimesheetView">
+                                                            <input type="hidden" name="GoogleCalendar" [value]="AuthService.PermissionData.GoogleCalendar" [(ngModel)]="AuthService.PermissionData.GoogleCalendar">
+                                                            <input type="hidden" name="EngineerLeave" [value]="AuthService.PermissionData.EngineerLeave" [(ngModel)]="AuthService.PermissionData.EngineerLeave">
+                                                            <input type="hidden" name="EngineerType" [value]="AuthService.PermissionData.EngineerType" [(ngModel)]="AuthService.PermissionData.EngineerType">
+                                                            <input type="hidden" name="AllowReceivePayment" [value]="AuthService.PermissionData.AllowReceivePayment" [(ngModel)]="AuthService.PermissionData.AllowReceivePayment">
+                                                            <input type="hidden" name="AllowCustomerName" [value]="AuthService.PermissionData.AllowCustomerName" [(ngModel)]="AuthService.PermissionData.AllowCustomerName">
+                                                            <input type="hidden" name="IsRequiredCustomerName" [value]="AuthService.PermissionData.IsRequiredCustomerName" [(ngModel)]="AuthService.PermissionData.IsRequiredCustomerName">
+                                                            <input type="hidden" name="TaxView" [value]="AuthService.PermissionData.TaxView" [(ngModel)]="AuthService.PermissionData.TaxView">
+                                                            <input type="hidden" name="TaxCreate" [value]="AuthService.PermissionData.TaxCreate" [(ngModel)]="AuthService.PermissionData.TaxCreate">
+                                                            <input type="hidden" name="TaxEdit" [value]="AuthService.PermissionData.TaxEdit" [(ngModel)]="AuthService.PermissionData.TaxEdit">
+                                                            <input type="hidden" name="TaxRemove" [value]="AuthService.PermissionData.TaxRemove" [(ngModel)]="AuthService.PermissionData.TaxRemove">
+                                                            <input type="hidden" name="NotificationView" [value]="AuthService.PermissionData.NotificationView" [(ngModel)]="AuthService.PermissionData.NotificationView">
+                                                            <input type="hidden" name="NotificationCreate" [value]="AuthService.PermissionData.NotificationCreate" [(ngModel)]="AuthService.PermissionData.NotificationCreate">
+                                                            <input type="hidden" name="NotificationEdit" [value]="AuthService.PermissionData.NotificationEdit" [(ngModel)]="AuthService.PermissionData.NotificationEdit">
+                                                            <input type="hidden" name="NotificationRemove" [value]="AuthService.PermissionData.NotificationRemove" [(ngModel)]="AuthService.PermissionData.NotificationRemove">
+                                                            <input type="hidden" name="TemplateView" [value]="AuthService.PermissionData.TemplateView" [(ngModel)]="AuthService.PermissionData.TemplateView">
+                                                            <input type="hidden" name="TemplateCreate" [value]="AuthService.PermissionData.TemplateCreate" [(ngModel)]="AuthService.PermissionData.TemplateCreate">
+                                                            <input type="hidden" name="TemplateEdit" [value]="AuthService.PermissionData.TemplateEdit" [(ngModel)]="AuthService.PermissionData.TemplateEdit">
+                                                            <input type="hidden" name="TemplateRemove" [value]="AuthService.PermissionData.TemplateRemove" [(ngModel)]="AuthService.PermissionData.TemplateRemove">
+                                                            <input type="hidden" name="IsProductOnly" [value]="AuthService.PermissionData.IsProductOnly" [(ngModel)]="AuthService.PermissionData.IsProductOnly">
+
+                                                            <div
+                                                                class="row service-supports-heading padd-top-15 custInfo">
+                                                                <div class="col-md-12 col-sm-12 colxs-12">
+                                                                    <div class="support-service-incident-form">
+                                                                        <h2>User Permission's</h2>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="kt-portlet__body padd-top-0">
+                                                                    <div class="col-md-9">
+                                                                        <table
+                                                                        class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Module</th>
+                                                                                <th>Capabilities(View)</th>
+                                                                                <th>Capabilities(Create)</th>
+                                                                                <th>Capabilities(Edit)</th>
+                                                                                <th>Capabilities(Remove)</th>
+                                                                          </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>Dashboard</td>
+                                                                                <td>
+                                                                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="DashboardAdmin" [(ngModel)]="AuthService.PermissionData.DashboardAdmin" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label> 
+                                                                                </td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                            </tr>
+                                                                            <tr *ngIf="currentUser.Permissions.DriveView">
+                                                                                <td>Drive</td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="DriveView" [(ngModel)]="AuthService.PermissionData.DriveView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="DriveCreate" type="checkbox" [(ngModel)]="AuthService.PermissionData.DriveCreate" class="ng-valid ng-dirty ng-touched"> Create <span></span></label></td>
+                                                                                <td> <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="DriveEdit" type="checkbox"[(ngModel)]="AuthService.PermissionData.DriveEdit" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label></td>
+                                                                                <td> <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="DriveRemove" type="checkbox"[(ngModel)]="AuthService.PermissionData.DriveRemove" class="ng-valid ng-dirty ng-touched"> Delete <span></span></label></td>
+                                                                            </tr>
+                                                                            <tr *ngIf="currentUser.Permissions.CustomerView">
+                                                                                <td>Customer</td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="CustomerView" [(ngModel)]="AuthService.PermissionData.CustomerView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="CustomerCreate" type="checkbox" [(ngModel)]="AuthService.PermissionData.CustomerCreate" class="ng-valid ng-dirty ng-touched"> Create <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="CustomerEdit" type="checkbox"[(ngModel)]="AuthService.PermissionData.CustomerEdit" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr *ngIf="currentUser.Permissions.CalendarView">
+                                                                                <td>Calendar View</td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="CalendarView" [(ngModel)]="AuthService.PermissionData.CalendarView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label></td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                            </tr>
+                                                                            <tr *ngIf="currentUser.Permissions.ResourceView">
+                                                                                <td>Resource View</td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="ResourceView" [(ngModel)]="AuthService.PermissionData.ResourceView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label></td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                            </tr>
+                                                                            <tr *ngIf="currentUser.Permissions.MapView">
+                                                                                <td>Map View</td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="MapView" [(ngModel)]="AuthService.PermissionData.MapView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label></td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                            </tr>
+                                                                            <tr *ngIf="currentUser.Permissions.LiveTracking">
+                                                                                <td>Live Tracking</td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="LiveTracking" [(ngModel)]="AuthService.PermissionData.LiveTracking" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label></td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                            </tr>
+                                                                            <tr *ngIf="currentUser.Permissions.PropertyView">
+                                                                                <td>Property</td>
+                                                                                <td>
+                                                                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="PropertyView" [(ngModel)]="AuthService.PermissionData.PropertyView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label> 
+                                                                                </td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="PropertyCreate" type="checkbox" [(ngModel)]="AuthService.PermissionData.PropertyCreate" class="ng-valid ng-dirty ng-touched"> Create <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="PropertyEdit" type="checkbox" [(ngModel)]="AuthService.PermissionData.PropertyEdit" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr *ngIf="currentUser.Permissions.QuoteView">
+                                                                                <td>Quotation</td>
+                                                                                <td>
+                                                                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="QuoteView" [(ngModel)]="AuthService.PermissionData.QuoteView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label> 
+                                                                                </td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="QuoteCreate"[(ngModel)]="AuthService.PermissionData.QuoteCreate" type="checkbox" class="ng-valid ng-dirty ng-touched"> Create <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="QuoteEdit" [(ngModel)]="AuthService.PermissionData.QuoteEdit"type="checkbox" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr *ngIf="currentUser.Permissions.InvoiceView">
+                                                                                <td>Invoice</td>
+                                                                                <td>
+                                                                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="InvoiceView" [(ngModel)]="AuthService.PermissionData.InvoiceView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label> 
+                                                                                </td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="InvoiceCreate"[(ngModel)]="AuthService.PermissionData.InvoiceCreate" type="checkbox" class="ng-valid ng-dirty ng-touched"> Create <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="InvoiceEdit" [(ngModel)]="AuthService.PermissionData.InvoiceEdit"type="checkbox" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr *ngIf="currentUser.Permissions.TicketView">
+                                                                                <td>{{this.currentUser.Ticket}}</td>
+                                                                                <td>
+                                                                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="TicketView" [(ngModel)]="AuthService.PermissionData.TicketView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label> 
+                                                                                </td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="TicketCreate" [(ngModel)]="AuthService.PermissionData.TicketCreate" type="checkbox" class="ng-valid ng-dirty ng-touched"> Create <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="TicketEdit" [(ngModel)]="AuthService.PermissionData.TicketEdit" type="checkbox" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr *ngIf="currentUser.Permissions.EngineerView">
+                                                                                <td>{{this.currentUser.Engineer}}</td>
+                                                                                <td>
+                                                                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="EngineerView" [(ngModel)]="AuthService.PermissionData.EngineerView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label> 
+
+                                                                                </td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="EngineerCreate"[(ngModel)]="AuthService.PermissionData.EngineerCreate" type="checkbox" class="ng-valid ng-dirty ng-touched"> Create <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="EngineerEdit" [(ngModel)]="AuthService.PermissionData.EngineerEdit"type="checkbox" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Report {{this.currentUser.Ticket}}s</td>
+                                                                                <td>
+                                                                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="ReportTicket" [(ngModel)]="AuthService.PermissionData.ReportTicket" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label> 
+                                                                                </td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Report Engineers</td>
+                                                                                <td>
+                                                                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="ReportEngineer" [(ngModel)]="AuthService.PermissionData.ReportEngineer" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label> 
+                                                                                </td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Report Visits</td>
+                                                                                <td>
+                                                                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="ReportVisit" [(ngModel)]="AuthService.PermissionData.ReportVisit" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label> 
+                                                                                </td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                            </tr>
+                                                                            <tr *ngIf="currentUser.Permissions.ProductView">
+                                                                                <td>Product</td>
+                                                                                <td>
+                                                                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="ProductView" [(ngModel)]="AuthService.PermissionData.ProductView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label> 
+                                                                                </td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="ProductCreate"[(ngModel)]="AuthService.PermissionData.ProductCreate" type="checkbox" class="ng-valid ng-dirty ng-touched"> Create <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="ProductEdit" [(ngModel)]="AuthService.PermissionData.ProductEdit"type="checkbox" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr *ngIf="!currentUser.Permissions.IsProductOnly">
+                                                                                <td>Services</td>
+                                                                                <td>
+                                                                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="ServiceView" [(ngModel)]="AuthService.PermissionData.ServiceView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label> 
+                                                                                </td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="ServiceCreate" [(ngModel)]="AuthService.PermissionData.ServiceCreate" type="checkbox" class="ng-valid ng-dirty ng-touched"> Create <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="ServiceEdit" [(ngModel)]="AuthService.PermissionData.ServiceEdit" type="checkbox" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                             <tr *ngIf="currentUser.Permissions.SettingView">
+                                                                                <td>Settings</td>
+                                                                                <td>
+                                                                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="SettingView" [(ngModel)]="AuthService.PermissionData.SettingView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label> 
+                                                                                </td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Brand</td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="BrandView" [(ngModel)]="AuthService.PermissionData.BrandView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="BrandCreate"[(ngModel)]="AuthService.PermissionData.BrandCreate" type="checkbox" class="ng-valid ng-dirty ng-touched"> Create <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="BrandEdit" [(ngModel)]="AuthService.PermissionData.BrandEdit"type="checkbox" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label></td>
+                                                                                <td>-</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Category</td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="CategoryView" [(ngModel)]="AuthService.PermissionData.CategoryView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="CategoryCreate"[(ngModel)]="AuthService.PermissionData.CategoryCreate" type="checkbox" class="ng-valid ng-dirty ng-touched"> Create <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="CategoryEdit" [(ngModel)]="AuthService.PermissionData.CategoryEdit"type="checkbox" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label></td>
+                                                                                <td>-</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>{{this.currentUser.Ticket}} Issue Type</td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="IssueTypeView" [(ngModel)]="AuthService.PermissionData.IssueTypeView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="IssueTypeCreate"[(ngModel)]="AuthService.PermissionData.IssueTypeCreate" type="checkbox" class="ng-valid ng-dirty ng-touched"> Create <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="IssueTypeEdit" [(ngModel)]="AuthService.PermissionData.IssueTypeEdit"type="checkbox" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label></td>
+                                                                                <td>-</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Payment</td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="PaymentView" [(ngModel)]="AuthService.PermissionData.PaymentView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="PaymentCreate"[(ngModel)]="AuthService.PermissionData.PaymentCreate" type="checkbox" class="ng-valid ng-dirty ng-touched"> Create <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="PaymentEdit" [(ngModel)]="AuthService.PermissionData.PaymentEdit"type="checkbox" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label></td>
+                                                                                <td>-</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>SMTP Setting</td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="SMTPSettingView" [(ngModel)]="AuthService.PermissionData.SMTPSettingView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="SMTPSettingCreate"[(ngModel)]="AuthService.PermissionData.SMTPSettingCreate" type="checkbox" class="ng-valid ng-dirty ng-touched"> Create <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="SMTPSettingEdit" [(ngModel)]="AuthService.PermissionData.SMTPSettingEdit"type="checkbox" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="SMTPSettingRemove" [(ngModel)]="AuthService.PermissionData.SMTPSettingRemove"type="checkbox" class="ng-valid ng-dirty ng-touched"> Remove <span></span></label></td>
+                                                                            </tr>
+                                                                            
+                                                                            <tr *ngIf="currentUser.Permissions.GeofencingView">
+                                                                                <td>Geofencing</td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="GeofencingView" [(ngModel)]="AuthService.PermissionData.GeofencingView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="EnableZoneCreate"[(ngModel)]="AuthService.PermissionData.EnableZoneCreate" type="checkbox" class="ng-valid ng-dirty ng-touched"> Create <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="EnableZoneEdit" [(ngModel)]="AuthService.PermissionData.EnableZoneEdit"type="checkbox" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="EnableZoneRemove" [(ngModel)]="AuthService.PermissionData.EnableZoneRemove"type="checkbox" class="ng-valid ng-dirty ng-touched"> Remove <span></span></label></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                            <td>Log's</td>
+                                                                                <td>
+                                                                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="LogView" [(ngModel)]="AuthService.PermissionData.LogView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label> 
+                                                                                </td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                            </tr>
+                                                                            <tr *ngIf="currentUser.Permissions.UserView">
+                                                                                <td>Users</td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="UserView" [(ngModel)]="AuthService.PermissionData.UserView" type="checkbox" class="ng-valid ng-dirty ng-touched"> View <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="UserCreate"[(ngModel)]="AuthService.PermissionData.UserCreate" type="checkbox" class="ng-valid ng-dirty ng-touched"> Create <span></span></label></td>
+                                                                                <td><label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand"><input name="UserEdit" [(ngModel)]="AuthService.PermissionData.UserEdit"type="checkbox" class="ng-valid ng-dirty ng-touched"> Edit <span></span></label></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td colspan="5" style="text-align: right;">
+                                                                                    <a href="javascript:void(0)" class="btn btn-primary" (click)="savePermissions()">Save</a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

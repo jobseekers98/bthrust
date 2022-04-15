@@ -1,0 +1,54 @@
+.box-item {width: 100%;z-index: 1000}
+.calendar-ticket-status a,.calendar-ticket-status a, .calendar-ticket-status a {color: #000;}
+.calendar-ticket-status {padding: 2px;margin: 1px;border-radius: 2px;width: 100%;height: 100%; }
+.status-UPCOMING {background-color:rgba(174, 189, 212, 0.13);border: 2px solid#3C78D8;border-left: 5px solid#3C78D8;color:#fff;}
+.status-INPROGRESS {background-color:rgba(0, 255, 0, 0.10);border: 2px solid#00FF00;border-left: 5px solid#00FF00;color:#000;}
+.status-HOLD {background-color:rgba(255, 255, 0, 0.10);border: 2px solid#FFFF00;border-left: 5px solid#FFFF00;color:#000;}
+.status-CLOSED {background-color:rgba(136, 212, 103, 0.58);border: 2px solid#6AA84F;border-left: 5px solid#6AA84F;color:#fff;}
+.status-OVERDUE {background-color:rgba(255, 0, 0, 0.06);border: 2px solid#FF0000;border-left: 5px solid#FF0000;color:#fff;}
+.status-CANCELLED {background-color:rgba(204, 204, 204, 0.10);border: 2px solid#CCCCCC;border-left: 5px solid#CCCCCC;color:#fff;}
+.status-UNSCHEDULED {background-color:rgba(255, 153, 0, 0.10);border: 2px solid#FF9900;border-left: 5px solid#FF9900;color:#fff;}
+
+.status-Submitted {background-color:#00b04f3a;border: 2px dotted #00b050;border-left: 2px dotted #00b050;color:#fff;}
+.status-Awarded {background-color:rgba(255, 255, 0, 0.137);border: 2px dotted #ff0;border-left: 2px dotted #ff0;color:#fff;}
+.status-RequireAttention {background-color:rgba(255, 0, 0, 0.308);border: 2px dotted #f00;border-left: 2px dotted #f00;color:#fff;}
+.status-ToParticipate {background-color:rgba(255, 255, 255, 0.699);border: 2px dotted rgb(148, 148, 148);border-left: 2px dotted rgb(148, 148, 148);color:#fff;}
+.status-NotParticipating {background-color:#bfbfbf80;border: 2px dotted #474747;border-left: 2px dotted #bfbfbf;color:#fff;}
+.status-UpcomingSiteSurvey {background-color:#ffbf0050;border: 2px dotted #ffc000;border-left: 2px dotted #ffc000;color:#fff;}
+
+.priority-right {float: right;padding-top: 4px;}
+.calendar-ticket-priority-visit{padding: 5px;font-weight: 800;}
+.right-text {position: relative;float: right;color: red;padding-top: 4px;}
+.closed-text {position: relative;float: right;color: green;padding-top: 4px;}
+.client-header {font-size: 24px;font-weight: 800;color: black;}
+.client-address {font-size: 16px;font-weight: 400;color:#424e56;}
+.cus-model-header {padding: 18px;}
+.client-header-appoinmenttime {font-size: 16px;font-weight: 500;padding: 20px;color: #424e56 ;}
+.client-info-title {font-size: 18px;font-weight: 600;color: rgb(20, 20, 20);}
+.client-info-desc {font-size: 14px;font-weight: 600;color: rgb(20, 20, 20);}
+.width100 {width:100%;}
+.padding-10 { margin: 10px; }
+.padding-10 span{ margin: 5px; }
+.statusdot{padding: 0px;margin: 0;display: inline-flex;justify-content: center;align-items: center;height: 18px;width: 18px;border-radius: 2rem;font-size: 0.8rem;font-weight: bold;}
+.innercalendarclass { position: absolute;
+    background-color: burlywood;
+    width: 100%;
+    height: 30px;
+ cursor: pointer; }
+
+
+
+ .agent-row-inner{width:200px;float: left;max-width: 100%;display:none;position: absolute;z-index: 99;background:
+    white;box-shadow: -1px 0px 10px -4px;transition: 400ms;}
+.agent-header{background:#f2f3f8;padding-top: 20px;width: 100%; max-height: 400px;overflow-y: auto;}
+.agent-image{width: 50px;height: 50px;line-height: 58px;float: left;text-align: center;background-color: #f1f1f1;border-radius: 50%;}
+.agent-image i{font-size:30px;color:black;}
+.agent-image-info{width: 100%;display: inline-block; padding: 8px;position: relative;}
+.agent-image-info h2{font-size: 16px;font-weight:600;color:white;padding-bottom:5px;margin-bottom:0px;}
+.agent-image-info p{font-size:14px;color:white;margin-bottom:0px;}
+.close-btn{width: 20px;height: 20px;line-height: 20px;color: #f74822;position: absolute;background: white;top: 0;right: 0;
+font-weight: 600;z-index: 9999;border-radius: 50%;text-align: center;}
+.drag-active {position: relative;z-index: 1;pointer-events: none;}
+  .drag-over {background-color: #eee;}
+  :host >>> .popover { color: #000; max-width: 100%};
+  .modal-tender-lable { font-size: 13px;}

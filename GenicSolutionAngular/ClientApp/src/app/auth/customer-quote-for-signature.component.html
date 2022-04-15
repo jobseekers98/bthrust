@@ -1,0 +1,113 @@
+<style>
+    .Container {
+        overflow-y: auto !important;
+        overflow-x: hidden;
+        min-height: 22px;
+        max-height: 100vh;
+    }
+
+    .myStatus {
+        width: 100%;
+        background-color: cyan;
+        padding: 6px 6px;
+        margin: 0 0 1px 0;
+        border: 1px solid #ad5a2242;
+    }
+
+    .myStatus a {
+        margin: 0px 0 0 11px;
+        color: black;
+        font-size: initial;
+    }
+
+    .AcceptStatus {
+        margin: 0 5px 0 0;
+        color: green;
+    }
+
+    .OtherStatus {
+        margin: 0 5px 0 0;
+        color: #847a74;
+    }
+
+    .signature {
+        width: 100%;
+        height: 280px;
+        border: 1px solid #ad5a2242;
+    }
+
+    .btnRemoveSection {
+        background-color: #fcb822;
+        color: black;
+        padding: 2px 15px;
+        float: left;
+        margin-top: 2px;
+        cursor: pointer;
+    }
+    .wd-1024 { width: 1024px; }
+</style>
+<div class="Container">
+    <div class="row" >
+        <div class="col-sm-0 col-md-3 col-lg-3 col-xl-3"></div>
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="display-4">Quotation for Signature  <span *ngIf="this.isValid">({{this.quoteService.QuoteData.QuoteId}})</span></div>
+            <hr>
+            <div class="form-row" *ngIf="this.isValid">
+                <div class="form-group col-md-12">
+                    <div class="kt-radio-list">
+                        <div class="row">
+                            <div class="myStatus">
+                                <a href="javascript:void(0)" (click)="SetStatus(4)">
+                                    <ng-container *ngIf="temptQuoteStatus===4">
+                                        <i class="fa fa-check-circle AcceptStatus" aria-hidden="true"></i>
+                                    </ng-container>
+                                    <ng-container *ngIf="temptQuoteStatus!==4">
+                                        <i class="far fa-circle OtherStatus" aria-hidden="true"></i>
+                                    </ng-container>
+                                    Accept
+                                </a>
+                            </div>
+                            <div class="signature" *ngIf="temptQuoteStatus===4">
+                                <div class="row forn-group">
+                                    <div class="col">
+                                        <label>&nbsp;&nbsp;&nbsp;&nbsp;Signature</label>
+                                        <div id="CloseSignarePad" class="m-signature-pad CloseSignarePad">
+                                            <div class="m-signature-pad-body">
+                                                <signature-pad #SignaturePad2 [options]="CustomerSignaturePadOption">
+                                                </signature-pad>
+                                            </div>
+                                        </div>
+                                        <a class="btnRemoveSection"
+                                            (click)="cleareCustomerCloserSignature()"> Clear signature</a>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="myStatus">
+                                <a href="javascript:void(0)" (click)="SetStatus(5)">
+                                    <ng-container *ngIf="temptQuoteStatus===5">
+                                        <i class="fa fa-check-circle AcceptStatus" aria-hidden="true"></i>
+                                    </ng-container>
+                                    <ng-container *ngIf="temptQuoteStatus!==5">
+                                        <i class="far fa-circle OtherStatus" aria-hidden="true"></i>
+                                    </ng-container>
+                                    Reject
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row" *ngIf="this.isValid">
+                <button type="submit" *ngIf="!this.IsLoading" class="btn btn-primary btn-block" (click)="InsertESignature(temptQuoteStatus)"> Save & Send Status</button>
+                <button disabled class="btn btn-success btn-block" *ngIf="this.IsLoading">Loading... Please wait</button>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="{{class1}}">{{text1}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-0 col-md-3 col-lg-3 col-xl-3"></div>
+    </div>
+</div>

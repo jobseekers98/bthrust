@@ -1,0 +1,632 @@
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+    <div class="kt-subheader kt-grid__item" id="kt_subheader">
+        <div class="kt-container kt-container--fluid ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                    <a href="javascript:;" routerLink="/engineer/engineer-dashboard">
+                        Dashboard
+                    </a>
+                </h3>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    Profile
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+        <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+            <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+                <i class="la la-close"></i>
+            </button>
+            <input type="hidden" name="Id" [value]="service.formData.Id">
+            <input type="hidden" name="Latitude" [value]="service.formData.Latitude">
+            <input type="hidden" name="Longitude" [value]="service.formData.Longitude">
+            <div class="kt-grid__item kt-app__toggle kt-app__aside" id="kt_user_profile_aside">
+                <div class="kt-portlet ">
+                    <div class="kt-portlet__body kt-portlet__body--fit-y">
+                        <div class="kt-widget kt-widget--user-profile-1">
+                            <div class="kt-widget__head">
+                                <div class="kt-widget__media">
+                                    <img *ngIf="service.formData.EngineerLogo.length === 0"
+                                        src="{{localPrependUrl}}/assets/svg/noimage.svg"
+                                        alt="{{service.formData.EngineerName}}"
+                                        title="{{service.formData.EngineerName}}" />
+                                    <div class="upload-image" *ngIf="service.formData.EngineerLogo.length > 0">
+                                        <img *ngIf="isImageBinary"
+                                            src="{{service.formData.EngineerLogo}}"
+                                            alt="{{service.formData.EngineerName}}"
+                                            title="{{service.formData.EngineerName}}">
+                                        <img *ngIf="!isImageBinary"
+                                            src="data:image/png;base64,{{service.formData.EngineerLogo}}"
+                                            alt="{{service.formData.EngineerName}}"
+                                            title="{{service.formData.EngineerName}}">
+                                    </div>
+                                </div>
+                                <div class="kt-widget__content">
+                                    <div class="kt-widget__section">
+                                        <a href="javascript:;" class="kt-widget__username">
+                                            {{service.formData.EngineerName}}
+                                            <i class="flaticon2-correct kt-font-success"></i>
+                                        </a>
+                                        <span *ngIf="service.formData.Type === 0" class="kt-widget__subtitle">
+                                            {{this.currentUser.Engineer}}
+                                        </span>
+                                        <span *ngIf="service.formData.Type === 1" class="kt-widget__subtitle">
+                                            Supervisor
+                                        </span>
+                                        <span *ngIf="service.formData.Type === 2" class="kt-widget__subtitle">
+                                            Foreman
+                                        </span>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="kt-widget__body">
+                                <div class="kt-widget__content">
+                                    <div class="kt-widget__info">
+                                        <span class="kt-widget__label">Email:</span>
+                                        <a href="javascript:;"
+                                            class="kt-widget__data">{{service.formData.EngineerEmail}}</a>
+                                    </div>
+                                    <div class="kt-widget__info">
+                                        <span class="kt-widget__label">Phone:</span>
+                                        <a href="javascript:;"
+                                            class="kt-widget__data">{{service.formData.EngineerPhone}}</a>
+                                    </div>
+                                    <!-- <div class="kt-widget__info">
+                                        <span class="kt-widget__label">Location:</span>
+                                        <span class="kt-widget__data">{{service.formData.AddressCity}}</span>
+                                    </div> -->
+                                </div>
+                                <div class="kt-widget__items">
+                                    <a href="#PersonalInformation" data-toggle="tab" (click)="OnTabClick('Profile')"
+                                        class="kt-widget__item active">
+                                        <span class="kt-widget__section">
+                                            <span class="kt-widget__icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                    height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <polygon id="Shape" points="0 0 24 0 24 24 0 24" />
+                                                        <path
+                                                            d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
+                                                            id="Mask" fill="#000000" fill-rule="nonzero"
+                                                            opacity="0.3" />
+                                                        <path
+                                                            d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
+                                                            id="Mask-Copy" fill="#000000" fill-rule="nonzero" />
+                                                    </g>
+                                                </svg> </span>
+                                            <span class="kt-widget__desc">
+                                                Personal Information
+                                            </span>
+                                        </span>
+                                    </a>
+                                    <a href="#Emergency" data-toggle="tab" (click)="OnTabClick('Emergency')"
+                                        class="kt-widget__item ">
+                                        <span class="kt-widget__section">
+                                            <span class="kt-widget__icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                    height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                        <path
+                                                            d="M4,4 L11.6314229,2.5691082 C11.8750185,2.52343403 12.1249815,2.52343403 12.3685771,2.5691082 L20,4 L20,13.2830094 C20,16.2173861 18.4883464,18.9447835 16,20.5 L12.5299989,22.6687507 C12.2057287,22.8714196 11.7942713,22.8714196 11.4700011,22.6687507 L8,20.5 C5.51165358,18.9447835 4,16.2173861 4,13.2830094 L4,4 Z"
+                                                            id="Path-50" fill="#000000" opacity="0.3" />
+                                                        <path
+                                                            d="M12,11 C10.8954305,11 10,10.1045695 10,9 C10,7.8954305 10.8954305,7 12,7 C13.1045695,7 14,7.8954305 14,9 C14,10.1045695 13.1045695,11 12,11 Z"
+                                                            id="Mask" fill="#000000" opacity="0.3" />
+                                                        <path
+                                                            d="M7.00036205,16.4995035 C7.21569918,13.5165724 9.36772908,12 11.9907452,12 C14.6506758,12 16.8360465,13.4332455 16.9988413,16.5 C17.0053266,16.6221713 16.9988413,17 16.5815,17 C14.5228466,17 11.463736,17 7.4041679,17 C7.26484009,17 6.98863236,16.6619875 7.00036205,16.4995035 Z"
+                                                            id="Mask-Copy" fill="#000000" opacity="0.3" />
+                                                    </g>
+                                                </svg> </span>
+                                            <span class="kt-widget__desc">
+                                                Emergency Contact
+                                            </span>
+                                        </span>
+                                    </a>
+                                    <a href="#Emergency" data-toggle="tab" (click)="OnTabClick('Address')"
+                                        class="kt-widget__item ">
+                                        <span class="kt-widget__section">
+                                            <span class="kt-widget__icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                    height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                        <path
+                                                            d="M4,4 L11.6314229,2.5691082 C11.8750185,2.52343403 12.1249815,2.52343403 12.3685771,2.5691082 L20,4 L20,13.2830094 C20,16.2173861 18.4883464,18.9447835 16,20.5 L12.5299989,22.6687507 C12.2057287,22.8714196 11.7942713,22.8714196 11.4700011,22.6687507 L8,20.5 C5.51165358,18.9447835 4,16.2173861 4,13.2830094 L4,4 Z"
+                                                            id="Path-50" fill="#000000" opacity="0.3" />
+                                                        <path
+                                                            d="M12,11 C10.8954305,11 10,10.1045695 10,9 C10,7.8954305 10.8954305,7 12,7 C13.1045695,7 14,7.8954305 14,9 C14,10.1045695 13.1045695,11 12,11 Z"
+                                                            id="Mask" fill="#000000" opacity="0.3" />
+                                                        <path
+                                                            d="M7.00036205,16.4995035 C7.21569918,13.5165724 9.36772908,12 11.9907452,12 C14.6506758,12 16.8360465,13.4332455 16.9988413,16.5 C17.0053266,16.6221713 16.9988413,17 16.5815,17 C14.5228466,17 11.463736,17 7.4041679,17 C7.26484009,17 6.98863236,16.6619875 7.00036205,16.4995035 Z"
+                                                            id="Mask-Copy" fill="#000000" opacity="0.3" />
+                                                    </g>
+                                                </svg> </span>
+                                            <span class="kt-widget__desc">
+                                                Address
+                                            </span>
+                                        </span>
+                                    </a>
+                                    <a href="#ChangePassword" data-toggle="tab" (click)="OnTabClick('Change')"
+                                        class="kt-widget__item ">
+                                        <span class="kt-widget__section">
+                                            <span class="kt-widget__icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                    height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                        <path
+                                                            d="M4,4 L11.6314229,2.5691082 C11.8750185,2.52343403 12.1249815,2.52343403 12.3685771,2.5691082 L20,4 L20,13.2830094 C20,16.2173861 18.4883464,18.9447835 16,20.5 L12.5299989,22.6687507 C12.2057287,22.8714196 11.7942713,22.8714196 11.4700011,22.6687507 L8,20.5 C5.51165358,18.9447835 4,16.2173861 4,13.2830094 L4,4 Z"
+                                                            id="Path-50" fill="#000000" opacity="0.3" />
+                                                        <path
+                                                            d="M12,11 C10.8954305,11 10,10.1045695 10,9 C10,7.8954305 10.8954305,7 12,7 C13.1045695,7 14,7.8954305 14,9 C14,10.1045695 13.1045695,11 12,11 Z"
+                                                            id="Mask" fill="#000000" opacity="0.3" />
+                                                        <path
+                                                            d="M7.00036205,16.4995035 C7.21569918,13.5165724 9.36772908,12 11.9907452,12 C14.6506758,12 16.8360465,13.4332455 16.9988413,16.5 C17.0053266,16.6221713 16.9988413,17 16.5815,17 C14.5228466,17 11.463736,17 7.4041679,17 C7.26484009,17 6.98863236,16.6619875 7.00036205,16.4995035 Z"
+                                                            id="Mask-Copy" fill="#000000" opacity="0.3" />
+                                                    </g>
+                                                </svg> </span>
+                                            <span class="kt-widget__desc">
+                                                Change Password
+                                            </span>
+                                        </span>
+                                    </a>
+                                    <a href="#googlecalendar" data-toggle="tab" (click)="OnTabClick('calendar')"
+                                    *ngIf="currentUser.Permissions.GoogleCalendar"
+                                    class="kt-widget__item ">
+                                    <span class="kt-widget__section">
+                                        <span class="kt-widget__icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                    <path
+                                                        d="M4,4 L11.6314229,2.5691082 C11.8750185,2.52343403 12.1249815,2.52343403 12.3685771,2.5691082 L20,4 L20,13.2830094 C20,16.2173861 18.4883464,18.9447835 16,20.5 L12.5299989,22.6687507 C12.2057287,22.8714196 11.7942713,22.8714196 11.4700011,22.6687507 L8,20.5 C5.51165358,18.9447835 4,16.2173861 4,13.2830094 L4,4 Z"
+                                                        id="Path-50" fill="#000000" opacity="0.3" />
+                                                    <path
+                                                        d="M12,11 C10.8954305,11 10,10.1045695 10,9 C10,7.8954305 10.8954305,7 12,7 C13.1045695,7 14,7.8954305 14,9 C14,10.1045695 13.1045695,11 12,11 Z"
+                                                        id="Mask" fill="#000000" opacity="0.3" />
+                                                    <path
+                                                        d="M7.00036205,16.4995035 C7.21569918,13.5165724 9.36772908,12 11.9907452,12 C14.6506758,12 16.8360465,13.4332455 16.9988413,16.5 C17.0053266,16.6221713 16.9988413,17 16.5815,17 C14.5228466,17 11.463736,17 7.4041679,17 C7.26484009,17 6.98863236,16.6619875 7.00036205,16.4995035 Z"
+                                                        id="Mask-Copy" fill="#000000" opacity="0.3" />
+                                                </g>
+                                            </svg> </span>
+                                        <span class="kt-widget__desc">
+                                            Google Calendar Synchronization
+                                        </span>
+                                    </span>
+                                </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-grid__item kt-grid__item--fluid kt-app__content">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="tab-content">
+                            <div *ngIf="tabshow === 'Profile'" class="kt-portlet ">
+                                <form class="kt-form kt-form--label-right">
+                                    <div class="kt-portlet__body">
+                                        <div class="kt-section kt-section--first">
+                                            <div class="kt-section__body">
+                                                <div class="row">
+                                                    <label class="col-xl-3"></label>
+                                                    <div class="col-lg-9 col-xl-6">
+                                                        <h3 class="kt-section__title kt-section__title-sm">{{this.currentUser.Engineer}}
+                                                            Info:
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-xl-3 col-lg-3 col-form-label">Profile Picture</label>
+                                                    <div class="col-lg-9 col-xl-6">
+                                                        <div class="kt-avatar kt-avatar--outline kt-avatar--circle"
+                                                            id="kt_apps_user_add_avatar">
+                                                            <img *ngIf="service.formData.EngineerLogo.length === 0"
+                                                                class="kt-avatar__holder"
+                                                                src="{{localPrependUrl}}/assets/svg/noimage.svg" />
+                                                            <div class="upload-image"
+                                                                *ngIf="service.formData.EngineerLogo.length > 0">
+                                                                <img class="kt-avatar__holder" *ngIf="isImageBinary"
+                                                                    src="{{service.formData.EngineerLogo}}">
+                                                                <img class="kt-avatar__holder" *ngIf="!isImageBinary"
+                                                                    src="data:image/png;base64,{{service.formData.EngineerLogo}}">
+                                                            </div>
+                                                            <!-- <label class="kt-avatar__upload" data-toggle="kt-tooltip"
+                                                                title="" data-original-title="Change avatar">
+                                                                <i class="fa fa-pen"></i>
+                                                                <input type="file" name="profile_avatar"
+                                                                    (change)="picked($event)" accept=".png, .jpg, .jpeg"
+                                                                    disabled>
+                                                            </label> -->
+                                                            <span class="kt-avatar__cancel" data-toggle="kt-tooltip"
+                                                                title="" data-original-title="Cancel avatar">
+                                                                <i class="fa fa-times"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-12 no-spacing">
+                                                    <div class="form-group">
+                                                        <label for="">Enter Name*</label>
+                                                        <input name="EngineerName" #EngineerName="ngModel"
+                                                            [(ngModel)]="service.formData.EngineerName"
+                                                            class="form-control" [class.is-invalid]="!isNameValid"
+                                                            placeholder="Name" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-12 no-spacing">
+                                                    <div class="form-group">
+                                                        <label for="">Enter Mobile Number*</label>
+                                                        <input name="EngineerPhone" #EngineerPhone="ngModel"
+                                                            [(ngModel)]="service.formData.EngineerPhone"
+                                                            class="form-control" [class.is-invalid]="!isMobileValid"
+                                                            placeholder="Mobile" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="kt-portlet__foot" style="display: none;">
+                                        <div class="kt-form__actions">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-xl-3">
+                                                </div>
+                                                <div class="col-lg-9 col-xl-9">
+                                                    <button type="button" class="btn btn-success"
+                                                        (click)="onsubmit('Profile')">Submit</button>&nbsp;
+                                                    <button class="btn btn-secondary">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div *ngIf="tabshow === 'Emergency'" class="kt-portlet ">
+                                <form class="kt-form kt-form--label-right">
+                                    <div class="kt-portlet__body">
+                                        <div class="kt-section kt-section--first">
+                                            <div class="kt-section__body">
+                                                <div class="row">
+                                                    <label class="col-xl-3"></label>
+                                                    <div class="col-lg-9 col-xl-6">
+                                                        <h3 class="kt-section__title kt-section__title-sm">Emergency
+                                                            Contact Info:
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-xl-3 col-lg-3 col-form-label">Name</label>
+                                                    <div class="col-lg-9 col-xl-6">
+                                                        <input name="EmergencyName" #EmergencyName="ngModel"
+                                                            [(ngModel)]="service.formData.EmergencyName"
+                                                            class="form-control" placeholder="Name" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-xl-3 col-lg-3 col-form-label">Phone Number</label>
+                                                    <div class="col-lg-9 col-xl-6">
+                                                        <input name="EmergencyNumber" #EmergencyNumber="ngModel"
+                                                            [(ngModel)]="service.formData.EmergencyNumber"
+                                                            class="form-control" placeholder="Number" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-xl-3 col-lg-3 col-form-label">Relation</label>
+                                                    <div class="col-lg-9 col-xl-6">
+                                                        <input name="EmergencyRelation" #EmergencyRelation="ngModel"
+                                                            [(ngModel)]="service.formData.EmergencyRelation"
+                                                            class="form-control" placeholder="Relation" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="kt-portlet__foot" style="display: none;">
+                                        <div class="kt-form__actions">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-xl-3">
+                                                </div>
+                                                <div class="col-lg-9 col-xl-9">
+                                                    <button type="button" class="btn btn-success"
+                                                        (click)="onsubmit('Emergency')">Submit</button>&nbsp;
+                                                    <button class="btn btn-secondary">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div *ngIf="tabshow === 'Address'" class="kt-portlet ">
+                                <form class="kt-form kt-form--label-right">
+                                    <div class="kt-portlet__body">
+                                        <div class="kt-section kt-section--first">
+                                            <div class="kt-section__body">
+                                                <div class="row">
+                                                    <label class="col-xl-3"></label>
+                                                    <div class="col-lg-9 col-xl-6">
+                                                        <h3 class="kt-section__title kt-section__title-sm">Address Info:
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label for="">Address Street 1</label>
+                                                        <input name="AddressStreet1" ngx-google-places-autocomplete
+                                                            [options]="options"
+                                                            (onAddressChange)="handleAddressChange($event)"
+                                                            #AddressStreet1="ngModel"
+                                                            [(ngModel)]="service.formData.AddressStreet1"
+                                                            class="form-control"
+                                                            placeholder="Street 1 (search by street name/route)"
+                                                            disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label for="">Address Street 2</label>
+                                                        <input name="AddressStreet2" #AddressStreet2="ngModel"
+                                                            [(ngModel)]="service.formData.AddressStreet2"
+                                                            class="form-control" placeholder="Street 2" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label for="">Address Unit No</label>
+                                                        <input name="AddressUnitNo" #AddressUnitNo="ngModel"
+                                                            [(ngModel)]="service.formData.AddressUnitNo"
+                                                            class="form-control" placeholder="Address Unit No" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label for="">Postal Code</label>
+                                                        <input name="AddressZipCode" #AddressZipCode="ngModel"
+                                                            [(ngModel)]="service.formData.AddressZipCode"
+                                                            (keyup)="findAddressByPostalCode(service.formData.AddressZipCode)"
+                                                            class="form-control"
+                                                            placeholder="Postal Code (search by postal code)" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label for="">Select Country</label>
+                                                        <select name="AddressCountry" #AddressCountry="ngModel"
+                                                            [(ngModel)]="service.formData.AddressCountry"
+                                                            class="form-control" disabled>
+                                                            <option value="0">Select Country</option>
+                                                            <option *ngFor="let x of countrylist"
+                                                                value="{{x.CountryId}}">
+                                                                {{x.CountryName}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                                                            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                                                        </agm-map>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="kt-portlet__foot" style="display: none;">
+                                        <div class="kt-form__actions">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-xl-3">
+                                                </div>
+                                                <div class="col-lg-9 col-xl-9">
+                                                    <button type="button" class="btn btn-success"
+                                                        (click)="onsubmitPasswordchange()">Submit</button>&nbsp;
+                                                    <button class="btn btn-secondary">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div *ngIf="tabshow === 'Change'" class="kt-portlet ">
+                                <form class="kt-form kt-form--label-right">
+                                    <div class="kt-portlet__body">
+                                        <div class="kt-section kt-section--first">
+                                            <div class="kt-section__body">
+                                                <div style="display: none;" class="alert alert-solid-danger alert-bold fade show kt-margin-t-20 kt-margin-b-40"
+                                                    role="alert">
+                                                    <div class="alert-icon"><i class="fa fa-exclamation-triangle"></i>
+                                                    </div>
+                                                    <div class="alert-text">Configure user passwords to expire
+                                                        periodically. Users will need warning that their passwords are
+                                                        going to expire, <br>or they might inadvertently get locked out
+                                                        of the system!</div>
+                                                    <div class="alert-close">
+                                                        <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true"><i class="la la-close"></i></span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-xl-3"></label>
+                                                    <div class="col-lg-9 col-xl-6">
+                                                        <h3 class="kt-section__title kt-section__title-sm">Change Your Password</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-xl-3 col-lg-3 col-form-label">Current
+                                                        Password</label>
+                                                    <div class="col-lg-9 col-xl-6">
+                                                        <input type="password" class="form-control" name="OldPassword"
+                                                            #OldPassword="ngModel"
+                                                            [(ngModel)]="service.ForgetPassword.OldPassword"
+                                                            placeholder="Current password">
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="form-group row">
+                                                    <div class="col-xl-12 col-lg-12 col-md-12">
+                                                        <div class="row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label"></label>
+                                                            <div class="col-lg-9 col-xl-6">
+                                                                <!-- <span class="kt-switch kt-switch--sm kt-switch--brand"><label><input
+                                                                    (click)="onPasswordStrengShow()"
+                                                                    type="checkbox"><span></span>show
+                                                                requirement</label></span> -->
+                                                                <mat-card>
+                                                                    <mat-card-subtitle>
+                                                                      <mat-slide-toggle [(ngModel)]="showDetails3"
+                                                                                        [ngModelOptions]="{standalone: true}">
+                                                                        Show Password Details
+                                                                      </mat-slide-toggle>
+                                                                    </mat-card-subtitle>          
+                                                                    <mat-card-content>
+                                                  
+                                                                      <!--password input filed-->
+                                                                      <mat-form-field appearance="outline" [color]="passwordComponentWithConfirmation.color" style="width: 100%">
+                                                                        <mat-label>Password</mat-label>
+                                                                        <mat-pass-toggle-visibility #toggle3 matSuffix>
+                                                                          <i class="fa fa-list"></i>
+                                                                        </mat-pass-toggle-visibility>
+                                                                        <input matInput #passwordWithConfirmation [(ngModel)]="service.ForgetPassword.NewPassword"  
+                                                                               [type]="toggle3.type"
+                                                                               [formControl]="passwordComponentWithConfirmation.passwordFormControl"
+                                                                               placeholder="Password"
+                                                                               required>
+                                                                        <!--password hint-->
+                                                                        <mat-hint align="end" aria-live="polite">
+                                                                          {{passwordWithConfirmation.value.length}} / {{passwordComponentWithConfirmation.max}}
+                                                                        </mat-hint>
+                                                                        <mat-error *ngIf="passwordComponentWithConfirmation.passwordFormControl.hasError('required')">
+                                                                          Password is required
+                                                                        </mat-error>
+                                                                        <mat-error *ngIf="passwordComponentWithConfirmation.passwordFormControl.hasError('pattern')">
+                                                                          Password is not valid
+                                                                        </mat-error>
+                                                                      </mat-form-field>
+                                                                      <!--@angular-material-extensions/password-strength's main component-->
+                                                                      <mat-password-strength #passwordComponentWithConfirmation
+                                                                                             (onStrengthChanged)="onStrengthChanged($event)"
+                                                                                             [password]="passwordWithConfirmation.value">
+                                                                      </mat-password-strength>
+                                                                      <!--Password's strength info-->
+                                                                      <mat-password-strength-info
+                                                                        *ngIf="showDetails3"
+                                                                        [passwordComponent]="passwordComponentWithConfirmation">
+                                                                      </mat-password-strength-info>
+                                                                      <!--password input field for confirmation-->
+                                                                      <mat-form-field appearance="outline" class="mt-3" style="width: 100%">
+                                                                        <mat-label>Confirm Password</mat-label>
+                                                                        <mat-pass-toggle-visibility #toggleConfirmPassword matSuffix></mat-pass-toggle-visibility>
+                                                                        <input matInput #passwordToConfirm [(ngModel)]="service.ForgetPassword.ConfirmPassword"  
+                                                                               [type]="toggleConfirmPassword.type"
+                                                                               [formControl]="passwordComponentWithConfirmation.passwordConfirmationFormControl"
+                                                                               placeholder="Password">
+                                                                        <!-- password hint-->
+                                                                        <mat-hint align="end" aria-live="polite">
+                                                                          {{passwordToConfirm.value.length}} / {{passwordComponentWithConfirmation.max}}
+                                                                        </mat-hint>
+                                                                        <!-- password error msgs-->
+                                                                        <mat-error *ngIf="passwordComponentWithConfirmation.passwordConfirmationFormControl.hasError('required')">
+                                                                          Password confirmation is required
+                                                                        </mat-error>
+                                                                        <mat-error
+                                                                          *ngIf="passwordComponentWithConfirmation.passwordConfirmationFormControl.hasError('notConfirmed')">
+                                                                          Password is not the same
+                                                                        </mat-error>
+                                                                      </mat-form-field>
+                                                                    </mat-card-content>
+                                                                    <mat-card-content>
+                                                                    </mat-card-content>
+                                                                  </mat-card>
+                                                            </div>                                                    
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="col-xl-12 col-lg-12 col-md-12">
+                                                        <div class="row">
+                                                            <label class="col-xl-3 col-lg-3 col-form-label">New Password</label>
+                                                            <div class="col-lg-9 col-xl-6">
+                                                                <input matInput #passwordWithValidation required class="form-control" type="password"          
+                                                                    [(ngModel)]="service.ForgetPassword.NewPassword" min="6" maxlength="16"
+                                                                    placeholder="New Password">
+                                                                <mat-hint align="end" aria-live="polite">
+                                                                    {{passwordWithValidation.value.length}} / 16
+                                                                </mat-hint>     
+                                                        </div>
+                                                        </div>
+                                                    </div>    -->
+                                            </div>
+                                                <!-- <div class="form-group form-group-last row">
+                                                    <label class="col-xl-3 col-lg-3 col-form-label">Verify
+                                                        Password</label>
+                                                    <div class="col-lg-9 col-xl-6">
+                                                        <input type="password" class="form-control"
+                                                            name="ConfirmPassword" #ConfirmPassword="ngModel"
+                                                            [(ngModel)]="service.ForgetPassword.ConfirmPassword"
+                                                            placeholder="Verify password">
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="kt-portlet__foot">
+                                        <div class="kt-form__actions">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-xl-3">
+                                                </div>
+                                                <div class="col-lg-9 col-xl-9">
+                                                    <button type="button" class="btn btn-brand btn-bold" (click)="onsubmitPasswordchange()">Change
+                                                        Password</button>&nbsp;
+                                                    <button class="btn btn-secondary">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div *ngIf="tabshow === 'calendar'" class="kt-portlet ">
+                                <form class="kt-form kt-form--label-right">
+                                    <div class="kt-portlet__body">
+                                        <div class="kt-section kt-section--first">
+                                            <div class="kt-section__body">
+                                                <div class="row">
+                                                    <label class="col-xl-3"></label>
+                                                    <div class="col-lg-9 col-xl-6">
+                                                        <h3 class="kt-section__title kt-section__title-sm">Google Calendar Synchronization
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label for="">Ticket Synchronization</label>
+                                                        <br><br>
+                                                        <a target="_blank" href="{{SynchronizationUrl}}" >Synchronize your Appointment calendar with Google calendar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

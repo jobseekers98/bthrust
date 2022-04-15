@@ -1,0 +1,12 @@
+.reource-head{padding:4px 0px;}
+.rdate .datenum{width:40px;height:40px;line-height:40px;text-align:center;background-color:#0084CA;border-radius:50%;display:inline-block;color:white;font-size:18px;margin-right:10px;}
+.rdate span{font-size:16px;color:black;;}
+.ffffrow{width: 100%;background-color: #fff;padding: 10px 8px;}
+.filterheader{padding: 9px 15px;}.ffffrow label{font-size: 14px;font-weight: 500;}
+.ddldown{display: inline-block;}
+.ddldown select{ color:#808080; min-width: 207px; font-weight: bold;}
+.chkOption {padding-top: 10px;}
+.kt-radio-list { padding-top: 6px; }
+.kt-radio-vertical {display: inline;padding-right: 10px;}
+.calendar{background-color: #fff;color: #0084ca;}
+.filterbody { padding-top: 10px; }

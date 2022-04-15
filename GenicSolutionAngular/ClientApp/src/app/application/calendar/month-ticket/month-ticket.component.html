@@ -1,0 +1,760 @@
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+    <div class="kt-subheader kt-grid__item" id="kt_subheader">
+        <div class="kt-container kt-container--fluid breadcud-kt-container ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                    <a href="javascript:;" routerLink="/dashboard">
+                        Dashboard
+                    </a>
+                </h3>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <a class="kt-subheader__breadcrumbs-link"> Calendar </a>
+                </div>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span> Calendar
+                </div>
+            </div>
+            <div class="kt-subheader__toolbar">
+                <div class="kt-subheader__wrapper">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="new-quote-main-section">
+        <div class="kt-container kt-container--fluid">
+            <div class="new-requst-filter_form create-new-client-popup">
+                <div class="accordion accordion-solid">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 no-spacing">
+                            <div class="row">
+                                <div class="col-lg-12 left-enlarge">
+                                    <div class="kt-portlet" id="kt_portlet">
+                                        <div class="kt-portlet__head">
+
+                                            <div class="col-sm-12 col-md-12">
+                                                <div class="row">
+                                                    <div class="col-sm-5 col-md-5 col-lg-5">
+                                                        <span class="btn">
+                                                            <i class="flaticon-map-location"></i>
+                                                            <span style="font-size: 1.2rem;
+                                                          font-weight: 500;
+                                                          color: #48465b;">
+                                                                Calendar
+                                                            </span>
+                                                        </span>
+
+                                                    </div>
+                                                    <div class="col-sm-1 col-md-1 col-lg-1">
+                                                        <div class="btn">
+                                                            <a href="javascript:;" (click)="showcalendar()">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div *ngIf="Iscalendarshow"
+                                                            style="position: absolute; z-index: 99999; background-color: white;">
+                                                            <ngb-datepicker name="CalendarResourceData"
+                                                                (select)="onDateSelect($event)" (navigate)="date=$event.next">
+                                                            </ngb-datepicker>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    <div class="col-sm-6 col-md-6 col-lg-6">
+                                                        <div class="kt-portlet__head-toolbar" style="float: right;">
+
+                                                            <a style="display: none;" href="javascript:;" class="btn" (click)="showtenderlegendpopup()" ><i class="fa text-warning" title="Tender Legend" aria-hidden="true">Tender Legend</i>
+                                                                <div *ngIf="IsTenderlegendshow" style="position: absolute; z-index: 99999; background-color: white;">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12 left-enlarge">
+                                                                            <div class="kt-portlet">
+                                                                                <table class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>Status</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td><div class="calendar-ticket-status status-Submitted" style="color:#000;font-weight: bold;">Submitted</div></td>                                                                                                                                                                       
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><div class="calendar-ticket-status status-Awarded" style="color:#000;font-weight: bold;">Awarded</div></td>                                                                                                                                                                       
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><div class="calendar-ticket-status status-RequireAttention" style="color:#000;font-weight: bold;">Require Attention</div></td>                                                                                                                                                                       
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><div class="calendar-ticket-status status-ToParticipate" style="color:#000;font-weight: bold;">To Participate</div></td>                                                                                                                                                                       
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><div class="calendar-ticket-status status-NotParticipating" style="color:#000;font-weight: bold;">Not Participating</div></td>                                                                                                                                                                       
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><div class="calendar-ticket-status status-UpcomingSiteSurvey" style="color:#000;font-weight: bold;">Upcoming SiteSurvey</div></td>                                                                                                                                                                       
+                                                                                        </tr>             
+                                                                                    </tbody>
+                                                                                </table>                                                                                                                
+                                                                            </div>                                        
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                            <a href="javascript:;" class="btn" (click)="showlegendpopup()" ><i class="fa text-warning" title="Legend" aria-hidden="true">Ticket Legend</i>
+                                                                <div *ngIf="Islegendshow" style="position: absolute; z-index: 99999; background-color: white;right: 0;">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12 left-enlarge">
+                                                                            <div class="kt-portlet">
+                                                                                <table class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>Status</th>
+                                                                                            <th>Priority</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td><div class="calendar-ticket-status status-UPCOMING" style="color:#000;font-weight: bold;">Upcoming</div></td>                                                                                    
+                                                                                            <td>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-sm-3"><i class="fas fa-circle text-danger" title="High Priority"></i></div>
+                                                                                                    <div class="col-sm-9" style="text-align: left;">High</div>
+                                                                                                </div>
+                                                                                            </td>                                                                                    
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><div class="calendar-ticket-status status-INPROGRESS" style="color:#000;font-weight: bold;">Inprogress</div></td>
+                                                                                            <td>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-sm-3"><i class="fas fa-circle text-info" title="Medium Priority"></i></div>
+                                                                                                    <div class="col-sm-9" style="text-align: left;">Medium</div>
+                                                                                                </div>
+                                                                                            </td>                                                                                                                                                                                                                                                        
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><div class="calendar-ticket-status status-HOLD" style="color:#000;font-weight: bold;">Hold</div></td>
+                                                                                            <td>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-sm-3"><i class="fas fa-circle text-success" title="Low Priority"></i></div>
+                                                                                                    <div class="col-sm-9" style="text-align: left;">Low</div>
+                                                                                                </div>
+                                                                                            </td>                                                                                                                                                                                                                                                        
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><div class="calendar-ticket-status status-CLOSED" style="color:#000;font-weight: bold;">CLOSED<small style="font-size: 12px;" class="fas fa-check-double"></small></div></td>
+                                                                                            <td></td>                                                                                                                                                                                                                                                        
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><div class="calendar-ticket-status status-OVERDUE" style="color:#000;font-weight: bold;">OVERDUE</div></td>
+                                                                                            <td></td>                                                                                                                                                                                                                                                        
+                                                                                        </tr>                                                                               
+                                                                                    </tbody>
+                                                                                </table>                                                                                                                
+                                                                            </div>                                        
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                            <div class="btn btn-group"
+                                                                *ngIf="currentUser.Permissions.ResourceView">
+                                                                <a routerLink="/calendar/month-tickets"
+                                                                    href="javascript:;"
+                                                                    class="btn btn-primary">Calendar</a>
+                                                                <a routerLink="/calendar/month-resource"
+                                                                    href="javascript:;"
+                                                                    class="btn btn-secondary">Resource</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <ng-template #customCellTemplate let-day="day" let-locale="locale">
+                                                    <div class="cal-cell-top">
+                                                        <span
+                                                            class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+                                                    </div>
+                                                    <span class="calendar-ticket-priority-visit"
+                                                        *ngIf="day.badgeTotal === 1">&nbsp;
+                                                    </span>
+                                                    <span class="calendar-ticket-priority-visit"
+                                                        *ngIf="day.badgeTotal > 1"
+                                                        (click)="monthcellvisitslist(day.events[0].id)">{{ day.badgeTotal }}
+                                                        Visits
+                                                    </span>
+                                                    <div class="agent-row-inner" *ngIf="day.badgeTotal > 1"
+                                                        id="agent-row-inner-{{day.events[0].id}}">
+                                                        <div class="close-btn"><a (click)="monthcellvisitslistclose()"
+                                                                href="javascript:;">X</a></div>
+                                                        <div class="agent-header clearfix">
+                                                            <div class="agent-image-info ">
+                                                                <div *ngFor="let x of day.events"
+                                                                    class="calendar-ticket-status status-{{x.meta.StatusTemp}}">
+                                                                    <a *ngIf="x.meta.IsTicket" href="javascript:;"
+                                                                        (click)="openpopup(x.id)">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-2 col-md-2">
+                                                                                <i *ngIf="x.meta.Priority === 1"
+                                                                                    class="fas fa-circle text-danger"
+                                                                                    title="High Priority"></i>
+                                                                                <i *ngIf="x.meta.Priority === 2"
+                                                                                    class="fas fa-circle text-info"
+                                                                                    title="Medium Priority"></i>
+                                                                                <i *ngIf="x.meta.Priority === 3"
+                                                                                    class="fas fa-circle text-success"
+                                                                                    title="Low Priority"></i>
+                                                                            </div>
+                                                                            <div class="col-sm-10 col-md-10"
+                                                                                style="padding: 0px;">
+                                                                                <b
+                                                                                    title="{{x.title}}">{{ x.title.substring(0,15) }}...</b>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-sm-10 col-md-10">
+                                                                                <span>{{x.meta.Subject}} </span>
+
+                                                                            </div>
+                                                                            <div class="col-sm-2 col-md-2">
+                                                                                <i *ngIf="x.meta.Status === 'CLOSED'"
+                                                                                    class="fas fa-check-double closed-text"></i>
+                                                                                <i *ngIf="x.meta.TicketTeams.length === 0"
+                                                                                    class="fa fa-user-times right-text"
+                                                                                    title="{{this.currentUser.Engineer}} not assigne yet!"></i>
+                                                                                <div class="btooltipTeam"> <i
+                                                                                        class="fa fa-user text-info"></i>
+                                                                                    <span class="btooltipTeamtext">
+                                                                                        <div
+                                                                                            *ngFor="let t of x.meta.TicketTeams">
+                                                                                            {{t.EngineerName}}</div>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                    <a *ngIf="!x.meta.IsTicket" href="javascript:;"
+                                                                        (click)="opentenderpopup(x)">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12 col-md-12">
+                                                                                <b>{{x.title}}</b>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-sm-10 col-md-10">
+                                                                                <span>{{x.start | date:'h:mm a'}}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <small *ngIf="day.events.length > 0"
+                                                        class="calendar-ticket-status status-{{day.events[0].meta.StatusTemp}}">
+                                                        <div *ngIf="day.events[0].meta.IsTicket === true">
+                                                            <a href="javascript:;"
+                                                                (click)="openpopup(day.events[0].id)">
+                                                                <div class="row">
+                                                                    <div class="col-sm-2 col-md-2">
+                                                                        <i *ngIf="day.events[0].meta.Priority === 1"
+                                                                            class="fas fa-circle text-danger"
+                                                                            title="High Priority"></i>
+                                                                        <i *ngIf="day.events[0].meta.Priority === 2"
+                                                                            class="fas fa-circle text-info"
+                                                                            title="Medium Priority"></i>
+                                                                        <i *ngIf="day.events[0].meta.Priority === 3"
+                                                                            class="fas fa-circle text-success"
+                                                                            title="Low Priority"></i>
+                                                                    </div>
+                                                                    <div class="col-sm-10 col-md-10"
+                                                                        style="padding: 0px;">
+                                                                        <b
+                                                                            title="{{day.events[0].title}}">{{ day.events[0].title.substring(0,15) }}...</b>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-10 col-md-10">
+                                                                        <span>{{day.events[0].meta.Subject}}</span>
+
+                                                                    </div>
+                                                                    <div class="col-sm-2 col-md-2">
+                                                                        <i *ngIf="day.events[0].meta.Status === 'CLOSED'"
+                                                                            class="fas fa-check-double closed-text"></i>
+                                                                        <i *ngIf="day.events[0].meta.TicketTeams.length === 0"
+                                                                            class="fa fa-user-times right-text"
+                                                                            title="{{this.currentUser.Engineer}} not assigne yet!"></i>
+                                                                        <div class="btooltipTeam"> <i
+                                                                                class="fa fa-user text-info"></i>
+                                                                            <span class="btooltipTeamtext">
+                                                                                <div
+                                                                                    *ngFor="let t of day.events[0].meta.TicketTeams">
+                                                                                    {{t.EngineerName}}</div>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div *ngIf="day.events[0].meta.IsTicket  === false">
+                                                            <a href="javascript:;"
+                                                                (click)="opentenderpopup(day.events[0])">
+                                                                <div class="row">
+                                                                    <div class="col-sm-12 col-md-12">
+                                                                        <b>{{day.events[0].title}}</b>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-12 col-md-12">
+                                                                        <span>{{day.events[0].start | date:'h:mm a'}}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </small>
+                                                </ng-template>
+                                                <ng-template #customCellWeekTemplate let-weekEvent="weekEvent"
+                                                    let-locale="locale">
+                                                    <div
+                                                        class="calendar-ticket-status status-{{weekEvent.event.meta.StatusTemp}}">
+                                                        <div *ngIf="weekEvent.event.meta.IsTicket === true">
+                                                            <a href="javascript:;"
+                                                                (click)="openpopup(weekEvent.event.id)">
+                                                                <div class="row">
+                                                                    <div class="col-sm-2 col-md-2">
+                                                                        <i *ngIf="weekEvent.event.meta.Priority === 1"
+                                                                            class="fas fa-circle text-danger"
+                                                                            title="High Priority"></i>
+                                                                        <i *ngIf="weekEvent.event.meta.Priority === 2"
+                                                                            class="fas fa-circle text-info"
+                                                                            title="Medium Priority"></i>
+                                                                        <i *ngIf="weekEvent.event.meta.Priority === 3"
+                                                                            class="fas fa-circle text-success"
+                                                                            title="Low Priority"></i>
+                                                                    </div>
+                                                                    <div class="col-sm-10 col-md-10"
+                                                                        style="padding: 0px;">
+                                                                        <b
+                                                                            title="{{weekEvent.event.title}}">{{ weekEvent.event.title.substring(0,15) }}...</b>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-10 col-md-10">
+                                                                        <span>{{weekEvent.event.meta.Subject}}</span>
+
+                                                                    </div>
+                                                                    <div class="col-sm-2 col-md-2">
+                                                                        <i *ngIf="weekEvent.event.meta.Status === 'CLOSED'"
+                                                                            class="fas fa-check-double closed-text"></i>
+                                                                        <i *ngIf="weekEvent.event.meta.TicketTeams.length === 0"
+                                                                            class="fa fa-user-times right-text"
+                                                                            title="{{this.currentUser.Engineer}} not assigne yet!"></i>
+                                                                        <div class="btooltipTeam"> <i
+                                                                                class="fa fa-user text-info"></i>
+                                                                            <span class="btooltipTeamtext">
+                                                                                <div
+                                                                                    *ngFor="let t of weekEvent.event.meta.TicketTeams">
+                                                                                    {{t.EngineerName}}</div>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div *ngIf="weekEvent.event.meta.IsTicket  === false">
+                                                            <a href="javascript:;"
+                                                                (click)="opentenderpopup(weekEvent.event)">
+                                                                <div class="row">
+                                                                    <div class="col-sm-12 col-md-12">
+                                                                        <b>{{weekEvent.event.title}}</b>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-12 col-md-12">
+                                                                        <span>{{weekEvent.event.meta.Subject}}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                                <ng-template #customCellDayTemplate let-dayEvent="dayEvent"
+                                                    let-locale="locale">
+                                                    <div
+                                                        class="calendar-ticket-status status-{{dayEvent.event.meta.StatusTemp}}">
+                                                        <div *ngIf="dayEvent.event.meta.IsTicket === true">
+                                                            <a href="javascript:;"
+                                                                (click)="openpopup(dayEvent.event.id)">
+                                                                <div class="row">
+                                                                    <div class="col-sm-2 col-md-2">
+                                                                        <i *ngIf="dayEvent.event.meta.Priority === 1"
+                                                                            class="fas fa-circle text-danger"
+                                                                            title="High Priority"></i>
+                                                                        <i *ngIf="dayEvent.event.meta.Priority === 2"
+                                                                            class="fas fa-circle text-info"
+                                                                            title="Medium Priority"></i>
+                                                                        <i *ngIf="dayEvent.event.meta.Priority === 3"
+                                                                            class="fas fa-circle text-success"
+                                                                            title="Low Priority"></i>
+                                                                    </div>
+                                                                    <div class="col-sm-10 col-md-10"
+                                                                        style="padding: 0px;">
+                                                                        <b
+                                                                            title="{{dayEvent.event.title}}">{{ dayEvent.event.title.substring(0,15) }}...</b>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-10 col-md-10">
+                                                                        <span>{{dayEvent.event.meta.Subject}}</span>
+
+                                                                    </div>
+                                                                    <div class="col-sm-2 col-md-2">
+                                                                        <i *ngIf="dayEvent.event.meta.Status === 'CLOSED'"
+                                                                            class="fas fa-check-double closed-text"></i>
+                                                                        <i *ngIf="dayEvent.event.meta.TicketTeams.length === 0"
+                                                                            class="fa fa-user-times right-text"
+                                                                            title="{{this.currentUser.Engineer}} not assigne yet!"></i>
+                                                                        <div class="btooltipTeam"> <i
+                                                                                class="fa fa-user text-info"></i>
+                                                                            <span class="btooltipTeamtext">
+                                                                                <div
+                                                                                    *ngFor="let t of dayEvent.event.meta.TicketTeams">
+                                                                                    {{t.EngineerName}}</div>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="dayEvent.event.meta.IsTicket  === false">
+                                                        <a href="javascript:;"
+                                                            (click)="opentenderpopup(dayEvent.event)">
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-md-12">
+                                                                    <b>{{dayEvent.event.title}}</b>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-md-12">
+                                                                    <span>{{dayEvent.event.meta.Subject}}</span>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </ng-template>
+                                                <mwl-demo-utils-calendar-header [(view)]="view" [(viewDate)]="viewDate">
+                                                </mwl-demo-utils-calendar-header>
+
+                                                <div [ngSwitch]="view">
+                                                    <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month"
+                                                        [viewDate]="viewDate" [events]="events"
+                                                        [activeDayIsOpen]="activeDayIsOpen" [refresh]="refresh"
+                                                        [cellTemplate]="customCellTemplate"
+                                                        (eventTimesChanged)="eventDropped($event)">
+                                                    </mwl-calendar-month-view>
+                                                    <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week"
+                                                        [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+                                                        [eventTemplate]="customCellWeekTemplate"
+                                                        (eventTimesChanged)="eventDropped($event)">
+                                                    </mwl-calendar-week-view>
+                                                    <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day"
+                                                        [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+                                                        [eventTemplate]="customCellDayTemplate"
+                                                        (eventTimesChanged)="eventDropped($event)">
+                                                    </mwl-calendar-day-view>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="card" mwlDroppable
+                                                    (drop)="externalDrop($event.dropData.event)"
+                                                    dragOverClass="drag-over">
+                                                    <div class="card-body">
+                                                        <p *ngIf="externalEvents.length === 0"><em>No unschedule
+                                                                {{this.currentUser.Ticket}}</em></p>
+                                                        <p *ngIf="externalEvents.length > 0"><em>Unschedule this.currentUser.Tickets</em>
+                                                        </p>
+                                                        <h6 *ngFor="let event of externalEvents" mwlDraggable
+                                                            dragActiveClass="drag-active">
+                                                            <a href="javascript:;" (click)="openpopup(event.id)"
+                                                                [style.color]="event.color.primary">
+                                                                <i class="fa fa-plug" aria-hidden="true"></i>
+                                                                {{ event.title }}
+                                                            </a>
+                                                        </h6>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #viewmodalContent let-close="close">
+    <div class="row cus-model-header" style="margin:0">
+        <div class="col-md-9">
+            <h5 class="modal-title" style="font-size: 2em;color: black;font-weight: 600;">
+                <span *ngIf="ticketservice.formData.TicketType === 'One-Off Ticket'"> Visit | One-Off {{this.currentUser.Ticket}}</span>
+                <span *ngIf="ticketservice.formData.TicketType === 'Recurring Ticket'">Visit | Recurring {{this.currentUser.Ticket}}</span>
+            </h5>
+        </div>
+        <div class="col-md-3">
+            <div class="btn-group" style="float: right;">
+                <button
+                    *ngIf="ticketservice.formData.Status === 'UPCOMING' || ticketservice.formData.Status === 'OVERDUE' || ticketservice.formData.Status === 'UNSCHEDULED'"
+                    class="btn btn-brand btn-sm text-white " (click)="openeditticket()">
+                    <i class="la la-edit"></i> Edit </button>
+                <button type="button" class="btn btn-danger btn-sm text-white" (click)="close()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body" id="month-1-modal">
+        <div class="row">
+            <div class="col-md-6" style="border-right: 1px solid #e1dfdf;">
+                <div class="client-header"> {{ticketservice.formData.CustomerCompanyName}} </div>
+                <strong> {{ticketservice.formData.CustomerName}} </strong>
+                <div class="client-address">
+                    <em *ngFor="let subCategory of ticketservice.formData.CustomerAddress?.split(',')">
+                        {{ subCategory }} <br>
+                    </em>
+                </div>
+            </div>
+            <div class="col-md-6 client-header-appoinmenttime">
+                <i class="fa fa-calendar"></i>
+                {{ticketservice.formData.OneOffAppointmentDate | date}}
+                {{ticketservice.formData.AppointmentStart | date:'h:mm a':'+0000'}} -
+                {{ticketservice.formData.AppointmentEnd | date:'h:mm a':'+0000'}}
+                <div><a href="javascript:;"
+                        href="https://www.google.com/maps/place/{{ticketservice.formData.CustomerAddress}}"
+                        target="_blank"><i class="fas fa-map-marker text-success"></i> Direction</a></div>
+                <i *ngIf="ticketservice.formData.Priority === 1" class="fas fa-circle text-danger"
+                    title="High Priority"></i> <span class="text-danger" *ngIf="ticketservice.formData.Priority === 1">
+                    High Priority</span>
+                <i *ngIf="ticketservice.formData.Priority === 2" class="fas fa-circle text-info"
+                    title="Medium Priority"></i> <span class="text-info" *ngIf="ticketservice.formData.Priority === 2">
+                    Medium Priority</span>
+                <i *ngIf="ticketservice.formData.Priority === 3" class="fas fa-circle text-success"
+                    title="Low Priority"></i> <span class="text-success" *ngIf="ticketservice.formData.Priority === 3">
+                    Low Priority</span>
+                <div>
+                    <generic-ticket-status [(Status)]="ticketservice.formData.Status"
+                    [OverDueDays]="0"></generic-ticket-status>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="details-tabs width100">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#dtab1">Info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#dtab2">Customer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#dtab3">Notes</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="dtab1" class=" tab-pane active">
+                            <div class="row row-border">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="client-info-title"> {{ticketservice.formData.Title}} </div><br>
+                                    <div class="client-info-desc">{{ticketservice.formData.Description}}</div>
+                                </div>
+                            </div>
+                            <div class="row row-border">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="client-info-title"> Ticket </div>
+                                    <div class="client-info-desc">{{ticketservice.formData.TicketId}}</div>
+                                    <div class="client-info-desc">{{ticketservice.formData.Title}}</div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="client-info-title"> Team </div>
+                                    <div class="client-info-desc" *ngFor="let x of ticketservice.formData.TicketTeams">
+                                        {{x.EngineerName}}
+                                        <span class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                                            *ngIf="x.Type === 1">Supervisor</span>
+                                        <span class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill"
+                                            *ngIf="x.Type === 2">Foreman</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-border">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="client-info-title"> Line Items </div>
+                                    <table class="width100">
+                                        <thead>
+                                            <tr>
+                                                <th>Product/Service</th>
+                                                <th>QTY</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let itm of ticketservice.formData.TicketItems">
+                                                <td> {{itm.ItemName}}</td>
+                                                <td ><div *ngIf="itm.Type === 'Product'">{{itm.ItemQuantity}}</div></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="dtab2" class=" tab-pane fade">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="client-info-title"> Client Details </div>
+                                    <table class="width100">
+                                        <tbody>
+                                            <tr>
+                                                <td> Name</td>
+                                                <td> {{ticketservice.formData.CustomerName}}</td>
+                                                <td><a href="javascript:;"
+                                                        (click)="detailscustomer(ticketservice.formData.Customers)"><i
+                                                            class="fa fa-angle-double-right "></i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td> Email</td>
+                                                <td> {{ticketservice.formData.CustomerEmail}}</td>
+                                                <td><a href="mailto:@{{ticketservice.formData.CustomerEmail}}"><i
+                                                            class="fa fa-envelope"></i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <hr>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <div class="client-info-title"> Property </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Address</td>
+                                                <td> {{ticketservice.formData.CustomerAddress}}</td>
+                                                <td><a href="https://www.google.com/maps/place/{{ticketservice.formData.CustomerAddress}}"
+                                                        target="_blank"><i class="fa fa-angle-double-right"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="dtab3" class=" tab-pane fade">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    {{ticketservice.formData.InternalNoteDescription}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #modalTender let-close="close">
+    <div class="row cus-model-header" style="margin:0">
+        <div class="col-md-9">
+            <h5 class="modal-title" style="font-size: 2em;color: black;font-weight: 600;">
+                {{this.tenderData.title}}
+            </h5>
+        </div>
+        <div class="col-md-3">
+            <div class="btn-group" style="float: right;">
+
+                <button type="button" class="btn btn-danger btn-sm text-white" (click)="close()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body" id="month-2-modal">
+        <div class="row">
+            <table *ngIf="this.tenderData.title === 'Tender Closing'" class="table table-bordered"
+                style="font-size: 16px;">
+                <tbody>
+                    <tr>
+                        <td>Tender Closing</td>
+                        <td>{{this.tenderData.meta.data.TenderClosing | date}}
+                            {{this.tenderData.meta.data.TenderClosing | date:'h:mm a':'+0000'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="modal-tender-lable">Status</td>
+                        <td><span
+                                class="tenderstatus {{this.tenderData.meta.Status.toString().replace(' ', '').replace(' ', '')}}">{{this.tenderData.meta.data.Status}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="modal-tender-lable">Buyer</td>
+                        <td>{{this.tenderData.meta.data.Buyer}}</td>
+                    </tr>
+                    <tr>
+                        <td class="modal-tender-lable">Tender Ref No.</td>
+                        <td>{{this.tenderData.meta.data.TenderRefNo}}</td>
+                    </tr>
+                    <tr>
+                        <td class="modal-tender-lable">Tender Name</td>
+                        <td>{{this.tenderData.meta.data.TenderName}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table *ngIf="this.tenderData.title === 'SiteWalk'" class="table table-bordered" style="font-size: 16px;">
+                <tbody>
+                    <tr>
+                        <td class="modal-tender-lable">SiteWalk Date</td>
+                        <td>{{this.tenderData.meta.data.SitewalkDate | date}}
+                            {{this.tenderData.meta.data.SitewalkDate | date:'h:mm a':'+0000'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="modal-tender-lable">Status</td>
+                        <td><span
+                                class="tenderstatus {{this.tenderData.meta.Status.toString().replace(' ', '').replace(' ', '')}}">{{this.tenderData.meta.data.Status}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="modal-tender-lable">Buyer</td>
+                        <td>{{this.tenderData.meta.data.Buyer}}</td>
+                    </tr>
+                    <tr>
+                        <td class="modal-tender-lable">Tender Ref No.</td>
+                        <td>{{this.tenderData.meta.data.TenderRefNo}}</td>
+                    </tr>
+                    <tr>
+                        <td class="modal-tender-lable">Tender Name</td>
+                        <td>{{this.tenderData.meta.data.TenderName}}</td>
+                    </tr>
+                    <tr>
+                        <td class="modal-tender-lable">Address</td>
+                        <td>{{this.tenderData.meta.data.SitewalkAddress}}</td>
+                    </tr>
+                    <tr>
+                        <td class="modal-tender-lable">POC</td>
+                        <td>{{this.tenderData.meta.data.SitewalkPOC}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</ng-template>

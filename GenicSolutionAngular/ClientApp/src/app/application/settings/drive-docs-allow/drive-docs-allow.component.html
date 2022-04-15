@@ -1,0 +1,130 @@
+<div class="kt-portlet kt-portlet--mobile">
+    <div
+        class="kt-portlet__head kt-portlet__head--lg contact_detail_table_info">
+            <div class="row col-md-12">
+                <div class="col-md-6">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            Document Allow
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-md-6 top-add-sec">
+                    <a (click)="pupulate()" *ngIf="currentUser.Permissions.DriveView"
+                        class="btn btn-label-success btn-pill collapsed" role="tab" aria-expanded="  false">
+                        <span class="kt-nav__link-text"> <i class="fa fa-plus"></i> Add New</span>
+                    </a>
+                    <button (click)="exportAsXLSX()"
+                    class="kt-selectpicker btn btn-label-success pull-right"><i
+                        class="fa fa-file-excel btn-label-success"></i>
+                    Export to excel</button>
+                </div>
+            </div>
+    </div>
+    <div class="kt-portlet__body properties_filter_body">
+        <div class="kt-section">
+            <div class="col-md-12">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                class="table table-striped properies-table-info ng-star-inserted">
+                    <thead>
+                        <tr>
+                            <th>Sno</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let x of service.GenicDocExtList;let i=index; async">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{x.ExtentionName}}</td>
+                            <td>
+                                <span *ngIf="x.IsActive"
+                                class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill">
+                                Yes
+                              </span>
+                              <span *ngIf="!x.IsActive"
+                                class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill">
+                                <a href="javascript:;">No</a>
+                              </span>
+                            </td>
+                            <td>
+                                <div
+                                class="btn-group btn-group-sm">
+                                <a href="javascript:;"
+                                    style="border: #1dc9b7;"
+                                    class="btn btn-primary dropdown-toggle"
+                                    data-toggle="dropdown">Action<span
+                                        class="caret"></span></a>
+                                <ul
+                                    class="dropdown-menu">
+                                    <li *ngIf="currentUser.Permissions.SMTPSettingEdit"><a (click)="pupulate(x)"
+                                            href="javascript:;">Edit</a>
+                                    </li>
+                                    <li *ngIf="currentUser.Permissions.SMTPSettingRemove"><a (click)="removesmtp(x)"
+                                            href="javascript:;">Remove</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #modalContent let-close="close">
+    <div class="kt-portlet kt-portlet--mobile">
+        <div
+            class="kt-portlet__head kt-portlet__head--lg contact_detail_table_info">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                  &nbsp;&nbsp; Docs Extention
+                </h3>
+            </div>
+        </div>
+        <div class="kt-portlet__body properties_filter_body">
+            <div class="kt-section">
+                <div class="col-md-12">
+                    <input type="hidden" name="GenicDocExtData.Id" [value]="service.GenicDocExtData.Id" [(ngModel)]="service.GenicDocExtData.Id">
+                    <input type="hidden" name="GenicDocExtData.IsActive" [value]="service.GenicDocExtData.IsActive" [(ngModel)]="service.GenicDocExtData.IsActive">
+                    <div class="modal-body" id="month-2-modal">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <textarea class="form-control" name="GenicDocExtData.ExtentionName" #GenicDocExtData.ExtentionName="ngModel"
+                              [(ngModel)]="service.GenicDocExtData.ExtentionName" rows="1" [class.is-invalid]="!isValidName" placeholder="Name"
+                              maxlength="255"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <label>Status</label>
+                          <div class="form-group">
+                            <span class="kt-switch kt-switch--icon"><label><input
+                              name="service.GenicDocExtData.IsActive"
+                              #service.GenicDocExtData.IsActive="ngModel"
+                              [(ngModel)]="service.GenicDocExtData.IsActive"
+                              type="checkbox"><span></span></label></span>
+                          <span class="swither-bootstrap-learn switcher-customer">
+                        </span>      
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <a href="javascript:;" (click)="OnSubmit()" class="btn btn-sm btn-bold">
+                              {{AddButton}}</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

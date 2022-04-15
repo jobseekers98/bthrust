@@ -1,0 +1,293 @@
+.ticket-open-sec{display: inline-block;padding:8px 22px;color:white;background-color:#4CAF50;border-radius:30px;}
+.ticket-open-sec a{color:white;pointer-events:none;font-size:14px;}
+.ticket-open-sec{margin:0 5px;}
+.CloserDtBody {
+    width: 100%;
+  }
+
+  .btncustoInfo th {
+    width: 250px;
+  }
+
+  /* .tblTicketServiceform span {
+    padding: 6px;
+    font-size: 20px;
+  } */
+
+  .serviceFormHeading p {
+    font-size: 23px;
+    font-weight: 600;
+    color: #48465b;
+  }
+
+  .singleBox p {
+    font-size: 13px;
+    font-weight: 600;
+    color: red;
+  }
+
+  .singleBox img {
+    width: 100%;
+    max-width: 172px;
+    box-shadow: 5px 8px 3px -2px #2d77e7ba;
+  }
+
+  .ticketEngList {
+    padding: 0;
+  }
+
+    .ticketEngList li {
+      list-style: none;
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+    }
+
+  .custInfo {
+    padding: 0 16px !important;
+  }
+
+  .ktrSection {
+    width: 100%;
+  }
+
+  .htBorder th {
+    border: 1px solid #22366b;
+  }
+
+  .cmtImage {
+    width: 100% !important;
+  }
+
+  .support-service-incident-form h2 {
+    position: relative;
+  }
+
+    .support-service-incident-form h2::after {
+      content: '';
+      width: 26%;
+      display: block;
+      border-bottom: 3px solid #fa7e2ea3;
+      margin-top: 7px;
+      margin-left: 3px;
+      margin-bottom: 12px;
+    }
+
+  .cmtImage h2::after {
+    content: '';
+    width: 12%;
+    display: block;
+    border-bottom: 3px solid #fa7e2ea3;
+    margin-top: 7px;
+    margin-left: 3px;
+    margin-bottom: 12px;
+  }
+
+  .closeformbody {
+    width: 100%;
+  }
+
+  .CloserAttachmentSection {
+    border: 1px solid #28273324;
+    padding: 7px;
+    margin-bottom: 12px;
+    margin-top: 8px;
+    /* box-shadow: 1px 2px 5px 1px #28273342; */
+  }
+
+  .ticketStatusOpen {
+    background-color: #4CAF50;
+    color: white;
+    padding: 7px 27px;
+    border-radius: 20px;
+  }
+
+  .ticketStatusClosed {
+    background-color: #ff9800bd;
+    color: #fff;
+    padding: 7px 27px;
+    border-radius: 20px;
+  }
+
+  #frmCloserForm {
+    margin: 33px 0 0 0;
+  }
+  .attchementSection{
+    widows: 100% !important;
+  }
+  .btnTicketClock{
+    display: inline-block;
+    margin: 0 0 0 4px;
+  }
+.ticket-Close-sec{
+  display: inline-block;
+    padding: 8px 22px;
+    color: white;
+    background-color: #ff8533;
+    border-radius: 30px;
+}
+.ticket-Close-sec a{
+  color: white;
+}
+#EngiProductSection{
+    border: 1px solid #e2e2e2 !important;
+    box-shadow: 0px 4px 11px 0px #5867dd61;
+}
+.prodByEngSection{
+    width: 100%;
+    padding: 6px;
+}
+.radioSection{
+    margin-bottom: 15px;
+}
+.lblType{
+    font-size: 18px;
+    color: #4e2d2d;
+    margin-right: 22px;
+    font-weight: 600;
+}
+.dds{
+    margin: 0 !important;
+}
+.engSubmit{
+    margin: 0px 0 0 0;
+    text-align: right;
+}
+.radioSection input{
+    height: 12px !important;
+}
+.engDesc{
+  padding: 0;
+}
+.engDesc textarea{
+  height: 150px !important;
+}
+sup {
+  color:red;
+}
+.btnServiceView{
+  padding: 4px;
+}
+.btnServiceView i{
+  color: #4caf50;
+    font-size: 21px;
+    margin-right: 7px;
+    transition: width 2s, height 2s, transform 2s;
+}
+.btnServiceView i:hover{
+  color: #21366b;
+  transform: rotate(180deg);
+}
+.btnServiceClose{
+  padding: 4px;
+}
+.btnServiceClose i{
+  color: #d2194c;
+    font-size: 21px;
+    margin-left: 7px;
+    margin-right: 7px;
+    transition: width 2s, height 2s, transform 2s;
+}
+.btnServiceClose i:hover{
+  transform: rotate(180deg);
+}
+li.custoTab{width: 12.49% !important;}
+li.custoTab-2{width: 14.28% !important;}
+li.custoTab a span h4{font-size: 11px !important; font-weight: 600 !important;}
+.tkthead h2{color: #000000; margin-left: 11px !important; margin-bottom: 11px;}
+.timespanSection span{background-color: #21366b; color: #fff; padding: 8px 29px; font-size: 12px; font-weight: 500; letter-spacing: 1px; border-radius: 15px;}
+.timespanSection span select{border-radius: 16px; background-color: #dedede;font-size: 15px;}
+.mytimesheet h2{font-family: unset;font-weight: 600;color: #7869dd; font-size: 20px;}
+.mytimesheet input{border: 1px solid #c6c4e6;line-height: 30px;padding: 1px 13px;margin-right: 6px;width: 73%;font-size: 14px;}
+a.btbRadMore{background-color: #008b8be6; color: white; padding: 1px 10px; margin: 0 0 0 13px; }
+.AttToBeAppend{padding: 13px 7px; border: 1px solid #2c77f499;margin-bottom: 6px;}
+.timespanSection span{margin: 0px 5px !important;padding:8px 10px !important;}
+.audio-list audio{display: inline-block; height: 26px;}
+.audio-list{display: inline-flex;}
+.audio-list span{font-size: 18px; color: #000000;}
+.audio-list:last-child{border-bottom: none}
+.audio-button { font-size: 18px; }
+.audio-remove{display:inline-block; margin: 0 0 0 33px;}
+.audio-remove a{color: red;}
+.audio-remove a i{font-size: 24px;}
+.audio-timmer ul{list-style: none; padding: 0; margin: 4px 0px 0 2px;}
+.audio-timmer ul li{display: inline-block;margin-right: 5px;}
+.audio-timmer ul li i{color: red;}
+.audio-timmer ul li span{font-size: 16px; color: grey;}
+.button-sec {display: inline-block;}
+.spinnerSection{display:inline-block}
+.spinnerSection img{width: 43%; margin-left: 1px;}
+ ul.ttmsheet{list-style: none; padding: 0; margin: 0; position: relative;}
+ ul.ttmsheet li{display: inline-block;}
+ .schedule1{display: inline-block;}
+.ticketstatus {display: inline-block;}
+.ticketstatus span{font-size:14px;padding:18px 22px;}
+.customer-logo-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.customer-logo-container-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.customer-logo-container-overlay {
+  position: absolute; 
+  bottom: 0; 
+  background: transparent;
+  color: #f1f1f1; 
+  width: 150px;
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+}
+
+.customer-logo-container:hover .customer-logo-container-overlay {
+  opacity: 1;
+}
+label.IsNotValidateTC {
+  font-size: 13px;
+  color: red !important;
+}
+label.IsValidateTC {
+  font-size: 13px;
+    color: #0000005c !important;
+}
+.InvalidInput{
+  border-color: #ff0000ad !important;
+  box-shadow: 1px 0 3px #ff000085 !important;
+}
+.serviceby-section{padding: 5px 6px;}
+.serviceby-section label{
+    color: #000000;
+    font-weight: 600;
+}
+.payment-section{
+  border: 1px solid #2c77f442;
+  margin-bottom: 8px;
+  padding: 0 !important;
+}
+.alert.alert-success{
+  color: #2c77f4;
+    background-color: #2c77f457;
+    border-color: #2c77f457;
+}
+.payment-body{
+  padding: 8px;
+}
+.serviceby-section{
+  border: 1px solid #2c77f442;
+    margin-bottom: 8px;
+    padding: 0 !important;
+}
+.closerbody-sec{
+  padding: 8px;
+}
+.action-is-disabled { background-color: #edecec; cursor: no-drop; }
+.action-is-disabled-2 {background-color: #edecec70;}
+.normal-text {font-size: 14px;font-weight: initial;}

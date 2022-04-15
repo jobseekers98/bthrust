@@ -1,0 +1,365 @@
+<style>
+    @media (min-width:1360px) {
+        .kt-iconbox__title a.kt-link {
+            font-size: 12px !important;
+        }
+
+    }
+</style>
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+    <div class="kt-subheader kt-grid__item" id="kt_subheader">
+        <div class="kt-container kt-container--fluid ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                    <a href="javascript:;" routerLink="/dashboard">
+                        Dashboard
+                    </a>
+                </h3>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span> properties
+                </div>
+            </div>
+            <div class="kt-subheader__toolbar">
+                <div class="kt-subheader__wrapper" *ngIf="currentUser.Permissions.PropertyCreate">
+                    <a href="javascript:;" class="btn btn-brand" (click)="OpenAddClienDialog()"><i
+                            class="fa fa-plus"></i> Add Property</a>
+                </div>
+                <div class="kt-subheader__wrapper">
+                    <a on class="btn btn-brand text-white" id="ddPropertyId" data-toggle="modal" data-target="#BuidUploadPropertyPop">
+                        <i class="fa fa-file" aria-hidden="true"></i> Bulk Upload </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="customer-list-main-section">
+
+        <div class="kt-widget17">
+            <div class="kt-widget17__visual kt-widget17__visual--chart kt-portlet-fit--top kt-portlet-fit--sides"
+                style="background-color: #fd397a">
+            </div>
+            <div class="kt-widget17__stats">
+                <div class="kt-widget17__items">
+                </div>
+                <div class="row mrg-top-10">
+                    <div class="col-lg-3 col-md-3">
+                        <div class="kt-portlet kt-iconbox kt-iconbox--brand kt-iconbox--animate-slower">
+                            <div class="kt-portlet__body">
+                                <div class="kt-iconbox__body">
+                                    <div class="kt-iconbox__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                            viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                <path
+                                                    d="M13.5,21 L13.5,18 C13.5,17.4477153 13.0522847,17 12.5,17 L11.5,17 C10.9477153,17 10.5,17.4477153 10.5,18 L10.5,21 L5,21 L5,4 C5,2.8954305 5.8954305,2 7,2 L17,2 C18.1045695,2 19,2.8954305 19,4 L19,21 L13.5,21 Z M9,4 C8.44771525,4 8,4.44771525 8,5 L8,6 C8,6.55228475 8.44771525,7 9,7 L10,7 C10.5522847,7 11,6.55228475 11,6 L11,5 C11,4.44771525 10.5522847,4 10,4 L9,4 Z M14,4 C13.4477153,4 13,4.44771525 13,5 L13,6 C13,6.55228475 13.4477153,7 14,7 L15,7 C15.5522847,7 16,6.55228475 16,6 L16,5 C16,4.44771525 15.5522847,4 15,4 L14,4 Z M9,8 C8.44771525,8 8,8.44771525 8,9 L8,10 C8,10.5522847 8.44771525,11 9,11 L10,11 C10.5522847,11 11,10.5522847 11,10 L11,9 C11,8.44771525 10.5522847,8 10,8 L9,8 Z M9,12 C8.44771525,12 8,12.4477153 8,13 L8,14 C8,14.5522847 8.44771525,15 9,15 L10,15 C10.5522847,15 11,14.5522847 11,14 L11,13 C11,12.4477153 10.5522847,12 10,12 L9,12 Z M14,12 C13.4477153,12 13,12.4477153 13,13 L13,14 C13,14.5522847 13.4477153,15 14,15 L15,15 C15.5522847,15 16,14.5522847 16,14 L16,13 C16,12.4477153 15.5522847,12 15,12 L14,12 Z"
+                                                    id="Combined-Shape" fill="#000000" />
+                                                <rect id="Rectangle-Copy-2" fill="#FFFFFF" x="13" y="8" width="3"
+                                                    height="3" rx="1" />
+                                                <path
+                                                    d="M4,21 L20,21 C20.5522847,21 21,21.4477153 21,22 L21,22.4 C21,22.7313708 20.7313708,23 20.4,23 L3.6,23 C3.26862915,23 3,22.7313708 3,22.4 L3,22 C3,21.4477153 3.44771525,21 4,21 Z"
+                                                    id="Rectangle-2" fill="#000000" opacity="0.3" />
+                                            </g>
+                                        </svg> </div>
+                                    <div class="kt-iconbox__desc">
+                                        <h3 class="kt-iconbox__title">
+                                            <a class="kt-link" href="javascript:;">Total Customers</a>
+                                        </h3>
+                                        <div class="kt-iconbox__content">
+                                            {{TotalCustomerCount}} Total Customers
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="kt-portlet kt-iconbox kt-iconbox--success kt-iconbox--animate-slow">
+                            <div class="kt-portlet__body">
+                                <div class="kt-iconbox__body">
+                                    <div class="kt-iconbox__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                            viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                <path
+                                                    d="M13.5,21 L13.5,18 C13.5,17.4477153 13.0522847,17 12.5,17 L11.5,17 C10.9477153,17 10.5,17.4477153 10.5,18 L10.5,21 L5,21 L5,4 C5,2.8954305 5.8954305,2 7,2 L17,2 C18.1045695,2 19,2.8954305 19,4 L19,21 L13.5,21 Z M9,4 C8.44771525,4 8,4.44771525 8,5 L8,6 C8,6.55228475 8.44771525,7 9,7 L10,7 C10.5522847,7 11,6.55228475 11,6 L11,5 C11,4.44771525 10.5522847,4 10,4 L9,4 Z M14,4 C13.4477153,4 13,4.44771525 13,5 L13,6 C13,6.55228475 13.4477153,7 14,7 L15,7 C15.5522847,7 16,6.55228475 16,6 L16,5 C16,4.44771525 15.5522847,4 15,4 L14,4 Z M9,8 C8.44771525,8 8,8.44771525 8,9 L8,10 C8,10.5522847 8.44771525,11 9,11 L10,11 C10.5522847,11 11,10.5522847 11,10 L11,9 C11,8.44771525 10.5522847,8 10,8 L9,8 Z M9,12 C8.44771525,12 8,12.4477153 8,13 L8,14 C8,14.5522847 8.44771525,15 9,15 L10,15 C10.5522847,15 11,14.5522847 11,14 L11,13 C11,12.4477153 10.5522847,12 10,12 L9,12 Z M14,12 C13.4477153,12 13,12.4477153 13,13 L13,14 C13,14.5522847 13.4477153,15 14,15 L15,15 C15.5522847,15 16,14.5522847 16,14 L16,13 C16,12.4477153 15.5522847,12 15,12 L14,12 Z"
+                                                    id="Combined-Shape" fill="#000000" />
+                                                <rect id="Rectangle-Copy-2" fill="#FFFFFF" x="13" y="8" width="3"
+                                                    height="3" rx="1" />
+                                                <path
+                                                    d="M4,21 L20,21 C20.5522847,21 21,21.4477153 21,22 L21,22.4 C21,22.7313708 20.7313708,23 20.4,23 L3.6,23 C3.26862915,23 3,22.7313708 3,22.4 L3,22 C3,21.4477153 3.44771525,21 4,21 Z"
+                                                    id="Rectangle-2" fill="#000000" opacity="0.3" />
+                                            </g>
+                                        </svg> </div>
+                                    <div class="kt-iconbox__desc">
+                                        <h3 class="kt-iconbox__title">
+                                            <a class="kt-link" href="javascript:;">Total Properties</a>
+                                        </h3>
+                                        <div class="kt-iconbox__content">
+                                            {{TotalPropertyCount}} Total Properties
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="kt-portlet kt-iconbox kt-iconbox--warning kt-iconbox--animate-fast">
+                            <div class="kt-portlet__body">
+                                <div class="kt-iconbox__body">
+                                    <div class="kt-iconbox__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                            viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                <path
+                                                    d="M13.5,21 L13.5,18 C13.5,17.4477153 13.0522847,17 12.5,17 L11.5,17 C10.9477153,17 10.5,17.4477153 10.5,18 L10.5,21 L5,21 L5,4 C5,2.8954305 5.8954305,2 7,2 L17,2 C18.1045695,2 19,2.8954305 19,4 L19,21 L13.5,21 Z M9,4 C8.44771525,4 8,4.44771525 8,5 L8,6 C8,6.55228475 8.44771525,7 9,7 L10,7 C10.5522847,7 11,6.55228475 11,6 L11,5 C11,4.44771525 10.5522847,4 10,4 L9,4 Z M14,4 C13.4477153,4 13,4.44771525 13,5 L13,6 C13,6.55228475 13.4477153,7 14,7 L15,7 C15.5522847,7 16,6.55228475 16,6 L16,5 C16,4.44771525 15.5522847,4 15,4 L14,4 Z M9,8 C8.44771525,8 8,8.44771525 8,9 L8,10 C8,10.5522847 8.44771525,11 9,11 L10,11 C10.5522847,11 11,10.5522847 11,10 L11,9 C11,8.44771525 10.5522847,8 10,8 L9,8 Z M9,12 C8.44771525,12 8,12.4477153 8,13 L8,14 C8,14.5522847 8.44771525,15 9,15 L10,15 C10.5522847,15 11,14.5522847 11,14 L11,13 C11,12.4477153 10.5522847,12 10,12 L9,12 Z M14,12 C13.4477153,12 13,12.4477153 13,13 L13,14 C13,14.5522847 13.4477153,15 14,15 L15,15 C15.5522847,15 16,14.5522847 16,14 L16,13 C16,12.4477153 15.5522847,12 15,12 L14,12 Z"
+                                                    id="Combined-Shape" fill="#000000" />
+                                                <rect id="Rectangle-Copy-2" fill="#FFFFFF" x="13" y="8" width="3"
+                                                    height="3" rx="1" />
+                                                <path
+                                                    d="M4,21 L20,21 C20.5522847,21 21,21.4477153 21,22 L21,22.4 C21,22.7313708 20.7313708,23 20.4,23 L3.6,23 C3.26862915,23 3,22.7313708 3,22.4 L3,22 C3,21.4477153 3.44771525,21 4,21 Z"
+                                                    id="Rectangle-2" fill="#000000" opacity="0.3" />
+                                            </g>
+                                        </svg> </div>
+                                    <div class="kt-iconbox__desc">
+                                        <h3 class="kt-iconbox__title">
+                                            <a class="kt-link" href="javascript:;">Active Properties</a>
+                                        </h3>
+                                        <div class="kt-iconbox__content">
+                                            {{TotalActiveProperty}} Active Properties
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="kt-portlet kt-iconbox kt-iconbox--danger kt-iconbox--animate-faster">
+                            <div class="kt-portlet__body">
+                                <div class="kt-iconbox__body">
+                                    <div class="kt-iconbox__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                            viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                <path
+                                                    d="M13.5,21 L13.5,18 C13.5,17.4477153 13.0522847,17 12.5,17 L11.5,17 C10.9477153,17 10.5,17.4477153 10.5,18 L10.5,21 L5,21 L5,4 C5,2.8954305 5.8954305,2 7,2 L17,2 C18.1045695,2 19,2.8954305 19,4 L19,21 L13.5,21 Z M9,4 C8.44771525,4 8,4.44771525 8,5 L8,6 C8,6.55228475 8.44771525,7 9,7 L10,7 C10.5522847,7 11,6.55228475 11,6 L11,5 C11,4.44771525 10.5522847,4 10,4 L9,4 Z M14,4 C13.4477153,4 13,4.44771525 13,5 L13,6 C13,6.55228475 13.4477153,7 14,7 L15,7 C15.5522847,7 16,6.55228475 16,6 L16,5 C16,4.44771525 15.5522847,4 15,4 L14,4 Z M9,8 C8.44771525,8 8,8.44771525 8,9 L8,10 C8,10.5522847 8.44771525,11 9,11 L10,11 C10.5522847,11 11,10.5522847 11,10 L11,9 C11,8.44771525 10.5522847,8 10,8 L9,8 Z M9,12 C8.44771525,12 8,12.4477153 8,13 L8,14 C8,14.5522847 8.44771525,15 9,15 L10,15 C10.5522847,15 11,14.5522847 11,14 L11,13 C11,12.4477153 10.5522847,12 10,12 L9,12 Z M14,12 C13.4477153,12 13,12.4477153 13,13 L13,14 C13,14.5522847 13.4477153,15 14,15 L15,15 C15.5522847,15 16,14.5522847 16,14 L16,13 C16,12.4477153 15.5522847,12 15,12 L14,12 Z"
+                                                    id="Combined-Shape" fill="#000000" />
+                                                <rect id="Rectangle-Copy-2" fill="#FFFFFF" x="13" y="8" width="3"
+                                                    height="3" rx="1" />
+                                                <path
+                                                    d="M4,21 L20,21 C20.5522847,21 21,21.4477153 21,22 L21,22.4 C21,22.7313708 20.7313708,23 20.4,23 L3.6,23 C3.26862915,23 3,22.7313708 3,22.4 L3,22 C3,21.4477153 3.44771525,21 4,21 Z"
+                                                    id="Rectangle-2" fill="#000000" opacity="0.3" />
+                                            </g>
+                                        </svg> </div>
+                                    <div class="kt-iconbox__desc">
+                                        <h3 class="kt-iconbox__title">
+                                            <a class="kt-link" href="javascript:;">Suspended Properties</a>
+                                        </h3>
+                                        <div class="kt-iconbox__content">
+                                            {{TotalSuspendedOrCancelled}} Suspended Properties
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-section kt-drop-section">
+                    <div class="kt-section__content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div
+                                class="kt-header__topbar-item kt-header__topbar-item--search dropdown">
+                                <div class="kt-header__topbar-wrapper">
+                                    <div class="kt-input-icon kt-input-icon--right kt-subheader__search">
+                                        <div class="alert alert-warning" *ngIf="propertySync" >
+                                           
+                                            Check Address for synchronize
+                                            <div *ngIf="propertySyncFor !== ''"><br> Now {{propertySyncFor}} address is synchronize</div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kt-portlet__body customer-listing-datatable">
+                        <div class="panel panel-primary list-panel" id="list-panel">
+                            <div class="panel-heading list-panel-heading">
+                                <h1 class="panel-title list-panel-title"><i class="fa fa-list"></i> Property List</h1>
+                                <ul class="scFilter">
+                                    <li style="width: 256px;">
+                                    <ngx-select-dropdown tabindex="0" class="myselectClass"
+                                            name="PropertyOptions"
+                                            (change)="loadPropertyOnCustomerChange($event)" [multiple]="false"
+                                            [config]="config" [options]="PropertyOptions">
+                                    </ngx-select-dropdown>
+
+                                    </li>
+                                    <li>
+                                        <div class="btnexport1">
+                                            <a href="javascript:void(0)" (click)="exportAsXLSX()"
+                                                class="btnexportToExcel">Export to Excel</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="panel-body">
+                                <div *ngIf="!service.locallist" class=" col-md-12 alert alert-info">Loading... </div>
+                                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                    class="table table-striped- table-bordered table-hover table-checkable"
+                                    *ngIf="service.locallist">
+                                    <thead>
+                                        <tr>
+                                            <th>Property&nbsp;Id</th>
+                                            <th>Company Info</th>
+                                            <th>Address</th>
+                                            <th>Total {{this.currentUser.Ticket}}s</th>
+                                            <th>Active</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let x of service.locallist;let i = index" id="{{x.CustomerId}}"
+                                            class="customer-list-view-info property-list-dynamic-class" [ngClass]="{'InactiveBackColor': x.IsActive===false}">
+                                            <td><span class="btn btn-label-primary">{{x.PropertyId}}</span></td>
+                                            <td>
+                                              <strong>Company Name: </strong>  {{ x.CompanyName }}<br>
+                                              <strong>Contact Person: </strong>  {{ x.CustomerName }}
+                                            </td>
+                                            <td>
+                                                {{x.AddressStreet1}}
+                                                {{x.AddressStreet2}}
+                                                {{x.AddressUnitNo}}
+
+                                                {{x.AddressCountry}}
+                                                {{x.AddressZipCode}}
+                                            </td>
+                                            <td>
+                                                <span class="btn btn-label-primary"><a href="javascript:;"
+                                                        (click)="OnTicketHistory(x)">{{x.TotalTicket}} {{this.currentUser.Ticket}}s
+                                                    </a></span>
+                                            </td>
+                                            <td>
+                                                <div class="custom-switch custom-switch-label-yesno pl-0">
+                                                    <input class="custom-switch-input ng-valid ng-dirty ng-touched"
+                                                        (change)="onPropertyStatusChange($event, x.Id, i)" id="example_{{i}}"
+                                                        name="x.IsActive" #x.IsActive="ngModel" [(ngModel)]="x.IsActive"
+                                                        type="checkbox">
+                                                    <label class="custom-switch-btn" for="example_{{i}}"></label>
+                                                </div>
+                                            </td>
+                                            <td class="padd-top-0">
+                                                <div class="btn-group btn-group-sm">
+                                                    <a href="javascript:;" style="border: #1dc9b7;"
+                                                        class="btn btn-primary dropdown-toggle"
+                                                        data-toggle="dropdown">Action<span class="caret"></span></a>
+
+                                                    <ul class="dropdown-menu">
+                                                        <li *ngIf="currentUser.Permissions.PropertyEdit"><a (click)="pupulatecustomer(x)"
+                                                                href="javascript:;">Edit</a></li>
+                                                        <li *ngIf="currentUser.Permissions.PropertyView"><a (click)="detailsproperty(x)" href="javascript:;">View
+                                                                Details</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td *ngIf="service.locallist.length === 0" colspan="5"
+                                                style="text-align: center;">
+                                                <i>No Record!</i>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <!--end: Datatable -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="BuidUploadPropertyPop">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content myManFaContent">
+            <div class="modal-header" style="background-color: aqua;">
+                <h4 class="modal-title">Property Bulk Upload</h4>
+                <button type="button" class="close" data-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body my-Model-body">
+                <div class="row">
+                    <div class="ExcelUpladRule">
+                        <label>Property upload rules as follows:</label>
+                        <p>1.) All * fields are mendatory.</p>
+                        <p>2.) Do not remove first row header of template file.</p>
+                        <p>3.) Do not change header name.</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 llf">
+                        <p>Download sample data template...</p>
+                        <div class="uploaddd">
+                            <a on href="{{excelDataTemplatePath}}" target="_blank"
+                                class="btn btn-brand text-white">
+                                <i class="fa fa-download" aria-hidden="true"></i> Sample Data </a>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 rrd">
+                        <!-- <div class="customerSEc">
+                        <label for="">Select Costomer</label>
+                        <select class="form-control" id="bulkCustomerId" (change)="SelectedBulkC($event)">
+                            <option value="">--Select Customer</option>
+                            <option *ngFor="let c of customerservice.CustomerList"
+                            value="{{c.Id}}">{{c.NameTitle}} &nbsp;{{c.FirstName}}&nbsp;{{c.LastName}}</option>
+                        </select>
+                    </div> -->
+                    <div class="proSEction">
+                        <p>Select Excel sheet and upload...</p>
+                        <div class="uploaddd">
+                            <a on class="btn btn-brand text-white" (click)="openPopToUploadPro()">
+                                <i class="fa fa-file" aria-hidden="true"></i> Bulk Upload </a>
+                            <input style="display: none;" id="PropBulkUpload" type="file"
+                                (change)="BuldCustomerUpload($event.target.files)" />
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="SuccessSection">
+                        <ng-container *ngFor="let s of SuccessRes">
+                            <div class="alert-alert-success" role="alert">
+                                {{s}}
+                              </div>
+                        </ng-container>
+                    </div>
+                    <div class="errorSection">
+                        <ng-container *ngFor="let e of ErrorRes">
+                            <div class="alert-alert-danger" role="alert">
+                                {{e}}
+                              </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

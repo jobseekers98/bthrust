@@ -1,0 +1,240 @@
+<style>
+    .QuoteAddSection {
+        width: 100%;
+    }
+
+    .QuoteAddSection a {
+        float: right;
+    }
+</style>
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+    <!-- begin:: Subheader -->
+    <div class="kt-subheader kt-grid__item" id="kt_subheader">
+        <div class="kt-container kt-container--fluid breadcud-kt-container ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                    Dashboard
+                </h3>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <a href="javascript:;" routerLink="/settings" onclick="window.history.back()"
+                        class="kt-subheader__breadcrumbs-link"> Settings
+                    </a>
+
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <div class="kt-subheader__breadcrumbs">
+                        <a href="javascript:;" class="kt-subheader__breadcrumbs-home"><i aria-hidden="true"
+                                class="fa fa-angle-double-right"></i></a>
+                        <span class="kt-subheader__breadcrumbs-separator"></span> <a href="javascript:;"
+                            class="kt-subheader__breadcrumbs-link"> Zone's </a>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-subheader__toolbar">
+                <div class="kt-subheader__wrapper">
+                    <a class="btn btn-primary" onclick="window.history.back()"
+                        style="margin-right: 3px;color: white;padding: 6px 10px 7px 10px;cursor: pointer;"> Back </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end:: Subheader -->
+    <!--[html-partial:include:{"file":"partials\/_subheader-subheader-v1.html"}]/-->
+    <div class="customer-list-main-section">
+
+        <div class="kt-widget17">
+            <div class="kt-widget17__visual kt-widget17__visual--chart kt-portlet-fit--top kt-portlet-fit--sides"
+                style="background-color: #fd397a">
+
+            </div>
+            <div class="kt-widget17__stats">
+                <div class="row mrg-top-10">
+                    <div class="col-lg-4">
+                        <div class="kt-portlet kt-iconbox kt-iconbox--brand kt-iconbox--animate-slower">
+                            <div class="kt-portlet__body">
+                                <div class="kt-iconbox__body">
+                                    <div class="kt-iconbox__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                            viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                                <polygon id="“" fill="#000000"
+                                                    transform="translate(16.500000, 12.500000) rotate(-180.000000) translate(-16.500000, -12.500000) "
+                                                    points="19 7 17 13 19 13 19 18 14 18 14 13 16 7"></polygon>
+                                                <polygon id="Path" fill="#000000" opacity="0.3"
+                                                    transform="translate(8.500000, 12.500000) rotate(-180.000000) translate(-8.500000, -12.500000) "
+                                                    points="11 7 9 13 11 13 11 18 6 18 6 13 8 7"></polygon>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="kt-iconbox__desc">
+                                        <h3 class="kt-iconbox__title">
+                                            <a class="kt-link" href="javascript:;">Total Zone's</a>
+                                        </h3>
+                                        <div class="kt-iconbox__content">
+                                            {{TotalZoneCount}} Total Zone's
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="kt-portlet kt-iconbox kt-iconbox--success kt-iconbox--animate-slow">
+                            <div class="kt-portlet__body">
+                                <div class="kt-iconbox__body">
+                                    <div class="kt-iconbox__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                            viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                                <polygon id="“" fill="#000000"
+                                                    transform="translate(16.500000, 12.500000) rotate(-180.000000) translate(-16.500000, -12.500000) "
+                                                    points="19 7 17 13 19 13 19 18 14 18 14 13 16 7"></polygon>
+                                                <polygon id="Path" fill="#000000" opacity="0.3"
+                                                    transform="translate(8.500000, 12.500000) rotate(-180.000000) translate(-8.500000, -12.500000) "
+                                                    points="11 7 9 13 11 13 11 18 6 18 6 13 8 7"></polygon>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="kt-iconbox__desc">
+                                        <h3 class="kt-iconbox__title">
+                                            <a class="kt-link" href="javascript:;">Active Zone's</a>
+                                        </h3>
+                                        <div class="kt-iconbox__content">
+                                            {{TotalActiveZoneCount}} Active Zone 's
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="kt-portlet kt-iconbox kt-iconbox--warning kt-iconbox--animate-fast">
+                            <div class="kt-portlet__body">
+                                <div class="kt-iconbox__body">
+                                    <div class="kt-iconbox__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                            viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                                <polygon id="“" fill="#000000"
+                                                    transform="translate(16.500000, 12.500000) rotate(-180.000000) translate(-16.500000, -12.500000) "
+                                                    points="19 7 17 13 19 13 19 18 14 18 14 13 16 7"></polygon>
+                                                <polygon id="Path" fill="#000000" opacity="0.3"
+                                                    transform="translate(8.500000, 12.500000) rotate(-180.000000) translate(-8.500000, -12.500000) "
+                                                    points="11 7 9 13 11 13 11 18 6 18 6 13 8 7"></polygon>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="kt-iconbox__desc">
+                                        <h3 class="kt-iconbox__title">
+                                            <a class="kt-link" href="javascript:;">In Active Zone's</a>
+                                        </h3>
+                                        <div class="kt-iconbox__content">
+                                           {{TotalInActiveZoneCount}} In Active Zone 's
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3">
+                <div class="kt-portlet kt-iconbox kt-iconbox--danger kt-iconbox--animate-faster">
+                  <div class="kt-portlet__body">
+                    <div class="kt-iconbox__body">
+                      <div class="kt-iconbox__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                            <polygon id="“" fill="#000000" transform="translate(16.500000, 12.500000) rotate(-180.000000) translate(-16.500000, -12.500000) " points="19 7 17 13 19 13 19 18 14 18 14 13 16 7"></polygon>
+                            <polygon id="Path" fill="#000000" opacity="0.3" transform="translate(8.500000, 12.500000) rotate(-180.000000) translate(-8.500000, -12.500000) " points="11 7 9 13 11 13 11 18 6 18 6 13 8 7"></polygon>
+                          </g>
+                        </svg>
+                      </div>
+                      <div class="kt-iconbox__desc">
+                        <h3 class="kt-iconbox__title">
+                          <a class="kt-link" href="javascript:;">Rejected Quotation 's</a>
+                        </h3>
+                        <div class="kt-iconbox__content">
+                          0 Rejected Quotation 's
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+                </div>
+
+                <div class="kt-section kt-drop-section">
+                    <div class="row" style="margin: 0;padding: 0;">
+                        <div class="QuoteAddSection">
+                            <input type="text" (keydown)="onsearchQuote($event.target.value)"
+                                (keyup)="onsearchQuote($event.target.value)" placeholder="Search zone...">
+                            <a href="javascript:void(0);" (click)="addNewZone()" class="btn btn-primary">New Zone</a>
+                        </div>
+                    </div>
+                    <div class="kt-portlet__body customer-listing-datatable">
+                        <div id="kt_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table
+                                        class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline"
+                                        style="width: 1064px;" id="tblQuoteList">
+                                        <thead>
+                                            <tr role="row">
+                                                <th style="width: 5%;">#</th>
+                                                <th style="width: 20%;">Zone Name</th>
+                                                <th style="width: 20%;">Country Name</th>
+                                                <th style="width: 10%;">Status</th>
+                                                <th style="width: 20%;text-align: center;">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let q of genicZoneServie.localZoneList; let i=index async"
+                                                class="quote-list-view-info odd" role="row">
+                                                <td>{{ (p- 1) * 10 + i + 1 }}</td>
+                                                <td tabindex="0" class="sorting_1">
+                                                    {{ q.ZoneName }}
+                                                </td>
+                                                <td>{{q.CountryName}}</td>
+                                                <td>
+                                                <span class="kt-switch kt-switch--success kt-switch--sm">
+                                                    <label>
+                                                        <input type="checkbox"
+                                                        (change)="changeZoneStatus($event ,q.ZoneId, i)"
+                                                        [(ngModel)]="q.IsActive"
+                                                        name="quick_panel_notifications_1">
+                                                        <span></span> 
+                                                    </label>
+                                                </span>
+
+                                                </td>
+                                                <td>
+                                                <div class="btn-group btn-group-sm">
+                                                            <a href="javascript:;" style="border: #1dc9b7;" class="btn btn-primary dropdown-toggle"
+                                                                data-toggle="dropdown">Action<span class="caret"></span></a>
+                                                            
+                                                            <ul class="dropdown-menu">
+                                                                <li><a (click)="viewZoneData(q)" href="javascript:;" title="View zone details">Edit</a></li>
+                                                                <li><a (click)="removeGenicZone(q.ZoneId, i)" href="javascript:;" title="Remove zone">Remove</a></li>
+                                                            </ul>
+                                                        </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

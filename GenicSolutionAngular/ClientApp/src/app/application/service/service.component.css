@@ -1,0 +1,12 @@
+.main-head{background-color:#C3E7FA;padding:10px;}
+.main-head h4{color:black !important;font-size:20px !important;}
+.form-row{padding:10px;background-color:#F1F1F1;margin:0 0 15px !important;}
+.form-row label{color:black !important;font-size:14px !important;font-weight:600 !important;}
+.input-group-prepend .input-group-text{background-color:#FA5F2B;}
+.input-group-prepend .input-group-text i{color:white;}
+.form-group .btn.btn-primary{background-color:#0080c7;border-color:transparent !important;}
+.btn.btn-outline-dark{background-color:#ECECF5 !important;border-color:transparent !important;}
+.btn.btn-outline-dark:hover{color: #595d6e;border-color: #e2e5ec !important;background-color: #f4f5f8 !important;}
+.btn-brand{background-color:#ff8533;border-color: #ff8533;}
+.dropdown-menu.show {margin-left: -105px;}
+.switcher-customer { top:-15px;position: relative; }

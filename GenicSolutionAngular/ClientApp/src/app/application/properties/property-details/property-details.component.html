@@ -1,0 +1,169 @@
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+    <!-- begin:: Subheader -->
+    <div class="kt-subheader kt-grid__item" id="kt_subheader">
+        <div class="kt-container kt-container--fluid ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                    <a href="javascript:;" routerLink="/dashboard">
+                        Dashboard
+                    </a>
+                </h3>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <a routerLink="/properties" class="kt-subheader__breadcrumbs-link"> properties </a>
+                </div>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span> property Details
+                </div>
+            </div>
+            <div class="kt-subheader__toolbar">
+                <div class="kt-subheader__wrapper">
+                    <a on class="btn btn-primary text-white" onclick="window.history.back()">
+                        Back </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="creat-properties-form-main-section">
+        <div class="kt-container kt-container--fluid">
+            <div class="create_properties-filter_form create_properties-filter_form-1">
+                <div class="form-group form-group-last">
+                    <div class="alert alert-secondary" role="alert">
+                        <div class="alert-icon"><i class="la la-map-marker" style="color: #ff8533;"></i></div>
+                        <div class="new-properties-popupcreate-text">
+                            Property Details {{ service.formData.CustomerName }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row property-applications">
+                    <div class="col-md-5">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="kt-portlet">
+
+
+                                  <table class="table table-bodered tbl-cust-dt ">
+                                    <tr style="background-color: #eaeaea;">
+                                      <th colspan="2">
+                                        <h4 class="kt-portlet__head-title">
+                                          Property Address
+                                        </h4>
+                                      </th>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <strong>
+                                          Property Id:
+                                        </strong>
+                                      </td>
+                                      <td>
+                                        <span class="btn btn-label-primary">{{  service.formData.PropertyId }}</span>
+                                      </td>
+                                    </tr>
+
+                                    <tr>
+                                      <td>
+                                        <strong>
+                                          Address  Street 1:
+                                        </strong>
+                                      </td>
+                                      <td>
+                                        {{  service.formData.AddressStreet1 }}
+                                      </td>
+                                    </tr>
+
+                                    <tr>
+                                      <td>
+                                        <strong>
+                                         Address Street 2:
+                                        </strong>
+                                      </td>
+                                      <td>
+                                        {{  service.formData.AddressStreet2 }}
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <strong>
+                                          Address Unit No:
+                                        </strong>
+                                      </td>
+                                      <td>
+                                        {{  service.formData.AddressUnitNo }}
+                                      </td>
+                                    </tr>
+                                    <!-- <tr>
+       <td><strong> City: </strong>
+       </td>
+       <td>{{  service.formData.AddressCity }}
+       </td>
+   </tr>
+    <tr>
+       <td><strong> State:
+           </strong>
+       </td>
+       <td>{{  service.formData.AddressState }}
+       </td>
+   </tr> -->
+
+                                    <tr>
+                                      <td>
+                                        <strong>
+                                          Postal Code:
+                                        </strong>
+                                      </td>
+                                      <td>
+                                        {{  service.formData.AddressZipCode }}
+                                      </td>
+                                    </tr>
+
+                                    <tr>
+                                      <td>
+                                        <strong>
+                                          Country:
+                                        </strong>
+                                      </td>
+                                      <td>
+                                        {{  service.formData.AddressCountry }}
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <strong>
+                                          Status:
+                                        </strong>
+                                      </td>
+                                      <td>
+                                        <ng-template [ngIf]="service.formData.IsActive">
+                                          <span class="btn btn-label-success btn-pill reallocated-one">
+                                            Active
+                                          </span>
+                                        </ng-template>
+                                        <ng-template [ngIf]="!service.formData.IsActive">
+                                          <span class="btn btn-label-danger btn-pill invoices-btn">Inactive</span>
+                                        </ng-template>
+                                      </td>
+                                    </tr>
+                                  </table>
+
+                                    <!--end::Form-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 map-property">
+                        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="11">
+                            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                        </agm-map>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

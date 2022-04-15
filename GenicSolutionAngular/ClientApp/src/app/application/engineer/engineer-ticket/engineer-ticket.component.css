@@ -1,0 +1,121 @@
+.support-service-incident-form h2::after{display:none !important;}
+.support-service-incident-form h2{color:#22376b;font-size:24px;}
+/* .service-nav-item a{background: #e4e4e4 !important;margin: 0px 5px !important;border: none !important;text-align: center !important;border-radius:50px !important;border-bottom:3px solid transparent !important;}
+
+.nav-tabs.nav-tabs-line.nav-tabs-line-3x .nav-item{margin-bottom:0px !important;border-right:none !important;}
+.service-nav-item a.active, .service-nav-item a:hover{background-color:#FA5F2B !important;border:none !important;color:white !important;text-align:center;} */
+table.table.table-bordered.service-form-table-border td{padding:0.95rem !important;}
+table.table.table-bordered.service-form-table-border tr td{border: 1px solid #e2e2e2;}
+table.table.table-bordered.service-form-table-border tr td:first-child{font-weight:600;font-size:15px;}
+table.table.table-bordered.service-form-table-border tr td:last-child{font-size:15px;}
+table.table.table-bordered.service-form-table-border tr:nth-child(odd){background-color: #edf3f7;}
+table.table.table-bordered.service-form-table-border tr:nth-child(even){background-color:#f1f1f1;}
+.htBorder th {border:1px solid #e2e2e2 !important;font-weight:600;font-size:15px;}
+.tblTicketServiceform thead th{background-color:white !important;}
+.row.job-client-tabbing{margin: 0px 3px 20px !important;padding: 0px 0px 20px !important;border-bottom: 1px solid #dadada !important;}
+ul.nav.nav-tabs.nav-tabs-line.nav-tabs-bold.nav-tabs-line-3x.nav-tabs-line-brand.tabbing-jobs-client{margin:0 0 0 !important;}
+.service-form-table-border tr td{font-size:15px;}
+.service-nav-item a{background: #dedede  !important;border: none !important;text-align: center !important;border-bottom:3px solid transparent !important;}
+.new-requst-filter_form span.kt-switch.kt-switch--lg{display:block !important;}
+.new-requst-filter_form span.kt-switch.kt-switch--lg h4{font-size:16px;}
+.service-found-form-info li.nav-item.service-nav-item{border-right: 1px solid #bfbfbf;}
+.service-found-form-info li.nav-item.service-nav-item:last-child{border-right:0px !important;}
+.service-nav-item a.active, .service-nav-item a:hover{background-color:#21366B !important;border:none !important;color:white !important;text-align:center;border-bottom:none !important;} 
+.kt-portlet__body.customer-listing-datatable.service-form-datatable{border:none !important;}
+.ticket-details{background-color:white;padding:30px 40px;}
+.customer-details h2{font-size:40px;position: relative;margin:15px 0px 20px;color:#20376c;font-weight:600;}
+.figure-icon{position: absolute;left: 0;top: 2px;display:none;width: 45px;height: 45px;line-height: 38px;text-align: center;background-color: #FA6130;border-radius: 50%;margin-right: 15px;}
+.customer-details{border-right: 2px solid #efefef;}
+.figure-icon i{color:white;font-size:24px;}
+.ticket-open-sec{display: inline-block;padding:8px 22px;color:white;background-color:#4CAF50;border-radius:30px;}
+.ticket-open-sec a{color:white;pointer-events:none;font-size:14px;}
+.customer-details p{font-size:16px;color:black;margin-bottom:0.6rem;font-weight:600;padding-left:30px;position: relative;}
+.customer-details p i{position: absolute;left: 0;top: 6px;color: #999999;}
+.start-sec{display: inline-block;padding:8px 22px;color:white;background-color:#FA6130;}
+.start-sec a{color:white;pointer-events:none;font-size:14px;}
+.table-detail-2 table tr td{border:none !important;}
+.timing{display:inline-block;font-size:22px;color:#21366B;margin-left: 4px;}
+.timing i{margin-right:7px;}
+.ticket_number p{font-size:24px;font-weight:600;margin-bottom:0px;;}
+.table-detail-2{margin:25px 0px 0px;background-color:#f1f1f1;padding:0px 10px 15px;}
+.ticket_number p span i{color:#4CAF50;font-size:12px;margin-left:10px;vertical-align:middle;}
+.date_sec p, .engineer_sec{font-size:17px;color:black;margin-bottom:0px;font-weight:600;}
+.support-service-incident-form h2{color:black;padding-bottom:15px;}
+.custInfo p{font-size:16px;}
+
+.modal-header.select-new-properties{background: #c3e7fa;}
+.modal-header.select-new-properties .btn{padding: 0.25rem 0.7rem;background-color:#0084CA;color:white;}
+.modal-header.select-new-properties h5{color:black;font-size:20px;}
+.property-modal-body.modal-body{background-color:#f1f1f1;}
+.property-modal-body.modal-body p{font-size:16px;font-weight:600;color:black;}
+.property-modal-body .forn-group{margin-bottom:15px;}
+.property-modal-bodya .btn-brand{background-color:#0084CA;}
+.kt-portlet__body.new_clients_properties_body{border:none !important;}
+span.btn.btn-label-primary.ticket-cirle-red{    width: 73px;padding: 8px 5px 8px 5px;font-size: 14px;background-color:#C3E7FA;color:#3984ca;}
+.dropdown-menu.show{left: 0px !important;top: 3px !important; padding:0 !important;box-shadow:5px 1px 10px #c3c3c3;}
+.dropdown-menu.show li a{background-color:#C3E7FA;color:black;}
+.dropdown-menu.show li.active a, .dropdown-menu.show li:hover a{background-color:#FA6130;color:white;}
+.engineer_sec ul{margin-bottom:0px !important;padding-left:0px !important;}
+.engineer_sec ul li{display:inline-block;padding:0px 5px;}
+.schedule{display: inline-block;padding:8px 22px;color:white;background-color:#4CAF50;border-radius:30px;}
+.schedule a{color:white;pointer-events:none;font-size:14px;}
+.ticket-open-sec{margin:0 5px;}
+.CloserAttachmentSection{border:none !important;}
+#frmCloserForm .forn-group label{font-weight:600;font-size:16px;color:black;}
+.forn-group{margin-bottom:15px;;}
+.button-sec{margin:10px 0px; display: inline-block;}
+.CloserAttachmentSection{padding: 0px !important;;margin:0px !important;}
+.btnAddNewAttSection{padding:10px 24px !important;background-color:#e1e1ef !important;color:black !important;border:1px solid #e1e1ef !important;}
+.btnRemoveSection{margin: 4px 0px 2px 15px !important;padding:10px 24px !important;background-color:#2C77F4 !important;color:white !important;border:1px solid transparent;}
+.row.service-supports-heading{border-bottom:0px !important;}
+.accordion.accordion-solid .card .card-header{background-color:#dedede;height:60px;padding-right:15px;}
+.accordion.accordion-toggle-svg .card .card-header .card-title{background-color: #dedede;}
+#frmCloserForm{margin-top:0px !important;}
+#frmCloserForm textarea{height:80px;max-height:120px;} 
+.bottom-btn .btnCloseCloserForm{padding:10px 24px !important;background-color:#e1e1ef !important;color:black !important;border:1px solid #e1e1ef !important;}
+.bottom-btn .btn-primary{padding:10px 24px !important;background-color:#2C77F4 !important;color:white !important;border:1px solid transparent;}
+.job-for-tab-content .kt-portlet .kt-portlet__body{background-color:white;}
+.col-md-2.right-side-doller-form-info{top:0px !important;}
+.product-head{background-color:#e4e4e4;}
+.product-tabcontent{background-color:white;margin-bottom:30px;}
+.product-head{margin:0px;padding:0px;}
+.product-first-name{padding-top: 5px;}
+.total-job-price-client{margin:20px 0px !important;}
+.total-job-price-client p{margin-bottom:0px !important;}
+.dropdown-menu{
+    min-width: 80px !important;
+}
+.btn-sm, .btn-group-sm > .btn{padding: 1.2rem 1.8rem;font-size: 0.875rem;line-height: 1.5;border-radius: 0;background: #0084CA !important;color: white !important;}
+.team-inner-1 {margin-top:15px;padding:0px 15px;}
+.team-inner-1 ul{padding-left:0;list-style-type:none;margin-bottom:0px;;}
+.team-inner-1 ul li{color:black;display: inline-block;padding: 8px 8px;background-color: #eaeaea;margin: 0px 3px 5px;border-radius: 5px;}
+.team-inner-1 ul li img{ border-radius:40%; height: 20;width: 20; }
+.team-inner-1 ul li .close{font-size: 10px;
+    padding-left: 8px;
+    padding-top: 6px;}
+    .box-1{display:inline-block;width:25%}
+.check-mark{margin-top:18px;position:relative;}
+.search-bar input{width:100%}
+.expo{float:right;}
+.checkbox-downbox{position: absolute;bottom:-20px;background-color:#fff;padding:10px;border-radius:8px;width:131%;z-index: 9;}
+    .custom-day {
+        text-align: center;
+        padding: 0.185rem 0.25rem;
+        display: inline-block;
+        height: 2rem;
+        width: 2rem;
+      }
+      .custom-day.focused {
+        background-color: #e6e6e6;
+      }
+      .custom-day.range, .custom-day:hover {
+        background-color: rgb(2, 117, 216);
+        color: white;
+      }
+      .custom-day.faded {
+        background-color: rgba(2, 117, 216, 0.5);
+      }
+      .txtSearch-ticket{height: 35px; border-radius: 27px; border: 1px solid gray; padding: 0 16px;
+        width: 100%;}
+      .box-1.check-mark{text-align: right; margin-top: 7px; position: relative; margin-right: 9px;}
+label.kt-checkbox{color: #000000 ;font-weight: 600;}  

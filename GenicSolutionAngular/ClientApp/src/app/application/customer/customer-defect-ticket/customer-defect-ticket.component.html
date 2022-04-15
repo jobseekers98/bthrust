@@ -1,0 +1,199 @@
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+  <div class="kt-subheader kt-grid__item" id="kt_subheader">
+    <div class="kt-container kt-container--fluid ">
+      <div class="kt-subheader__main">
+        <h3 class="kt-subheader__title">
+          <a href="javascript:;" routerLink="/customer/customer-dashboard">
+            Dashboard
+          </a>
+        </h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          <span class="kt-subheader__breadcrumbs-separator"></span>
+          <a href="javascript:;" routerLink="/customer/customer-tickets">
+            {{this.currentUser.Ticket}}s &nbsp;
+          </a>
+        </div>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          <span class="kt-subheader__breadcrumbs-separator"></span> {{this.currentUser.Ticket}} Request
+        </div>
+      </div>
+      <div class="kt-subheader__toolbar">
+        <div class="kt-subheader__wrapper">
+          <a class="btn btn-primary"
+            style="margin-right: 3px;color: white;padding: 4px 9px;cursor: pointer;margin-left: 6px;"
+            onclick="window.history.back()"> Back </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <input type="hidden" name="Id" [value]="ticketService.formData.Id" [(ngModel)]="ticketService.formData.Id">
+  <div class="tab-content customer-tab-content">
+    <div id="menu0" class="tab-pane fade in active">
+      <div class="card-body padd-left-0 padd-right-0">
+        <div class="kt-portlet__body create-new-client-portlet-body">
+          <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+              <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                  <div class="row no-spacing">
+                    <div class="col-sm-12 col-md-12 col-xl-12">
+                      <div class="form-group">
+                        <label for="" class="label">{{this.currentUser.Ticket}} Type</label>
+                        <div *ngIf="this.ticketService.formData.Status === 'DEFECT JOB'">
+                          <input class="form-control" value="DEFECT JOB" style="cursor: no-drop;" [disabled]="true" *ngIf="!itIsNewRequest" >
+                        </div>
+                        <div *ngIf="this.ticketService.formData.Status === 'RESCHEDULED'">
+                          <input class="form-control" value="RE-SCHEDULED" style="cursor: no-drop;" [disabled]="true" *ngIf="!itIsNewRequest" >
+                        </div>
+                        <input class="form-control" value="NEW JOB REQUEST" style="cursor: no-drop;" [disabled]="true" *ngIf="itIsNewRequest" >
+                      </div>  
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-xl-12" *ngIf="itIsNewRequest">
+                      <div class="form-group">
+                        <label for="" class="label">Property<span class="text-danger">*</span></label>
+                        <select name="PropertyId" #PropertyId="ngModel" [class.is-invalid]="!isPropertyValid"
+                            [(ngModel)]="ticketService.formData.PropertyId" class="form-control">
+                            <option value="00000000-0000-0000-0000-000000000000">Select Property</option>
+                            <option *ngFor="let x of propertyservice.Propertylist" value="{{x.Id}}">
+                              {{x.AddressStreet1}} {{x.AddressStreet2}} {{x.AddressUnitNo}} {{x.AddressCountry}} {{x.AddressZipCode}}
+                            </option>
+                          </select>
+                      </div>  
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-xl-12">
+                      <div class="form-group">
+                        <label for="" class="label">Description<span class="text-danger">*</span></label>
+                        <textarea class="form-control" style="height: 100px;" name="Description" #Description="ngModel"
+                        [(ngModel)]="ticketService.formData.Description" rows="5" [class.is-invalid]="!isDescriptionValid"
+                        placeholder="Description"></textarea>
+                      </div>  
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-xl-3">
+                      <div class="form-group">
+                        <label for="" class="label">Appointment Date<span class="text-danger">*</span></label><br>
+                          <ngb-datepicker
+                                                                                           
+                              [minDate]="minDate"
+                              [maxDate]="maxDate"
+                              name="AppointmentStart"
+                              #AppointmentStart="ngModel"
+                              [(ngModel)]="ticketService.formData.AppointmentStart"
+                              (select)="selectDate()"
+                              (navigate)="date=$event.next">
+                          </ngb-datepicker>
+                      </div>  
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-xl-3">
+                      <div class="form-group">
+                        <label for="" class="label">Start Time<span class="text-danger">*</span></label>
+                        <ngb-timepicker [meridian]="meridian" name="AppointmentStart" #AppointmentStart="ngModel"
+                        [(ngModel)]="ticketService.formData.AppointmentStart">
+                      </ngb-timepicker>
+                      </div>  
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-xl-3">
+                      <div class="form-group">
+                        <label for="" class="label">End Time<span class="text-danger">*</span></label>
+                        <ngb-timepicker [meridian]="meridian" name="AppointmentEnd" #AppointmentEnd="ngModel"
+                        [(ngModel)]="ticketService.formData.AppointmentEnd">
+                      </ngb-timepicker>
+                      </div>  
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-xl-3">
+                      <div class="form-group">
+                        
+                        
+                      </div>  
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-xl-12">
+                      <div class="row">
+                        <div class="col-md-12 mt-4">
+                          <label for="" class="label">Attachment</label>
+                          &nbsp; <i class="fa fa-plus text-success daily-add-btn" style="cursor:pointer;" (click)="openmodelattachment()"></i>
+                        </div>
+                        <div class="col-md-12 mt-4">
+                          <table class="table" *ngIf="ticketService.TicketAttachmentList.length > 0">
+                            <thead><tr><th>#</th><th>Images</th><th>Action</th></tr></thead>
+                            <tbody>
+                              <tr *ngFor="let x of ticketService.TicketAttachmentList; let k=index">
+                              <td>{{k+1}}</td>
+                              <td><div class="box"><img src="data:image/{{x.AttachmentName}};base64,{{x.AttachmentPath}}" alt="" style="width: 50px;"></div></td>
+                              <td><i class="fa fa-edit" (click)="EditAttachment(k)"></i></td>
+                            </tr>
+                          </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-12" >
+                      <hr>
+                      <div class="form-group">
+                        <button type="button" routerLink="/customer/customer-tickets"
+                          class="btn btn-secondary">CANCEL</button>
+                        &nbsp;&nbsp;
+                        <div class="btn-group">
+                          <button class="btn btn-brand" type="submit" (click)="onSubmit()">
+                             <span *ngIf="loading">Please wait...</span>
+                             <span *ngIf="!loading">Create Job</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #modalAttachment let-close="close">
+    <div class="row cus-model-header" style="margin:0">
+      <div class="col-md-9">
+        <h5 class="modal-title" style="font-size: 1.5em; padding: 10px; color: black;font-weight: 600;">
+          Add Attachment
+        </h5>
+      </div>
+      <div class="col-md-3">
+        <div class="btn-group" style="float: right;">
+          <button type="button" class="btn btn-danger btn-sm text-white" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body" id="month-2-modal">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-12 customer-logo-container">
+            <label> Attachment</label>
+            <div>
+              <img src="{{attachmentLocalURL}}" alt="" style="width: 240px;">
+            </div>
+            <div class="customer-logo-container-overlay">
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="javascript:;"><i class="fa fa-paperclip" (click)="handleAttachment()"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12"><br>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <a class="btn btn-sm btn-block btn-primary" style="cursor: pointer;color:#fff;font-weight: bold;"
+                  (click)="AddAttachment()">{{ListAButton}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>

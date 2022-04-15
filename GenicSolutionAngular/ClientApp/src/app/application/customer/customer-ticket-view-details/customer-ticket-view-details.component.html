@@ -1,0 +1,684 @@
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+  <div class="kt-subheader kt-grid__item" id="kt_subheader">
+    <div class="kt-container kt-container--fluid breadcud-kt-container ">
+      <div class="kt-subheader__main">
+        <h3 class="kt-subheader__title">
+          <a href="javascript:;" routerLink="/customer/customer-dashboard">
+            Dashboard
+          </a>
+        </h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          <span class="kt-subheader__breadcrumbs-separator"></span>
+          <a href="javascript:;" onclick="window.history.back()" class="kt-subheader__breadcrumbs-link">
+            {{this.webParms.WebsiteParam.UrlPath}}
+          </a>
+        </div>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          <span class="kt-subheader__breadcrumbs-separator"></span>
+          {{this.currentUser.Ticket}} Details
+        </div>
+      </div>
+      <div class="kt-subheader__toolbar">
+      </div>
+    </div>
+  </div>
+  <div class="new-quote-main-section">
+    <div class="kt-container kt-container--fluid">
+      <div class="new-requst-filter_form create-new-client-popup">
+        <div class="accordion accordion-solid">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 service-found-form-info job-for-tab-content">
+              <div class="kt-portlet__body">
+                <div class="kt-portlet__body customer-listing-datatable service-form-datatable">
+                  <div class="kt-section__content">
+                    <div class="ticket-details">
+                      <div class="row">
+                        <div class="col-md-5">
+                          <div class="ticket-detail-1">
+                            <div class="customer-details">
+                              <h2><span class="figure-icon"><i class="far fa-user"></i></span>
+                                {{ticketService.formData.CustomerName }}</h2>
+                              <p><i class="fas fa-building"></i> {{ticketService.formData.CustomerCompanyName}}</p>
+                              <p><i class="fas fa-envelope"></i>{{ticketService.formData.CustomerEmail }}</p>
+                              <p><i class="fas fa-phone"></i> {{ticketService.formData.CustomerContactNo }}</p>
+                              <p><i class="fas fa-map"></i>
+                                <a href="https://maps.google.com/?q={{ticketService.formData.CustomerAddress}}"
+                                  target="_blank">
+                                  <em *ngFor="let subCategory of ticketService.formData.CustomerAddress?.split(',')">
+                                    {{ subCategory }} <br>
+                                  </em> </a>
+                              </p>
+                              <p *ngIf="ticketService.formData.TicketWiseIssueType.length>0">
+                                <i class="fa fa-puzzle-piece"></i>
+                                <ng-container>
+                                  <ul class="scTicketissueType">
+                                    <li *ngFor="let i of ticketService.formData.TicketWiseIssueType">
+                                      <span>{{i.IssueTypeName}}</span>
+                                    </li>
+                                  </ul>
+                                </ng-container>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-7">
+                          <div class="ticket-detail-2">
+                            <div
+                              *ngIf="ticketService.formData.Status === 'UPCOMING' || 
+                            ticketService.formData.Status === 'HOLD' || 
+                            ticketService.formData.Status === 'INPROGRESS' || ticketService.formData.Status === 'OVERDUE'">
+                              <a class="btn btn-primary"
+                                style="margin-right: 3px;color: white;padding: 4px 9px;cursor: pointer;margin-left: 6px;"
+                                onclick="window.history.back()"> Back </a>
+                              <div class="btnTicketClock" *ngIf="TimerButtunName">
+                                <div class="{{TimerButtonClassName}}" style="padding: 0;">
+                                </div>
+                                <span class="timing" *ngIf="ticketService.formData.Status==='INPROGRESS'"><i
+                                    class="fas fa-clock"></i>
+                                  <span *ngIf="TimeSlot" style="font-size: 14px;"><span> {{TimeSlotDay}} Day</span>:
+                                    <span> {{TimeSlotHours}} Hour</span>: <span> {{TimeSlotMinuts}} Minutes</span> :
+                                    <span> {{TimeSlotSeconds}} Second</span></span>
+                                  <span *ngIf="!TimeSlot">--:--:--</span>
+                                </span>
+                                <span class="timing" *ngIf="ticketService.formData.Status==='HOLD'"><i
+                                    class="fas fa-clock"></i>
+                                  <span>--:--:--</span>
+                                </span>
+                              </div>
+                            </div>
+                            <div class="table-detail-2">
+                              <table class="table">
+                                <tr>
+                                  <td class="ticket_number">
+                                    <p>#{{ticketService.formData.TicketId}}
+                                      <span>
+                                        <i *ngIf="ticketService.formData.Priority === 1"
+                                          class="fas fa-circle text-danger"></i>
+                                        <i *ngIf="ticketService.formData.Priority === 2"
+                                          class="fas fa-circle text-info"></i>
+                                        <i *ngIf="ticketService.formData.Priority === 3"
+                                          class="fas fa-circle text-success"></i>
+                                      </span>
+                                    </p>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="date_sec">
+                                    <p>Title: <span class="normal-text">{{ticketService.formData.Title}}</span></p>
+                                    <p *ngIf="ticketService.formData.Description.length > 0">Description:
+                                      <span
+                                        *ngIf="ticketService.formData.Description.length < 180;else descriptioncontent"
+                                        class="normal-text">{{ ticketService.formData.Description }}</span>
+                                      <ng-template #descriptioncontent>
+                                        <span class="normal-text">{{ ticketService.formData.Description.substring(0,180)
+                                          }}</span>
+                                        <div class="btooltip2"> ...
+                                          <span class="btooltiptext2">{{ticketService.formData.Description}}</span>
+                                        </div>
+                                      </ng-template>
+
+                                    </p>
+                                    <p> Appointment: <span class="normal-text">
+                                        {{ ticketService.formData.AppointmentStart | date:'MMM d, y HH:mm a':'+0000' }}
+                                        -
+                                        {{ ticketService.formData.AppointmentEnd | date:'HH:mm a':'+0000' }}
+                                      </span>
+                                    </p>
+                                  </td>
+                                </tr>
+                                <tr class="engineer_sec">
+                                  <td colspan="2">
+                                    <ul>
+                                      <li *ngFor="let item of ticketService.formData.TicketTeams"
+                                        title="{{item.EngineerName}}">
+                                        <img *ngIf="item.EngineerLogo.length === 0" width="20px" height="20px"
+                                          src="{{localPrependUrl}}/assets/svg/noimage.svg" />
+                                        <img *ngIf="item.EngineerLogo.length > 0" width="20px" height="20px"
+                                          src="{{item.EngineerLogo}}">
+                                        {{item.EngineerName}}
+                                      </li>
+                                    </ul>
+                                  </td>
+                                </tr>
+                              </table>
+                              <div class="row" style="padding-left: 16px;">
+                                <div class="text-center">
+                                  <generic-ticket-status [(Status)]="ticketService.formData.Status"
+                                    [(OverDueDays)]="ticketService.formData.OverDueDays"></generic-ticket-status>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                  <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                      <h3 class="kt-portlet__head-title">
+                        {{this.currentUser.Ticket.toUpperCase()}} DETAILS
+                      </h3>
+                    </div>
+                  </div>
+                  <div class="">
+                    <div class="kt-widget19__wrapper">
+                      <div class="kt-widget19__content">
+                        <div class="kt-widget19__userpic">
+                        </div>
+                        <div class="col-md-12 new-request-service-details-form">
+                          <div class="row job-client-tabbing">
+                            <ul id="ulOpenCloserTab"
+                              class="nav nav-tabs nav-tabs-line nav-tabs-bold nav-tabs-line-3x nav-tabs-line-brand tabbing-jobs-client"
+                              role="tablist">
+                              <li class="custoTab-2 nav-item service-nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#kt_tabs_CustomerInfo"
+                                  id="activeTab1">
+                                  <span class="kt-switch kt-switch--lg">
+                                    <h4> Customer </h4>
+                                  </span>
+                                </a>
+                              </li>
+                              <li class="custoTab-2 nav-item service-nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#kt_tabs_ProductInfo" id="activeTab2">
+                                  <span class="kt-switch kt-switch--lg">
+                                    <h4>Product&nbsp;/&nbsp;Service </h4>
+                                  </span>
+                                </a>
+                              </li>
+                              <li class="custoTab-2 nav-item service-nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#kt_tabs_CommentsImages" id="activeTab3">
+                                  <span class="kt-switch kt-switch--lg">
+                                    <h4>Comments&nbsp;Images </h4>
+                                  </span>
+                                </a>
+                              </li>
+                              <li class="custoTab-2 nav-item service-nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#kt_tabs_ServiceForm" id="activeTab4">
+                                  <span class="kt-switch kt-switch--lg">
+                                    <h4>Service&nbsp;Form </h4>
+                                  </span>
+                                </a>
+                              </li>
+                              <li class="custoTab-2 nav-item service-nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#kt_tabs_ClosedDetails" id="activeTab5">
+                                  <span class="kt-switch kt-switch--lg">
+                                    <h4>Closer&nbsp;Details </h4>
+                                  </span>
+                                </a>
+                              </li>
+                              <li class="custoTab-2 nav-item service-nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#kt_tabs_Log" id="activeTab6">
+                                  <span class="kt-switch kt-switch--lg">
+                                    <h4>Log's </h4>
+                                  </span>
+                                </a>
+                              </li>
+                              <li class="custoTab-2 nav-item service-nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#kt_tabs_Feedback">
+                                  <span class="kt-switch kt-switch--lg">
+                                    <h4>Feedback </h4>
+                                  </span>
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="tab-content job-for-tab-content" id="Idd">
+                            <div class="tab-pane active" id="kt_tabs_CustomerInfo" role="tabpanel">
+                              <div class="row service-supports-heading padd-top-15 custInfo">
+                                <div class="col-md-6 col-sm-6 colxs-12">
+                                  <div class="support-service-incident-form">
+                                    <h2>Customer Information</h2>
+                                  </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 colxs-12">
+                                  <div class="support-service-serial-number">
+                                  </div>
+                                </div>
+                                <div class="kt-portlet__body">
+                                  <div class="kt-section ktrSection">
+                                    <div class="kt-section__content">
+                                      <table
+                                        class="table table-bordered service-form-table-border service-form-table-border">
+                                        <tbody>
+                                          <tr>
+                                            <td width="180px">Company Name:</td>
+                                            <td colspan="3">
+                                              {{ticketService.formData.CustomerCompanyName}}
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td width="180px">Customer Name:</td>
+                                            <td colspan="3">
+                                              {{ticketService.formData.CustomerName }}
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td width="180px">Contact Info:</td>
+                                            <td colspan="3">
+                                              Contact No : {{ticketService.formData.CustomerContactNo }}, Email :
+                                              {{ticketService.formData.CustomerEmail }}
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td width="180px">Address:</td>
+                                            <td colspan="3">
+                                              <a href="https://maps.google.com/?q={{ticketService.formData.CustomerAddress}}"
+                                                target="_blank"> {{ticketService.formData.CustomerAddress }} </a>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="tab-pane" id="kt_tabs_ProductInfo" role="tabpanel">
+                              <div class="row service-supports-heading padd-top-15 custInfo">
+                                <div class="col-md-12 col-sm-12 colxs-12">
+                                  <div class="support-service-incident-form">
+                                    <h2>Product / Service Information &nbsp;
+                                    </h2>
+                                  </div>
+                                </div>
+                                <div class="col-md-12">
+                                  <div id="EngiProductSection" class="collapse" aria-labelledby="EngiProductSection"
+                                    data-parent="#accordionExample8">
+                                    <div class="card-body padd-left-0 padd-right-0">
+                                      <div class="kt-portlet__body create-new-client-portlet-body">
+                                        <div class="kt-section kt-section--first CloserDtBody dds">
+                                          <div class="prodByEngSection">
+                                            <form autocomplete="Off">
+
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-12 col-lg-12 kt-portlet__body padd-top-0">
+                                  <table
+                                    class="table table-bordered service-form-table-border service-form-table-border htBorder">
+                                    <thead>
+                                      <th>#</th>
+                                      <th>Name</th>
+                                      <th *ngIf="currentUser.Permissions.ProductWarranty">Installation</th>
+                                      <th>Description</th>
+                                      <th>Quantity</th>
+                                      <th *ngIf="!currentUser.Permissions.IsProductOnly">Unit Cost</th>
+                                      <th *ngIf="!currentUser.Permissions.IsProductOnly">Total Cost</th>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let p of ticketService.TicketItemList; let i=index; async">
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                          <div *ngIf="p.ItemAddredBy===true">
+                                            {{p.ItemName}} <small *ngIf="p.IsMaintance"
+                                              class="kt-badge kt-badge--brand kt-badge--inline kt-badge--pill">Maintance</small>
+                                            <sup>*</sup>
+                                          </div>
+                                          <div *ngIf="p.ItemAddredBy===false">
+                                            {{p.ItemName}} <small *ngIf="p.IsMaintance"
+                                              class="kt-badge kt-badge--brand kt-badge--inline kt-badge--pill">Maintance</small>
+                                          </div>
+                                          <div *ngIf="currentUser.Permissions.ProductWarranty">
+                                            <div *ngIf="p.InWarranty">
+                                              <small>{{p.WarrantyDays}} Days warranty</small>
+                                              <small *ngIf="p.UniqId.length > 0">({{p.UniqId}})</small>
+                                            </div>
+                                          </div>
+                                        </td>
+                                        <td *ngIf="currentUser.Permissions.ProductWarranty">
+                                          <div *ngIf="ticketService.formData.Status === 'INPROGRESS'">
+                                            <a *ngIf="p.InWarranty" href="javascript:;" style="cursor:not-allowed;">
+                                              <span *ngIf="p.InstallationDate === null">Edit</span>
+                                              <span>{{p.InstallationDate | date}}</span>
+                                            </a>
+                                          </div>
+                                          <div *ngIf="ticketService.formData.Status !== 'INPROGRESS'">
+                                            {{p.InstallationDate | date}}
+                                          </div>
+                                        </td>
+                                        <td>{{p.ItemDescription}}
+                                          <div *ngIf="p.IsMaintance">
+                                            <b>Remarks: </b> <span>{{p.MaintanceRemarks}}</span>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <div *ngIf="p.Type === 'Product'"> {{p.ItemQuantity}}</div>
+                                        </td>
+                                        <td *ngIf="!currentUser.Permissions.IsProductOnly">{{p.ItemUnitCost}}</td>
+                                        <td *ngIf="!currentUser.Permissions.IsProductOnly">{{p.ItemTotalCost}}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                                <div class="col-md-12 col-lg-12 kt-portlet__body padd-top-0">
+                                  <table class="table">
+                                    <tr *ngIf="!currentUser.Permissions.IsProductOnly">
+                                      <td width="10%"><label><strong>Total</strong></label></td>
+                                      <td width="80%"></td>
+                                      <td width="10%">{{ticketService.formData.NetAmount}}</td>
+                                    </tr>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="tab-pane" id="kt_tabs_CommentsImages" role="tabpanel">
+                              <div class="service-supports-heading padd-top-15 custInfo">
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <div class="support-service-incident-form cmtImage">
+                                      <h2 style="margin:0 0 0 8px;">Comments & Images</h2>
+                                    </div>
+                                    <p>
+                                      {{ticketService.formData.InternalNoteDescription}}
+                                    </p>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="ticketImgBox">
+                                      <div class="row">
+                                        <div class="col-md-1"
+                                          *ngFor="let x of ticketService.formData.TicketAttachments">
+                                          <generic-ticket-icon-attachment [(Name)]="x.AttachmentName" 
+                                          [(Path)]="x.AttachmentPath" [Status]="1" ></generic-ticket-icon-attachment>
+                                          <div class="row">
+                                            <div class="col-md-4"></div>
+                                            <div class="col-md-4">
+                                              <a href="{{x.AttachmentPath}}" target="_blank"><i
+                                                  class="fa fa-download text-success"></i></a>
+                                            </div>
+                                            <div class="col-md-4"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="row" *ngIf="!ticketService.formData.TicketAttachments">
+                                        <div class="col-md-12">
+                                          <div class="singleBox">
+                                            <p>No Attachment Available</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="tab-pane" id="kt_tabs_ServiceForm" role="tabpanel">
+                              <div class="row service-supports-heading padd-top-15 custInfo">
+                                <div class="col-md-6 col-sm-6 colxs-12">
+                                  <div class="support-service-incident-form serviceFormHeading">
+                                    <h2>
+                                      Customer Service form
+                                    </h2>
+                                  </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 colxs-12">
+                                  <div class="support-service-serial-number">
+                                  </div>
+                                </div>
+                                <div class="kt-portlet__body">
+                                  <div class="kt-section ktrSection">
+                                    <div class="kt-section__content">
+                                      <table
+                                        class="tblTicketServiceform table table-bordered service-form-table-border service-form-table-border htBorder">
+                                        <thead>
+                                          <tr>
+                                            <th style="width: 2%;">#</th>
+                                            <th>Service Form</th>
+                                            <th>Service Date</th>
+                                            <th>{{this.currentUser.Engineer}} Name</th>
+                                            <th style="width: 115;text-align: center;">Action</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr *ngFor="let f of service.TicketWiseServiceFormList; let ii=index;">
+                                            <td>
+                                              <span
+                                                class="btn btn-label-primary ticket-cirle-red">{{f.ServicePrefix}}{{f.TicketServiceID}}</span>
+                                            </td>
+                                            <td>{{f.ServiceFormName}}
+                                              <sub> ({{f.ServiceFormSequenceId}})</sub>
+                                              <span style="margin: 0 0 0 20px;">
+                                                <span *ngIf="f.IsActive ===true"
+                                                  class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill">Complete</span>
+                                                <span
+                                                  *ngIf="ticketService.formData.Status!='CLOSED' && f.IsActive ===false"
+                                                  class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">Process</span>
+                                                <span
+                                                  *ngIf="ticketService.formData.Status==='CLOSED' && f.IsActive ===false"
+                                                  class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">Empty
+                                                  Service form</span>
+                                              </span>
+                                            </td>
+                                            <td>{{f.ServiceDate | date}}</td>
+                                            <td>{{f.EngineerName}}</td>
+                                            <td style="text-align: center;"
+                                              *ngIf="ticketService.formData.Status!='CLOSED' && f.IsActive===false && f.IsHTML===true">
+                                                    inprogress
+                                            </td>
+                                            <td style="text-align: center;"
+                                              *ngIf="ticketService.formData.Status==='CLOSED' && f.IsActive===true && f.IsHTML===true">
+                                              <a href="javascript:void(0)" title="Download Service Form"
+                                                (click)="downloadServiceFormPDF(f)">
+                                                <i *ngIf="!Isserviceformdownload" class="fa fa-download"
+                                                  aria-hidden="true"></i>
+                                                <i *ngIf="Isserviceformdownload && f.CloserId === IsserviceformdownloadCloserId"
+                                                  class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+                                              </a>
+                                            </td>
+                                          </tr>
+                                          <tr *ngIf="!service.TicketWiseServiceFormList">
+                                            <td colspan="4">No service form available </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="tab-pane" id="kt_tabs_ClosedDetails" role="tabpanel">
+                              <div class="row service-supports-heading padd-top-15 custInfo">
+                                <div class="col-md-6 col-sm-6 colxs-12">
+                                </div>
+                              </div>
+                              <div class="col-md-6 col-sm-6 colxs-12">
+                                <div class="support-service-serial-number">
+                                </div>
+                              </div>
+                              <div *ngIf="ticketService.formData.Status ==='INPROGRESS'"
+                                class="accordion accordion-solid accordion-toggle-svg" #scrollCloserSection
+                                id="accordionExample8">
+                                <div class="card">
+                                  <div class="col-md-12--">
+                                    <div class="card-header" id="headingOne8">
+                                      <div style="float:right;" class="card-title padd-left-0 padd-right-0"
+                                        [ngClass]="{'collapsed': CloserAriaEexpanded === false}" data-toggle="collapse"
+                                        data-target="#collapseOne8" aria-expanded="CloserAriaEexpanded"
+                                        aria-controls="collapseOne8" id="txtExpenseCloser">
+                                        Closer Details <svg xmlns="http://www.w3.org/2000/svg"
+                                          xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                          viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+                                            <path
+                                              d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z"
+                                              id="Path-94" fill="#000000" fill-rule="nonzero"></path>
+                                            <path
+                                              d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z"
+                                              id="Path-94" fill="#000000" fill-rule="nonzero" opacity="0.3"
+                                              transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) ">
+                                            </path>
+                                          </g>
+                                        </svg>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="kt-portlet__body closeformbody">
+                                <div class="kt-section ktrSection">
+                                  <div class="kt-section__content">
+                                    <table
+                                      class="tblTicketServiceform table table-bordered service-form-table-border service-form-table-border htBorder">
+                                      <thead>
+                                        <tr>
+                                          <th style="width: 2%;">#</th>
+                                          <th style="width: 15%;">{{this.currentUser.Engineer}} Name</th>
+                                          <th style="width: 15%;">Service Date</th>
+                                          <th style="width: 10%;">Start Time</th>
+                                          <th style="width: 10%;">End Time</th>
+                                          <th style="width: 10%;">Total Duration</th>
+                                          <th style="width: 10%;">Status</th>
+                                          <th style="width: 20%;">{{this.currentUser.Engineer}} Remarks</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr *ngFor="let f of closerService.CloserDetailsList; let ii=index;">
+                                          <td>
+                                            <span
+                                              class="btn btn-label-primary ticket-cirle-red">{{f.CloserPrefix}}</span>
+                                          </td>
+                                          <td>{{f.EnginnerName}}</td>
+                                          <td>{{f.StartDate | date}}</td>
+                                          <td>{{f.StartTime}}</td>
+                                          <td>{{f.EndTime}}</td>
+                                          <td>{{f.TotalDuration}}</td>
+                                          <td>
+                                            <span class="btn btn-label-primary ticket-cirle-red">
+                                              {{f.TicketFlag}}</span>
+                                          </td>
+                                          <td>{{f.Remarks}}</td>
+                                        </tr>
+                                        <tr *ngIf="!closerService.CloserDetailsList">
+                                          <td colspan="9" style="text-align: center;">No closer details available </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="tab-pane" id="kt_tabs_Log" role="tabpanel">
+                              <div class="row service-supports-heading padd-top-15 custInfo">
+                                <div class="col-md-6 col-sm-6 colxs-12">
+                                  <div class="support-service-incident-form">
+                                    <h2>{{this.currentUser.Ticket}} Log's</h2>
+                                  </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 colxs-12">
+                                  <div class="support-service-serial-number"></div>
+                                </div>
+                                <div class="kt-portlet__body padd-top-0">
+                                  <table
+                                    class="table table-bordered service-form-table-border service-form-table-border htBorder">
+                                    <thead>
+                                      <th>#</th>
+                                      <th>User's Name</th>
+                                      <th>Log Date</th>
+                                      <th>Description</th>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let p of this.logService.UserLogList;  let i=index; async">
+                                        <td style="width: 5%;">{{i+1}}</td>
+                                        <td style="width: 20%;">{{p.UserName}}</td>
+                                        <td style="width: 10%;">{{p.LogDate | date: 'EEEE, MMMM d, y, h:mm:ss a':'+0000'}}</td>
+                                        <td style="width: 40%;">
+                                          <div *ngIf="p.Description.length < 150;else descriptioncontent">
+                                            {{ p.Description }}</div>
+                                          <ng-template #descriptioncontent>{{ p.Description.substring(0,150) }}<a
+                                              href="javascript:void(0)" (click)="ReadMoreLog(p)" class="btbRadMore">
+                                              More...</a></ng-template>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="tab-pane" id="kt_tabs_Feedback" role="tabpanel">
+                              <div class="service-supports-heading padd-top-15 custInfo">
+
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <div class="support-service-incident-form cmtImage">
+                                      <h3>Rating & Feedback</h3>
+                                      <div class="row">
+                                        <div class="col-1">
+                                          <generic-ticket-feedback [(ratingcount)]="ticketService.formData.Rating" [Editable]="2" [(Status)]="ticketService.formData.Status"></generic-ticket-feedback>
+                                        </div>
+                                      </div>
+                                      <p> {{ticketService.formData.RatingFeedback}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #modalContent let-close="close">
+  <div class="modal-header">
+    <button type="button" class="close" style="color: red;" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="kt-widget19__content">
+      <div class="col-md-12">
+        <div class="kt-section ktrSection">
+          <div class="kt-section__content">
+            <table class="table table-bordered service-form-table-border">
+              <tbody>
+                <tr>
+                  <td width="180px">IP:</td>
+                  <td colspan="3">
+                    {{LocalLogData.IP}}
+                  </td>
+                </tr>
+                <tr>
+                  <td width="180px">User's Name:</td>
+                  <td colspan="3">
+                    {{LocalLogData.UserName }}
+                  </td>
+                </tr>
+                <tr>
+                  <td width="180px">Log Date:</td>
+                  <td colspan="3">
+                    {{LocalLogData.LogDate | date: 'EEEE, MMMM d, y, h:mm:ss a'}}
+                  </td>
+                </tr>
+                <tr>
+                  <td width="180px">Description:</td>
+                  <td colspan="3">
+                    {{LocalLogData.Description}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

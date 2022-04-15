@@ -1,0 +1,492 @@
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+    <div class="kt-subheader kt-grid__item" id="kt_subheader">
+        <div class="kt-container kt-container--fluid ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                    <a href="javascript:;" routerLink="/dashboard">
+                        Dashboard
+                    </a>
+                </h3>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <a href="javascript:;" routerLink="/engineers" class="kt-subheader__breadcrumbs-link"> {{this.currentUser.Engineer}}s
+                    </a>
+                </div>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    {{this.currentUser.Engineer}}
+                </div>
+            </div>
+            <div class="kt-subheader__toolbar">
+                <div class="kt-subheader__wrapper">
+                    <a class="btn btn-primary"
+                        style="margin-right: 3px;color: white;padding: 6px 10px 7px 10px;cursor: pointer;"
+                        onclick="window.history.back()"> Back </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="customer-listing-detail-section">
+        <div class="col-md-12">
+            <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            {{ service.formData.EngineerName }}
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 no-spacing">
+                    <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
+                        <div class="col-md-12">
+                            <div class="kt-widget11">
+                                <div class="kt-section__content">
+                                    <div #wizard class="kt-grid kt-wizard-v2 kt-wizard-v2--white" id="kt_wizard_v2"
+                                        data-ktwizard-state="step-first">
+                                        <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v2__wrapper">
+                                            <div class="kt-wizard-v2__content" data-ktwizard-type="step-content"
+                                                data-ktwizard-state="current">
+
+                                                <div class="kt-form__section kt-form__section--first">
+                                                    <div class="kt-portlet__body tabing_kt_portlet_body">
+                                                        <ul class="nav nav-tabs nav-tabs-line nav-tabs-bold nav-tabs-line-3x nav-tabs-line-brand"
+                                                            role="tablist">
+                                                            <li class="nav-item ">
+                                                                <a class="nav-link active" data-toggle="tab"
+                                                                    href="#kt_tabs_3_1"><i
+                                                                        class="flaticon-customer"></i>{{this.currentUser.Engineer}}
+                                                                    Details</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" data-toggle="tab"
+                                                                    href="#kt_tabs_3_2"><i
+                                                                        class="flaticon2-hospital"></i> Emergency
+                                                                    Contact</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" data-toggle="tab"
+                                                                    href="#kt_tabs_3_3"><i class="flaticon-home"></i>
+                                                                    Address</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" data-toggle="tab"
+                                                                    href="#kt_tabs_3_4"><i class="flaticon-list"></i>
+                                                                    {{this.currentUser.Ticket}} Summary</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" data-toggle="tab"
+                                                                    href="#kt_tabs_3_4_1"><i
+                                                                        class="fa fa-paint-brush"></i>
+                                                                    Color</a>
+                                                            </li>
+                                                            <li class="nav-item"
+                                                                *ngIf="currentUser.Permissions.EngineerEdit">
+                                                                <a class="nav-link" data-toggle="tab"
+                                                                    href="#kt_tabs_3_5"><i class="flaticon-lock"></i>
+                                                                    Reset Password</a>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="tab-content">
+                                                            <div class="tab-pane active" id="kt_tabs_3_1"
+                                                                role="tabpanel">
+                                                                <div class="kt-form__section kt-form__section--first">
+                                                                    <div class="kt-wizard-v2__form">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-2 col-md-2 col-xl-2">
+                                                                                <img *ngIf="service.formData.EngineerLogo.length === 0"
+                                                                                    width="150px"
+                                                                                    src="{{localPrependUrl}}/assets/svg/noimage.svg" />
+                                                                                <div class="upload-image"
+                                                                                    *ngIf="service.formData.EngineerLogo.length > 0">
+                                                                                    <img width="150px"
+                                                                                        class="img-thumbnail"
+                                                                                        src="{{service.formData.EngineerLogo}}">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6 col-md-6 col-xl-6">
+                                                                                <table
+                                                                                    class="table table-bodered tbl-cust-dt ">
+                                                                                    <tr>
+                                                                                        <td><strong> Name:
+                                                                                            </strong>
+                                                                                        </td>
+                                                                                        <td>{{
+                                                                                            service.formData.EngineerName
+                                                                                            }}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong> Phone: </strong>
+                                                                                        </td>
+                                                                                        <td>{{
+                                                                                            service.formData.EngineerPhone
+                                                                                            }}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong> Email:
+                                                                                            </strong>
+                                                                                        </td>
+                                                                                        <td>{{
+                                                                                            service.formData.EngineerEmail
+                                                                                            }}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr
+                                                                                        *ngIf="currentUser.Permissions.EngineerType">
+                                                                                        <td><strong> Designation:
+                                                                                            </strong>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <span
+                                                                                                class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                                                                                                *ngIf="service.formData.Type === 1">Supervisor</span>
+                                                                                            <span
+                                                                                                class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill"
+                                                                                                *ngIf="service.formData.Type === 2">Foreman</span>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr
+                                                                                        *ngIf="currentUser.Permissions.CanEngineerCreateTicket">
+                                                                                        <td><strong> other permissions:
+                                                                                            </strong>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <span
+                                                                                                *ngIf="service.formData.CreateCustomer === 'All'">Add
+                                                                                                New Customer and {{this.currentUser.Ticket}}s
+                                                                                                <span
+                                                                                                    *ngIf="service.formData.CreateForAllDate === 'AllDate'">
+                                                                                                    for future
+                                                                                                    Dates</span>
+                                                                                                <span
+                                                                                                    *ngIf="service.formData.CreateForAllDate === 'SameDate'">
+                                                                                                    Only for Same
+                                                                                                    Day</span>
+                                                                                            </span>
+                                                                                            <span
+                                                                                                *ngIf="service.formData.CreateCustomer === 'Partial'">Add
+                                                                                                New {{this.currentUser.Ticket}} with existing
+                                                                                                Customer
+                                                                                                <span
+                                                                                                    *ngIf="service.formData.CreateForAllDate === 'AllDate'">
+                                                                                                    for future
+                                                                                                    Dates</span>
+                                                                                                <span
+                                                                                                    *ngIf="service.formData.CreateForAllDate === 'SameDate'">
+                                                                                                    Only for Same
+                                                                                                    Day</span>
+                                                                                            </span>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr
+                                                                                        *ngIf="currentUser.Permissions.CanEngineerCreateTicket">
+                                                                                        <td><strong> Assign {{this.currentUser.Ticket}} to
+                                                                                                another user
+                                                                                            </strong>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <span
+                                                                                                class="form-text text-muted"
+                                                                                                *ngIf="service.formData.AssignToOtherUser">Enabled</span>
+                                                                                            <span
+                                                                                                class="form-text text-muted"
+                                                                                                *ngIf="!service.formData.AssignToOtherUser">Disabled</span>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong> Login:
+                                                                                            </strong>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <span
+                                                                                                class="form-text text-muted"
+                                                                                                *ngIf="service.formData.LoginAccess">Enabled</span>
+                                                                                            <span
+                                                                                                class="form-text text-muted"
+                                                                                                *ngIf="!service.formData.LoginAccess">Disabled</span>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="tab-pane" id="kt_tabs_3_2" role="tabpanel">
+                                                                <div class="kt-form__section kt-form__section--first">
+                                                                    <div class="kt-wizard-v2__form">
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <table
+                                                                                    class="table table-bodered tbl-cust-dt ">
+                                                                                    <tr>
+                                                                                        <td><strong> Name:
+                                                                                            </strong>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            {{
+                                                                                            service.formData.EmergencyName
+                                                                                            }}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong> Contact Number:
+                                                                                            </strong>
+                                                                                        </td>
+                                                                                        <td>{{
+                                                                                            service.formData.EmergencyNumber
+                                                                                            }}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong> Relation: </strong>
+                                                                                        </td>
+                                                                                        <td>{{
+                                                                                            service.formData.EmergencyRelation
+                                                                                            }}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </div>
+                                                                            <div class="col-md-6"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="tab-pane" id="kt_tabs_3_3" role="tabpanel">
+                                                                <div class="kt-form__section kt-form__section--first">
+                                                                    <div class="kt-wizard-v2__form">
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <table
+                                                                                    class="table table-bodered tbl-cust-dt ">
+                                                                                    <tr>
+                                                                                        <td><strong>Address Street 1:
+                                                                                            </strong>
+                                                                                        </td>
+                                                                                        <td>{{
+                                                                                            service.formData.AddressStreet1
+                                                                                            }}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong>Address Street 2:
+                                                                                            </strong>
+                                                                                        </td>
+                                                                                        <td>{{
+                                                                                            service.formData.AddressStreet2
+                                                                                            }}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong>Address Unit No:
+                                                                                            </strong>
+                                                                                        </td>
+                                                                                        <td>{{
+                                                                                            service.formData.AddressUnitNo
+                                                                                            }}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong> Postal Code:
+                                                                                            </strong>
+                                                                                        </td>
+                                                                                        <td>{{
+                                                                                            service.formData.AddressZipCode
+                                                                                            }}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong> Country:
+                                                                                            </strong>
+                                                                                        </td>
+                                                                                        <td>{{
+                                                                                            service.formData.AddressCountry
+                                                                                            }}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="tab-pane" id="kt_tabs_3_4" role="tabpanel">
+                                                                <div class="customer-list-main-section">
+                                                                    <div class="kt-widget17">
+                                                                        <div class="kt-widget17__visual kt-widget17__visual--chart kt-portlet-fit--top kt-portlet-fit--sides"
+                                                                            style="background-color: #fd397a">
+                                                                        </div>
+                                                                        <div class="kt-widget17__stats">
+                                                                            <div class="kt-section kt-drop-section">
+                                                                                <div
+                                                                                    class="kt-portlet__body customer-listing-datatable">
+                                                                                    <table
+                                                                                        class="table table-striped- table-bordered table-hover table-checkable"
+                                                                                        *ngIf="ticketservice.Ticketlist">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th style="width: 5%;">
+                                                                                                    {{this.currentUser.Ticket}}&nbsp;No</th>
+                                                                                                <th style="width: 25%;">
+                                                                                                    {{this.currentUser.Ticket}} Date</th>
+
+                                                                                                <th style="width: 30%;">
+                                                                                                    Customer Info</th>
+
+                                                                                                <th style="width: 26%;">
+                                                                                                    Address</th>
+                                                                                                <th style="width: 2%;">
+                                                                                                    Status</th>
+                                                                                                <th style="width: 10%">
+                                                                                                    {{this.currentUser.Engineer}}</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                            <tr *ngFor="let x of ticketservice.Ticketlist; let i=index; async"
+                                                                                                class="quote-list-view-info odd"
+                                                                                                role="row">
+                                                                                                <td>
+                                                                                                    <span
+                                                                                                        class="btn btn-label-primary">
+                                                                                                        <a href="javascript:;"
+                                                                                                            (click)="ViewTicketDetails(x)">
+                                                                                                            {{
+                                                                                                            x.TicketId
+                                                                                                            }}</a><br>
+                                                                                                    </span>
+                                                   
+                                                                                                    <span
+                                                                                                        class="recurring-ticket"
+                                                                                                        *ngIf="x.TicketType === 'Recurring Ticket'">Recurring</span>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <generic-ticket-date-time-format
+                                                                                                        [(A)]="x.AppointmentStart"
+                                                                                                        [(B)]="x.AppointmentEnd"
+                                                                                                        [(C)]="x.CreatedUtcDate"
+                                                                                                        [T]="1">
+                                                                                                    </generic-ticket-date-time-format>
+                                                                                                    <span
+                                                                                                        *ngIf="x.OneOffAppointmentDate === null"
+                                                                                                        class="ticketstatus statusunallocated">UNALLOCATED</span>
+                                                                                                    <span
+                                                                                                        *ngIf="x.Rescheduled"
+                                                                                                        class="ticketstatus statusrescheduled">RESECHEDULED</span>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <strong>Name:
+                                                                                                    </strong>
+                                                                                                    {{ x.CustomerName }}
+                                                                                                    <br>
+                                                                                                    <strong>Company:
+                                                                                                    </strong>{{
+                                                                                                    x.CustomerCompanyName
+                                                                                                    }}
+                                                                                                </td>
+                                                                                                <td>{{ x.CustomerAddress
+                                                                                                    }}
+                                                                                                </td>
+                                                                                                <td class="text-center">
+                                                                                                    <generic-ticket-status
+                                                                                                        [(Status)]="x.Status"
+                                                                                                        [(OverDueDays)]="x.OverDueDays"
+                                                                                                        >
+                                                                                                    </generic-ticket-status>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <generic-ticket-team-list
+                                                                                                        [(TicketTeams)]="x.TicketTeams"
+                                                                                                        [(localPrependUrl)]="localPrependUrl"
+                                                                                                        [(Reallocate)]="x.Reallocate"
+                                                                                                        [(Id)]="x.Id"
+                                                                                                        [(TicketId)]="x.TicketId">
+                                                                                                    </generic-ticket-team-list>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                        <tfoot>
+                                                                                            <tr>
+                                                                                                <td *ngIf="ticketservice.Ticketlist.length === 0"
+                                                                                                    colspan="9"
+                                                                                                    style="text-align: center;">
+                                                                                                    <i
+                                                                                                        *ngIf="ticketservice.Ticketlist">No
+                                                                                                        Record!</i>
+                                                                                                </td>
+                                                                                                <td *ngIf="ticketservice.Ticketlist.length > 0"
+                                                                                                    colspan="9">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tfoot>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="tab-pane" id="kt_tabs_3_4_1" role="tabpanel">
+                                                                <div class="kt-form__section kt-form__section--first">
+                                                                    <div class="kt-wizard-v2__form">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <table class="table ">
+                                                                                    <tr>
+                                                                                        <td width="20%;">
+                                                                                            <strong>{{this.currentUser.Engineer}} Color
+                                                                                            </strong>
+                                                                                        </td>
+                                                                                        <td width="80%;">
+                                                                                            <div style="width:300px;height:69px;"
+                                                                                                [style.background-color]="service.formData.Color">
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="tab-pane" id="kt_tabs_3_5" role="tabpanel"
+                                                                *ngIf="currentUser.Permissions.EngineerEdit">
+                                                                <div class="kt-form__section kt-form__section--first">
+                                                                    <div class="kt-wizard-v2__form">
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <span class="text-danger">Note: This is
+                                                                                    {{ service.formData.EngineerName }}
+                                                                                    login password reset button.</span>
+                                                                                <br>
+                                                                                <br>
+                                                                                <div class="clearfix">
+                                                                                    <div
+                                                                                        class="new-request-footer-bottom pull-right">
+                                                                                        <div class="btn-group">
+                                                                                            <a class="btn btn-warning"
+                                                                                                href="javascript:;"
+                                                                                                (click)="resetpassword()">Reset
+                                                                                                Password</a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>

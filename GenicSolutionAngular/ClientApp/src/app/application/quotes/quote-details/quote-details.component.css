@@ -1,0 +1,22 @@
+.ticket-attachment-container { position: relative; width: 100%; }
+    .ticket-attachment-image {display: block; width: 100%; height: auto; }
+    .ticket-attachment-overlay {position: absolute;bottom: 0;left: 100%;right: 0;background-color: rgb(162, 176, 180);overflow: hidden; width: 0;height: 100%;transition: .5s ease;text-align: center;}
+    .ticket-attachment-container:hover .ticket-attachment-overlay {width: 100%;left: 0;}
+    .ticket-attachment-text {white-space: nowrap; color: white; font-size: 20px; position: absolute; overflow: hidden;top: 50%; left: 50%; transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);}
+    .ticket-attachment-remove-text {white-space: nowrap;color: white;font-size: 20px;position: absolute;overflow: hidden;bottom: 10%;left: 50%; transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);}
+    .file-upload {position: relative;display: inline-block;}
+    .file-upload__label {display: block;padding: 1em 1em;color: #fff; background: #b1a4a4; border-radius: .4em;font-size: 22px; height: 100%;transition: background .3s;}
+    .file-upload__label:hover {cursor: pointer;background: rgb(204, 198, 198); }  
+    .file-upload__input {position: absolute;left: 0;top: 0;right: 0;bottom: 0;font-size: 1; width:0;height: 100%;opacity: 0;}
+    i.fa.fa-eye {
+        margin: 13px 0 0 0;
+        color: green;
+        padding: 0 10px 0 0;
+        font-size: 20px;
+      }
+    
+      .clView label {
+        font-size: 17px;
+        color: #258000;
+      }
+      .kt-checkbox-inline label{padding: 0 !important;}

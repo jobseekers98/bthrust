@@ -1,0 +1,670 @@
+<form #form="ngForm" (submit)="putInvoice()" autocomplete="off">
+  <div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+    <div class="kt-subheader kt-grid__item" id="kt_subheader">
+      <div class="kt-container kt-container--fluid breadcud-kt-container ">
+        <div class="kt-subheader__main">
+          <h3 class="kt-subheader__title">
+            <a href="javascript:;" routerLink="/dashboard">
+              Dashboard
+            </a>
+          </h3>
+          <span class="kt-subheader__separator kt-hidden"></span>
+          <div class="kt-subheader__breadcrumbs">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <span class="kt-subheader__breadcrumbs-separator"></span>
+            <a href="javascript:;" routerLink="/invoices" class="kt-subheader__breadcrumbs-link"> Invoices </a>
+          </div>
+          <span class="kt-subheader__separator kt-hidden"></span>
+          <div class="kt-subheader__breadcrumbs">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <span class="kt-subheader__breadcrumbs-separator"></span>
+            Invoice
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="hidden" name="Id" #Id="ngModel" [(ngModel)]="invoiceService.InvoiceData.Id">
+    `<input type="hidden" name="CustomerId" #CustomerId="ngModel" [(ngModel)]="invoiceService.InvoiceData.CustomerId">
+    <div class="new-request-main-section jobs-for-client-section">
+      <div class="kt-container kt-container--fluid">
+        <div class="new-requst-filter_form">
+          <div class="container">
+            <div class="col-md-12 section-client-requst-form">
+              <div class="">
+                <div class="kt-section">
+                  <h3 class="kt-section__title">
+                    <p>INVOICE FOR
+                      <span>
+                        {{invoiceService.InvoiceData.CustomerName}}
+                      </span>
+                    </p>
+                    <i data-toggle="kt-tooltip" data-width="auto" class="kt-section__help" title=""
+                      data-original-title="If different than the corresponding address"></i>
+                  </h3>
+                </div>
+              </div>
+              <div class="kt-section__content col-md-7 requst-for-client-name">
+                <div class="row">
+                  <div class="col-lg-11 padd-left-0">
+                    <input type="text" name="billing_address_1" class="form-control" name="InvoiceTitle"
+                      [(ngModel)]="invoiceService.InvoiceData.InvoiceTitle" placeholder="Title" maxlength="64">
+                    <br />
+                  </div>
+                  <div class="col-lg-6 property-addres-info">
+                    <div class="kt-widget4--sticky">
+                      <div class="kt-widget4__items kt-widget4__items--bottom kt-portlet__space-x kt-margin-b-20">
+                        <div class="kt-widget4__item">
+                          <div class="kt-widget4__info">
+                            <h4 class="kt-widget4__title"> Property address </h4>
+                            <span class="kt-widget4__sub">
+                              {{invoiceService.InvoiceData.CustomerAddress}}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 property-addres-info">
+                    <div class="kt-widget4 kt-widget4--sticky">
+                      <div class="kt-widget4__items kt-widget4__items--bottom kt-portlet__space-x kt-margin-b-20">
+                        <div class="kt-widget4__item">
+                          <div class="kt-widget4__info">
+                            <label>Contact Details &nbsp;</label><br />
+                            <label>{{invoiceService.InvoiceData.CustomerName}}</label><br>
+                            <span class="kt-widget4__sub">
+                              <span>{{invoiceService.InvoiceData.CustomerEmail}}</span><br />
+                              <span>{{invoiceService.InvoiceData.CustomerContactNo}}</span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <label for="">Description</label>
+                      <textarea class="form-control" name="Description" #Description="ngModel"
+                      [(ngModel)]="invoiceService.InvoiceData.Description" rows="3"
+                      placeholder="Description"></textarea><br>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5 new-requst-client-name">
+                <div class="kt-widget4 kt-widget4--sticky">
+                  <table class="table table-bordered service-form-table-border service-form-table-border htBorder">
+                    <tr>
+                      <th colspan="2"><span>Invoice Details</span></th>
+                    </tr>
+                    <tr>
+                      <th>Invoice No</th>
+                      <td>
+                        <div class="row" style="padding: 0;margin: 0;">
+                          <div class="col-md-9">
+                            <div class="InvoiceNN" *ngIf="!InvoiceNosChange">
+                              <span class="btn btn-label-primary">{{invoiceService.InvoiceData.InvoiceId}}</span>
+                            </div>
+                            <div class="InviceCC" *ngIf="InvoiceNosChange">
+                              <span class="btn btn-label-primary">{{genicProfile.formData.InvoicePrefix}}</span>
+                              <input type="number" min="0" maxlength="5" class="form-control btnChangeQuote"
+                                name="InvoiceUniqueID" [(ngModel)]="invoiceService.InvoiceData.InvoiceUniqueID" style="height: 32px !important;
+                                    width: 66px;text-align: right;
+                                    display: inline-block;" />
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Invoice Date</th>
+                      <td>
+                        <input placeholder="mm-dd-yyyy" class="form-control" name="InvoiceDate" #InvoiceDate="ngModel"
+                          ngbDatepicker [class.is-invalid]="!InvoiceDateIsValid"
+                          (click)="datePickerInvoiceDate.toggle()" #datePickerInvoiceDate="ngbDatepicker"
+                          [(ngModel)]="invoiceService.InvoiceData.InvoiceDate">
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Due Date</th>
+                      <td>
+                        <input placeholder="mm-dd-yyyy" class="form-control" name="InvoiceDueDate"
+                          #InvoiceDueDate="ngModel" [class.is-invalid]="!InvoiceDueDateIsValid" ngbDatepicker
+                          (click)="datePickerInvoiceDueDate.toggle()" #datePickerInvoiceDueDate="ngbDatepicker"
+                          [(ngModel)]="invoiceService.InvoiceData.InvoiceDueDate">
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Refrance No</th>
+                      <td>
+                        <input placeholder="Refrance No" class="form-control" name="RefranceNo"
+                          #RefranceNo="ngModel" [(ngModel)]="invoiceService.InvoiceData.RefranceNo">
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 new-request-service-details-form">
+
+              <div class="row">
+                <div class="col-md-12 job-for-tab-content">
+                  <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                    <div class="kt-portlet__head">
+                      <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                          LINE ITEMS<span class="text-danger">*</span>
+                        </h3>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="kt-portlet__body">
+                        <div class="col-md-12">
+                          <table class="table table-borderless table-sm">
+
+                            <tr>
+                              <th colspan="2" width="50%">
+                                <div class="product-service-colun-name">PRODUCT
+                                  / SERVICE</div>
+                              </th>
+                              <th width="15%">
+                                <div class="product-service-colun-name">QTY
+                                </div>
+                              </th>
+                              <th width="15%">
+                                <div class="product-service-colun-name">UNIT
+                                  COST</div>
+                              </th>
+                              <th width="15%">
+                                <div class="product-service-colun-name">TOTAL
+                                </div>
+                              </th>
+                              <th width="5%"></th>
+                            </tr>
+                            <tr>
+                              <td colspan="6">
+                                <div class="client-view-border-info"></div>
+                              </td>
+                            </tr>
+                            <tr class="border" *ngFor="let x of invoiceService.InvoiceItemList; let i=index">
+                              <td colspan="2">
+                                <b>{{ x.ItemName }}</b><br>{{ x.ItemDescription}}
+                                <div *ngIf="x.InWarranty">
+                                  {{x.WarrantyDays}} Days warranty
+                                  <span *ngIf="x.UniqId.length > 0">({{x.UniqId}})</span>
+                                </div>
+                              </td>
+                              <td>
+                                <div *ngIf="x.Type === 'Product'"> {{ x.Qty}}</div>
+                              </td>
+                              <td>${{ x.UnitCost}}</td>
+                              <td>{{ x.Total}}</td>
+                              <td>
+                                <div class="btn-group btnOpp">
+                                  <a href="javascript:;" class="btn-Edit" (click)="PupulateInvoiceProductList(x)"
+                                    title="edit">
+                                    <i class="la la-edit"></i>
+                                  </a>
+                                  <a href="javascript:;" class=" btn-remove"
+                                    (click)="RemoveInvoiceItem(x.Id,x.ItemName, x.Qty, x.UnitCost)" title="remove">
+                                    <i class="la la-trash-o"></i>
+                                  </a>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr> 
+                              <td colspan="2">
+                                <div class="row radio-service">
+                                  <div *ngIf="!currentUser.Permissions.IsProductOnly" class="col-md-4">
+                                    <label class="radio-inline"><input type="radio" name="InvoiceItemData.Type"
+                                        #InvoiceItemData.Type="ngModel" [(ngModel)]="invoiceService.InvoiceItemData.Type"
+                                        (change)="OnInvoiceItemTypeChange()" value="Product">Product</label>
+                                  </div>
+                                  <div *ngIf="!currentUser.Permissions.IsProductOnly" class="col-md-4">
+                                    <label class="radio-inline"><input type="radio" name="InvoiceItemData.Type"
+                                        #InvoiceItemData.Type="ngModel" [(ngModel)]="invoiceService.InvoiceItemData.Type"
+                                        (change)="OnInvoiceItemTypeChange()" value="Service">Service</label>
+                                  </div>
+                                </div>
+                              </td>
+                              <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                              <td colspan="2">
+                                <div class="row radio-service">
+                                    <div class="col-md-12" *ngIf="ItemBtn === 'Add'">
+                                        <l-select2 
+                                         name="product_formcontrol"
+                                        class="select2customcss" [options]="productdata"
+                                        (valueChange)="WhenSelectProductChange($event)">
+                                        </l-select2>
+                                    </div>
+                                    <div class="col-md-12" *ngIf="ItemBtn === 'update'">
+                                        <label class="form-control">
+                                            {{invoiceService.InvoiceItemData.ItemName}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </td>
+                              <td>
+                                <input *ngIf="invoiceService.InvoiceItemData.Type === 'Product'"
+                                  name="InvoiceItemData.Qty" #InvoiceItemData.Qty="ngModel"
+                                  [(ngModel)]="invoiceService.InvoiceItemData.Qty" height="30px" type="text" min="0"
+                                  maxlength="3" class="form-control" [ngClass]="{'InvalidInput': isQtyValid===false}"
+                                  (keyup)="CalculateInvoiceProductCost()" (keypress)="numberOnly($event)"
+                                  placeholder="Quantity">
+                              </td>
+                              <td>
+                                <div class="input-group">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">
+                                      <i class="fa fa-dollar-sign"></i>
+                                    </span>
+                                  </div>
+                                  <input name="InvoiceItemData.UnitCost" #InvoiceItemData.UnitCost="ngModel" type="text"
+                                    min="0" maxlength="6" [(ngModel)]="invoiceService.InvoiceItemData.UnitCost"
+                                    class="form-control" [ngClass]="{'InvalidInput': ItemUnitCosttIsValid===false}"
+                                    (keyup)="CalculateInvoiceProductCost()" (keypress)="numberwithDecimalOnly($event)"
+                                    placeholder="Unit Cost">
+                                </div>
+                              </td>
+                              <td>
+                                <div class="input-group">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">
+                                      <i class="fa fa-dollar-sign"></i>
+                                    </span>
+                                  </div>
+                                  <input name="invoiceService.InvoiceItemData.Total"
+                                    #invoiceService.InvoiceItemData.Total="ngModel" type="text" min="0"
+                                    [(ngModel)]="invoiceService.InvoiceItemData.Total" height="30px"
+                                    class="form-control" placeholder="Total Cost" readonly>
+                                </div>
+                              </td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td colspan="2">
+                                <textarea name="invoiceService.InvoiceItemData.ItemDescription"
+                                  #invoiceService.InvoiceItemData.ItemDescription="ngModel"
+                                  [(ngModel)]="invoiceService.InvoiceItemData.ItemDescription" class="form-control"
+                                  placeholder="Description" rows="3"></textarea>
+                              </td>
+                              <td colspan="4">
+                                <div class="row" *ngIf="currentUser.Permissions.ProductWarranty">
+                                  <div class="col-lg-12 col-md-12" *ngIf="tempInWarranty">
+                                    <div class="row">
+                                      <div class="col-lg-7 col-md-7 padd-top-10" style="margin:auto;">
+                                        <label class="kt-checkbox kt-checkbox--solid kt-checkbox--brand">
+                                          <input type="checkbox" name="invoiceService.InvoiceItemData.InWarranty"
+                                            #invoiceService.InvoiceItemData.InWarranty="ngModel" (change)="GenerateUniqueRandom()"
+                                            [(ngModel)]="invoiceService.InvoiceItemData.InWarranty">
+                                          want to give Warranty on
+                                          <i *ngIf="invoiceService.InvoiceItemData.Type === 'Product'">
+                                            Product
+                                          </i>
+                                          <i *ngIf="invoiceService.InvoiceItemData.Type === 'Service'">
+                                            Service
+                                          </i>
+                                          <span></span>
+                                        </label>
+
+                                      </div>
+                                      <div class="col-lg-5 col-md-5" style="margin:auto;"
+                                        *ngIf="invoiceService.InvoiceItemData.InWarranty">
+                                        {{invoiceService.InvoiceItemData.WarrantyDays}}
+                                        Days Warranty
+                                      </div>
+                                      <div class="col-lg-5 col-md-5" *ngIf="!invoiceService.InvoiceItemData.InWarranty">
+                                      </div>
+                                    </div>
+
+                                    <div class="row" *ngIf="invoiceService.InvoiceItemData.InWarranty">
+                                      <div class="col-lg-7 col-md-7">
+                                        <input name="invoiceService.InvoiceItemData.UniqId"
+                                          #invoiceService.InvoiceItemData.UniqId="ngModel"
+                                          [(ngModel)]="invoiceService.InvoiceItemData.UniqId"
+                                          [ngClass]="{'InvalidInput': ItemUniqueIsValid===false}" height="30px"
+                                          type="text" min="0" maxlength="64" class="form-control"
+                                          placeholder="Unique Id">
+                                      </div>
+                                      <div class="col-lg-5 col-md-5">
+                                        <a class="text-warning btnStockUpdate" href="javascript:void(0)"
+                                          (click)="enablewarrantchange()">
+                                          <span *ngIf="!customwarrantyShowEdit"><i class="fa fa-plus"
+                                              aria-hidden="true"></i>
+                                            Edit Warranty</span>
+                                          <span *ngIf="customwarrantyShowEdit"><i class="fa fa-minus"
+                                              aria-hidden="true"></i>
+                                            Hide </span>
+                                        </a>
+                                        <div class="kt-radio-list" *ngIf="customwarrantyShowEdit">
+                                          <label class="kt-radio kt-radio--bold kt-radio--brand">
+                                            <input type="radio" class="custom-control-input" value="90"
+                                              name="WarrantyDays" #WarrantyDays="ngModel"
+                                              (change)="customwarrantyShowMethor()"
+                                              [(ngModel)]="invoiceService.InvoiceItemData.WarrantyDays">
+                                            90 Days
+                                            <span></span>
+                                          </label>
+                                          <label class="kt-radio kt-radio--bold kt-radio--brand">
+                                            <input type="radio" class="custom-control-input" value="180"
+                                              name="WarrantyDays" #WarrantyDays="ngModel"
+                                              (change)="customwarrantyShowMethor()"
+                                              [(ngModel)]="invoiceService.InvoiceItemData.WarrantyDays">
+                                            180 Days
+                                            <span></span>
+                                          </label>
+                                          <label class="kt-radio kt-radio--bold kt-radio--brand">
+                                            <input type="radio" class="custom-control-input" value="270"
+                                              name="WarrantyDays" #WarrantyDays="ngModel"
+                                              (change)="customwarrantyShowMethor()"
+                                              [(ngModel)]="invoiceService.InvoiceItemData.WarrantyDays">
+                                            270 Days
+                                            <span></span>
+                                          </label>
+                                          <label class="kt-radio kt-radio--bold kt-radio--brand">
+                                            <input type="radio" class="custom-control-input" value="365"
+                                              name="WarrantyDays" #WarrantyDays="ngModel"
+                                              (change)="customwarrantyShowMethor()"
+                                              [(ngModel)]="invoiceService.InvoiceItemData.WarrantyDays">
+                                            365 Days
+                                            <span></span>
+                                          </label>
+                                          <label class="kt-radio kt-radio--bold kt-radio--brand"
+                                            *ngIf="customwarrantyShow">
+                                            <input type="radio" class="custom-control-input" name="WarrantyDays"
+                                              #WarrantyDays="ngModel" (change)="customwarrantyShowMethor()"
+                                              [(ngModel)]="invoiceService.InvoiceItemData.WarrantyDays">
+                                            Custom
+                                            <span></span>
+                                          </label>
+                                          <label class="kt-radio kt-radio--bold kt-radio--brand"
+                                            *ngIf="!customwarrantyShow">
+                                            <input type="radio" class="custom-control-input" name="WarrantyDays" checked
+                                              (change)="customwarrantyShowMethor()">
+                                            Custom
+                                            <span></span>
+                                          </label>
+
+                                        </div>
+                                        <div *ngIf="!customwarrantyShow">
+                                          <input *ngIf="customwarrantyShowEdit"
+                                            name="invoiceService.InvoiceItemData.WarrantyDays"
+                                            #invoiceService.InvoiceItemData.WarrantyDays="ngModel"
+                                            [(ngModel)]="invoiceService.InvoiceItemData.WarrantyDays" height="30px"
+                                            type="text" min="0" maxlength="3" class="form-control" placeholder="Days">
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td colspan="6">
+                                <div class="form-group form-group-last">
+                                  <div class="col-lg-4">
+                                    <a href="javascript:;"
+                                      (click)="addProductToInvoice(invoiceService.InvoiceItemData.Id,invoiceService.InvoiceData.Id,invoiceService.InvoiceItemData.ItemName,invoiceService.InvoiceItemData.Qty,invoiceService.InvoiceItemData.UnitCost,invoiceService.InvoiceItemData.Total,invoiceService.InvoiceItemData.ItemDescription)"
+                                      class="btn btn-brand btn-sm add-line-item-btn">
+                                      <i class="la la-plus"></i>
+                                      {{ ItemBtn }}
+                                    </a>
+                                    <a style="margin-left: 2px;" href="javascript:;" (click)="CleareProductToInvoice()"
+                                      class="btn btn-brand btn-sm add-line-item-btn">
+                                      <i class="la la-times"></i>
+                                      Cancel
+                                    </a>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+
+                          </table>
+                          <div class="col-md-12">
+                            <div class="quots-client-view-border-info"></div>
+                          </div>
+                          <div class="row kt-widget4 total-job-price-client">
+                            <div class="kt-widget4__item">
+
+                              <div class="kt-widget4__info">
+                                <p>
+                                  TOTAL
+                                </p>
+                              </div>
+                              <p> ${{ invoiceService.InvoiceData.SubTotal.toFixed(2) }} </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 job-for-tab-content">
+                  <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                    <div class="kt-portlet__head">
+                      <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                          Invoice value
+                        </h3>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="kt-portlet__body">
+                        <div class="col-md-12">
+                          <div class="tab-content" style="overflow-x: scroll;overflow:hidden;">
+                            <div class="tab-pane active" id="kt_widget11_tab1_content">
+                              <div class="kt-widget11">
+                                <div id="kt_repeater_1">
+                                  <div id="kt_repeater_1">
+                                    <div class="row col-md-12">
+                                      <div class="col-md-6 col-sm-6 col-xs-6 qty-unit-total">
+                                        <div class="clientRemarkSection">
+                                          <div class="row">
+                                            <div class="CLRemark">
+                                              <textarea name="ClientRemark" #ClientRemark="ngModel"
+                                                [(ngModel)]="invoiceService.InvoiceData.ClientRemark"
+                                                class="form-control" placeholder="Client Message" maxlength="1024"
+                                                rows="12">
+                                              </textarea>
+                                            </div>
+                                          </div>
+                                          <div class="row" style="display: none;">
+                                            <div class="clientViewSection">
+                                              <div class="form-group">
+                                                <span class="clView">
+                                                  <i class="fa fa-eye" aria-hidden="true"></i>
+                                                  <label>Client View</label>
+                                                </span>
+                                                <label>
+                                                  Adjust what your client will see on this quote. To change the default
+                                                  for ​all future quotes, visit the
+                                                  PDF Configuration.
+                                                </label>
+                                                <div class="kt-checkbox-inline">
+                                                  <label class="kt-checkbox">
+                                                    <input type="checkbox" name="ClientViewQty"
+                                                      [(ngModel)]="invoiceService.InvoiceData.ClientViewQty"> Quantities
+                                                    <span></span>
+                                                  </label>
+                                                  <label class="kt-checkbox">
+                                                    <input type="checkbox" name="ClientViewUnitCost"
+                                                      [(ngModel)]="invoiceService.InvoiceData.ClientViewUnitCost"> Unit
+                                                    Cost
+                                                    <span></span>
+                                                  </label>
+                                                  <label class="kt-checkbox">
+                                                    <input type="checkbox" name="ClientViewLineItemTotal"
+                                                      [(ngModel)]="invoiceService.InvoiceData.ClientViewLineItemTotal">
+                                                    Line item totals
+                                                    <span></span>
+                                                  </label>
+                                                  <label class="kt-checkbox">
+                                                    <input type="checkbox" name="ClientAccountBalance"
+                                                      [(ngModel)]="invoiceService.InvoiceData.ClientAccountBalance">
+                                                    Account balance
+                                                    <span></span>
+                                                  </label>
+                                                  <label class="kt-checkbox">
+                                                    <input type="checkbox" name="LateStamp"
+                                                      [(ngModel)]="invoiceService.InvoiceData.LateStamp"> Late stamp (if
+                                                    overdue)
+                                                    <span></span>
+                                                  </label>
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-md-6 invoicing-list-view-border-left">
+                                        <div class="kt-widget1">
+                                          <div class="kt-widget1__item">
+                                            <div class="kt-widget1__info">
+                                              <h3 class="kt-widget1__title">Subtotal</h3>
+                                            </div>
+                                            <span
+                                              class="kt-widget1__number kt-font-success">${{invoiceService.InvoiceData.SubTotal.toFixed(2)}}</span>
+                                          </div>
+                                          <div class="kt-widget1__item" >
+                                            <div class="kt-widget1__info">
+                                              <h3 class="kt-widget1__title">Discount</h3>
+                                            </div>
+                                            <div class="discountSection">
+                                              <div class="discountInput" style="display: block;">
+                                                <input class="form-control" min="0" type="number" maxlength="4"
+                                                  (keyup)="changeDiscountValue()" (keydown)="changeDiscountValue()"
+                                                  (change)="changeDiscountValue()"
+                                                  (keypress)="numberwithDecimalOnly($event)" name="DiscountTextValue"
+                                                  [(ngModel)]="invoiceService.InvoiceData.DiscountTextValue" />
+                                                <select class="form-control" (change)="changeDiscountValue()"
+                                                  name="DiscountType"
+                                                  [(ngModel)]="invoiceService.InvoiceData.DiscountType">
+                                                  <option value="0">SGD</option>
+                                                  <option value="1">%</option>
+                                                </select>
+                                                <span
+                                                  class="kt-widget1__number kt-font-success">${{invoiceService.InvoiceData.DiscountAmount.toFixed(2)}}</span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="kt-widget1__item">
+                                            <div class="kt-widget1__info">
+                                              <h3 class="kt-widget1__title">Tax</h3>
+                                            </div>
+                                            <div class="tax-block">
+                                              <div class="taxToshow" style="display: block;">
+                                                <span
+                                                  class="kt-widget1__number kt-font-success">${{invoiceService.InvoiceData.TaxAmount.toFixed(2)}}</span>
+                                                <select class="form-control" (change)="CalculateInvoiceTax()"
+                                                  name="TaxRate" [(ngModel)]="invoiceService.InvoiceData.TaxRate">
+                                                  <option value="0">---Select Tax---</option>
+                                                  <option *ngFor="let t of quoteService.TextList" value="{{t.TaxRate}}">
+                                                    {{t.TaxName}}</option>
+                                                </select>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="kt-widget1__item quotes-list-view-total-info">
+                                            <div class="kt-widget1__info">
+                                              <h3 class="kt-widget1__title"><b>Total</b></h3>
+                                            </div>
+                                            <span
+                                              class="kt-widget1__number kt-font-primary"><b>${{invoiceService.InvoiceData.NetAmount.toFixed(2)}}</b></span>
+                                          </div>
+                                          <div class="kt-widget1__item">
+                                            <div class="kt-widget1__info">
+                                              <h3 class="kt-widget1__title">Require to deposit</h3>
+                                            </div>
+                                            <div class="requestedSectionInput">
+                                              <span><input class="form-control" min="0" maxlength="4" type="number"
+                                                  (keyup)="changeInvoiceDepositeValue()" name="ReqDepositeTextValue"
+                                                  [(ngModel)]="invoiceService.InvoiceData.ReqDepositeTextValue" /></span>
+                                              <span>
+                                                <select class="form-control" (change)="changeInvoiceDepositeValue()"
+                                                  name="ReqDepositeType"
+                                                  [(ngModel)]="invoiceService.InvoiceData.ReqDepositeType">
+                                                  <option value="0" selected>$</option>
+                                                  <option value="1">%</option>
+                                                </select>
+                                              </span>
+                                              <span
+                                                class="kt-widget1__number kt-font-success">${{invoiceService.InvoiceData.ReqDepositeAmount.toFixed(2)}}</span>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="on-site-client-required">
+                <div class="kt-portlet kt-portlet--height-fluid kt-widget19 internal-notes-attachment">
+                  <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                      <h3 class="kt-portlet__head-title">
+                        <strong>
+                         &nbsp;&nbsp; INTERNAL NOTES & ATTACHMENTS
+                        </strong>
+                      </h3>
+                    </div>
+                  </div>
+                  <div class="kt-portlet__body">
+                    <div class="kt-widget19__wrapper">
+                      <textarea name="InternalNotes" [(ngModel)]="invoiceService.InvoiceData.InternalNotes"
+                        class="form-control" id="exampleTextarea" rows="3" maxlength="1024"
+                        placeholder="Internal Notes">
+                      </textarea>
+                      <div class="row">
+                        <div class="col-md-1" *ngFor="let x of invoiceService.InvoiceAttachmentList">
+                          <div class="row">
+                            <generic-ticket-icon-attachment [(Name)]="x.AttachmentExtension" [(Path)]="x.Attachment"
+                              [Status]="1"></generic-ticket-icon-attachment>
+                            <div class="col-md-3"></div>
+                            <div class="col-md-3">
+                              <a href="javascript:;" (click)="RemoveInvoiceAttachement(x.Id, x.Attachment)"><i
+                                  class="fa fa-trash text-danger"></i></a>
+                            </div>
+                            <div class="col-md-3">
+                              <a href="{{x.Attachment}}" target="_blank"><i class="fa fa-download text-success"></i></a>
+                            </div>
+                            <div class="col-md-3"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="file-upload">
+                        <label for="upload" class="file-upload__label"><i title="Add Attachment"
+                            class="fa fa-paperclip"></i>
+                          <br></label>
+                        <input id="upload" class="file-upload__input" type="file" name="file-upload"
+                          (change)="picked($event)">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row new-request-footer-bottom">
+                  <input type="hidden" name="Id" [(ngModel)]="invoiceService.InvoiceData.Id" />
+                  <button type="reset" routerLink="/invoices" class="btn btn-secondary">CANCEL</button>
+                  <div class="btn-group">
+                    <button type="submit" [disabled]="btnloader" class="btn btn-brand">{{ createbuttontext }}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

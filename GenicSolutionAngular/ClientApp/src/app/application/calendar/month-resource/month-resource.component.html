@@ -1,0 +1,326 @@
+
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+	<div class="kt-subheader kt-grid__item" id="kt_subheader">
+		<div class="kt-container kt-container--fluid ">
+			<div class="kt-subheader__main">
+				<h3 class="kt-subheader__title">
+					<a href="javascript:;" routerLink="/dashboard">
+						Dashboard
+					</a>
+				</h3>
+				<span class="kt-subheader__separator kt-hidden"></span>
+				<div class="kt-subheader__breadcrumbs">
+					<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+					<span class="kt-subheader__breadcrumbs-separator"></span>
+					<a class="kt-subheader__breadcrumbs-link"> Calendar </a>
+				</div>
+				<span class="kt-subheader__separator kt-hidden"></span>
+				<div class="kt-subheader__breadcrumbs">
+					<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+					<span class="kt-subheader__breadcrumbs-separator"></span> Resource
+				</div>
+			</div>
+			<div class="kt-subheader__toolbar">
+				<div class="kt-subheader__wrapper">
+
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="new-quote-main-section">
+        <div class="kt-container kt-container--fluid">
+            <div class="new-requst-filter_form create-new-client-popup">
+                <div class="accordion accordion-solid">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 no-spacing">
+
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-lg-12 left-enlarge">
+                                        <div class="kt-portlet" id="kt_portlet">
+                                            <div class="kt-portlet__head">
+                                                <div class="kt-portlet__head-label">
+                                                    <span class="kt-portlet__head-icon">
+                                                      &nbsp;&nbsp;  <i class="flaticon-map-location"></i>
+                                                    </span>
+                                                    <h3 class="kt-portlet__head-title">
+                                                        Resource
+                                                        <i class="la la-refresh" style="font-weight: bold;" (click)="RefreshData()" aria-hidden="true"></i>
+                                                    </h3>
+                                                </div>
+                                                <div class="kt-portlet__head-toolbar">
+													<div class="btn btn-group" *ngIf="currentUser.Permissions.CalendarView">
+														<a routerLink="/calendar/month-tickets" href="javascript:;" class="btn btn-secondary">Calendar</a>
+														<a routerLink="/calendar/resource-view" href="javascript:;" class="btn btn-primary">Resource</a>
+													</div>
+                                                </div>
+											</div>
+											<div class="kt-portlet__head">
+                                                <div class="ffffrow">
+                                                    <div class="row" *ngIf="showFilte">
+														
+                                                        <div class="col-md-3">
+                                                            <ngx-select-dropdown class="myselectClass"
+                                                            (change)="onCustomerItemSelect($event)" [multiple]="true"
+                                                            name="CustomerselectedItems"
+                                                            [(ngModel)]="CustomerselectedItems"
+                                                            [config]="CustomerdropdownSettings" [options]="CustomerdropdownList">
+                                                        </ngx-select-dropdown>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <ngx-select-dropdown class="myselectClass"
+                                                                (change)="onEngineerItemSelect($event)" [multiple]="true"
+                                                                name="EngineerselectedItems"
+                                                                [(ngModel)]="EngineerselectedItems"
+                                                                [config]="EngineerdropdownSettings" [options]="EngineerdropdownList">
+                                                            </ngx-select-dropdown>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <ngx-select-dropdown class="myselectClass"
+                                                                (change)="onStatusItemSelect($event)" [multiple]="true"
+                                                                name="StatusselectedItems"
+                                                                [(ngModel)]="StatusselectedItems"
+                                                                [config]="StatusdropdownSettings" [options]="StatusdropdownList">
+                                                            </ngx-select-dropdown>
+                                                        </div>
+                                                        <div class="col-md-1" style="text-align: right;">
+                                                            <a href="javascript:;" class="btn btn-secondary calendar" (click)="showcalendar()">
+                                                                <i *ngIf="!Iscalendarshow" class="fa fa-calendar"></i>
+                                                                <i *ngIf="Iscalendarshow" class="fa fa-window-close text-danger"></i></a>
+                                                                 
+                                                                <div *ngIf="Iscalendarshow" style="position: absolute; z-index: 99999; background-color: white;right: 10px;">
+                                                                <ngb-datepicker name="CalendarResourceData"
+                                                                (select)="onDateSelect($event)" (navigate)="date=$event.next">
+                                                            </ngb-datepicker>
+                                                                </div>
+                                                           
+                                                        </div>                                                        														
+													</div>												
+                                                </div>                                                
+                                            </div>
+											<div class="resource-main">
+												<div class="row" style="padding:10px;">
+													<div [ngClass]="ticketservice.Ticketlist.length === 0 ? 'col-md-12 col-sm-12' : 'col-md-10 col-sm-10'">
+                                                        <div class="col-md-12">
+                                                            <full-calendar #calendar
+                                                            [defaultDate]="viewDate"
+                                                            [defaultView]="defaultView"
+                                                            [plugins]="plugins"
+                                                            [events]="calendarEvents"
+                                                            resourceLabelText="{{this.EngineerdropdownSettings.placeholder}}"
+                                                            [resources]="resources"
+                                                            [header]="header"
+                                                            [timeZone]="'local'"
+                                                            [editable]="true"
+                                                            [selectable]="true"
+                                                            [droppable]="droppable"                                                         
+                                                            schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
+                                                            [views]="views"
+                                                            [minTime]="genicprofileservice.ResourceFullCalendarSetting.start"
+                                                            [maxTime]="genicprofileservice.ResourceFullCalendarSetting.end"
+                                                            [nowIndicator]="true"
+                                                            theme="'standart'"
+                                                            [aspectRatio]="aspectRatio"
+                                                            (eventResize)="DraggableEvent($event)"
+                                                            (eventDrop)="eventDrop($event)"
+                                                            (eventRender)="eventrender($event)"                                                            
+                                                            (eventDragStop)="eventDragStop($event)"
+                                                            (eventClick)="eventClick($event)"
+                                                            (drop)="drop($event)">
+                                                        </full-calendar> 
+                                                        </div>													
+                                                                                                 														
+													</div>										
+													<div class="col-md-2 col-sm-2 external-events" #external>
+                                                        <strong *ngIf="ticketlist.length > 0">{{ticketlist.length}} Unallocated Ticket</strong>
+                                                          <div *ngFor="let t of ticketlist; async" style="cursor: pointer;margin-bottom: 1px; padding: 2px;" class='fc-event'
+                                                          id="{{t.Id}}" >{{t.TicketId}} | {{t.Title}}</div>                                                        
+													</div>
+                                                </div>
+                                                <div class="row" style="padding: 20px;">
+                                                    <div class="col-md-1">
+                                                        <div class="input-group">
+                                                            <select (change)="resourcetime($event,'start')"
+                                                            #genicprofileservice.ResourceFullCalendarSetting.start
+                                                            [(ngModel)]="genicprofileservice.ResourceFullCalendarSetting.start"
+                                                            class="form-control" >
+                                                                    <option value="00:00">00:00</option>
+                                                                    <option value="02:00">02:00</option>
+                                                                    <option value="04:00">04:00</option>
+                                                                    <option value="06:00">06:00</option>
+                                                                    <option value="08:00">08:00</option>
+                                                                    <option value="10:00">10:00</option>
+                                                              </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="input-group">
+                                                            <select (change)="resourcetime($event,'end')"
+                                                            #genicprofileservice.ResourceFullCalendarSetting.end
+                                                            [(ngModel)]="genicprofileservice.ResourceFullCalendarSetting.end"
+                                                            class="form-control" >
+                                                                    <option value="16:00">16:00</option>
+                                                                    <option value="18:00">18:00</option>
+                                                                    <option value="20:00">20:00</option>
+                                                                    <option value="22:00">22:00</option>
+                                                                    <option value="24:00">24:00</option>
+                                                            </select>
+                                                </div>
+                                            </div>
+                                                </div>
+											</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+						</div>						
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #viewmodalContent let-close="close">
+    <div class="row cus-model-header" style="margin:0">
+        <div class="col-md-9">
+            <h5 class="modal-title" style="font-size: 2em;color: black;font-weight: 600;">
+                <span *ngIf="ticketservice.formData.TicketType === 'One-Off Ticket'"> Visit | One-Off Ticket</span>
+                <span *ngIf="ticketservice.formData.TicketType === 'Recurring Ticket'">Visit | Recurring Ticket</span>
+            </h5>
+        </div>
+        <div class="col-md-3">  
+            <div class="btn-group" style="float: right;">
+                <button *ngIf="ticketservice.formData.Status === 'UPCOMING' || ticketservice.formData.Status === 'OVERDUE' || ticketservice.formData.Status === 'UNSCHEDULED'" class="btn btn-brand btn-sm text-white " >
+                    <i class="la la-edit"></i> Edit </button>
+                <button type="button" class="btn btn-danger btn-sm text-white" (click)="close()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div> 
+<div class="modal-body" id="month-1-modal">
+    <div class="row">
+        <div class="col-md-6" style="border-right: 1px solid #e1dfdf;">
+            <div class="client-header"> {{ticketservice.formData.CustomerCompanyName}} </div>
+            <strong> {{ticketservice.formData.CustomerName}} </strong>
+            <div class="client-address">
+                <em *ngFor="let subCategory of ticketservice.formData.CustomerAddress?.split(',')">
+                    {{ subCategory }} <br>
+                  </em>  
+            </div>
+        </div>
+        <div class="col-md-6 client-header-appoinmenttime">
+            <i class="fa fa-calendar"></i>
+            {{ticketservice.formData.OneOffAppointmentDate | date}}
+            {{ticketservice.formData.AppointmentStart | date:'h:mm a':'+0000'}} - 
+            {{ticketservice.formData.AppointmentEnd | date:'h:mm a':'+0000'}}
+            <div><a href="javascript:;" href="https://www.google.com/maps/place/{{ticketservice.formData.CustomerAddress}}" target="_blank" ><i class="fas fa-map-marker text-success" ></i> Direction</a></div>
+            <i *ngIf="ticketservice.formData.Priority === 1" class="fas fa-circle text-danger" title="High Priority"></i> <span class="text-danger" *ngIf="ticketservice.formData.Priority === 1"> High Priority</span>
+            <i *ngIf="ticketservice.formData.Priority === 2" class="fas fa-circle text-info" title="Medium Priority"></i> <span class="text-info" *ngIf="ticketservice.formData.Priority === 2"> Medium Priority</span>
+            <i *ngIf="ticketservice.formData.Priority === 3" class="fas fa-circle text-success" title="Low Priority"></i> <span class="text-success" *ngIf="ticketservice.formData.Priority === 3"> Low Priority</span>                
+            <div>
+                <generic-ticket-status [(Status)]="ticketservice.formData.Status"
+                                                    [OverDueDays]="0"></generic-ticket-status>
+            
+        </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+        <div class="details-tabs width100">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#dtab1">Info</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#dtab2">Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#dtab3">Notes</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="dtab1" class=" tab-pane active">
+                    <div class="row row-border">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="client-info-title"> {{ticketservice.formData.Title}} </div><br>
+                            <div class="client-info-desc">{{ticketservice.formData.Description}}</div>
+                        </div>
+                    </div>
+                    <div class="row row-border">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="client-info-title"> Ticket </div>
+                            <div class="client-info-desc">{{ticketservice.formData.TicketId}}</div>
+                            <div class="client-info-desc">{{ticketservice.formData.Title}}</div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="client-info-title"> Team </div>
+                            <div class="client-info-desc" *ngFor="let x of ticketservice.formData.TicketTeams">{{x.EngineerName}}</div>
+                        </div>
+                    </div>
+                    <div class="row row-border">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="client-info-title"> Line Items </div>
+                            <table class="width100">
+                                <thead>
+                                    <tr>
+                                    <th>Product/Service</th>
+                                    <th>QTY</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let itm of ticketservice.formData.TicketItems">
+                                        <td> {{itm.ItemName}}</td>
+                                        <td> {{itm.ItemTotalCost}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="dtab2" class=" tab-pane fade">
+                   <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="client-info-title"> Client Details </div>
+                        <table class="width100">
+                            <tbody>
+                                <tr>
+                                    <td> Name</td>
+                                    <td> {{ticketservice.formData.CustomerName}}</td>
+                                    <td><a href="javascript:;" ><i class="fa fa-angle-double-right " ></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td> Email</td>
+                                    <td> {{ticketservice.formData.CustomerEmail}}</td>
+                                    <td><a href="mailto:@{{ticketservice.formData.CustomerEmail}}"><i class="fa fa-envelope" ></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><hr></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><div class="client-info-title"> Property </div></td>
+                                </tr>
+                                <tr>
+                                    <td> Address</td>
+                                    <td> {{ticketservice.formData.CustomerAddress}}</td>
+                                    <td><a href="https://www.google.com/maps/place/{{ticketservice.formData.CustomerAddress}}" target="_blank"><i class="fa fa-angle-double-right" ></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                   </div>
+                </div>
+                <div id="dtab3" class=" tab-pane fade">
+                    <div class="row" > 
+                            <div class="col-md-12 col-sm-12">
+                                {{ticketservice.formData.InternalNoteDescription}}
+                            </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</ng-template>

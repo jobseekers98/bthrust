@@ -1,0 +1,400 @@
+<div class="kt-subheader kt-grid__item" id="kt_subheader">
+  <div class="kt-container kt-container--fluid breadcud-kt-container ">
+    <div class="kt-subheader__main">
+      <h3 class="kt-subheader__title">
+        <a href="javascript:;" routerLink="/dashboard">
+          Dashboard
+        </a>
+      </h3>
+      <span class="kt-subheader__separator kt-hidden"></span>
+      <div class="kt-subheader__breadcrumbs">
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        <span class="kt-subheader__breadcrumbs-separator"></span>
+        <a href="javascript:;" routerLink="/invoices" class="kt-subheader__breadcrumbs-link"> Invoices </a>
+      </div>
+      <span class="kt-subheader__separator kt-hidden"></span>
+      <div class="kt-subheader__breadcrumbs">
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        <span class="kt-subheader__breadcrumbs-separator"></span>
+        Invoice Details & Payment Section
+      </div>
+    </div>
+    <div class="kt-subheader__toolbar">
+
+    </div>
+  </div>
+</div>
+<div class="new-request-main-section jobs-for-client-section">
+  <div class="kt-container kt-container--fluid">
+    <div class="new-requst-filter_form">
+      <div class="">
+        <div class="col-md-12 section-client-requst-form">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="">
+                <div class="kt-section kt-customer-list-view-section">
+                  <span class="flaticon-list pending-view-page-list"></span>
+                  <span *ngIf="invoiceService.InvoiceData.Status ==='Draft'" class="view-pending"> Draft</span>
+                  <span *ngIf="invoiceService.InvoiceData.Status ==='SendOutPaid'" class="view-pending">SEND
+                    OUT(PAID)</span>
+                  <span *ngIf="invoiceService.InvoiceData.Status ==='SendOutUnPaid'" class="view-pending">SEND OUT(UN
+                    PAID)</span>
+                  <span *ngIf="invoiceService.InvoiceData.Status ==='SendOutOverDue'" class="view-pending">SEND OUT(OVER
+                    DUE)</span>
+                  <span *ngIf="invoiceService.InvoiceData.Status ==='PartiallyPaid'" class="view-pending">PARTIALLY
+                    PAID</span>
+                  <span *ngIf="invoiceService.InvoiceData.Status ==='cancelled'" class="view-pending">CANCELLED</span>
+
+                  <h3 class="kt-section__title1">
+                    <p> {{invoiceService.InvoiceData.CompanyName}} ({{invoiceService.InvoiceData.CustomerName}})
+                      <span></span></p>
+                    <i data-toggle="kt-tooltip" data-width="auto" class="kt-section__help" title=""
+                      data-original-title="If different than the corresponding address"></i>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="kt-section kt-customer-list-view-section" style="float: right;">
+                <a href="javascript:void(0);" *ngIf="currentUser.Permissions.InvoiceEdit"
+                  (click)="getInvoicePayment(invoiceService.InvoiceData)" class="btn btn-primary">Payment & Receipt</a>
+                <div class="btn-group btn-group-sm">
+                  <a href="javascript:void(0);" style="line-height: 21px;" class="btn btn-primary dropdown-toggle"
+                    data-toggle="dropdown">More Action's <span class="caret"></span></a>
+                  <ul class="dropdown-menu" style="text-align: center;">
+                    <li *ngIf="currentUser.Permissions.InvoiceEdit"><a
+                        (click)="popolateInvoice(invoiceService.InvoiceData)" href="javascript:void(0);">Edit
+                        Invoice</a></li>
+                    <li *ngIf="currentUser.Permissions.InvoiceEdit"><a
+                        (click)="UpdateInvoiceStatus(invoiceService.InvoiceData)" href="javascript:void(0);">Update
+                        Status</a></li>
+                    <li><a (click)="downloadInvoice(invoiceService.InvoiceData.Id)" href="javascript:void(0);">Download
+                        PDF</a></li>
+                    <li><a (click)="SendInvoiceByMail(invoiceService.InvoiceData)" href="javascript:void(0);">Send by
+                        Email</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-7 requsted-property-addres">
+              <div class="kt-section__content col-md-12 requst-for-client-name">
+                <div class="form-group row">
+                  <div class="col-lg-6 padd-left-0">
+                    <label class="customer-view-full-title-name">{{invoiceService.InvoiceData.InvoiceTitle}} </label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 property-addres-info">
+                  <div class="kt-widget4 kt-widget4--sticky">
+                    <div class="kt-widget4__items kt-widget4__items--bottom kt-portlet__space-x kt-margin-b-20">
+                      <div class="kt-widget4__item">
+                        <div class="kt-widget4__info">
+                          <h4 class="kt-widget4__title">
+                            Billing address
+                          </h4>
+                          <span class="kt-widget4__sub">
+                            <a href="https://maps.google.com/?q={{invoiceService.InvoiceData.CustomerAddress}}"
+                            target="_blank">
+                            <em *ngFor="let subCategory of invoiceService.InvoiceData.CustomerAddress?.split(',')">
+                            {{ subCategory }} <br>
+                            </em>  </a>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 property-addres-info">
+                  <div class="kt-widget4 kt-widget4--sticky">
+                    <div class="kt-widget4__item">
+                      <div class="kt-widget4__info">
+                        <h4 class="kt-widget4__title">
+                          Contact details
+                        </h4>
+                        <span class="kt-widget4__sub" *ngFor="let c of invoiceService.ArrayofKeys">
+                          <span>{{c.Value}}</span><br />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12 property-addres-info">
+                  <div class="kt-widget4 kt-widget4--sticky">
+                    <div class="kt-widget4__item">
+                      <div class="kt-widget4__info">
+                        <h4 class="kt-widget4__title">
+                          Description
+                        </h4>
+                        <span class="kt-widget4__sub">
+                          <span>{{invoiceService.InvoiceData.Description}}</span><br />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 new-requst-address-contact">
+              <div class="kt-widget4">
+                <div class="kt-widget4__items kt-widget4__items--bottom kt-portlet__space-x">
+                  <div class="kt-widget4__item">
+                    <div class="kt-widget4__info" width="100%;">
+                      <a href="javascript:;" class="kt-widget4__title">
+                        Invoice details
+                      </a>
+                    </div>
+                  </div>
+                  <div class="kt-portlet invoice-for-client-kt-portal">
+                    <div class="kt-portlet__head padd-left-0 padd-right-0">
+                      <div class="kt-portlet__head-label col-md-6">
+                        <h3 class="kt-portlet__head-title">Invoice Number:</h3>
+                      </div>
+                      <div class="kt-portlet__head-toolbar col-md-6">
+                        {{invoiceService.InvoiceData.InvoiceId}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="kt-portlet invoice-for-client-kt-portal">
+                    <div class="kt-portlet__head padd-left-0 padd-right-0">
+                      <div class="kt-portlet__head-label col-md-6">
+                        <h3 class="kt-portlet__head-title">Invoice Date:</h3>
+                      </div>
+                      <div class="kt-portlet__head-toolbar col-md-6">
+                        {{invoiceService.InvoiceData.InvoiceDate | date}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="kt-portlet invoice-for-client-kt-portal">
+                    <div class="kt-portlet__head padd-left-0 padd-right-0">
+                      <div class="kt-portlet__head-label col-md-6">
+                        <h3 class="kt-portlet__head-title">Invoice Due Date:</h3>
+                      </div>
+                      <div class="kt-portlet__head-toolbar col-md-6">
+                        {{invoiceService.InvoiceData.InvoiceDueDate | date}}
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="invoiceService.InvoiceData.TicketId!" class="kt-portlet invoice-for-client-kt-portal">
+                    <div class="kt-portlet__head padd-left-0 padd-right-0">
+                      <div class="kt-portlet__head-label col-md-6">
+                        <h3 class="kt-portlet__head-title">{{this.currentUser.Ticket}} Number:</h3>
+                      </div>
+                      <div class="kt-portlet__head-toolbar col-md-6">
+                        {{invoiceService.InvoiceData.TicketId}}
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="invoiceService.InvoiceData.QuoteId!" class="kt-portlet invoice-for-client-kt-portal">
+                    <div class="kt-portlet__head padd-left-0 padd-right-0">
+                      <div class="kt-portlet__head-label col-md-6">
+                        <h3 class="kt-portlet__head-title">Quotation Number:</h3>
+                      </div>
+                      <div class="kt-portlet__head-toolbar col-md-6">
+                        {{invoiceService.InvoiceData.QuoteId}}
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="invoiceService.InvoiceData.RefranceNo!" class="kt-portlet invoice-for-client-kt-portal">
+                    <div class="kt-portlet__head padd-left-0 padd-right-0">
+                      <div class="kt-portlet__head-label col-md-6">
+                        <h3 class="kt-portlet__head-title">Refrance Number:</h3>
+                      </div>
+                      <div class="kt-portlet__head-toolbar col-md-6">
+                        {{invoiceService.InvoiceData.RefranceNo}}
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="invoiceService.InvoiceData.RequestId!" class="kt-portlet invoice-for-client-kt-portal">
+                    <div class="kt-portlet__head padd-left-0 padd-right-0">
+                      <div class="kt-portlet__head-label col-md-6">
+                        <h3 class="kt-portlet__head-title">Request Number</h3>
+                      </div>
+                      <div class="kt-portlet__head-toolbar col-md-6">
+                        {{invoiceService.InvoiceData.RequestId}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 new-request-service-details-form">
+          <div class="row">
+            <div class="col-md-12 job-for-tab-content">
+              <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                <div class="row">
+                  <div class="kt-portlet__body">
+                    <div class="col-md-12">
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="kt_widget11_tab1_content">
+                          <div class="kt-widget11">
+                            <div id="kt_repeater_1">
+                              <div id="kt_repeater_1">
+                                <div class="row col-md-12">
+                                  <div class="col-md-6">
+                                    <div class="product-service-colun-name">
+                                      PRODUCT / SERVICE
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="product-service-colun-name kt-align-right">
+                                      QTY.
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="product-service-colun-name kt-align-right">
+                                      UNIT COST
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="product-service-colun-name kt-align-right">
+                                      TOTAL
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="add-data-ticket-list-view"></div>
+                                <div class="row col-md-12" *ngFor="let p of invoiceService.InvoiceItemList">
+
+                                  <div class="col-md-6">
+                                    <div class="product-service-colun-name invoice-list-view-product-service">
+                                      <span>{{p.ItemName}}</span>
+                                      <p>{{p.ItemDescription}}</p>
+                                      <div *ngIf="p.InWarranty">
+                                        <small>{{p.WarrantyDays}} Days warranty</small>
+                                        <small *ngIf="p.UniqId.length > 0">({{p.UniqId}})</small>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="product-service-colun-name kt-align-right" *ngIf="p.Type === 'Product'">
+                                      {{p.Qty}}
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="product-service-colun-name kt-align-right">
+                                      $ {{p.UnitCost.toFixed(2)}}
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="product-service-colun-name kt-align-right">
+                                      $ {{p.Total.toFixed(2)}}
+                                    </div>
+                                  </div>
+                                  <hr class="myshap" />
+                                </div>
+
+
+                                <div data-repeater-list="" class="col-lg-12">
+                                  <div class="add-invoicing-view-list-border"></div>
+                                  <div class="kt-widget4">
+                                    <div class="kt-widget4__item">
+                                      <div class="col-md-6 no-spacing">
+                                        <p>{{invoiceService.InvoiceData.ClientRemark}}</p>
+                                      </div>
+                                      <div class="col-md-6 invoicing-list-view-border-left">
+                                        <div class="kt-widget1">
+                                          <div class="kt-widget1__item">
+                                            <div class="kt-widget1__info">
+                                              <h3 class="kt-widget1__title">Subtotal</h3>
+
+                                            </div>
+                                            <span
+                                              class="kt-widget1__number kt-font-success">${{invoiceService.InvoiceData.SubTotal.toFixed(2)}}</span>
+                                          </div>
+                                          <div class="kt-widget1__item">
+                                            <div class="kt-widget1__info">
+                                              <h3 class="kt-widget1__title">Discount</h3>
+                                            </div>
+                                            <div class="discountSection">
+                                              <div class="discountShow">
+                                                <span
+                                                  class="kt-widget1__number kt-font-success">${{invoiceService.InvoiceData.DiscountAmount.toFixed(2)}}</span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="kt-widget1__item">
+                                            <div class="kt-widget1__info">
+                                              <h3 class="kt-widget1__title">Tax</h3>
+                                            </div>
+                                            <div class="tax-block">
+                                              <div class="TaxToHide">
+                                                <span
+                                                  class="kt-widget1__number kt-font-success">${{invoiceService.InvoiceData.TaxAmount.toFixed(2)}}</span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="kt-widget1__item quotes-list-view-total-info">
+                                            <div class="kt-widget1__info">
+                                              <h3 class="kt-widget1__title"><b>Total</b></h3>
+                                            </div>
+                                            <span
+                                              class="kt-widget1__number kt-font-primary"><b>${{invoiceService.InvoiceData.NetAmount.toFixed(2)}}</b></span>
+                                          </div>
+                                          <div class="kt-widget1__item">
+                                            <div class="kt-widget1__info">
+                                              <h3 class="kt-widget1__title">Deposite balance</h3>
+                                            </div>
+                                            <span
+                                              class="kt-widget1__number kt-font-danger">${{invoiceService.InvoiceData.ReqDepositeAmount.toFixed(2)}}</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="on-site-client-required">
+            <div class="kt-portlet kt-portlet--height-fluid kt-widget19 internal-notes-attachment">
+              <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                  <h3 class="kt-portlet__head-title">
+                    <strong>&nbsp;&nbsp; INTERNAL NOTES &amp; ATTACHMENTS </strong>
+                  </h3>
+                </div>
+              </div>
+              <div class="kt-portlet__body">
+                <div class="kt-widget19__wrapper">
+                  <textarea readonly class="form-control" id="exampleTextarea" rows="3" placeholder="Note details"
+                    name="InternalNotes" [(ngModel)]="invoiceService.InvoiceData.InternalNotes"></textarea>
+                  <div class="row">
+                    <div class="col-md-1" *ngFor="let x of invoiceService.InvoiceAttachmentList">
+                      <div class="row">
+                        <span class="kt-subheader__breadcrumbs-separator"></span>
+                        <generic-ticket-icon-attachment [(Name)]="x.AttachmentExtension" [(Path)]="x.Attachment"
+                          [Status]="1"></generic-ticket-icon-attachment>
+                        <div class="row">
+                          <div class="col-md-3"></div>
+                          <div class="col-md-3"></div>
+                          <div class="col-md-3">
+                            <a href="{{x.Attachment}}" target="_blank"><i class="fa fa-download text-success"></i></a>
+                          </div>
+                          <div class="col-md-3"></div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

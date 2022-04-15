@@ -1,0 +1,256 @@
+.quote-edit-request{background-color:#f1f1f1;padding:20px !important;}
+.quote-edit-request .kt-section__title p{font-weight:600;color:black;font-size:30px;}
+.quote-edit-request .kt-section__title p span{color:#0080c7;border-bottom:none;font-size:32px;}
+.col-md-12.section-client-requst-form{border-color:#FF8533 !important;}
+.col-md-12.section-client-requst-form{border-left:1px solid #ddd !important;border-right:1px solid #ddd !important;}
+.qtAddressSection{margin: 10px 0px !important;background: #ebebeb;padding: 5px;}
+.qtAddressSection label{font-size:18px !important;font-weight:600 !important;color:black !important;}
+.qtAddressSection label span{color:grey !important;font-size:16px !important;}
+.qtAddressSection .change-btn{text-align:right;}
+.qtAddressSection .change-btn a{color:#0089cc !important;font-size:14px !important;font-weight:600 !important;}
+.quote-edit-request .kt-widget4__title{font-size:18px !important;color:black;font-weight:600;}
+.col-md-5.new-requst-client-name{padding-top:10px !important;}
+.qtbdsecton{padding-bottom: 10px !important;}
+.kt-widget4__items{margin-bottom:10px !important;border-bottom:0px;}
+.check-ticket{font-size:16px;}
+.kt-widget4__item label{margin:0px 10px;}
+.kt-widget4__item .kt-checkbox > span{top:4px}
+.job-for-tab-content .kt-portlet__head{padding-right:15px !important;padding-left:15px !important;}
+.add-data-table-form-jobs{margin-top:0px;}
+.col-md-2.right-side-doller-form-info{top:0 !important;}
+.qty-unit-total select{height:50px !important;}
+.qty-unit-total textarea{height:250px;}
+.on-site-client-required .kt-portlet__head{padding-left:20px !important;padding-right:20px !important;}
+.clView i{color:#0089cc;}
+.clView label{color:#0089cc;}
+.invoicing-list-view-border-left .kt-widget2__item h3{font-size:18px !important;font-weight:600 !important;color:black !important;}
+.invoicing-list-view-border-left .kt-widget2__item span{font-size:18px !important;font-weight:600 !important;color:black !important;}
+.invoicing-list-view-border-left .kt-widget3__item .discountSection{width:auto;}
+.kt-widget1__item.kt-widget2__item .kt-widget1__title{font-size:20px;}
+
+.tax-block{width:auto !important;}
+.kt-widget1__item table tr{border-top:none !important;}
+.kt-widget1__item table tr td{border-top:none !important;}
+.kt-widget1__item.kt-widget3__item .table, .kt-widget1__item.kt-widget4__item .table{margin-bottom:0px;}
+.kt-widget1__item.kt-widget3__item .table tr td:first-child, .kt-widget1__item.kt-widget4__item .table tr td:first-child{width:113px}
+.kt-widget1__item.kt-widget3__item .table tr td:nth-child(2), .kt-widget1__item.kt-widget4__item .table tr td:nth-child(2){width:100px}
+.kt-widget1__number.kt-font-success{display:block;text-align:left;}
+.discountSection a{margin:0px 0 0 0 !important;display:block;text-align:right;}
+.requestedSectionInput{width:100%;text-align:left;}
+.requestedSectionInput .table tr td:first-child{width:113px}
+.requestedSectionInput .table tr td:nth-child{width:103px}
+.requestedSectionInput select{width: 53% !important;height:40px !important;margin:0 0 0 0 !important;}
+.requestedSectionInput span input{width: 47% !important;height:40px !important;display: inline-block !important;}
+.kt-widget1__item.kt-widget6__item .table tr td:nth-child(2){width:100px;}
+.requestedSectionInput a{margin: 0 0 0 0  !important;}
+
+.kt-widget1__item.kt-widget2__item .kt-widget1__number{width:39%}
+.kt-widget1__item.kt-widget6__item .kt-widget1__number{width:39% !important;}
+.kt-widget1__item.kt-widget5__item .kt-widget1-main{width:39% !important;}
+.kt-widget1 .kt-widget5__item .kt-widget1__info .kt-widget1__title{font-size:20px !important;}
+.kt-widget1__item.kt-widget5__item .kt-widget1-main{font-size:20px;}
+.subTOtal span{
+    font-size: 17px;
+    font-weight: 600;
+    color: black;
+}
+.SubAmount {
+text-align: right;
+}
+.SubAmount span{
+font-size: 17px;
+font-weight: 600;
+color: black;
+}
+.disHead span{
+    font-size: 14px;
+    font-weight: 400;
+    color: #988a8a;
+}
+.inputText input{
+    width: 78%;
+    height: 31px !important;
+}
+.selectionDrop select{
+    height: 31px;
+    width: 137%;
+    padding: 0px 0 0 0;
+}
+.discountAmt{
+    text-align: right;
+}
+.discountAmt span{
+    font-size: 14px;
+    font-weight: 400;
+    color: #988a8a;
+}
+.taxHead span{
+    font-size: 14px;
+    font-weight: 400;
+    color: #988a8a;
+}
+.taxSectionHead select{
+    width: 116%;
+    height: 31px;
+    color: #b38a8a;
+    padding: 0px 0 0 0;
+}
+.taxAmitHead{
+    text-align: right;
+}
+.taxAmitHead span{
+    font-size: 14px;
+    font-weight: 400;
+    color: #988a8a;
+}
+.subTOtal span{
+    font-size: 17px;
+    font-weight: 600;
+    color: black;
+}
+.SubAmount{
+    text-align: right;
+}
+.SubAmount span{
+    font-size: 17px;
+    font-weight: 600;
+    color: black;
+}
+.slFinalRow{
+    padding: 7px 0 0 0;
+    margin: 46px 0 0 0;
+    border-top: 2px solid #e3e3e3;
+}
+.slsbTotal{
+    padding: 0 0 16px 0;
+    margin: 0;
+    border-bottom: 2px solid #80808038;
+}
+.tableLineshap{
+    border-bottom: 1px solid #80808029 !important;
+}
+.tableLineshap:last-child{
+    border-bottom: 1px solid #e1dede !important;
+    margin-bottom: 23px
+}
+.radio-service label{
+    font-size: 18px;
+    margin-right: 22px;
+    font-weight: 600;
+}
+.radio-service label input{margin-right:10px;}
+.radio-service select{height:50px !important;}
+
+.ticket-attachment-container { position: relative; width: 100%; }
+    .ticket-attachment-image {display: block; width: 100%; height: auto; }
+    .ticket-attachment-overlay {position: absolute;bottom: 0;left: 100%;right: 0;background-color: rgb(162, 176, 180);overflow: hidden; width: 0;height: 100%;transition: .5s ease;text-align: center;}
+    .ticket-attachment-container:hover .ticket-attachment-overlay {width: 100%;left: 0;}
+    .ticket-attachment-text {white-space: nowrap; color: white; font-size: 20px; position: absolute; overflow: hidden;top: 50%; left: 50%; transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);}
+    .ticket-attachment-remove-text {white-space: nowrap;color: white;font-size: 20px;position: absolute;overflow: hidden;bottom: 10%;left: 50%; transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);}
+    .file-upload {position: relative;display: inline-block;margin-top: 6px;}
+    .file-upload__label {display: block;padding: 0px 27px;color: #fff; background: #31a5f7; border-radius: .4em;font-size: 17px; height: 23px;transition: background .3s;}
+    .file-upload__label:hover {cursor: pointer;background: rgb(204, 198, 198); }  
+    .file-upload__input {position: absolute;left: 0;top: 0;right: 0;bottom: 0;font-size: 1; width:0;height: 100%;opacity: 0;}
+    .quoteBody {
+        padding: 0 24px;
+      }
+    
+      .quote-head {
+        padding: 0 !important;
+      }
+    
+      .bodyTitle {
+        padding: 20px 0 0 8px;
+      }
+    
+      .qtbdsecton {
+        /* padding-bottom: 39px !important; */
+        margin-top: 0px !important;
+      }
+    
+      .qtAddressSection {
+        margin: 0 5px;
+      }
+    
+        .qtAddressSection label {
+          color: #48465b !important;
+          font-size: 15px !important;
+          margin-top: 10px;
+          font-weight: 600;
+        }
+    
+      .ttlQty {
+        margin: 40px 0 0 0;
+      }
+    
+      .btnremoveProduct {
+        margin: 5px 0 0 0;
+        float: right;
+      }
+    
+      .CLRemark {
+        width: 100%;
+      }
+    
+      i.fa.fa-eye {
+        margin: 13px 0 0 0;
+        color: green;
+        padding: 0 10px 0 0;
+        font-size: 20px;
+      }
+    
+      .clView label {
+        font-size: 17px;
+        color: #258000;
+      }
+    
+      .requestedSectionInput {
+        text-align: right;
+        /* width: 63%; */
+      }
+    
+        .requestedSectionInput input {
+          width: 33%;
+          display: inline-block;
+        }
+    
+        .requestedSectionInput select {
+          width: 22%;
+          display: inline-block;
+          height: 50px;
+          margin: 0 12px 0 0;
+        }
+    
+        .requestedSectionInput a {
+          margin: 0 0 0 30px;
+          color: red;
+        }
+    
+      .discountSection a {
+        margin: 0 0px 0 29px;
+        color: red;
+      }
+    
+      .discountInput {
+        text-align: right;
+      }
+    
+      .tax-block {
+        width: 100%;
+        text-align: right;
+      }
+    
+        .tax-block a {
+          margin-left: 3px;
+        }
+    
+      .taxToshow select {
+        width: 37%;
+        display: inline-block;
+        margin: 0 0 0 11px;
+      }
+      .faxsection{padding: 0;}
+      .faxsection label{padding: 7px 0;
+        font-size: 13px !important;
+        font-weight: 500;}
+        .switcher-customer { top:-15px;position: relative; }

@@ -1,0 +1,9 @@
+.addInvoiceSection { text-align: right; }
+.invoice-summary {margin: 66px 0 0 0; }
+.summary-head h3 { border-bottom: 2px solid #ccc3c3;width: 59%; margin: 0 0px 18px 2px; font-size: 17px;}
+.btbRadMore {background-color: #008b8be6;color: white;padding: 1px 10px;margin: 0 0 0 13px;}
+.service-supports-heading {margin: 0 !important;padding: 0 0 11px 7px !important;}
+.service-form-table-border tbody tr td {border: 1px solid #e2e2e2 !important;}
+.service-form-table-border tbody tr td:first-child {font-weight: 600 !important;}
+.service-form-table-border tbody tr {background-color: #edf3f7 !important;line-height: 25px;}
+.service-form-table-border tbody tr:hover {background-color: #fd892c17 !important;}

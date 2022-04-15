@@ -1,0 +1,1701 @@
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+    <div class="kt-subheader kt-grid__item" id="kt_subheader">
+        <div class="kt-container kt-container--fluid ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                    <a href="javascript:;" routerLink="/dashboard">
+                        Dashboard
+                    </a>
+                </h3>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    Settings
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="customer-listing-detail-section">
+        <div class="col-md-12">
+            <div class="kt-portlet kt-portlet--height-fluid kt-widget19">
+                <div class="col-xl-12 col-lg-12 no-spacing">
+                    <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
+                        <div class="col-md-12">
+                            <div class="kt-widget11">
+                                <div class="">
+                                    <div class="kt-section__content">
+                                        <div #wizard class="kt-grid kt-wizard-v2 kt-wizard-v2--white" id="kt_wizard_v2"
+                                            data-ktwizard-state="step-first">
+                                            <div class="kt-grid__item kt-wizard-v2__aside">
+                                                <div class="kt-wizard-v2__nav">
+                                                    <div class="kt-wizard-v2__nav-items">
+                                                        <a class="kt-wizard-v2__nav-item setting-list-dynamic-class-tab"
+                                                            href="javascript:;" (click)="toggletab('Company')"
+                                                            name="Company" data-ktwizard-type="step"
+                                                            data-ktwizard-state="current">
+                                                            <div class="kt-wizard-v2__nav-body">
+                                                                <div class="kt-wizard-v2__nav-label">
+                                                                    <div class="kt-wizard-v2__nav-label-title">Company
+                                                                        settings
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a class="kt-wizard-v2__nav-item setting-list-dynamic-class-tab"
+                                                            href="javascript:;" (click)="toggletab('Brand')"
+                                                            name="Brand" data-ktwizard-type="step">
+                                                            <div class="kt-wizard-v2__nav-body"
+                                                                *ngIf="currentUser.Permissions.BrandView">
+                                                                <div class="kt-wizard-v2__nav-label">
+                                                                    <div class="kt-wizard-v2__nav-label-title">Brands
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a class="kt-wizard-v2__nav-item setting-list-dynamic-class-tab"
+                                                            href="javascript:;" (click)="toggletab('Category')"
+                                                            name="Category" data-ktwizard-type="step">
+                                                            <div class="kt-wizard-v2__nav-body"
+                                                                *ngIf="currentUser.Permissions.CategoryView">
+
+                                                                <div class="kt-wizard-v2__nav-label">
+                                                                    <div class="kt-wizard-v2__nav-label-title">
+                                                                        Category </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a class="kt-wizard-v2__nav-item setting-list-dynamic-class-tab"
+                                                            href="javascript:;" (click)="toggletab('TicketIssue')"
+                                                            name="TicketIssue" data-ktwizard-type="step">
+                                                            <div class="kt-wizard-v2__nav-body"
+                                                                *ngIf="currentUser.Permissions.IssueTypeView">
+
+                                                                <div class="kt-wizard-v2__nav-label">
+                                                                    <div class="kt-wizard-v2__nav-label-title">
+                                                                        {{this.currentUser.Ticket}} Issue Type </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a class="kt-wizard-v2__nav-item setting-list-dynamic-class-tab"
+                                                            href="javascript:;" (click)="toggletab('PaymentMode')"
+                                                            name="PaymentMode" data-ktwizard-type="step">
+                                                            <div class="kt-wizard-v2__nav-body"
+                                                                *ngIf="currentUser.Permissions.PaymentView">
+
+                                                                <div class="kt-wizard-v2__nav-label">
+                                                                    <div class="kt-wizard-v2__nav-label-title">
+                                                                        Payment Mode </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a class="kt-wizard-v2__nav-item setting-list-dynamic-class-tab"
+                                                        href="javascript:;" (click)="toggletab('Tax')"
+                                                        name="Tax" data-ktwizard-type="step">
+                                                        <div class="kt-wizard-v2__nav-body"
+                                                            *ngIf="currentUser.Permissions.TaxView">
+
+                                                            <div class="kt-wizard-v2__nav-label">
+                                                                <div class="kt-wizard-v2__nav-label-title">
+                                                                    Tax (GST) </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                        <a class="kt-wizard-v2__nav-item setting-list-dynamic-class-tab"
+                                                            href="javascript:;" (click)="toggletab('SMTPSetting')"
+                                                            name="SMTPSetting" data-ktwizard-type="step">
+                                                            <div class="kt-wizard-v2__nav-body"
+                                                                *ngIf="currentUser.Permissions.SMTPSettingView">
+
+                                                                <div class="kt-wizard-v2__nav-label">
+                                                                    <div class="kt-wizard-v2__nav-label-title">
+                                                                        SMTP Setting </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a class="kt-wizard-v2__nav-item setting-list-dynamic-class-tab"
+                                                            href="javascript:;" (click)="toggletab('HoliDayCalendar')"
+                                                            name="HoliDayCalendar" data-ktwizard-type="step">
+                                                            <div class="kt-wizard-v2__nav-body">
+
+                                                                <div class="kt-wizard-v2__nav-label">
+                                                                    <div class="kt-wizard-v2__nav-label-title">
+                                                                        Business&nbsp;Hours </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a *ngIf="currentUser.Permissions.EngineerLeave"
+                                                            class="kt-wizard-v2__nav-item setting-list-dynamic-class-tab"
+                                                            href="javascript:;" (click)="toggletab('LeaveManagement')"
+                                                            name="LeaveManagement" data-ktwizard-type="step">
+                                                            <div class="kt-wizard-v2__nav-body">
+
+                                                                <div class="kt-wizard-v2__nav-label">
+                                                                    <div class="kt-wizard-v2__nav-label-title">
+                                                                        {{this.currentUser.Engineer}}&nbsp;Leave Management
+                                                                        <span
+                                                                            *ngIf="genicprofileservice.PendingLeaveRequest.Count > 0"
+                                                                            style="color:red;float:right;font-weight:800;font-size:10px;">({{genicprofileservice.PendingLeaveRequest.Count}})</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a class="kt-wizard-v2__nav-item setting-list-dynamic-class-tab"
+                                                            href="javascript:;" (click)="toggletab('GenicDocsAllow')"
+                                                            name="GenicDocsAllow" data-ktwizard-type="step">
+                                                            <div class="kt-wizard-v2__nav-body">
+                                                                <div class="kt-wizard-v2__nav-label">
+                                                                    <div class="kt-wizard-v2__nav-label-title">Document
+                                                                        Allow</div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v2__wrapper">
+                                                <div class="kt-wizard-v2__content setting-list-dynamic-class"
+                                                    data-ktwizard-type="step-content" id="Company"
+                                                    data-ktwizard-state="current">
+                                                    <div class="kt-portlet kt-portlet--mobile">
+                                                        <div
+                                                            class="kt-portlet__head kt-portlet__head--lg contact_detail_table_info">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="kt-portlet__head-label">
+
+                                                                        <h3 class="kt-portlet__head-title">
+                                                                            Company Settings
+
+                                                                        </h3>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 top-add-sec">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="kt-portlet__body properties_filter_body">
+                                                            <div class="company-setting">
+                                                                <ul class="nav nav-tabs custUl">
+                                                                    <li class="custLi"><a data-toggle="tab" href="#home"
+                                                                            class="custTab active">COMPANY LOGO</a></li>
+                                                                    <li class="custLi"><a data-toggle="tab"
+                                                                            href="#menu1" class="custTab">SOCIAL
+                                                                            NETWORKS</a></li>
+                                                                    <li class="custLi"><a data-toggle="tab"
+                                                                            href="#menu2" class="custTab">COMPANY
+                                                                            DETAILS</a></li>
+                                                                    <li class="custLi"><a data-toggle="tab"
+                                                                            href="#menu3" class="custTab">COMPANY
+                                                                            PREFIX</a></li>
+                                                                    <li class="custLi" *ngIf="currentUser.Permissions.GeoLocation"><a data-toggle="tab"
+                                                                            href="#menu4" class="custTab">GEOLOCATION</a></li>
+                                                                </ul>
+                                                                <input type="hidden"
+                                                                    name="genicprofileservice.formData.Id" #Id="ngModel"
+                                                                    [(ngModel)]="genicprofileservice.formData.Id">
+                                                                <div class="tab-content">
+                                                                    <div id="home" class="tab-pane fade in active">
+                                                                        <div class="company-logo-sec">
+                                                                            <label>&nbsp;</label>
+                                                                            <div class="upload-image">
+                                                                                <img width="200px"
+                                                                                    src="{{LogoLocalURL}}">
+                                                                            </div>
+                                                                            <br><br>
+                                                                            <div class="file-upload">
+                                                                                <label for="upload"
+                                                                                    class="file-upload__label">
+                                                                                    CHOOSE LOGO
+                                                                                    <br></label>
+                                                                                <input id="upload"
+                                                                                    class="file-upload__input"
+                                                                                    type="file" name="file-upload"
+                                                                                    (change)="picked($event, 'companylogo')">
+                                                                            </div>
+                                                                            <div class="headFooterSection">
+                                                                                <div class="row">
+                                                                                    <div class="quotesection"
+                                                                                        *ngIf="this.currentUser.Permissions.QuoteView">
+                                                                                        <div class="form-group">
+                                                                                            <label for=""
+                                                                                                class="label">Quotation
+                                                                                                Header</label>
+                                                                                            <div
+                                                                                                class="customer-logo-container">
+                                                                                                <img class="customer-logo-container-image"
+                                                                                                    alt="Avatar"
+                                                                                                    src="{{QuoteHeaderLocalURL}}" />
+                                                                                                <div
+                                                                                                    class="customer-logo-container-overlay">
+                                                                                                    <div class="row">
+                                                                                                        <div
+                                                                                                            class="col">
+                                                                                                            <a href="javascript:;"
+                                                                                                                style="color: #fff;"
+                                                                                                                onclick="document.getElementById('inputGroupFile02').click()">
+                                                                                                                <i
+                                                                                                                    class="fa fa-camera"></i>
+                                                                                                                Choose
+                                                                                                                header</a>
+                                                                                                            <input
+                                                                                                                (change)="picked($event, 'quotationheader')"
+                                                                                                                class="custom-file-input-0"
+                                                                                                                #File
+                                                                                                                id="inputGroupFile02"
+                                                                                                                type="file">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="InvoiceSection"
+                                                                                        *ngIf="this.currentUser.Permissions.InvoiceView">
+                                                                                        <div class="form-group">
+                                                                                            <label for=""
+                                                                                                class="label">Invoice
+                                                                                                Header</label>
+                                                                                            <div
+                                                                                                class="customer-logo-container">
+                                                                                                <img class="customer-logo-container-image"
+                                                                                                    alt="Avatar"
+                                                                                                    src="{{InvoiceHeaderLocalURL}}" />
+                                                                                                <div
+                                                                                                    class="customer-logo-container-overlay">
+                                                                                                    <div class="row">
+                                                                                                        <div
+                                                                                                            class="col">
+                                                                                                            <a href="javascript:;"
+                                                                                                                style="color: #fff;"
+                                                                                                                onclick="document.getElementById('inputGroupFile04').click()">
+                                                                                                                <i
+                                                                                                                    class="fa fa-camera"></i>
+                                                                                                                Choose
+                                                                                                                header</a>
+                                                                                                            <input
+                                                                                                                (change)="picked($event, 'invoiceheader')"
+                                                                                                                class="custom-file-input-0"
+                                                                                                                #File
+                                                                                                                id="inputGroupFile04"
+                                                                                                                type="file">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="InvoiceSection"
+                                                                                        *ngIf="this.currentUser.Permissions.TicketView">
+                                                                                        <div class="form-group">
+                                                                                            <label for=""
+                                                                                                class="label">Service
+                                                                                                Header</label>
+                                                                                            <div
+                                                                                                class="customer-logo-container">
+                                                                                                <img class="customer-logo-container-image"
+                                                                                                    alt="Avatar"
+                                                                                                    src="{{ServiceHeaderLocalURL}}" />
+                                                                                                <div
+                                                                                                    class="customer-logo-container-overlay">
+                                                                                                    <div class="row">
+                                                                                                        <div
+                                                                                                            class="col">
+                                                                                                            <a href="javascript:;"
+                                                                                                                style="color: #fff;"
+                                                                                                                onclick="document.getElementById('inputGroupFile06').click()">
+                                                                                                                <i
+                                                                                                                    class="fa fa-camera"></i>
+                                                                                                                Choose
+                                                                                                                header</a>
+                                                                                                            <input
+                                                                                                                (change)="picked($event, 'workorderheader')"
+                                                                                                                class="custom-file-input-0"
+                                                                                                                #File
+                                                                                                                id="inputGroupFile06"
+                                                                                                                type="file">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="menu1" class="tab-pane fade">
+                                                                        <p>Social network icons will appear on emails
+                                                                            and client hub. Read the Branding Guide for
+                                                                            more information. </p>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="input-group mb-3">
+                                                                                    <div class="input-group-prepend">
+                                                                                        <span
+                                                                                            class="input-group-text facebook-ico"><i
+                                                                                                class="fab fa-facebook-f"></i></span>
+                                                                                    </div>
+                                                                                    <input type="text" maxlength="255"
+                                                                                        name="genicprofileservice.formData.FacebookUrl"
+                                                                                        #FacebookUrl="ngModel"
+                                                                                        [(ngModel)]="genicprofileservice.formData.FacebookUrl"
+                                                                                        class="form-control"
+                                                                                        placeholder="Facebook page URL">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="input-group mb-3">
+                                                                                    <div class="input-group-prepend">
+                                                                                        <span
+                                                                                            class="input-group-text twitter-ico"><i
+                                                                                                class="fab fa-twitter"></i></span>
+                                                                                    </div>
+                                                                                    <input type="text" maxlength="255"
+                                                                                        name="genicprofileservice.formData.TwitterUrl"
+                                                                                        #TwitterUrl="ngModel"
+                                                                                        [(ngModel)]="genicprofileservice.formData.TwitterUrl"
+                                                                                        class="form-control"
+                                                                                        placeholder="Twitter page URL">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6">
+                                                                                <div class="input-group mb-3">
+                                                                                    <div class="input-group-prepend">
+                                                                                        <span
+                                                                                            class="input-group-text instagram-ico"><i
+                                                                                                class="fab fa-instagram"></i></span>
+                                                                                    </div>
+                                                                                    <input type="text" maxlength="255"
+                                                                                        name="genicprofileservice.formData.InstagramUrl"
+                                                                                        #InstagramUrl="ngModel"
+                                                                                        [(ngModel)]="genicprofileservice.formData.InstagramUrl"
+                                                                                        class="form-control"
+                                                                                        placeholder="Instagram page URL">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6">
+                                                                                <div class="input-group mb-3">
+                                                                                    <div class="input-group-prepend">
+                                                                                        <span
+                                                                                            class="input-group-text google-ico"><i
+                                                                                                class="fab fa-google"></i></span>
+                                                                                    </div>
+                                                                                    <input type="text" maxlength="255"
+                                                                                        name="genicprofileservice.formData.GoogleUrl"
+                                                                                        #GoogleUrl="ngModel"
+                                                                                        [(ngModel)]="genicprofileservice.formData.GoogleUrl"
+                                                                                        class="form-control"
+                                                                                        placeholder="Google page URL">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="modal-footer create-proprty-model-footer">
+
+                                                                            <button class="btn btn-brand" type="button"
+                                                                                (click)="onSubmit('socialnetwork')">
+                                                                                Save
+                                                                                Urls </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="menu2" class="tab-pane fade comaBasicInfo">
+                                                                        <div class="form-group">
+                                                                            <label> Company Name </label>
+                                                                            <input type="text" maxlength="128"
+                                                                                name="genicprofileservice.formData.Name"
+                                                                                #Name="ngModel"
+                                                                                [(ngModel)]="genicprofileservice.formData.Name"
+                                                                                placeholder="Company Name"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label> Phone number </label>
+                                                                            <input type="text" maxlength="10"
+                                                                                name="genicprofileservice.formData.ContactNumber"
+                                                                                #ContactNumber="ngModel"
+                                                                                [(ngModel)]="genicprofileservice.formData.ContactNumber"
+                                                                                placeholder="Phone number"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label> Website URL </label>
+                                                                            <input type="text" maxlength="255"
+                                                                                name="genicprofileservice.formData.WebsiteUrl"
+                                                                                #WebsiteUrl="ngModel"
+                                                                                [(ngModel)]="genicprofileservice.formData.WebsiteUrl"
+                                                                                placeholder="Website URL"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label> Email </label>
+                                                                            <input type="email" maxlength="64"
+                                                                                name="genicprofileservice.formData.Email"
+                                                                                #Email="ngModel"
+                                                                                [(ngModel)]="genicprofileservice.formData.Email"
+                                                                                placeholder="Email Address"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Address Street 1 </label>
+                                                                            <input type="text" maxlength="128"
+                                                                                name="genicprofileservice.formData.AddressStreet1"
+                                                                                #AddressStreet1="ngModel"
+                                                                                ngx-google-places-autocomplete
+                                                                                [options]="options"
+                                                                                (onAddressChange)="handleAddressChange($event)"
+                                                                                [(ngModel)]="genicprofileservice.formData.AddressStreet1"
+                                                                                placeholder="Address Street 1"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Address Street 2 </label>
+                                                                            <input type="text" maxlength="128"
+                                                                                name="genicprofileservice.formData.AddressStreet2"
+                                                                                #AddressStreet2="ngModel"
+                                                                                [(ngModel)]="genicprofileservice.formData.AddressStreet2"
+                                                                                placeholder="Address Street 2"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label> Postal Code </label>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-10">
+                                                                                            <input maxlength="6"
+                                                                                                name="genicprofileservice.formData.AddressZipCode"
+                                                                                                #AddressZipCode="ngModel"
+                                                                                                [(ngModel)]="genicprofileservice.formData.AddressZipCode"
+                                                                                                placeholder="Postal Code"
+                                                                                                class="form-control">
+                                                                                        </div>
+                                                                                        <div class="col-md-2">
+                                                                                            <div class="divsloadZip">
+                                                                                                <a href="javascript:;"
+                                                                                                    *ngIf="genicprofileservice.formData.AddressZipCode.length === 6"
+                                                                                                    (click)="findAddressByPostalCode(genicprofileservice.formData.AddressZipCode)">
+                                                                                                    <i *ngIf="!IsPostalSearch"
+                                                                                                        class="la la-refresh"></i>
+                                                                                                    <i *ngIf="IsPostalSearch"
+                                                                                                        class="la la-spinner fa-spin"></i>
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <input type="hidden"
+                                                                                        name="genicprofileservice.formData.Latitude"
+                                                                                        [value]="genicprofileservice.formData.Latitude">
+                                                                                    <input type="hidden"
+                                                                                        name="genicprofileservice.formData.Longitude"
+                                                                                        [value]="genicprofileservice.formData.Longitude">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label> Country Name </label>
+                                                                                    <select
+                                                                                        name="genicprofileservice.formData.AddressCountry"
+                                                                                        #AddressCountry="ngModel"
+                                                                                        [(ngModel)]="genicprofileservice.formData.AddressCountry"
+                                                                                        class="form-control">
+                                                                                        <option value="">select</option>
+                                                                                        <option
+                                                                                            *ngFor="let x of genicprofileservice.CountryList"
+                                                                                            value="{{x.CountryName}}">
+                                                                                            {{x.CountryName}}
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="modal-footer create-proprty-model-footer">
+
+                                                                            <button class="btn btn-brand" type="button"
+                                                                                (click)="onSubmit('details')"> Save
+                                                                                Details </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="menu3" class="tab-pane fade clCompPrefix">
+
+                                                                        <div class="row">
+                                                                            <div class="col"
+                                                                                *ngIf="this.currentUser.Permissions.TicketView">
+                                                                                <label for="">{{this.currentUser.Ticket}} Prefix</label>
+                                                                                <input type="text" maxlength="3"
+                                                                                    name="genicprofileservice.formData.TicketPrefix"
+                                                                                    #TicketPrefix="ngModel"
+                                                                                    [(ngModel)]="genicprofileservice.formData.TicketPrefix"
+                                                                                    placeholder="{{this.currentUser.Ticket}} Prefix"
+                                                                                    class="form-control" />
+                                                                            </div>
+                                                                            <div class="col"
+                                                                                *ngIf="this.currentUser.Permissions.InvoiceView">
+                                                                                <label for="">Invoice Prefix</label>
+                                                                                <input type="text" maxlength="3"
+                                                                                    name="genicprofileservice.formData.InvoicePrefix"
+                                                                                    #InvoicePrefix="ngModel"
+                                                                                    [(ngModel)]="genicprofileservice.formData.InvoicePrefix"
+                                                                                    placeholder="Invoice Prefix"
+                                                                                    class="form-control" />
+                                                                            </div>
+                                                                            <div class="col"
+                                                                                *ngIf="this.currentUser.Permissions.QuoteView">
+                                                                                <label for="">Quotation Prefix</label>
+                                                                                <input type="text" maxlength="3"
+                                                                                    name="genicprofileservice.formData.QuotePrefix"
+                                                                                    #QuotePrefix="ngModel"
+                                                                                    [(ngModel)]="genicprofileservice.formData.QuotePrefix"
+                                                                                    placeholder="Quotation Prefix"
+                                                                                    class="form-control" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <label for="">Service Prefix</label>
+                                                                                <input type="text" maxlength="3"
+                                                                                    name="genicprofileservice.formData.ServicePrefix"
+                                                                                    #ServicePrefix="ngModel"
+                                                                                    [(ngModel)]="genicprofileservice.formData.ServicePrefix"
+                                                                                    placeholder="Service Prefix"
+                                                                                    class="form-control" />
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <label for="">Closer Prefix</label>
+                                                                                <input type="text" maxlength="3"
+                                                                                    name="genicprofileservice.formData.CloserPrefix"
+                                                                                    #CloserPrefix="ngModel"
+                                                                                    [(ngModel)]="genicprofileservice.formData.CloserPrefix"
+                                                                                    placeholder="Closer Prefix"
+                                                                                    class="form-control" />
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <label for="">Whats App Number</label>
+                                                                                <input type="text" maxlength="10"
+                                                                                    name="genicprofileservice.formData.WhatsAppNumber"
+                                                                                    #WhatsAppNumber="ngModel"
+                                                                                    [(ngModel)]="genicprofileservice.formData.WhatsAppNumber"
+                                                                                    placeholder="Whats App Number"
+                                                                                    class="form-control" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 col-lg-6">
+                                                                                <label for="">Time Zone</label>
+                                                                                <select
+                                                                                    name="genicprofileservice.formData.TimeZone"
+                                                                                    #TimeZone="ngModel"
+                                                                                    [(ngModel)]="genicprofileservice.formData.TimeZone"
+                                                                                    class="form-control">
+                                                                                    <option
+                                                                                        value="Singapore Standard Time">
+                                                                                        Singapore Standard Time GTM+8
+                                                                                    </option>
+
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="col-md-3 col-lg-3">
+                                                                                <label for=""> Over Time After
+
+                                                                                </label>
+
+                                                                                <input type="text" maxlength="2"
+                                                                                    name="genicprofileservice.formData.OTAfter"
+                                                                                    #OTAfter="ngModel"
+                                                                                    [(ngModel)]="genicprofileservice.formData.OTAfter"
+                                                                                    placeholder="Over Time"
+                                                                                    class="form-control"
+                                                                                    (keypress)="numberOnly($event)" />
+                                                                            </div>
+                                                                            <div class="col-md-3 col-lg-3">
+                                                                                <div class="btooltip"> <i
+                                                                                        class="fa fa-question-circle text-info"
+                                                                                        style="cursor: help;"></i>
+                                                                                    <span class="btooltiptext">You can't
+                                                                                        assign Job to particular
+                                                                                        {{this.currentUser.Engineer}} before or
+                                                                                        after for this buffer time of
+                                                                                        already assigned {{this.currentUser.Ticket}} to
+                                                                                        him. e.g. For {{this.currentUser.Engineer}} A Job
+                                                                                        assigned from 10 AM to 11 AM &
+                                                                                        you kept Buffer time as 30
+                                                                                        minutes, then in this case you
+                                                                                        can not assign another {{this.currentUser.Ticket}} to
+                                                                                        him between 9:30 AM till 11:30
+                                                                                        AM</span>
+                                                                                </div>
+                                                                                <label for=""> Buffer Time (minutes)
+
+                                                                                </label>
+
+                                                                                <input type="text" maxlength="3"
+                                                                                    name="genicprofileservice.formData.BufferTime"
+                                                                                    #BufferTime="ngModel"
+                                                                                    [(ngModel)]="genicprofileservice.formData.BufferTime"
+                                                                                    placeholder="Buffer Time"
+                                                                                    class="form-control"
+                                                                                    (keypress)="numberOnly($event)" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <input type="hidden"
+                                                                            name="genicprofileservice.formData.WarrantyValidation"
+                                                                            #genicprofileservice.formData.WarrantyValidation="ngModel"
+                                                                            [(ngModel)]="genicprofileservice.formData.WarrantyValidation">
+                                                                        <div class="row"
+                                                                            *ngIf="currentUser.Permissions.ProductWarranty">
+                                                                            <div class="col-lg-12 col-md-12">
+                                                                                <span
+                                                                                    class="kt-switch kt-switch--icon"><label><input
+                                                                                            name="genicprofileservice.formData.WarrantyValidation"
+                                                                                            #genicprofileservice.formData.WarrantyValidation="ngModel"
+                                                                                            [(ngModel)]="genicprofileservice.formData.WarrantyValidation"
+                                                                                            type="checkbox"><span></span></label></span>
+                                                                                <span
+                                                                                    class="swither-bootstrap-learn switcher-customer">
+                                                                                    <strong>
+                                                                                        Validation on Warranty Unique
+                                                                                        Id?
+                                                                                    </strong>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <label for="">{{this.currentUser.Ticket}} Terms &
+                                                                                    Conditions</label>
+                                                                                <textarea class="form-control"
+                                                                                    maxlength="1024"
+                                                                                    #TicketTermsConditions="ngModel"
+                                                                                    placeholder="{{this.currentUser.Ticket}} Terms & Conditions"
+                                                                                    name="TicketTermsConditions"
+                                                                                    [(ngModel)]="genicprofileservice.formData.TicketTermsConditions">
+
+                                                                               </textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <label for="">Quotation Terms &
+                                                                                    Conditions</label>
+                                                                                <textarea class="form-control"
+                                                                                    #QuoteTermsAndCondition="ngModel"
+                                                                                    maxlength="1024"
+                                                                                    placeholder="Quotation Terms & Conditions"
+                                                                                    name="QuoteTermsAndCondition"
+                                                                                    [(ngModel)]="genicprofileservice.formData.QuoteTermsAndCondition">
+                                                                               </textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="modal-footer create-proprty-model-footer">
+                                                                            <button class="btn btn-brand" type="button"
+                                                                                (click)="onSubmit('prefix')"> Save
+                                                                                Prefix </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="menu4" class="tab-pane fade clCompPrefix">
+                                                                        <input type="hidden"
+                                                                            name="genicprofileservice.formData.Geolocation"
+                                                                            #genicprofileservice.formData.Geolocation="ngModel"
+                                                                            [(ngModel)]="genicprofileservice.formData.Geolocation">
+                                                                        <div class="row" *ngIf="currentUser.Permissions.GeoLocation">
+                                                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                                <span class="kt-switch kt-switch--icon"><label><input
+                                                                                            name="genicprofileservice.formData.Geolocation"
+                                                                                            #genicprofileservice.formData.Geolocation="ngModel"
+                                                                                            [(ngModel)]="genicprofileservice.formData.Geolocation"
+                                                                                            type="checkbox"><span></span></label></span>
+                                                                                <span class="swither-bootstrap-learn switcher-customer">
+                                                                                    <strong>Geolocation Attendance Enabled?</strong>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr>
+                                                                        <div class="row" *ngIf="genicprofileservice.formData.Geolocation">
+                                                                            <div class="col-lg-1 col-md-1 col-sm-1">
+                                                                            </div>
+                                                                            <div class="col-lg-11 col-md-11 col-sm-11" style="cursor: no-drop;">
+                                                                                <span class="kt-switch kt-switch--icon"><label><input
+                                                                                            checked="checked" disabled="disabled"
+                                                                                            type="checkbox"><span></span></label></span>
+                                                                                <span class="swither-bootstrap-learn switcher-customer">
+                                                                                    <strong>Date & time will auto capture</strong>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-lg-1 col-md-1 col-sm-1">
+                                                                            </div>
+                                                                            <div class="col-lg-11 col-md-11 col-sm-11">
+                                                                                <span class="kt-switch kt-switch--icon"><label><input
+                                                                                            name="genicprofileservice.formData.GeolocationAddress"
+                                                                                            #genicprofileservice.formData.GeolocationAddress="ngModel"
+                                                                                            [(ngModel)]="genicprofileservice.formData.GeolocationAddress"
+                                                                                            type="checkbox"><span></span></label></span>
+                                                                                <span class="swither-bootstrap-learn switcher-customer">
+                                                                                    <strong>Geolocation Address?</strong>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-lg-1 col-md-1 col-sm-1">
+                                                                            </div>
+                                                                            <div class="col-lg-11 col-md-11 col-sm-11">
+                                                                                <span class="kt-switch kt-switch--icon"><label><input
+                                                                                            name="genicprofileservice.formData.GeolocationImage"
+                                                                                            #genicprofileservice.formData.GeolocationImage="ngModel"
+                                                                                            [(ngModel)]="genicprofileservice.formData.GeolocationImage"
+                                                                                            type="checkbox"><span></span></label></span>
+                                                                                <span class="swither-bootstrap-learn switcher-customer">
+                                                                                    <strong>Geolocation Image?</strong>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer create-proprty-model-footer">
+                                                                            <button class="btn btn-brand" type="button"
+                                                                                (click)="onSubmit('geolocation')"> Save
+                                                                                Prefix </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="kt-wizard-v2__content setting-list-dynamic-class"
+                                                    data-ktwizard-type="step-content" id="Brand">
+                                                    <app-brand-details *ngIf="currentUser.Permissions.BrandView">
+                                                    </app-brand-details>
+                                                </div>
+                                                <div id="Category"
+                                                    class="kt-wizard-v2__content setting-list-dynamic-class"
+                                                    data-ktwizard-type="step-content">
+                                                    <app-category-details *ngIf="currentUser.Permissions.CategoryView">
+                                                    </app-category-details>
+                                                </div>
+                                                <div id="TicketIssue"
+                                                    class="kt-wizard-v2__content setting-list-dynamic-class"
+                                                    data-ktwizard-type="step-content">
+                                                    <app-ticket-issue-type
+                                                        *ngIf="currentUser.Permissions.IssueTypeView">
+                                                    </app-ticket-issue-type>
+                                                </div>
+                                                <div id="PaymentMode"
+                                                    class="kt-wizard-v2__content setting-list-dynamic-class"
+                                                    data-ktwizard-type="step-content">
+                                                    <app-payment-mode *ngIf="currentUser.Permissions.IssueTypeView">
+                                                    </app-payment-mode>
+                                                </div>
+                                                <div id="Tax"
+                                                    class="kt-wizard-v2__content setting-list-dynamic-class"
+                                                    data-ktwizard-type="step-content">
+                                                    <app-tax-details *ngIf="currentUser.Permissions.TaxView">
+                                                    </app-tax-details>
+                                                </div>
+                                                <div id="SMTPSetting"
+                                                    class="kt-wizard-v2__content setting-list-dynamic-class"
+                                                    data-ktwizard-type="step-content">
+                                                    <app-smtp-details *ngIf="currentUser.Permissions.SMTPSettingView">
+                                                    </app-smtp-details>
+                                                </div>
+                                                <div class="kt-wizard-v2__content setting-list-dynamic-class"
+                                                    data-ktwizard-type="step-content" id="HoliDayCalendar">
+                                                    <div class="kt-portlet kt-portlet--mobile">
+                                                        <div
+                                                            class="kt-portlet__head kt-portlet__head--lg contact_detail_table_info">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="kt-portlet__head-label">
+
+                                                                        <h3 class="kt-portlet__head-title">
+                                                                            Business Hours
+                                                                        </h3>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6 top-add-sec">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="kt-portlet__body properties_filter_body">
+                                                            <div class="company-setting">
+                                                                <ul class="nav nav-tabs custUl">
+                                                                    <li class="custLi"><a data-toggle="tab"
+                                                                            href="#menu11"
+                                                                            class="custTab active">Business Hours</a>
+                                                                    </li>
+                                                                    <li class="custLi"><a data-toggle="tab"
+                                                                            href="#menu12" class="custTab">Add
+                                                                            Holidays</a></li>
+                                                                    <li class="custLi"><a data-toggle="tab"
+                                                                            href="#menu13"
+                                                                            class="custTab">Business&nbsp;Calendar</a>
+                                                                    </li>
+                                                                </ul>
+
+                                                                <div class="tab-content">
+                                                                    <div id="menu11" class="tab-pane fade in active">
+                                                                        <div class="menu2-head">
+                                                                            <h2>Business Hours</h2>
+                                                                            <p>Hours will be visible in your client hub
+                                                                                and if you have the online booking
+                                                                                feature, open days will be available on
+                                                                                Requests</p>
+                                                                            <div class="hours-table">
+                                                                                <table class="table table-stripped">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>Sunday</td>
+                                                                                            <td><span
+                                                                                                    class="kt-switch kt-switch--icon"><label><input
+                                                                                                            name="genicprofileservice.formData.Sunday"
+                                                                                                            #Sunday="ngModel"
+                                                                                                            [(ngModel)]="genicprofileservice.formData.Sunday"
+                                                                                                            type="checkbox"><span></span></label></span>
+                                                                                            </td>
+                                                                                            <td><input
+                                                                                                    *ngIf="genicprofileservice.formData.Sunday"
+                                                                                                    type="text"
+                                                                                                    name="genicprofileservice.formData.SundayString"
+                                                                                                    #SundayString="ngModel"
+                                                                                                    [(ngModel)]="genicprofileservice.formData.SundayString"
+                                                                                                    class="form-control"><span
+                                                                                                    *ngIf="!genicprofileservice.formData.Sunday">Closed</span>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Monday</td>
+                                                                                            <td><span
+                                                                                                    class="kt-switch kt-switch--icon"><label><input
+                                                                                                            name="genicprofileservice.formData.Monday"
+                                                                                                            #Monday="ngModel"
+                                                                                                            [(ngModel)]="genicprofileservice.formData.Monday"
+                                                                                                            type="checkbox"><span></span></label></span>
+                                                                                            </td>
+                                                                                            <td><input
+                                                                                                    *ngIf="genicprofileservice.formData.Monday"
+                                                                                                    type="text"
+                                                                                                    name="genicprofileservice.formData.MondayString"
+                                                                                                    #MondayString="ngModel"
+                                                                                                    [(ngModel)]="genicprofileservice.formData.MondayString"
+                                                                                                    class="form-control"><span
+                                                                                                    *ngIf="!genicprofileservice.formData.Monday">Closed</span>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Tuesday</td>
+                                                                                            <td><span
+                                                                                                    class="kt-switch kt-switch--icon"><label><input
+                                                                                                            name="genicprofileservice.formData.Tuesday"
+                                                                                                            #Tuesday="ngModel"
+                                                                                                            [(ngModel)]="genicprofileservice.formData.Tuesday"
+                                                                                                            type="checkbox"><span></span></label></span>
+                                                                                            </td>
+                                                                                            <td><input
+                                                                                                    *ngIf="genicprofileservice.formData.Tuesday"
+                                                                                                    type="text"
+                                                                                                    name="genicprofileservice.formData.TuesdayString"
+                                                                                                    #TuesdayString="ngModel"
+                                                                                                    [(ngModel)]="genicprofileservice.formData.TuesdayString"
+                                                                                                    class="form-control"><span
+                                                                                                    *ngIf="!genicprofileservice.formData.Tuesday">Closed</span>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Wednesday</td>
+                                                                                            <td><span
+                                                                                                    class="kt-switch kt-switch--icon"><label><input
+                                                                                                            name="genicprofileservice.formData.Wednesday"
+                                                                                                            #Wednesday="ngModel"
+                                                                                                            [(ngModel)]="genicprofileservice.formData.Wednesday"
+                                                                                                            type="checkbox"><span></span></label></span>
+                                                                                            </td>
+                                                                                            <td><input
+                                                                                                    *ngIf="genicprofileservice.formData.Wednesday"
+                                                                                                    type="text"
+                                                                                                    name="genicprofileservice.formData.WednesdayString"
+                                                                                                    #WednesdayString="ngModel"
+                                                                                                    [(ngModel)]="genicprofileservice.formData.WednesdayString"
+                                                                                                    class="form-control"><span
+                                                                                                    *ngIf="!genicprofileservice.formData.Wednesday">Closed</span>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Thursday</td>
+                                                                                            <td><span
+                                                                                                    class="kt-switch kt-switch--icon"><label><input
+                                                                                                            name="genicprofileservice.formData.Thursday"
+                                                                                                            #Thursday="ngModel"
+                                                                                                            [(ngModel)]="genicprofileservice.formData.Thursday"
+                                                                                                            type="checkbox"><span></span></label></span>
+                                                                                            </td>
+                                                                                            <td><input
+                                                                                                    *ngIf="genicprofileservice.formData.Thursday"
+                                                                                                    type="text"
+                                                                                                    name="genicprofileservice.formData.ThursdayString"
+                                                                                                    #ThursdayString="ngModel"
+                                                                                                    [(ngModel)]="genicprofileservice.formData.ThursdayString"
+                                                                                                    class="form-control"><span
+                                                                                                    *ngIf="!genicprofileservice.formData.Thursday">Closed</span>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Friday</td>
+                                                                                            <td><span
+                                                                                                    class="kt-switch kt-switch--icon"><label><input
+                                                                                                            name="genicprofileservice.formData.Friday"
+                                                                                                            #Friday="ngModel"
+                                                                                                            [(ngModel)]="genicprofileservice.formData.Friday"
+                                                                                                            type="checkbox"><span></span></label></span>
+                                                                                            </td>
+                                                                                            <td><input
+                                                                                                    *ngIf="genicprofileservice.formData.Friday"
+                                                                                                    type="text"
+                                                                                                    name="genicprofileservice.formData.FridayString"
+                                                                                                    #FridayString="ngModel"
+                                                                                                    [(ngModel)]="genicprofileservice.formData.FridayString"
+                                                                                                    class="form-control"><span
+                                                                                                    *ngIf="!genicprofileservice.formData.Friday">Closed</span>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Saturday</td>
+                                                                                            <td><span
+                                                                                                    class="kt-switch kt-switch--icon"><label><input
+                                                                                                            name="genicprofileservice.formData.Saturday"
+                                                                                                            #Saturday="ngModel"
+                                                                                                            [(ngModel)]="genicprofileservice.formData.Saturday"
+                                                                                                            type="checkbox"><span></span></label></span>
+                                                                                            </td>
+                                                                                            <td><input
+                                                                                                    *ngIf="genicprofileservice.formData.Saturday"
+                                                                                                    type="text"
+                                                                                                    name="genicprofileservice.formData.SaturdayString"
+                                                                                                    #SaturdayString="ngModel"
+                                                                                                    [(ngModel)]="genicprofileservice.formData.SaturdayString"
+                                                                                                    class="form-control"><span
+                                                                                                    *ngIf="!genicprofileservice.formData.Saturday">Closed</span>
+                                                                                            </td>
+                                                                                        </tr>
+
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="modal-footer create-proprty-model-footer">
+
+                                                                            <button class="btn btn-brand" type="button"
+                                                                                (click)="onSubmit('businesshours')">
+                                                                                Save
+                                                                                Changes </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="menu12" class="tab-pane fade">
+                                                                        <div class="menu2-head">
+                                                                            <div class=row>
+                                                                                <div class="col-md-8">
+                                                                                    <h2>Holidays Calendar
+                                                                                        <select name="LeaveSelectOption"
+                                                                                            class="leavesection"
+                                                                                            [(ngModel)]="LeaveSelectOption"
+                                                                                            (change)="LeaveCalendarSelectChange()">
+                                                                                            <option value="2021">2021
+                                                                                            </option>
+                                                                                            <option value="2022">2022
+                                                                                            </option>
+                                                                                            <option value="2023">2023
+                                                                                            </option>
+                                                                                        </select>
+                                                                                    </h2>
+                                                                                    <p>Holiday Calendar will show only
+                                                                                        {{this.currentUser.Engineer}} side</p>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <div
+                                                                                        class="modal-footer create-proprty-model-footer">
+                                                                                        <button class="btn btn-brand"
+                                                                                            type="button"
+                                                                                            (click)="onLeaveCalendar()">
+                                                                                            Add Holidays </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                            <div class="hours-table">
+                                                                                <table
+                                                                                    class="table table-striped- table-bordered table-hover table-checkable">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th style="width: 10px;">#
+                                                                                            </th>
+                                                                                            <th style="width: 200px;">
+                                                                                                Date</th>
+                                                                                            <th>Type</th>
+                                                                                            <th>Description</th>
+                                                                                            <th>Working</th>
+                                                                                            <th></th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr
+                                                                                            *ngFor="let x of genicprofileservice.GenicProfileCalendarList; let i = index">
+                                                                                            <ng-container
+                                                                                                *ngIf="x.Id !== 0">
+                                                                                                <td>{{i + 1}}</td>
+                                                                                                <td
+                                                                                                    style="width: 200px;">
+                                                                                                    <span
+                                                                                                        class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                                                                                                        *ngIf="x.WorkType.toLowerCase() === 'full day'">
+                                                                                                        {{ x.Date |
+                                                                                                        date:'EEEE, MMMM
+                                                                                                        d, y' }}
+                                                                                                    </span>
+                                                                                                    <span
+                                                                                                        class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                                                                                                        *ngIf="x.WorkType.toLowerCase() === 'half day'">
+                                                                                                        {{ x.Date |
+                                                                                                        date:'EEEE, MMMM
+                                                                                                        d, y' }}
+                                                                                                    </span>
+                                                                                                    <span
+                                                                                                        class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill"
+                                                                                                        *ngIf="x.WorkType.toLowerCase() === 'half day'">
+                                                                                                        {{
+                                                                                                        x.StartTime.split(':')[0]
+                                                                                                        + ':' +
+                                                                                                        x.StartTime.split(':')[1]
+                                                                                                        }}-{{
+                                                                                                        x.EndTime.split(':')[0]
+                                                                                                        + ':' +
+                                                                                                        x.EndTime.split(':')[1]
+                                                                                                        }}
+                                                                                                    </span>
+                                                                                                </td>
+                                                                                                <td
+                                                                                                    style="width: 80px;">
+                                                                                                    <span
+                                                                                                        class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                                                                                                        *ngIf="x.WorkType.toLowerCase() === 'full day'">{{x.WorkType}}</span>
+                                                                                                    <span
+                                                                                                        class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill"
+                                                                                                        *ngIf="x.WorkType.toLowerCase() === 'half day'">{{x.WorkType}}</span>
+                                                                                                </td>
+                                                                                                <td> {{ x.Description }}
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <span
+                                                                                                        class="kt-switch kt-switch--icon"><label><input
+                                                                                                                name="x.IsWorking"
+                                                                                                                #x.IsWorking="ngModel"
+                                                                                                                [(ngModel)]="x.IsWorking"
+                                                                                                                (change)="onStatusChange(x.Id)"
+                                                                                                                type="checkbox"><span></span></label></span>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <div
+                                                                                                        class="btn-group btn-group-sm">
+                                                                                                        <a href="javascript:;"
+                                                                                                            style="border: #1dc9b7;"
+                                                                                                            class="btn btn-primary dropdown-toggle"
+                                                                                                            data-toggle="dropdown">Action<span
+                                                                                                                class="caret"></span></a>
+
+                                                                                                        <ul
+                                                                                                            class="dropdown-menu">
+                                                                                                            <li><a (click)="removeLeaveCalendar(x.Id)"
+                                                                                                                    href="javascript:;">Remove</a>
+                                                                                                            </li>
+                                                                                                        </ul>
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                            </ng-container>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="menu13" class="tab-pane fade">
+                                                                        <div class="row">
+                                                                            <ng-template #customCellTemplate
+                                                                                let-day="day" let-locale="locale">
+                                                                                <div class="cal-cell-top">
+                                                                                    <span class="cal-day-number">{{
+                                                                                        day.date |
+                                                                                        calendarDate:'monthViewDayNumber':locale
+                                                                                        }}</span>
+                                                                                </div>
+                                                                                <span
+                                                                                    class="calendar-ticket-priority-visit"
+                                                                                    *ngIf="day.badgeTotal > 1">{{
+                                                                                    day.badgeTotal }}
+                                                                                    events</span>
+                                                                                <small *ngFor="let x of day.events"
+                                                                                    class="calendar-ticket-priority-low">
+                                                                                    <div class="row">
+                                                                                        <div
+                                                                                            class="col-sm-12 col-md-12">
+                                                                                            <b>{{x.title}}</b>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </small>
+                                                                            </ng-template>
+
+                                                                            <div class="col-md-12">
+                                                                                <mwl-demo-utils-calendar-header
+                                                                                    [(view)]="view"
+                                                                                    [(viewDate)]="viewDate">
+                                                                                </mwl-demo-utils-calendar-header>
+                                                                                <div [ngSwitch]="view">
+                                                                                    <mwl-calendar-month-view
+                                                                                        *ngSwitchCase="CalendarView.Month"
+                                                                                        [viewDate]="viewDate"
+                                                                                        [events]="events"
+                                                                                        [activeDayIsOpen]="activeDayIsOpen"
+                                                                                        [refresh]="refresh"
+                                                                                        [cellTemplate]="customCellTemplate">
+                                                                                    </mwl-calendar-month-view>
+                                                                                    <mwl-calendar-week-view
+                                                                                        *ngSwitchCase="CalendarView.Week"
+                                                                                        [viewDate]="viewDate"
+                                                                                        [events]="events"
+                                                                                        [refresh]="refresh">
+                                                                                    </mwl-calendar-week-view>
+                                                                                    <mwl-calendar-day-view
+                                                                                        *ngSwitchCase="CalendarView.Day"
+                                                                                        [viewDate]="viewDate"
+                                                                                        [events]="events"
+                                                                                        [refresh]="refresh">
+                                                                                    </mwl-calendar-day-view>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="kt-wizard-v2__content setting-list-dynamic-class"
+                                                    data-ktwizard-type="step-content" id="LeaveManagement">
+                                                    <div class="kt-portlet kt-portlet--mobile">
+                                                        <div
+                                                            class="kt-portlet__head kt-portlet__head--lg contact_detail_table_info">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="kt-portlet__head-label">
+
+                                                                        <h3 class="kt-portlet__head-title">
+                                                                            {{this.currentUser.Engineer}} Leave Management
+                                                                        </h3>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 top-add-sec">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="kt-portlet__body properties_filter_body">
+                                                            <div class="company-setting">
+                                                                <ul class="nav nav-tabs custUl">
+                                                                    <li class="custLi"><a data-toggle="tab"
+                                                                            href="#menuapproved"
+                                                                            class="custTab active">{{approvedleavecount}}
+                                                                            Approved Leave's</a>
+                                                                    </li>
+                                                                    <li class="custLi"><a data-toggle="tab"
+                                                                            href="#menupending" class="custTab">
+                                                                            {{pendingleavecount}} Pending Leave's</a>
+                                                                    </li>
+                                                                    <li class="custLi"><a data-toggle="tab"
+                                                                            href="#menurejected" class="custTab">
+                                                                            {{rejectedleavecount}} Rejected Leave's</a>
+                                                                    </li>
+                                                                    <li class="custLi"><a data-toggle="tab"
+                                                                            href="#menucanceled" class="custTab">
+                                                                            {{cancelledleavecount}} Cancelled
+                                                                            Leave's</a>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="kt-portlet__body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <ngx-select-dropdown
+                                                                                (change)="onEngineerItemSelect($event)"
+                                                                                [multiple]="true"
+                                                                                name="EngineerselectedItems"
+                                                                                [(ngModel)]="EngineerselectedItems"
+                                                                                [config]="EngineerdropdownSettings"
+                                                                                [options]="EngineerdropdownList">
+                                                                            </ngx-select-dropdown>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <h5><a href="javascript:;" class="btn"
+                                                                                        (click)="showdatepicker()">
+                                                                                        <i class="fa fa-calendar text-primary"
+                                                                                            title="calendar"
+                                                                                            aria-hidden="true"
+                                                                                            *ngIf="!Isdatepickershow"></i>
+                                                                                        <i class="fa fa-times text-warning"
+                                                                                            title="calendar"
+                                                                                            aria-hidden="true"
+                                                                                            *ngIf="Isdatepickershow"></i>
+                                                                                    </a>
+                                                                                    {{genicprofileservice.TicketFilter.DateFrom
+                                                                                    | date:'MMMM d, y':'+0000'}}
+                                                                                    to
+                                                                                    {{this.genicprofileservice.TicketFilter.DateTo
+                                                                                    | date:'MMMM d, y':'+0000'}}
+                                                                                </h5>
+                                                                                <div *ngIf="Isdatepickershow"
+                                                                                    style="position:absolute;z-index: 99999;background-color: white;">
+                                                                                    <div class="row filterstrong">
+                                                                                        <div class="col-md-3">
+                                                                                            <div class="input-group">
+                                                                                                <input readonly
+                                                                                                    placeholder="yyyy-mm-dd"
+                                                                                                    class="form-control"
+                                                                                                    name="genicprofileservice.TicketFilter.DateFrom"
+                                                                                                    #genicprofileservice.TicketFilter.DateFrom="ngModel"
+                                                                                                    [(ngModel)]="genicprofileservice.TicketFilter.DateFrom"
+                                                                                                    ngbDatepicker
+                                                                                                    (click)="datePickerfromdate.toggle()"
+                                                                                                    #datePickerfromdate="ngbDatepicker">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-3">
+                                                                                            <div class="input-group">
+                                                                                                <input readonly
+                                                                                                    placeholder="yyyy-mm-dd"
+                                                                                                    class="form-control"
+                                                                                                    name="this.genicprofileservice.TicketFilter.DateTo"
+                                                                                                    #this.genicprofileservice.TicketFilter.DateTo="ngModel"
+                                                                                                    [(ngModel)]="this.genicprofileservice.TicketFilter.DateTo"
+                                                                                                    ngbDatepicker
+                                                                                                    (click)="datePickertodate.toggle()"
+                                                                                                    #datePickertodate="ngbDatepicker">
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-md-1">
+                                                                                            <div class="input-group">
+                                                                                                <a href="javascript:;"
+                                                                                                    (click)="onDateChange()"
+                                                                                                    class="btnprimary">Search</a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="tab-content">
+                                                                    <div id="menuapproved"
+                                                                        class="tab-pane fade in active">
+                                                                        <div
+                                                                            class="kt-portlet__body properties_filter_body">
+                                                                            <table
+                                                                                class="table table-striped- table-bordered table-hover table-checkable">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th tyle="width: 200px;">Date
+                                                                                        </th>
+                                                                                        <th>Type</th>
+                                                                                        <th>Description</th>
+                                                                                        <th>{{this.currentUser.Engineer}}</th>
+                                                                                        <th></th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr
+                                                                                        *ngFor="let x of genicprofileservice.LeaveManagementList; let i = index">
+                                                                                        <ng-container
+                                                                                            *ngIf="x.Id !== 0 && x.Status === 'Approved'">
+
+                                                                                            <td style="width: 200px;">
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'full day'">
+                                                                                                    {{ x.Date |
+                                                                                                    date:'EEEE, MMMM d,
+                                                                                                    y' }}
+                                                                                                </span>
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'half day'">
+                                                                                                    {{ x.Date |
+                                                                                                    date:'EEEE, MMMM d,
+                                                                                                    y' }}
+                                                                                                </span>
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'half day'">
+                                                                                                    {{
+                                                                                                    x.StartTime.split(':')[0]
+                                                                                                    + ':' +
+                                                                                                    x.StartTime.split(':')[1]
+                                                                                                    }}-{{
+                                                                                                    x.EndTime.split(':')[0]
+                                                                                                    + ':' +
+                                                                                                    x.EndTime.split(':')[1]
+                                                                                                    }}
+                                                                                                </span>
+                                                                                            </td>
+                                                                                            <td style="width: 90px;">
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'full day'">{{x.WorkType}}</span>
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'half day'">{{x.WorkType}}</span>
+                                                                                            </td>
+                                                                                            <td> {{ x.Description }}
+                                                                                            </td>
+                                                                                            <td> {{ x.EngineerName }}
+                                                                                            </td>
+                                                                                            <td style="width: 150px;">
+                                                                                                <div
+                                                                                                    class="btn-group btn-group-sm">
+                                                                                                    <a href="javascript:;"
+                                                                                                        style="border: #1dc9b7;"
+                                                                                                        class="btn btn-primary dropdown-toggle"
+                                                                                                        data-toggle="dropdown">Action<span
+                                                                                                            class="caret"></span></a>
+
+                                                                                                    <ul class="dropdown-menu"
+                                                                                                        style="left: -98px !important;">
+                                                                                                        <li
+                                                                                                            *ngIf="x.Status === 'Pending'">
+                                                                                                            <a (click)="approvedLeaveManagement(x.Id, x.Date)"
+                                                                                                                href="javascript:;">Approved/Reject</a>
+                                                                                                        </li>
+                                                                                                        <li
+                                                                                                            *ngIf="x.Status === 'Approved'">
+                                                                                                            <a (click)="cancelledLeaveCalendar(x.Id)"
+                                                                                                                href="javascript:;">Cancel
+                                                                                                                Approved
+                                                                                                                Leave</a>
+                                                                                                        </li>
+                                                                                                    </ul>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </ng-container>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="menupending" class="tab-pane fade">
+                                                                        <div
+                                                                            class="kt-portlet__body properties_filter_body">
+                                                                            <table
+                                                                                class="table table-striped- table-bordered table-hover table-checkable">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th tyle="width: 200px;">Date
+                                                                                        </th>
+                                                                                        <th>Type</th>
+                                                                                        <th>Description</th>
+                                                                                        <th>{{this.currentUser.Engineer}}</th>
+                                                                                        <th></th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr
+                                                                                        *ngFor="let x of genicprofileservice.LeaveManagementList; let i = index">
+                                                                                        <ng-container
+                                                                                            *ngIf="x.Id !== 0 && x.Status === 'Pending'">
+
+                                                                                            <td style="width: 200px;">
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'full day'">
+                                                                                                    {{ x.Date |
+                                                                                                    date:'EEEE, MMMM d,
+                                                                                                    y' }}
+                                                                                                </span>
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'half day'">
+                                                                                                    {{ x.Date |
+                                                                                                    date:'EEEE, MMMM d,
+                                                                                                    y' }}
+                                                                                                </span>
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'half day'">
+                                                                                                    {{
+                                                                                                    x.StartTime.split(':')[0]
+                                                                                                    + ':' +
+                                                                                                    x.StartTime.split(':')[1]
+                                                                                                    }}-{{
+                                                                                                    x.EndTime.split(':')[0]
+                                                                                                    + ':' +
+                                                                                                    x.EndTime.split(':')[1]
+                                                                                                    }}
+                                                                                                </span>
+                                                                                            </td>
+                                                                                            <td style="width: 90px;">
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'full day'">{{x.WorkType}}</span>
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'half day'">{{x.WorkType}}</span>
+                                                                                            </td>
+                                                                                            <td> {{ x.Description }}
+                                                                                            </td>
+                                                                                            <td> {{ x.EngineerName }}
+                                                                                            </td>
+                                                                                            <td style="width: 150px;">
+                                                                                                <div
+                                                                                                    class="btn-group btn-group-sm">
+                                                                                                    <a href="javascript:;"
+                                                                                                        style="border: #1dc9b7;"
+                                                                                                        class="btn btn-primary dropdown-toggle"
+                                                                                                        data-toggle="dropdown">Action<span
+                                                                                                            class="caret"></span></a>
+
+                                                                                                    <ul class="dropdown-menu"
+                                                                                                        style="left: -98px !important;">
+                                                                                                        <li
+                                                                                                            *ngIf="x.Status === 'Pending'">
+                                                                                                            <a (click)="approvedLeaveManagement(x.Id, x.Date)"
+                                                                                                                href="javascript:;">Approved/Reject</a>
+                                                                                                        </li>
+                                                                                                        <li
+                                                                                                            *ngIf="x.Status === 'Approved'">
+                                                                                                            <a (click)="cancelledLeaveCalendar(x.Id)"
+                                                                                                                href="javascript:;">Cancel
+                                                                                                                Approved
+                                                                                                                Leave</a>
+                                                                                                        </li>
+                                                                                                    </ul>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </ng-container>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="menurejected" class="tab-pane fade">
+                                                                        <div
+                                                                            class="kt-portlet__body properties_filter_body">
+                                                                            <table
+                                                                                class="table table-striped- table-bordered table-hover table-checkable">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th tyle="width: 200px;">Date
+                                                                                        </th>
+                                                                                        <th>Type</th>
+                                                                                        <th>Description</th>
+                                                                                        <th>{{this.currentUser.Engineer}}</th>
+                                                                                        <th></th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr
+                                                                                        *ngFor="let x of genicprofileservice.LeaveManagementList; let i = index">
+                                                                                        <ng-container
+                                                                                            *ngIf="x.Id !== 0 && x.Status === 'Rejected'">
+
+                                                                                            <td style="width: 200px;">
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'full day'">
+                                                                                                    {{ x.Date |
+                                                                                                    date:'EEEE, MMMM
+                                                                                                    d,y' }}
+                                                                                                </span>
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'half day'">{{
+                                                                                                    x.Date | date:'EEEE,
+                                                                                                    MMMM d, y' }}
+                                                                                                </span>
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'half day'">
+                                                                                                    {{
+                                                                                                    x.StartTime.split(':')[0]
+                                                                                                    + ':' +
+                                                                                                    x.StartTime.split(':')[1]
+                                                                                                    }}-{{
+                                                                                                    x.EndTime.split(':')[0]
+                                                                                                    + ':' +
+                                                                                                    x.EndTime.split(':')[1]
+                                                                                                    }}
+                                                                                                </span>
+                                                                                            </td>
+                                                                                            <td style="width: 90px;">
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'full day'">{{x.WorkType}}</span>
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'half day'">{{x.WorkType}}</span>
+                                                                                            </td>
+                                                                                            <td> {{ x.Description }}
+                                                                                            </td>
+                                                                                            <td> {{ x.EngineerName }}
+                                                                                            </td>
+                                                                                            <td style="width: 150px;">
+                                                                                                <div
+                                                                                                    class="btn-group btn-group-sm">
+                                                                                                    <a href="javascript:;"
+                                                                                                        style="border: #1dc9b7;"
+                                                                                                        class="btn btn-primary dropdown-toggle"
+                                                                                                        data-toggle="dropdown">Action<span
+                                                                                                            class="caret"></span></a>
+
+                                                                                                    <ul class="dropdown-menu"
+                                                                                                        style="left: -98px !important;">
+                                                                                                        <li
+                                                                                                            *ngIf="x.Status === 'Pending'">
+                                                                                                            <a (click)="approvedLeaveManagement(x.Id, x.Date)"
+                                                                                                                href="javascript:;">Approved/Reject</a>
+                                                                                                        </li>
+                                                                                                        <li
+                                                                                                            *ngIf="x.Status === 'Approved'">
+                                                                                                            <a (click)="cancelledLeaveCalendar(x.Id)"
+                                                                                                                href="javascript:;">Cancel
+                                                                                                                Approved
+                                                                                                                Leave</a>
+                                                                                                        </li>
+                                                                                                    </ul>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </ng-container>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="menucanceled" class="tab-pane fade">
+                                                                        <div
+                                                                            class="kt-portlet__body properties_filter_body">
+                                                                            <table
+                                                                                class="table table-striped- table-bordered table-hover table-checkable">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th tyle="width: 200px;">Date
+                                                                                        </th>
+                                                                                        <th>Type</th>
+                                                                                        <th>Description</th>
+                                                                                        <th>{{this.currentUser.Engineer}}</th>
+                                                                                        <th></th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr
+                                                                                        *ngFor="let x of genicprofileservice.LeaveManagementList; let i = index">
+                                                                                        <ng-container
+                                                                                            *ngIf="x.Id !== 0 && x.Status === 'Cancelled'">
+                                                                                            <td style="width: 200px;">
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'full day'">
+                                                                                                    {{ x.Date |
+                                                                                                    date:'EEEE, MMMM d,
+                                                                                                    y' }}
+                                                                                                </span>
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'half day'">
+                                                                                                    {{ x.Date |
+                                                                                                    date:'EEEE, MMMM d,
+                                                                                                    y' }}
+                                                                                                </span>
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'half day'">
+                                                                                                    {{
+                                                                                                    x.StartTime.split(':')[0]
+                                                                                                    + ':' +
+                                                                                                    x.StartTime.split(':')[1]
+                                                                                                    }}-{{
+                                                                                                    x.EndTime.split(':')[0]
+                                                                                                    + ':' +
+                                                                                                    x.EndTime.split(':')[1]
+                                                                                                    }}
+                                                                                                </span>
+                                                                                            </td>
+                                                                                            <td style="width: 90px;">
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'full day'">{{x.WorkType}}</span>
+                                                                                                <span
+                                                                                                    class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill"
+                                                                                                    *ngIf="x.WorkType.toLowerCase() === 'half day'">{{x.WorkType}}</span>
+                                                                                            </td>
+                                                                                            <td> {{ x.Description }}
+                                                                                            </td>
+                                                                                            <td> {{ x.EngineerName }}
+                                                                                            </td>
+                                                                                            <td style="width: 150px;">
+                                                                                                <div
+                                                                                                    class="btn-group btn-group-sm">
+                                                                                                    <a href="javascript:;"
+                                                                                                        style="border: #1dc9b7;"
+                                                                                                        class="btn btn-primary dropdown-toggle"
+                                                                                                        data-toggle="dropdown">Action<span
+                                                                                                            class="caret"></span></a>
+
+                                                                                                    <ul class="dropdown-menu"
+                                                                                                        style="left: -98px !important;">
+                                                                                                        <li
+                                                                                                            *ngIf="x.Status === 'Pending'">
+                                                                                                            <a (click)="approvedLeaveManagement(x.Id, x.Date)"
+                                                                                                                href="javascript:;">Approved/Reject</a>
+                                                                                                        </li>
+                                                                                                        <li
+                                                                                                            *ngIf="x.Status === 'Approved'">
+                                                                                                            <a (click)="cancelledLeaveCalendar(x.Id)"
+                                                                                                                href="javascript:;">Cancel
+                                                                                                                Approved
+                                                                                                                Leave</a>
+                                                                                                        </li>
+                                                                                                    </ul>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </ng-container>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="GenicDocsAllow"
+                                                    class="kt-wizard-v2__content setting-list-dynamic-class"
+                                                    data-ktwizard-type="step-content">
+                                                    <app-drive-docs-allow *ngIf="currentUser.Permissions.DriveView">
+                                                    </app-drive-docs-allow>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

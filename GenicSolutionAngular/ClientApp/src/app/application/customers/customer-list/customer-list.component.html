@@ -1,0 +1,397 @@
+
+<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+    <div class="kt-subheader kt-grid__item" id="kt_subheader">
+        <div class="kt-container kt-container--fluid ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                    <a href="javascript:;" routerLink="/dashboard">
+                        Dashboard
+                    </a>
+                </h3>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    Customers
+                </div>
+            </div>
+            <div class="kt-subheader__toolbar">
+                <div class="kt-subheader__wrapper" *ngIf="currentUser.Permissions.CustomerCreate">
+                    <a on class="btn btn-brand text-white " (click)="addcustomer()">
+                        <i class="la la-plus"></i> Add Customer </a>
+                </div>
+                <div class="kt-subheader__wrapper">
+                    <a on class="btn btn-brand text-white" id="customerPop" data-toggle="modal" data-target="#BuidUploadPop">
+                        <i class="fa fa-file" aria-hidden="true"></i> Bulk Upload </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="customer-list-main-section">
+        <div class="kt-widget17">
+            <div class="kt-widget17__stats">
+                <div class="row mrg-top-10">
+                    <div class="col-lg-4">
+                        <div class="kt-portlet kt-iconbox kt-iconbox--brand kt-iconbox--animate-slower">
+                            <div class="kt-portlet__body">
+                                <div class="kt-iconbox__body">
+                                    <div class="kt-iconbox__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                            viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <polygon id="Shape" points="0 0 24 0 24 24 0 24" />
+                                                <path
+                                                    d="M18,14 C16.3431458,14 15,12.6568542 15,11 C15,9.34314575 16.3431458,8 18,8 C19.6568542,8 21,9.34314575 21,11 C21,12.6568542 19.6568542,14 18,14 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z"
+                                                    id="Combined-Shape" fill="#000000" fill-rule="nonzero"
+                                                    opacity="0.3" />
+                                                <path
+                                                    d="M17.6011961,15.0006174 C21.0077043,15.0378534 23.7891749,16.7601418 23.9984937,20.4 C24.0069246,20.5466056 23.9984937,21 23.4559499,21 L19.6,21 C19.6,18.7490654 18.8562935,16.6718327 17.6011961,15.0006174 Z M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z"
+                                                    id="Combined-Shape" fill="#000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg> </div>
+                                    <div class="kt-iconbox__desc">
+                                        <h3 class="kt-iconbox__title">
+                                            <a class="kt-link">Total Customers</a>
+                                        </h3>
+                                        <div class="kt-iconbox__content">
+                                            {{ TotalCustomerCount }} Total Customers
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="kt-portlet kt-iconbox kt-iconbox--success kt-iconbox--animate-slow">
+                            <div class="kt-portlet__body">
+                                <div class="kt-iconbox__body">
+                                    <div class="kt-iconbox__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                            viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <polygon id="Shape" points="0 0 24 0 24 24 0 24" />
+                                                <path
+                                                    d="M18,14 C16.3431458,14 15,12.6568542 15,11 C15,9.34314575 16.3431458,8 18,8 C19.6568542,8 21,9.34314575 21,11 C21,12.6568542 19.6568542,14 18,14 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z"
+                                                    id="Combined-Shape" fill="#000000" fill-rule="nonzero"
+                                                    opacity="0.3" />
+                                                <path
+                                                    d="M17.6011961,15.0006174 C21.0077043,15.0378534 23.7891749,16.7601418 23.9984937,20.4 C24.0069246,20.5466056 23.9984937,21 23.4559499,21 L19.6,21 C19.6,18.7490654 18.8562935,16.6718327 17.6011961,15.0006174 Z M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z"
+                                                    id="Combined-Shape" fill="#000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg> </div>
+                                    <div class="kt-iconbox__desc">
+                                        <h3 class="kt-iconbox__title">
+                                            <a class="kt-link">Active Customers</a>
+                                        </h3>
+                                        <div class="kt-iconbox__content">
+                                            {{ ActiveCustomerCount }} Active Customers
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="kt-portlet kt-iconbox kt-iconbox--warning kt-iconbox--animate-fast">
+                            <div class="kt-portlet__body">
+                                <div class="kt-iconbox__body">
+                                    <div class="kt-iconbox__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                            viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <polygon id="Shape" points="0 0 24 0 24 24 0 24" />
+                                                <path
+                                                    d="M18,14 C16.3431458,14 15,12.6568542 15,11 C15,9.34314575 16.3431458,8 18,8 C19.6568542,8 21,9.34314575 21,11 C21,12.6568542 19.6568542,14 18,14 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z"
+                                                    id="Combined-Shape" fill="#000000" fill-rule="nonzero"
+                                                    opacity="0.3" />
+                                                <path
+                                                    d="M17.6011961,15.0006174 C21.0077043,15.0378534 23.7891749,16.7601418 23.9984937,20.4 C24.0069246,20.5466056 23.9984937,21 23.4559499,21 L19.6,21 C19.6,18.7490654 18.8562935,16.6718327 17.6011961,15.0006174 Z M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z"
+                                                    id="Combined-Shape" fill="#000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+
+                                    </div>
+                                    <div class="kt-iconbox__desc">
+                                        <h3 class="kt-iconbox__title">
+                                            <a class="kt-link">Suspended Customer</a>
+                                        </h3>
+                                        <div class="kt-iconbox__content">
+                                            {{ SuspendedCustomerCount }} Suspended Customer
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-drop-section">
+                    <div class="row">
+                        <div class="box-1 expo" style="margin: 0 2px 4px 10px;">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-section kt-drop-section">
+                    <div class="kt-portlet__body customer-listing-datatable">
+                        <div class="panel panel-primary list-panel" id="list-panel">
+                            <div class="panel-heading list-panel-heading">
+                                <h1 class="panel-title list-panel-title"><i class="fa fa-list"></i> Customer List</h1>
+                                <ul class="scFilter">
+                                    <li>
+                                        <div class="btn-group btn-group-sm">
+                                            <a href="javascript:;" class="btn btn-primary dropdown-toggle"
+                                                data-toggle="dropdown">{{ dropdownbtnavgrev }} <span
+                                                    class="caret"></span></a>
+                                            <ul class="dropdown-menu" style="text-align: left;padding: 0;">
+                                                <li style="width: 100%;"><a (click)="FilterCustomers('All Customers')"
+                                                        href="javascript:;">All
+                                                        Customers</a></li>
+                                                <li style="width: 100%;"><a
+                                                        (click)="FilterCustomers('Active Customers')"
+                                                        href="javascript:;">Active
+                                                        Customers</a></li>
+                                                <li style="width: 100%;"><a
+                                                        (click)="FilterCustomers('Suspended Customers')"
+                                                        href="javascript:;">Suspended Customers</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <!-- <li>
+                                        <div class="btn-group btn-group-sm">
+                                            <a href="javascript:;" class="btn btn-primary dropdown-toggle"
+                                                data-toggle="dropdown">{{ dropdownbtndepartment }} <span
+                                                    class="caret"></span></a>
+                                            <ul class="dropdown-menu" style="text-align: left;padding: 0;">
+                                                <li style="width: 100%;"><a
+                                                    (click)="FilterDepartmentWise(0, 'All Department')"
+                                                    href="javascript:;">All Department</a></li>
+                                                <li style="width: 100%;" *ngFor="let x of smtpservice.SMSTPList">
+                                                    <a (click)="FilterDepartmentWise(x.Id, x.SMTPName)" href="javascript:;">
+                                                        {{x.SMTPName}}</a></li>
+                                                
+                                            </ul>
+                                        </div>
+                                    </li> -->
+                                    <li>
+                                        <div class="btnexport1">
+                                            <a href="javascript:void(0)" (click)="exportAsXLSX()"
+                                                class="btnexportToExcel">Export to Excel</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="panel-body">
+
+                                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                    class="table table-striped- table-bordered table-hover table-checkable">
+                                    <thead>
+                                        <tr>
+                                            <th width="5%;">Image</th>
+                                            <th width="5%;">Customer&nbsp;Id</th>
+                                            <th width="5%;">Date</th>
+                                            <th width="35%;">Customer&nbsp;info.</th>
+                                            <th width="40%;">
+                                                <ng-content *ngIf="currentUser.Permissions.EngineerType; then hqaddress; else billingaddress"></ng-content>
+                                                <ng-template #billingaddress>BILLING ADDRESS</ng-template>
+                                                <ng-template #hqaddress>HQ ADDRESS</ng-template>
+                                            </th>
+                                            <th width="5%;">Active</th>
+                                            <th width="5%;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let x of service.CustomerLocalList; let i=index; async"
+                                          class="customer-list-view-info" [ngClass]="{'InactiveBackColor': x.Status===false}">
+                                        <td>
+                                        <img *ngIf="x.CustomerLogo.length === 0" width="60px" class="img-thumbnail" title="{{x.NameTitle}} {{x.FirstName}} {{x.LastName}}" alt="pic"
+                                             src="{{localPrependUrl}}/assets/svg/noimage.svg" />
+                                        <img *ngIf="x.CustomerLogo.length > 0" width="60px" class="img-thumbnail" title="{{x.NameTitle}} {{x.FirstName}} {{x.LastName}}" alt="pic"
+                                             src="{{x.CustomerLogo }}">
+                                        </td>
+                                        <td style="cursor: pointer;">
+                                          <span class="btn btn-label-primary">
+                                            <a href="javascript:;" (click)="detailscustomer(x.Id)" *ngIf="currentUser.Permissions.CustomerView">{{x.CustomerId}}</a>
+                                            <a *ngIf="!currentUser.Permissions.CustomerView">{{x.CustomerId}}</a>
+                                          </span>
+                                        </td>
+                                        <td> {{x.CreatedUtcDate | date:'MMM d, y'}} </td>
+                                        <td>
+                                          <strong>Name: </strong> {{x.NameTitle}} {{x.FirstName}} {{x.LastName}}
+                                          <br>
+                                          <strong>Company: </strong> {{x.CompanyName}} <br>
+                                          <strong>Email: </strong>
+                                          <span *ngFor="let item of x.ArrayofKeys">
+                                            <span *ngIf="item.Type === 'Email' && item.IsDefault === true">
+                                              {{ item.Value }}
+                                            </span>
+                                          </span> <br>
+                                          <strong>Phone: </strong>
+                                          <span *ngFor="let item of x.ArrayofKeys">
+                                            <span *ngIf="item.Type === 'Phone' && item.IsDefault === true">
+                                              {{ item.Value }}
+                                            </span>
+                                          </span> <br>
+                                        </td>
+                                        <td>
+                                          {{x.AddressStreet1}} {{x.AddressStreet2}} {{x.AddressUnitNo}},
+                                          {{x.AddressCountry}} {{x.AddressZipCode}}
+                                        </td>
+                                        <td>
+                                          <div class="custom-switch custom-switch-label-yesno pl-0">
+                                            <input class="custom-switch-input ng-valid ng-dirty ng-touched"
+                                                   (change)="onStatusChange($event, x.Id, i)" id="example_{{i}}"
+                                                   name="x.Status" #x.Status="ngModel" [(ngModel)]="x.Status"
+                                                   type="checkbox">
+                                            <label class="custom-switch-btn" for="example_{{i}}"></label>
+                                          </div>
+
+                                        </td>
+                                        <td class="padd-top-0">
+                                          <div class="btn-group btn-group-sm">
+                                            <a href="javascript:;" style="border: #1dc9b7;"
+                                               class="btn btn-primary dropdown-toggle"
+                                               data-toggle="dropdown">Action<span class="caret"></span></a>
+
+                                            <ul class="dropdown-menu">
+                                              <li *ngIf="currentUser.Permissions.CustomerEdit">
+                                                <a (click)="pupulatecustomer(x.Id)"
+                                                   href="javascript:;">Edit</a>
+                                              </li>
+                                              <li *ngIf="currentUser.Permissions.CustomerView">
+                                                <a (click)="detailscustomer(x.Id)" href="javascript:;">
+                                                  View
+                                                  Details
+                                                </a>
+                                              </li>
+                                            </ul>
+                                          </div>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th *ngIf="service.CustomerLocalList === null" colspan="8"
+                                                style="text-align: center;">
+                                                <p>Record not found ! </p>
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="BuidUploadPop">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content myManFaContent">
+            <div class="modal-header" style="background-color: aqua;">
+                <h4 class="modal-title">Customer Bulk Upload</h4>
+                <button type="button" class="close" data-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body my-Model-body">
+                <div class="row">
+                    <div class="ExcelUpladRule">
+                        <label>Customer upload rules as follows:</label>
+                        <p>1.) All * fields are mendatory.</p>
+                        <p>2.) Do not remove first row header of template file.</p>
+                        <p>3.) Do not change header name.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 llf">
+                        <p>Download sample data template...</p>
+                        <div class="uploaddd">
+                            <a on href="{{excelDataTemplatePath}}" target="_blank"
+                                class="btn btn-brand text-white">
+                                <i class="fa fa-download" aria-hidden="true"></i> Sample Data </a>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 rrd">
+                        <p>Select Excel sheet and upload...</p>
+                        <div class="uploaddd">
+                            <a on class="btn btn-brand text-white" data-toggle="modal" 
+                                (click)="BulkUpload.click()">
+                                <i class="fa fa-file" aria-hidden="true"></i> Bulk Upload </a>
+                            <input style="display: none;" #BulkUpload type="file"
+                                (change)="BuldCustomerUpload($event.target.files)" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="SuccessSection">
+                        <ng-container *ngFor="let s of SuccessRes">
+                            <div class="alert-alert-success" role="alert">
+                                {{s}}
+                              </div>
+                        </ng-container>
+                    </div>
+                    <div class="errorSection">
+                        <ng-container *ngFor="let e of ErrorRes">
+                            <div class="alert-alert-danger" role="alert">
+                                {{e}}
+                              </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <br><br>
+                <div class="row">
+                    <div class="ExcelUpladRule">
+                        <label>Contact Person upload rules same as above:</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 llf">
+                        <p>Download sample data template...</p>
+                        <div class="uploaddd">
+                            <a on href="{{excelDataTemplatePath2}}" target="_blank"
+                                class="btn btn-brand text-white">
+                                <i class="fa fa-download" aria-hidden="true"></i> Sample Data </a>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 rrd">
+                        <p>Select Excel sheet and upload...</p>
+                        <div class="uploaddd">
+                            <a on class="btn btn-brand text-white" data-toggle="modal" 
+                                (click)="BulkUpload2.click()">
+                                <i class="fa fa-file" aria-hidden="true"></i> Bulk Upload </a>
+                            <input style="display: none;" #BulkUpload2 type="file"
+                                (change)="BuldContactPersonUpload($event.target.files)" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="SuccessSection">
+                        <ng-container *ngFor="let s of SuccessRes2">
+                            <div class="alert-alert-success" role="alert">
+                                {{s}}
+                              </div>
+                        </ng-container>
+                    </div>
+                    <div class="errorSection">
+                        <ng-container *ngFor="let e of ErrorRes2">
+                            <div class="alert-alert-danger" role="alert">
+                                {{e}}
+                              </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
